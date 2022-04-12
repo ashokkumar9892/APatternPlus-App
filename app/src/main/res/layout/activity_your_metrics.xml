@@ -1,0 +1,424 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".home.cardiacDetails.YourMetrics">
+
+        <include
+            android:id="@+id/tool_bar"
+            layout="@layout/layout_tool_bar" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/tool_bar"
+            android:fillViewport="true"
+            android:fitsSystemWindows="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:clipToPadding="false"
+                android:padding="@dimen/_21sdp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clipToPadding="false"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/_2sdp">
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/_8sdp"
+                        android:layout_weight="1"
+                        android:background="@drawable/drawable_shape_10sdp"
+                        android:elevation="@dimen/_2sdp"
+                        android:padding="@dimen/_12sdp">
+
+                        <TextView
+                            android:id="@+id/tv_progress_tracker"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/outfit_regular"
+                            android:paddingTop="@dimen/_1sdp"
+                            android:text="@string/progress_tracker"
+                            android:textColor="@color/text_color_4"
+                            android:textSize="@dimen/_8ssp" />
+
+                        <TextView
+                            android:id="@+id/tv_bpm"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/tv_progress_tracker"
+                            android:fontFamily="@font/outfit_semibold"
+                            android:text="@string/seventy_seven"
+                            android:textColor="@color/text_color_4"
+                            android:textSize="@dimen/_18ssp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/tv_progress_tracker"
+                            android:layout_alignBaseline="@id/tv_bpm"
+                            android:layout_toEndOf="@id/tv_bpm"
+                            android:fontFamily="@font/outfit_regular"
+                            android:text="@string/bpm"
+                            android:textColor="@color/text_color_10"
+                            android:textSize="@dimen/_8ssp" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:src="@drawable/ic_heart" />
+
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_8sdp"
+                        android:layout_weight="1"
+                        android:background="@drawable/drawable_shape_10sdp"
+                        android:elevation="@dimen/_2sdp"
+                        android:padding="@dimen/_12sdp">
+
+                        <TextView
+                            android:id="@+id/ap_score_caleroies"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/outfit_regular"
+                            android:paddingTop="@dimen/_1sdp"
+                            android:text="@string/ap_score"
+                            android:textColor="@color/text_color_4"
+                            android:textSize="@dimen/_8ssp" />
+
+                        <TextView
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/ap_score_caleroies"
+                            android:fontFamily="@font/outfit_semibold"
+                            android:text="1503"
+                            android:textColor="@color/text_color_4"
+                            android:textSize="@dimen/_18ssp" />
+
+
+                        <ImageView
+                            android:layout_width="@dimen/_38sdp"
+                            android:layout_height="@dimen/_28sdp"
+
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:src="@drawable/ic_calories" />
+
+
+                    </RelativeLayout>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:clipToPadding="false"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/_2sdp">
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/_8sdp"
+                        android:layout_weight="1"
+                        android:background="@drawable/drawable_shape_10sdp"
+                        android:elevation="@dimen/_2sdp"
+                        android:padding="@dimen/_12sdp">
+
+                        <TextView
+                            android:id="@+id/tv_step_taken"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/outfit_regular"
+                            android:paddingTop="@dimen/_1sdp"
+                            android:text="@string/steps_taken"
+                            android:textColor="@color/text_color_4"
+                            android:textSize="@dimen/_8ssp" />
+
+                        <TextView
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/tv_step_taken"
+                            android:fontFamily="@font/outfit_semibold"
+                            android:text="3102"
+                            android:textColor="@color/text_color_4"
+                            android:textSize="@dimen/_18ssp" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:src="@drawable/ic_steps" />
+
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_8sdp"
+                        android:layout_weight="1"
+                        android:background="@drawable/drawable_shape_10sdp"
+                        android:elevation="@dimen/_2sdp"
+                        android:padding="@dimen/_12sdp">
+
+                        <TextView
+                            android:id="@+id/tv_current_spo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/outfit_regular"
+                            android:paddingTop="@dimen/_1sdp"
+                            android:text="@string/current_spo2"
+                            android:textColor="@color/text_color_4"
+                            android:textSize="@dimen/_8ssp" />
+
+                        <TextView
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/tv_current_spo"
+                            android:fontFamily="@font/outfit_semibold"
+                            android:text="1503"
+                            android:textColor="@color/text_color_4"
+                            android:textSize="@dimen/_18ssp" />
+
+
+                        <ImageView
+                            android:layout_width="@dimen/_38sdp"
+                            android:layout_height="@dimen/_28sdp"
+
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:src="@drawable/ic_o2" />
+
+
+                    </RelativeLayout>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:clipToPadding="false"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/_2sdp">
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/_8sdp"
+                        android:layout_weight="1"
+                        android:background="@drawable/drawable_shape_10sdp"
+                        android:elevation="@dimen/_2sdp"
+                        android:padding="@dimen/_12sdp">
+
+                        <TextView
+                            android:id="@+id/tv_current_bp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/outfit_regular"
+                            android:paddingTop="@dimen/_1sdp"
+                            android:text="@string/current_bp"
+                            android:textColor="@color/text_color_4"
+                            android:textSize="@dimen/_8ssp" />
+
+                        <TextView
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/tv_current_bp"
+                            android:fontFamily="@font/outfit_semibold"
+                            android:text="3102"
+                            android:textColor="@color/text_color_4"
+                            android:textSize="@dimen/_18ssp" />
+
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:src="@drawable/ic_bp" />
+
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_8sdp"
+                        android:layout_weight="1"
+                        android:background="@drawable/drawable_shape_10sdp"
+                        android:elevation="@dimen/_2sdp"
+                        android:padding="@dimen/_12sdp">
+
+                        <TextView
+                            android:id="@+id/ap_score"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/outfit_regular"
+                            android:paddingTop="@dimen/_1sdp"
+                            android:text="@string/current_hrv"
+                            android:textColor="@color/text_color_4"
+                            android:textSize="@dimen/_8ssp" />
+
+                        <TextView
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/ap_score"
+                            android:fontFamily="@font/outfit_semibold"
+                            android:text="140"
+                            android:textColor="@color/text_color_4"
+                            android:textSize="@dimen/_18ssp" />
+
+
+                        <ImageView
+                            android:layout_width="@dimen/_38sdp"
+                            android:layout_height="@dimen/_28sdp"
+
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:src="@drawable/ic_hrv" />
+
+
+                    </RelativeLayout>
+
+
+                </LinearLayout>
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_14sdp"
+                    android:scaleType="fitXY"
+                    app:srcCompat="@drawable/cardiac_graph" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_14sdp"
+                    android:background="@drawable/drawable_shape_10sdp"
+                    android:elevation="@dimen/_1sdp"
+                    android:orientation="vertical"
+                    android:padding="@dimen/_11sdp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:fontFamily="@font/outfit_medium"
+                        android:text="@string/heart_rete_detail"
+                        android:textColor="@color/text_color_4"
+                        android:textSize="@dimen/_13ssp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_marginBottom="@dimen/_10sdp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:textSize="@dimen/_12ssp"
+                            android:textColor="@color/text_color_3"
+                            android:fontFamily="@font/outfit_light"
+                            android:layout_height="wrap_content"
+                            android:text="@string/max_heart_rate" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:textSize="@dimen/_12ssp"
+                            android:textColor="@color/text_color_3"
+                            android:fontFamily="@font/outfit_light"
+                            android:layout_height="wrap_content"
+                            android:text="96" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+
+                        android:layout_marginBottom="@dimen/_10sdp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:textSize="@dimen/_12ssp"
+                            android:textColor="@color/text_color_3"
+                            android:fontFamily="@font/outfit_light"
+                            android:layout_height="wrap_content"
+                            android:text="@string/medium_heart_rate" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:textSize="@dimen/_12ssp"
+                            android:textColor="@color/text_color_3"
+                            android:fontFamily="@font/outfit_light"
+                            android:layout_height="wrap_content"
+                            android:text="77" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+
+
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:textSize="@dimen/_12ssp"
+                            android:textColor="@color/text_color_3"
+                            android:fontFamily="@font/outfit_light"
+                            android:layout_height="wrap_content"
+                            android:text="@string/low_heart_rate" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:textSize="@dimen/_12ssp"
+                            android:textColor="@color/text_color_3"
+                            android:fontFamily="@font/outfit_light"
+                            android:layout_height="wrap_content"
+                            android:text="6" />
+                    </LinearLayout>
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+        </ScrollView>
+
+    </RelativeLayout>
+</layout>

@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clickable="true"
+        android:focusable="true"
+        android:background="@color/white"
+        tools:context=".home.drawerFragments.appointments.personalMetrics.PersonalMetricsFragment">
+
+        <RelativeLayout
+            android:id="@+id/tool_bar_setting"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/color_primary"
+            android:gravity="center_vertical"
+            android:paddingStart="@dimen/_14sdp"
+            android:paddingTop="@dimen/_12sdp"
+            android:paddingEnd="@dimen/_14sdp"
+            android:paddingBottom="@dimen/_12sdp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:fontFamily="@font/outfit_semibold"
+                android:text="@string/personal_matrices"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_16ssp" />
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/iv_menu"
+                android:layout_width="@dimen/_30sdp"
+                android:layout_height="@dimen/_30sdp"
+                android:layout_alignParentEnd="true"
+                android:padding="@dimen/_6sdp"
+                app:srcCompat="@drawable/ic_hamburger" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/tool_bar_setting"
+            android:clipToPadding="false"
+            android:orientation="vertical"
+            android:padding="@dimen/_20sdp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/_8sdp"
+                android:background="@drawable/drawable_shape_10sdp"
+                android:backgroundTint="@color/color_primary_with_5"
+                android:padding="@dimen/_14sdp">
+
+                <TextView
+                    android:id="@+id/tv_progress_tracker"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/outfit_regular"
+                    android:paddingTop="@dimen/_1sdp"
+                    android:text="@string/heart_rate_exercise"
+                    android:textColor="@color/text_color_4"
+                    android:textSize="@dimen/_12ssp" />
+
+                <TextView
+                    android:id="@+id/tv_bpm"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_progress_tracker"
+                    android:fontFamily="@font/outfit_semibold"
+                    android:text="@string/seventy_seven"
+                    android:textColor="@color/text_color_4"
+                    android:textSize="@dimen/_25ssp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_progress_tracker"
+                    android:layout_alignBaseline="@id/tv_bpm"
+                    android:layout_marginStart="@dimen/_2sdp"
+                    android:layout_toEndOf="@id/tv_bpm"
+                    android:fontFamily="@font/outfit_regular"
+                    android:text="@string/bpm"
+                    android:textColor="@color/text_color_10"
+                    android:textSize="@dimen/_12ssp" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_heart" />
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_12sdp"
+                android:layout_marginEnd="@dimen/_8sdp"
+                android:background="@drawable/drawable_shape_10sdp"
+                android:backgroundTint="@color/color_primary_with_5"
+                android:padding="@dimen/_14sdp">
+
+                <TextView
+                    android:id="@+id/item_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/outfit_regular"
+                    android:paddingTop="@dimen/_1sdp"
+                    android:text="@string/max_time"
+                    android:textColor="@color/text_color_4"
+                    android:textSize="@dimen/_12ssp" />
+
+                <TextView
+                    android:id="@+id/tv_bpm_"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/item_1"
+                    android:fontFamily="@font/outfit_semibold"
+                    android:text="20"
+                    android:textColor="@color/text_color_4"
+                    android:textSize="@dimen/_25ssp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/item_1"
+                    android:layout_alignBaseline="@id/tv_bpm_"
+                    android:layout_marginStart="@dimen/_2sdp"
+                    android:layout_toEndOf="@id/tv_bpm_"
+                    android:fontFamily="@font/outfit_regular"
+                    android:text="@string/mins"
+                    android:textColor="@color/text_color_10"
+                    android:textSize="@dimen/_12ssp" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_max_time" />
+
+
+            </RelativeLayout>
+
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+</layout>

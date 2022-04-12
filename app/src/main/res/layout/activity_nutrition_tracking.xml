@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/rl_layout"
+        tools:context=".home.nutrition.NutritionTrackingActivity">
+
+        <include
+            android:id="@+id/tool_bar_nutrition"
+            layout="@layout/layout_tool_bar" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/tool_bar_nutrition"
+            android:fillViewport="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/_20sdp"
+                    android:clipToPadding="false"
+                    android:orientation="vertical">
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:layout_width="match_parent"
+
+                        android:layout_height="wrap_content"
+                        android:scaleType="fitXY"
+                        app:srcCompat="@drawable/nutrition_graph" />
+
+                    <LinearLayout
+                        android:id="@+id/ll_food_recipe"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingBottom="@dimen/_14sdp"
+                        android:layout_marginTop="@dimen/_12sdp"
+                        android:background="@drawable/drawable_shape_10sdp"
+                        android:elevation="@dimen/_1sdp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:fontFamily="@font/outfit_semibold"
+                            android:text="@string/food_recipe"
+                            android:textColor="@color/text_color_4"
+                            android:textSize="@dimen/_15ssp" />
+                        <!--stop there-->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_16sdp"
+                            android:orientation="vertical"
+                            android:paddingStart="@dimen/_18sdp"
+                            android:paddingEnd="@dimen/_18sdp">
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <com.google.android.material.imageview.ShapeableImageView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="@dimen/_122sdp"
+                                    android:background="@drawable/drawable_shape_10sdp"
+                                    android:backgroundTint="@color/black" />
+
+                                <com.google.android.material.imageview.ShapeableImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerInParent="true"
+                                    app:srcCompat="@drawable/play" />
+                            </RelativeLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/_12sdp"
+                                android:orientation="horizontal">
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+
+                                        android:fontFamily="@font/outfit_medium"
+                                        android:text="@string/breakfast_recipe"
+                                        android:textColor="@color/text_color_4"
+                                        android:textSize="@dimen/_12sdp" />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="@dimen/_6sdp"
+                                        android:drawablePadding="@dimen/_2sdp"
+                                        android:fontFamily="@font/outfit_regular"
+                                        android:text="@string/exa_time"
+                                        android:textColor="@color/text_color_2"
+                                        android:textSize="@dimen/_10sdp"
+                                        app:drawableStartCompat="@drawable/ic_clock" />
+                                </LinearLayout>
+
+                                <com.google.android.material.textview.MaterialTextView
+                                    android:layout_width="@dimen/_80sdp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_vertical"
+                                    android:background="@drawable/drawable_shape_6sdp"
+                                    android:backgroundTint="@color/bg_color_3"
+                                    android:fontFamily="@font/outfit_medium"
+                                    android:gravity="center_horizontal"
+                                    android:paddingStart="@dimen/_10sdp"
+                                    android:paddingTop="@dimen/_7sdp"
+                                    android:paddingEnd="@dimen/_10sdp"
+                                    android:paddingBottom="@dimen/_7sdp"
+                                    android:text="@string/complete"
+                                    android:textColor="@color/text_color_3"
+                                    android:textSize="@dimen/_8ssp" />
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_1sdp"
+                            android:layout_marginTop="@dimen/_10sdp"
+                            android:background="@color/stroke_color_1" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_16sdp"
+                            android:orientation="vertical"
+                            android:paddingStart="@dimen/_18sdp"
+                            android:paddingEnd="@dimen/_18sdp">
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <com.google.android.material.imageview.ShapeableImageView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="@dimen/_122sdp"
+                                    android:background="@drawable/drawable_shape_10sdp"
+                                    android:backgroundTint="@color/black" />
+
+                                <com.google.android.material.imageview.ShapeableImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerInParent="true"
+                                    app:srcCompat="@drawable/play" />
+                            </RelativeLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_marginTop="@dimen/_12sdp"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+
+                                        android:fontFamily="@font/outfit_medium"
+                                        android:text="@string/healthy_lunch"
+                                        android:textColor="@color/text_color_4"
+                                        android:textSize="@dimen/_12sdp" />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="@dimen/_6sdp"
+                                        android:drawablePadding="@dimen/_2sdp"
+                                        android:fontFamily="@font/outfit_regular"
+                                        android:text="@string/exa_time_2"
+                                        android:textColor="@color/text_color_2"
+                                        android:textSize="@dimen/_10sdp"
+                                        app:drawableStartCompat="@drawable/ic_clock" />
+                                </LinearLayout>
+
+                                <com.google.android.material.textview.MaterialTextView
+                                    android:layout_width="@dimen/_80sdp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_vertical"
+                                    android:background="@drawable/drawable_shape_6sdp"
+                                    android:backgroundTint="@color/bg_color_3"
+                                    android:fontFamily="@font/outfit_medium"
+                                    android:gravity="center_horizontal"
+                                    android:paddingStart="@dimen/_10sdp"
+                                    android:paddingTop="@dimen/_7sdp"
+                                    android:paddingEnd="@dimen/_10sdp"
+                                    android:paddingBottom="@dimen/_7sdp"
+                                    android:text="@string/complete"
+                                    android:textColor="@color/text_color_3"
+                                    android:textSize="@dimen/_8ssp" />
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+                </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
+
+
+    </RelativeLayout>
+</layout>

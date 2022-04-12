@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".home.drawerFragments.myProfile.CurrentHeightActivity">
+
+        <com.tistory.dwfox.dwrulerviewlibrary.view.ScrollingValuePicker
+            android:id="@+id/scroll_value_picker"
+            android:layout_width="match_parent"
+            android:shadowColor="@color/color_primary"
+            android:background="@color/text_color_13_with_opacity_5"
+            android:switchTextAppearance="@color/black"
+            android:layout_height="@dimen/_97sdp" />
+
+<!--        <-->
+<!--            android:id="@+id/ruler_height"-->
+<!--            android:layout_width="fill_parent"-->
+<!--            android:layout_height="58.0dip"-->
+<!--            android:layout_marginTop="24.0dip"-->
+<!--            app:alphaEnable="true"-->
+<!--            app:lineColor="@color/gray"-->
+<!--            app:lineMaxHeight="40dp"-->
+<!--            app:lineMidHeight="30dp"-->
+<!--            app:lineMinHeight="20dp"-->
+<!--            app:lineSpaceWidth="10dp"-->
+<!--            app:lineWidth="2dip"-->
+<!--            app:textColor="@color/black"-->
+<!--            app:minValue="80.0"-->
+<!--            app:maxValue="250.0"-->
+<!--            app:perValue="1"-->
+<!--            app:selectorValue="165.0"-->
+<!--            />-->
+    </RelativeLayout>
+</layout>

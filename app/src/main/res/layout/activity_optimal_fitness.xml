@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".home.optimalFitness.OptimalFitnessActivity">
+
+        <include
+            android:id="@+id/tool_bar_optimal"
+            layout="@layout/layout_tool_bar" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/tool_bar_optimal"
+            android:fillViewport="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clipToPadding="false"
+                android:orientation="vertical"
+                android:padding="@dimen/_20sdp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_134sdp"
+                    android:background="@drawable/drawable_shape_18"
+                    android:backgroundTint="@color/text_color_11">
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical">
+
+                        <TextView
+                            android:id="@+id/tv_your_optimal_score"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/outfit_light"
+                            android:gravity="center_horizontal"
+                            android:text="@string/your_optimal_score"
+                            android:textColor="@color/text_color_4"
+                            android:textSize="@dimen/_12ssp" />
+
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/tv_your_optimal_score"
+                            android:layout_centerHorizontal="true">
+
+                            <TextView
+                                android:id="@+id/tv_score"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+
+
+                                android:fontFamily="@font/outfit_semibold"
+                                android:text="@string/eighty_three"
+                                android:textColor="@color/color_primary"
+                                android:textSize="@dimen/_46ssp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignBaseline="@id/tv_score"
+                                android:layout_toEndOf="@id/tv_score"
+                                android:fontFamily="@font/outfit_light"
+                                android:text="@string/by_hundred"
+                                android:textColor="@color/text_color_4"
+                                android:textSize="@dimen/_12ssp" />
+                        </RelativeLayout>
+
+                    </RelativeLayout>
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:paddingTop="@dimen/_16sdp"
+                        app:srcCompat="@drawable/ic_optimal_img" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/what_optimal_score"
+                    android:textSize="@dimen/_15ssp"
+                    android:fontFamily="@font/outfit_medium"
+                    android:textColor="@color/text_color_1"
+                    android:layout_marginTop="@dimen/_18sdp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/lorem_text"
+                    android:textSize="@dimen/_12ssp"
+                    android:fontFamily="@font/outfit_light"
+                    android:textColor="@color/text_color_3"
+                    android:layout_marginTop="@dimen/_6sdp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/how_increase_optimal"
+                    android:textSize="@dimen/_15ssp"
+                    android:fontFamily="@font/outfit_medium"
+                    android:textColor="@color/text_color_1"
+                    android:layout_marginTop="@dimen/_18sdp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/lorem_text"
+                    android:textSize="@dimen/_12ssp"
+                    android:fontFamily="@font/outfit_light"
+                    android:layout_marginBottom="@dimen/_20sdp"
+                    android:textColor="@color/text_color_3"
+                    android:layout_marginTop="@dimen/_6sdp" />
+
+
+            </LinearLayout>
+
+        </ScrollView>
+
+    </RelativeLayout>
+</layout>

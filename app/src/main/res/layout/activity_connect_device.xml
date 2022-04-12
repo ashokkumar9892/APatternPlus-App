@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        tools:context=".setupDevice.ConnectDeviceActivity">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/_22sdp"
+                android:layout_marginEnd="@dimen/_22sdp"
+                android:orientation="vertical">
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_20sdp"
+                    android:layout_marginTop="@dimen/_34sdp"
+                    android:layout_marginEnd="@dimen/_20sdp"
+                    android:fontFamily="@font/outfit_semibold"
+                    android:gravity="center"
+                    android:text="@string/connect_your_device_and"
+                    android:textColor="@color/text_color_1"
+                    android:textSize="@dimen/_18ssp" />
+
+                <LinearLayout
+                    android:id="@+id/ll_watch"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_82sdp"
+                    android:layout_marginStart="@dimen/_2sdp"
+                    android:layout_marginTop="@dimen/_30sdp"
+                    android:layout_marginEnd="@dimen/_2sdp"
+                    android:layout_marginBottom="@dimen/_2sdp"
+                    android:background="@drawable/drawable_shape_connect"
+                    android:elevation="@dimen/_2sdp"
+                    android:orientation="horizontal">
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="@dimen/_8sdp"
+                        android:layout_weight="1"
+                        android:padding="@dimen/_16sdp"
+                        app:srcCompat="@drawable/ic_watch" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="2"
+                        android:fontFamily="@font/outfit_medium"
+                        android:text="@string/watch"
+                        android:textColor="@color/text_color_6"
+                        android:textSize="@dimen/_16ssp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_82sdp"
+                    android:layout_marginStart="@dimen/_2sdp"
+                    android:layout_marginTop="@dimen/_16sdp"
+                    android:layout_marginEnd="@dimen/_2sdp"
+                    android:layout_marginBottom="@dimen/_2sdp"
+                    android:background="@drawable/drawable_shape_connect"
+                    android:elevation="@dimen/_2sdp"
+                    android:orientation="horizontal">
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="@dimen/_8sdp"
+                        android:layout_weight="1"
+                        android:padding="@dimen/_20sdp"
+                        app:srcCompat="@drawable/ic_scale" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="2"
+                        android:fontFamily="@font/outfit_medium"
+                        android:text="@string/scale"
+                        android:textColor="@color/text_color_6"
+                        android:textSize="@dimen/_16ssp" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_82sdp"
+                    android:layout_marginStart="@dimen/_2sdp"
+                    android:layout_marginTop="@dimen/_16sdp"
+                    android:layout_marginEnd="@dimen/_2sdp"
+                    android:layout_marginBottom="@dimen/_2sdp"
+                    android:background="@drawable/drawable_shape_connect"
+                    android:elevation="@dimen/_2sdp"
+                    android:orientation="horizontal">
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="@dimen/_8sdp"
+                        android:layout_weight="1"
+                        android:padding="@dimen/_20sdp"
+                        app:srcCompat="@drawable/ic_blood_pressure" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="2"
+                        android:fontFamily="@font/outfit_medium"
+                        android:text="@string/blood_pressure"
+                        android:textColor="@color/text_color_6"
+                        android:textSize="@dimen/_16ssp" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_82sdp"
+                    android:layout_marginStart="@dimen/_2sdp"
+                    android:layout_marginTop="@dimen/_16sdp"
+                    android:layout_marginEnd="@dimen/_2sdp"
+                    android:layout_marginBottom="@dimen/_2sdp"
+                    android:background="@drawable/drawable_shape_connect"
+                    android:elevation="@dimen/_2sdp"
+                    android:orientation="horizontal">
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="@dimen/_8sdp"
+                        android:layout_weight="1"
+                        android:padding="@dimen/_20sdp"
+                        app:srcCompat="@drawable/ic_glucose_device" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="2"
+                        android:fontFamily="@font/outfit_medium"
+                        android:text="@string/blood_glucose"
+                        android:textColor="@color/text_color_6"
+                        android:textSize="@dimen/_16ssp" />
+
+
+                </LinearLayout>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/cv_start"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_50sdp"
+                    android:layout_marginTop="@dimen/_30sdp"
+                    android:fontFamily="@font/outfit_semibold"
+                    android:text="@string/get_started"
+                    android:textAllCaps="false"
+                    android:textSize="@dimen/_14ssp"
+                    app:backgroundTint="@color/text_color_7"
+                    app:cornerRadius="@dimen/_8sdp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="@dimen/_24sdp"
+                    android:layout_marginBottom="@dimen/_15sdp"
+                    android:fontFamily="@font/outfit_regular"
+
+                    android:text="@string/text_line_support"
+                    android:textColor="@color/text_color_5"
+                    android:textSize="@dimen/_10ssp" />
+
+            </LinearLayout>
+        </ScrollView>
+
+        <include
+            android:id="@+id/layout_connected"
+            layout="@layout/layout_watch_connected"
+            android:visibility="gone" />
+
+        <include
+            android:id="@+id/layout_disconnected"
+            layout="@layout/layout_watch_disconnected"
+            android:visibility="gone" />
+    </RelativeLayout>
+</layout>

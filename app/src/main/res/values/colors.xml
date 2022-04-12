@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+        <color name="text_color_1">#202020</color>
+        <color name="black_with_opacity_5">#0C000000</color>
+    <color name="text_color_2">#989898</color>
+    <color name="text_color_3">#787878</color>
+    <color name="text_color_4">#101010</color>
+    <color name="text_color_5">#0931A0</color>
+    <color name="text_color_6">#777777</color>
+    <color name="text_color_7">#DCDCFF</color>
+    <color name="text_color_8">#C1C1C1</color>
+    <color name="text_color_9"> #E9E9E9</color>
+    <color name="text_color_10">#AFAFAF</color>
+    <color name="text_color_11">#EBEBFE</color>
+    <color name="text_color_12">#ACACAC</color>
+    <color name="text_color_13">#F62929</color>
+    <color name="text_color_14">#0F0000EE</color>
+    <color name="text_color_15">#999999</color>
+    <color name="text_color_16">#1E1E1E</color>
+    <color name="text_color_13_with_opacity_5">#0DF62929</color>
+    <color name="transparent_color">#9C000000</color>
+    <color name="bg_color_1">#F9F9F9</color>
+    <color name="bg_color_2">#00BE59</color>
+    <color name="bg_color_3">#EFEFEF</color>
+    <color name="bg_color_4">#F5F5F5</color>
+    <color name="bg_color_5">#FCFCFC</color>
+    <color name="color_primary">#0000EE</color>
+    <color name="color_primary_with_5">#0C0000EE</color>
+    <color name="stroke_color_1">#ECECEC</color>
+    <color name="color_primary_with_opacity_8">#140000EE</color>
+
+</resources>

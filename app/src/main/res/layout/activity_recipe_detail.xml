@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".home.nutrition.RecipeDetailActivity">
+
+        <include
+            android:id="@+id/tool_bar_nutrition"
+            layout="@layout/layout_tool_bar" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/tool_bar_nutrition"
+            android:fillViewport="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_16sdp"
+                    android:clipToPadding="false"
+                    android:orientation="vertical"
+                    android:paddingStart="@dimen/_20sdp"
+                    android:paddingEnd="@dimen/_20sdp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                            <com.google.android.material.imageview.ShapeableImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/_184sdp"
+                                android:background="@drawable/drawable_shape_18"
+                                android:backgroundTint="@color/black" />
+
+                        <com.google.android.material.imageview.ShapeableImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            app:srcCompat="@drawable/play" />
+                    </RelativeLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_marginTop="@dimen/_24sdp"
+                        android:layout_weight="1"
+
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/outfit_semibold"
+                            android:text="@string/breakfast_recipe"
+                            android:textColor="@color/text_color_4"
+                            android:textSize="@dimen/_17sdp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+
+                            android:drawablePadding="@dimen/_2sdp"
+                            android:fontFamily="@font/outfit_regular"
+                            android:text="@string/exa_time"
+                            android:textColor="@color/text_color_2"
+                            android:textSize="@dimen/_12sdp"
+                            app:drawableStartCompat="@drawable/ic_clock" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_9sdp"
+                        android:fontFamily="@font/outfit_light"
+                        android:text="@string/exa_nutrition_tracking"
+                        android:textColor="@color/text_color_3"
+                        android:textSize="@dimen/_12sdp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_marginBottom="@dimen/_10sdp"
+                        android:background="@drawable/drawable_shape_10sdp"
+                        android:elevation="@dimen/_1sdp"
+                        android:gravity="center_vertical"
+                        android:padding="@dimen/_13sdp">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.6"
+                            android:fontFamily="@font/outfit_light"
+                            android:text="@string/quantity"
+                            android:textColor="@color/text_color_3"
+                            android:textSize="@dimen/_12ssp" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/outfit_light"
+                            android:text="@string/two_bread"
+                            android:textColor="@color/text_color_3"
+                            android:textSize="@dimen/_12ssp" />
+
+
+                    </LinearLayout>
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/tv_complete_recipe"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginTop="@dimen/_26sdp"
+                        android:background="@drawable/drawable_shape_6sdp"
+                        android:backgroundTint="@color/bg_color_3"
+                        android:fontFamily="@font/outfit_semibold"
+                        android:gravity="center_horizontal"
+                        android:padding="@dimen/_12sdp"
+                        android:text="@string/complete"
+                        android:textColor="@color/text_color_3"
+                        android:textSize="@dimen/_15ssp" />
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </ScrollView>
+
+    </RelativeLayout>
+</layout>

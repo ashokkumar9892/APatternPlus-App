@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="@dimen/_20sdp"
+            android:background="@color/white"
+            android:clickable="true"
+            android:focusable="true"
+            android:orientation="vertical">
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_150sdp"
+                android:padding="@dimen/_46sdp"
+                app:srcCompat="@drawable/splash_logo" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_46sdp"
+                android:id="@+id/ll_home"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <View
+                    android:layout_width="@dimen/_3sdp"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/drawable_shape_end_30" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:drawablePadding="@dimen/_9sdp"
+                    android:fontFamily="@font/outfit_medium"
+                    android:gravity="center_vertical"
+                    android:paddingStart="@dimen/_24sdp"
+
+                    android:text="@string/home"
+                    android:textColor="@color/text_color_4"
+                    android:textSize="@dimen/_13ssp"
+                    app:drawableStartCompat="@drawable/ic_home"
+                    app:drawableTint="@color/text_color_4" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_1sdp"
+                android:background="@color/stroke_color_1" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_46sdp"
+                android:gravity="center_vertical"
+                android:id="@+id/ll_coaching_appointments"
+                android:orientation="horizontal">
+
+                <View
+                    android:layout_width="@dimen/_3sdp"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/drawable_shape_end_30"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:drawablePadding="@dimen/_9sdp"
+                    android:fontFamily="@font/outfit_medium"
+                    android:gravity="center_vertical"
+                    android:paddingStart="@dimen/_24sdp"
+
+                    android:text="@string/coaching_appointment"
+                    android:textColor="@color/text_color_12"
+                    android:textSize="@dimen/_13ssp"
+                    app:drawableStartCompat="@drawable/ic_appointment"
+                    app:drawableTint="@color/text_color_12" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_1sdp"
+                android:background="@color/stroke_color_1" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_46sdp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <View
+                    android:layout_width="@dimen/_3sdp"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/drawable_shape_end_30"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:drawablePadding="@dimen/_9sdp"
+                    android:fontFamily="@font/outfit_medium"
+                    android:gravity="center_vertical"
+                    android:paddingStart="@dimen/_24sdp"
+
+                    android:text="@string/message"
+                    android:textColor="@color/text_color_12"
+                    android:textSize="@dimen/_13ssp"
+                    app:drawableStartCompat="@drawable/ic_messages"
+                    app:drawableTint="@color/text_color_12" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_1sdp"
+                android:background="@color/stroke_color_1" />
+
+            <LinearLayout
+                android:id="@+id/ll_personal_metrics"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_46sdp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <View
+                    android:layout_width="@dimen/_3sdp"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/drawable_shape_end_30"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:drawablePadding="@dimen/_9sdp"
+                    android:fontFamily="@font/outfit_medium"
+                    android:gravity="center_vertical"
+                    android:paddingStart="@dimen/_24sdp"
+
+                    android:text="@string/personal_matrices"
+                    android:textColor="@color/text_color_12"
+                    android:textSize="@dimen/_13ssp"
+                    app:drawableStartCompat="@drawable/ic_metrics"
+                    app:drawableTint="@color/text_color_12" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_1sdp"
+                android:background="@color/stroke_color_1" />
+
+            <LinearLayout
+                android:id="@+id/ll_health_tips"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_46sdp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <View
+                    android:layout_width="@dimen/_3sdp"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/drawable_shape_end_30"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:drawablePadding="@dimen/_9sdp"
+                    android:fontFamily="@font/outfit_medium"
+                    android:gravity="center_vertical"
+                    android:paddingStart="@dimen/_24sdp"
+
+                    android:text="@string/health_tips"
+                    android:textColor="@color/text_color_12"
+                    android:textSize="@dimen/_13ssp"
+                    app:drawableStartCompat="@drawable/ic_health"
+                    app:drawableTint="@color/text_color_12" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_1sdp"
+                android:background="@color/stroke_color_1" />
+
+            <LinearLayout
+                android:id="@+id/ll_my_profile"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_46sdp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <View
+                    android:layout_width="@dimen/_3sdp"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/drawable_shape_end_30"
+                    android:visibility="gone" />
+
+                <TextView
+
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:drawablePadding="@dimen/_9sdp"
+                    android:fontFamily="@font/outfit_medium"
+                    android:gravity="center_vertical"
+                    android:paddingStart="@dimen/_24sdp"
+
+                    android:text="@string/my_profile"
+                    android:textColor="@color/text_color_12"
+                    android:textSize="@dimen/_13ssp"
+                    app:drawableStartCompat="@drawable/ic_profile"
+                    app:drawableTint="@color/text_color_12" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_1sdp"
+                android:background="@color/stroke_color_1" />
+
+            <LinearLayout
+                android:id="@+id/ll_settings"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_46sdp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <View
+                    android:layout_width="@dimen/_3sdp"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/drawable_shape_end_30"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:drawablePadding="@dimen/_9sdp"
+                    android:fontFamily="@font/outfit_medium"
+                    android:gravity="center_vertical"
+                    android:paddingStart="@dimen/_24sdp"
+
+                    android:text="@string/setting"
+                    android:textColor="@color/text_color_12"
+                    android:textSize="@dimen/_13ssp"
+                    app:drawableStartCompat="@drawable/ic_settings"
+                    app:drawableTint="@color/text_color_12" />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_margin="@dimen/_24sdp"
+            android:background="@drawable/drawable_shape_8sdp"
+            android:backgroundTint="@color/text_color_13_with_opacity_5"
+            android:drawablePadding="@dimen/_4sdp"
+            android:gravity="center_horizontal"
+            android:paddingStart="@dimen/_14sdp"
+            android:paddingTop="@dimen/_6sdp"
+            android:paddingEnd="@dimen/_14sdp"
+            android:paddingBottom="@dimen/_6sdp"
+            android:text="@string/logout"
+            android:textColor="@color/text_color_13"
+            android:textSize="@dimen/_12ssp"
+            app:drawableStartCompat="@drawable/ic_logout" />
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/iv_drawer_close"
+            android:layout_width="@dimen/_38sdp"
+            android:layout_height="@dimen/_38sdp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="@dimen/_40sdp"
+            android:background="@color/bg_color_4"
+            android:scaleType="centerInside"
+            app:shapeAppearanceOverlay="@style/shape_50"
+            app:srcCompat="@drawable/ic_close" />
+    </RelativeLayout>
+</layout>
