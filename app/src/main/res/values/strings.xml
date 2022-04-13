@@ -47,6 +47,7 @@
     <string name="hi_john">Hi John!</string>
     <string name="progress_tracker">Progress Tracker</string>
     <string name="ap_score">AP<sup>+</sup>Score</string>
+    <string name="ap_score_title">AP+ Score</string>
     <string name="seventy_seven">77</string>
     <string name="bpm">BPM</string>
     <string name="sixty_five">65%</string>
@@ -154,5 +155,19 @@
     <string name="johnblake_gmail_com">johnblake@gmail.com</string>
     <string name="country">Country</string>
     <string name="mar_2_2000">Mar 2, 2000</string>
+    <string name="messages">Messages</string>
+    <string name="mellissa_smith">Mellissa Smith</string>
+    <string name="lorem_ipsum_is_a_dummy_text_2">Lorem ipsum is a dummy text....</string>
+    <string name="type_your_message">Type your message...</string>
+    <string name="_07_55_am">07:55 AM</string>
+    <string name="chat_bot">Chatbot</string>
+    <string name="workouts_list">Workouts List</string>
+    <string name="high_knees">High Knees</string>
+    <string name="squats">Squats</string>
+    <string name="exercise_stats">Exercise Stats</string>
+    <string name="how_to_increase_your_ap_score">How to increase your AP+ Score?</string>
+    <string name="select_your_height">Select your height</string>
+    <string name="how_much_do_you_weigh">How much do you weigh?</string>
+    <string name="previous">Previous</string>
 
 </resources>

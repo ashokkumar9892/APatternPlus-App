@@ -13,14 +13,10 @@
         android:layout_height="match_parent"
         tools:context=".home.drawerFragments.myProfile.CurrentHeightActivity">
 
-        <include
-            android:id="@+id/tool_bar"
-            layout="@layout/layout_tool_bar" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@id/tool_bar"
             android:gravity="center"
             android:orientation="vertical"
             android:padding="@dimen/_21sdp">
@@ -28,69 +24,97 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/_30sdp"
                 android:layout_gravity="center"
+                android:layout_marginBottom="@dimen/_30sdp"
                 android:fontFamily="@font/outfit_medium"
                 android:text="@string/select_your_height"
                 android:textColor="@color/text_color_1"
                 android:textSize="@dimen/_18ssp" />
+
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
 
                 android:layout_marginBottom="@dimen/_20sdp"
                 android:orientation="horizontal">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="@dimen/_42ssp"
+                    android:fontFamily="@font/outfit_bold"
                     android:text="5"
-                    android:fontFamily="@font/outfit_bold"
-                    android:textColor="@color/text_color_4"/>
+                    android:textColor="@color/text_color_4"
+                    android:textSize="@dimen/_42ssp" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="@dimen/_42ssp"
+                    android:fontFamily="@font/outfit_extralight"
                     android:text="'"
-                    android:fontFamily="@font/outfit_extralight"
-                    android:textColor="@color/text_color_18"/>
+                    android:textColor="@color/text_color_18"
+                    android:textSize="@dimen/_42ssp" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="@dimen/_42ssp"
-                    android:text="10"
                     android:fontFamily="@font/outfit_bold"
-                    android:textColor="@color/text_color_4"/>
+                    android:text="10"
+                    android:textColor="@color/text_color_4"
+                    android:textSize="@dimen/_42ssp" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="@dimen/_42ssp"
-                    android:text="''"
                     android:fontFamily="@font/outfit_extralight"
-                    android:textColor="@color/text_color_18"/>
+                    android:text="''"
+                    android:textColor="@color/text_color_18"
+                    android:textSize="@dimen/_42ssp" />
             </LinearLayout>
 
             <com.chingtech.rulerview.library.RulerView
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_100sdp"
-                app:rv_unitTextColor="@color/color_primary"
-                app:rv_resultTextColor="@color/color_primary"
+                app:rv_indcatorColor="@color/color_primary"
                 app:rv_itemSpacing="@dimen/_14sdp"
+                app:rv_resultTextColor="@color/color_primary"
                 app:rv_unit="cm"
-                app:rv_indcatorColor="@color/color_primary" />
+                app:rv_unitTextColor="@color/color_primary" />
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/btn_login"
+                android:id="@+id/btn_next"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_50sdp"
                 android:layout_marginTop="@dimen/_28sdp"
                 android:fontFamily="@font/outfit_semibold"
-                android:text="@string/submit"
+                android:text="@string/next"
                 android:textAllCaps="false"
                 android:textSize="@dimen/_14ssp"
                 app:cornerRadius="@dimen/_8sdp" />
+
+            <TextView
+                android:id="@+id/tv_previous"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/outfit_regular"
+                android:padding="@dimen/_8sdp"
+                android:text="@string/previous"
+                android:textColor="@color/text_color_3"
+                android:textSize="@dimen/_13ssp" />
         </LinearLayout>
 
-
+        <TextView
+            android:id="@+id/tv_chat_bot"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/_24sdp"
+            android:layout_marginBottom="@dimen/_15sdp"
+            android:fontFamily="@font/outfit_regular"
+            android:padding="@dimen/_8ssp"
+            android:text="@string/text_line_support"
+            android:textColor="@color/text_color_5"
+            android:textSize="@dimen/_10ssp" />
     </RelativeLayout>
 </layout>

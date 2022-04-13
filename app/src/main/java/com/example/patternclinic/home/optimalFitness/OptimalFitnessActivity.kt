@@ -16,7 +16,7 @@ class OptimalFitnessActivity : AppCompatActivity() {
     }
 
     private fun initDesign() {
-        binding!!.toolBarOptimal.tvTitle.text = getString(R.string.nutrition_tracking)
+        binding!!.toolBarOptimal.tvTitle.text = getString(R.string.optimal_fitness)
         binding!!.toolBarOptimal.ivBack.visibility = View.VISIBLE
         binding!!.toolBarOptimal.ivBack.setOnClickListener {
             finish()

@@ -33,6 +33,7 @@
             android:layout_centerVertical="true"
             android:fontFamily="@font/outfit_regular"
             android:text="@string/skip"
+            android:padding="@dimen/_8sdp"
             android:textColor="@color/white"
             android:textSize="@dimen/_12ssp" />
         <TextView

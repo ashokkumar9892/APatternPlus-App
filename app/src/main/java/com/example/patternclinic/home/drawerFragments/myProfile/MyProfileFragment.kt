@@ -11,7 +11,9 @@ import com.example.patternclinic.R
 import com.example.patternclinic.databinding.FragmentMyProfileBinding
 import com.example.patternclinic.home.HomeScreenActivity
 import com.example.patternclinic.home.drawerFragments.myProfile.CurrentHeightActivity
+import com.example.patternclinic.home.drawerFragments.myProfile.CurrentWeightActivity
 import com.example.patternclinic.home.drawerFragments.myProfile.PersonalInformationActivity
+import com.example.patternclinic.selectTeam.SelectTeam2
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -41,6 +43,12 @@ private lateinit var bindingFragment:FragmentMyProfileBinding
         }
         bindingFragment.llCurrentHeight.setOnClickListener {
             startActivity(Intent(requireContext(),CurrentHeightActivity::class.java))
+        }
+        bindingFragment.llWeight.setOnClickListener {
+            startActivity(Intent(requireContext(),CurrentWeightActivity::class.java))
+        }
+        bindingFragment.llApTeam.setOnClickListener {
+            startActivity(Intent(requireContext(),SelectTeam2::class.java))
         }
     }
 }

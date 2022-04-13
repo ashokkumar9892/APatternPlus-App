@@ -10,10 +10,7 @@ import androidx.databinding.DataBindingUtil
 import com.example.patternclinic.R
 import com.example.patternclinic.databinding.FragmentSettingBinding
 import com.example.patternclinic.home.HomeScreenActivity
-import com.example.patternclinic.home.drawerFragments.settings.AboutUsActivity
-import com.example.patternclinic.home.drawerFragments.settings.ChangePassword
-import com.example.patternclinic.home.drawerFragments.settings.ContactUsActivity
-import com.example.patternclinic.home.drawerFragments.settings.DeviceManagementActivity
+import com.example.patternclinic.home.drawerFragments.settings.*
 
 
 class SettingFragment : Fragment() {
@@ -54,6 +51,9 @@ class SettingFragment : Fragment() {
         }
         bindingFragment.llAboutUs.setOnClickListener {
             startActivity(Intent(requireContext(), AboutUsActivity::class.java))
+        }
+        bindingFragment.llTermAndPolicies.setOnClickListener {
+            startActivity(Intent(requireContext(), TermPoliciesActivity::class.java))
         }
     }
 

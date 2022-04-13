@@ -238,13 +238,14 @@
             </RadioGroup>
 
             <TextView
+                android:id="@+id/tv_chat_bot"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="@dimen/_10sdp"
+
                 android:fontFamily="@font/outfit_regular"
                 android:text="@string/text_line_support"
-
+android:padding="@dimen/_10sdp"
 
                 android:textColor="@color/text_color_5"
                 android:textSize="@dimen/_10ssp" />

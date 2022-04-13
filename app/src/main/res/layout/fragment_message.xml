@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".home.drawerFragments.messages.MessageFragment">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/bg_color_5"
+            android:clickable="true"
+            android:focusable="true"
+            tools:context=".home.drawerFragments.appointments.healthTips.HealthTipsFragment">
+
+            <RelativeLayout
+                android:id="@+id/tool_bar_health_tips"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/color_primary"
+                android:gravity="center_vertical"
+                android:paddingStart="@dimen/_14sdp"
+                android:paddingTop="@dimen/_12sdp"
+                android:paddingEnd="@dimen/_14sdp"
+                android:paddingBottom="@dimen/_12sdp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:fontFamily="@font/outfit_semibold"
+                    android:text="@string/messages"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_16ssp" />
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/iv_menu"
+                    android:layout_width="@dimen/_30sdp"
+                    android:layout_height="@dimen/_30sdp"
+                    android:layout_alignParentEnd="true"
+                    android:padding="@dimen/_6sdp"
+                    app:srcCompat="@drawable/ic_hamburger" />
+            </RelativeLayout>
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_messages"
+                android:paddingTop="@dimen/_6sdp"
+                android:layout_width="match_parent"
+                android:layout_below="@id/tool_bar_health_tips"
+                android:layout_height="wrap_content"
+                android:clipToPadding="false"
+                android:orientation="vertical"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+
+                tools:listitem="@layout/item_providers" />
+
+
+        </RelativeLayout>
+    </RelativeLayout>
+</layout>

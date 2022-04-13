@@ -8,6 +8,7 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
+
         <color name="text_color_1">#202020</color>
         <color name="black_with_opacity_5">#0C000000</color>
     <color name="text_color_2">#989898</color>
@@ -25,6 +26,10 @@
     <color name="text_color_14">#0F0000EE</color>
     <color name="text_color_15">#999999</color>
     <color name="text_color_16">#1E1E1E</color>
+    <color name="text_color_17">#363636</color>
+    <color name="text_color_18">#BFBFBF</color>
+    <color name="text_color_19">#C7C7C7</color>
+    <color name="text_color_20">#515151</color>
     <color name="text_color_13_with_opacity_5">#0DF62929</color>
     <color name="transparent_color">#9C000000</color>
     <color name="bg_color_1">#F9F9F9</color>
@@ -36,5 +41,6 @@
     <color name="color_primary_with_5">#0C0000EE</color>
     <color name="stroke_color_1">#ECECEC</color>
     <color name="color_primary_with_opacity_8">#140000EE</color>
+    <color name="color_primary_with_opacity_15">#270000EE</color>
 
 </resources>

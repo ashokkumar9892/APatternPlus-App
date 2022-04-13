@@ -154,6 +154,7 @@
                         </RelativeLayout>
 
                         <RelativeLayout
+                            android:id="@+id/rl_ap_score"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="@dimen/_8sdp"
@@ -219,7 +220,9 @@
                             android:textColor="@color/text_color_4"
                             android:textSize="@dimen/_14ssp" />
 
-                        <include layout="@layout/item_workout_list" />
+                        <include
+                            android:id="@+id/include_layout"
+                            layout="@layout/item_workout_list" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -356,6 +359,7 @@
                         </LinearLayout>
 
                         <TextView
+                            android:id="@+id/tv_view_all"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/_8sdp"

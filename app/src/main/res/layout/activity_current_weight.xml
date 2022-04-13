@@ -28,56 +28,74 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/_30sdp"
                 android:layout_gravity="center"
+                android:layout_marginBottom="@dimen/_30sdp"
                 android:fontFamily="@font/outfit_medium"
-                android:text="@string/select_your_height"
+                android:text="@string/how_much_do_you_weigh"
                 android:textColor="@color/text_color_1"
                 android:textSize="@dimen/_18ssp" />
+
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
 
                 android:layout_marginBottom="@dimen/_20sdp"
                 android:orientation="horizontal">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="@dimen/_42ssp"
-                    android:text="5"
                     android:fontFamily="@font/outfit_bold"
-                    android:textColor="@color/text_color_4"/>
+                    android:text="70"
+                    android:textColor="@color/text_color_4"
+                    android:textSize="@dimen/_42ssp" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="@dimen/_42ssp"
-                    android:text="'"
-                    android:fontFamily="@font/outfit_extralight"
-                    android:textColor="@color/text_color_18"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="@dimen/_42ssp"
-                    android:text="10"
-                    android:fontFamily="@font/outfit_bold"
-                    android:textColor="@color/text_color_4"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="@dimen/_42ssp"
-                    android:text="''"
-                    android:fontFamily="@font/outfit_extralight"
-                    android:textColor="@color/text_color_18"/>
+                    android:layout_marginStart="@dimen/_6sdp"
+                    android:fontFamily="@font/outfit_medium"
+                    android:text="KG"
+                    android:textColor="@color/text_color_19"
+                    android:textSize="@dimen/_18ssp" />
+
             </LinearLayout>
 
             <com.chingtech.rulerview.library.RulerView
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_100sdp"
-                app:rv_unitTextColor="@color/color_primary"
-                app:rv_resultTextColor="@color/color_primary"
+                app:rv_indcatorColor="@color/color_primary"
                 app:rv_itemSpacing="@dimen/_14sdp"
-                app:rv_unit="cm"
-                app:rv_indcatorColor="@color/color_primary" />
+                app:rv_resultTextColor="@color/color_primary"
+                app:rv_unit="kg"
+                app:rv_unitTextColor="@color/color_primary" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="@dimen/_90sdp"
+                android:layout_height="@dimen/_30sdp"
+                app:cardCornerRadius="@dimen/_18sdp">
+
+                <com.google.android.material.tabs.TabLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:tabIndicatorColor="@color/color_primary_with_opacity_15"
+                    app:tabIndicatorGravity="center"
+                    app:tabIndicatorHeight="@dimen/_32sdp"
+                    app:tabTextAppearance="@style/tab_text">
+
+                    <com.google.android.material.tabs.TabItem
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Kg" />
+
+                    <com.google.android.material.tabs.TabItem
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Lbs" />
+                </com.google.android.material.tabs.TabLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn_login"

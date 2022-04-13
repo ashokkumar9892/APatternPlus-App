@@ -146,7 +146,7 @@
                     android:background="@color/stroke_color_1" />
 
                 <LinearLayout
-                    android:id="@+id/ll_about_us"
+                    android:id="@+id/ll_weight"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/_8sdp"
@@ -180,7 +180,7 @@
                     android:background="@color/stroke_color_1" />
 
                 <LinearLayout
-                    android:id="@+id/ll_term_and_policies"
+                    android:id="@+id/ll_ap_team"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
 

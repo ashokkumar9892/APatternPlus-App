@@ -10,6 +10,30 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PatternClinic">
         <activity
+            android:name=".home.drawerFragments.settings.TermPoliciesActivity"
+            android:exported="false" />
+        <activity
+            android:name=".auth.CreateProfileWeight"
+            android:exported="false" />
+        <activity
+            android:name=".auth.CreateProfileHeight"
+            android:exported="false" />
+        <activity
+            android:name=".home.drawerFragments.myProfile.CurrentWeightActivity"
+            android:exported="false" />
+        <activity
+            android:name=".home.progressTracker.ApScoreActivity"
+            android:exported="false" />
+        <activity
+            android:name=".home.ExerciseStatsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".home.ViewAllTodayActivity"
+            android:exported="false" />
+        <activity
+            android:name=".home.drawerFragments.messages.ChatActivity"
+            android:exported="false" />
+        <activity
             android:name=".home.drawerFragments.myProfile.CurrentHeightActivity"
             android:exported="false" />
         <activity

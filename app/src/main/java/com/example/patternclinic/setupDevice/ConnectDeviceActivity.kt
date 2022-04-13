@@ -12,6 +12,7 @@ import androidx.databinding.DataBindingUtil
 import com.example.patternclinic.R
 import com.example.patternclinic.databinding.ActivityConnectDeviceBinding
 import com.example.patternclinic.selectTeam.SelectPatternPlusTeam
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.card.MaterialCardView
 
@@ -45,5 +46,14 @@ class ConnectDeviceActivity : AppCompatActivity() {
 
             }, 2000)
         }
+        binding!!.tvChatBot.setOnClickListener {
+            chatBotDialog()
+        }
+    }
+
+    private fun chatBotDialog() {
+        val dialog = BottomSheetDialog(this)
+        dialog.setContentView(R.layout.bottom_sheet_chat_bot)
+        dialog.show()
     }
 }

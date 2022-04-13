@@ -19,7 +19,7 @@ class HealthTipsFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         bindingFragment =
             DataBindingUtil.inflate(inflater, R.layout.fragment_health_tips, container, false)
         return bindingFragment.root

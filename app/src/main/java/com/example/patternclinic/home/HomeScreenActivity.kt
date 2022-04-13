@@ -18,6 +18,8 @@ import com.example.patternclinic.home.nutrition.NutritionTrackingActivity
 import com.example.patternclinic.home.optimalFitness.OptimalFitnessActivity
 import com.example.patternclinic.home.drawerFragments.appointments.personalMetrics.PersonalMetricsFragment
 import com.example.patternclinic.home.drawerFragments.appointments.settings.SettingFragment
+import com.example.patternclinic.home.drawerFragments.messages.MessageFragment
+import com.example.patternclinic.home.progressTracker.ApScoreActivity
 import com.example.patternclinic.home.progressTracker.ProgressTrackerActivity
 import com.example.patternclinic.utils.changeStatusBarColor
 import com.example.patternclinic.utils.decorStatusBar
@@ -68,6 +70,9 @@ class HomeScreenActivity : AppCompatActivity() {
         binding!!.layoutDrawer.llPersonalMetrics.setOnClickListener {
             openFragment(PersonalMetricsFragment())
         }
+        binding!!.layoutDrawer.llMessage.setOnClickListener {
+            openFragment(MessageFragment())
+        }
         binding!!.ivHome.setOnClickListener {
             startActivity(Intent(this, YourMetrics::class.java))
         }
@@ -77,6 +82,16 @@ class HomeScreenActivity : AppCompatActivity() {
         binding!!.tvComplete.setOnClickListener {
             openBottomDialog()
         }
+        binding!!.tvViewAll.setOnClickListener {
+            startActivity(Intent(this, ViewAllTodayActivity::class.java))
+        }
+        binding!!.includeLayout.setOnClickListener {
+            startActivity(Intent(this, ExerciseStatsActivity::class.java))
+        }
+        binding!!.rlApScore.setOnClickListener {
+            startActivity(Intent(this, ApScoreActivity::class.java))
+        }
+
     }
 
     private fun openBottomDialog() {

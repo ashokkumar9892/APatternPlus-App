@@ -50,7 +50,8 @@ dependencies {
     implementation 'com.google.android.exoplayer:exoplayer:2.17.1'
     //scale rulerView
     implementation 'com.github.dwfox:DWRulerView:1.1.0'
-    implementation 'com.github.hnsycsxhzcsh:RulerView:v1.3'
-    implementation 'com.zkk.view:ZkkRulerView:1.0.0'
+    implementation 'com.github.shichunlei:RulerView:1.0.0'
+//    implementation 'com.github.hnsycsxhzcsh:RulerView:v1.3'
+//    implementation 'com.zkk.view:ZkkRulerView:1.0.0'
 //    implementation("androidx.legacy:legacy-support-v4:1.0.0")
 }
