@@ -6,13 +6,16 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.app.ActivityCompat.finishAffinity
 import androidx.databinding.DataBindingUtil
 import com.example.patternclinic.R
+import com.example.patternclinic.auth.LoginActivity
 import com.example.patternclinic.databinding.FragmentMyProfileBinding
 import com.example.patternclinic.home.HomeScreenActivity
 import com.example.patternclinic.home.drawerFragments.myProfile.CurrentHeightActivity
 import com.example.patternclinic.home.drawerFragments.myProfile.CurrentWeightActivity
 import com.example.patternclinic.home.drawerFragments.myProfile.PersonalInformationActivity
+import com.example.patternclinic.home.drawerFragments.myProfile.YourApTeamActivity
 import com.example.patternclinic.selectTeam.SelectTeam2
 
 // TODO: Rename parameter arguments, choose names that match
@@ -48,7 +51,11 @@ private lateinit var bindingFragment:FragmentMyProfileBinding
             startActivity(Intent(requireContext(),CurrentWeightActivity::class.java))
         }
         bindingFragment.llApTeam.setOnClickListener {
-            startActivity(Intent(requireContext(),SelectTeam2::class.java))
+            startActivity(Intent(requireContext(),YourApTeamActivity::class.java))
+        }
+        bindingFragment.llLogout.setOnClickListener {
+            startActivity(Intent(requireContext(), LoginActivity::class.java))
+            activity?.finishAffinity()
         }
     }
 }

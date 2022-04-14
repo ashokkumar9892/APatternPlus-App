@@ -53,7 +53,7 @@
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/outfit_regular"
                             android:paddingTop="@dimen/_1sdp"
-                            android:text="@string/progress_tracker"
+                            android:text="@string/heart_rate"
                             android:textColor="@color/text_color_4"
                             android:textSize="@dimen/_8ssp" />
 
@@ -103,7 +103,7 @@
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/outfit_regular"
                             android:paddingTop="@dimen/_1sdp"
-                            android:text="@string/ap_score"
+                            android:text="@string/calories_burnt"
                             android:textColor="@color/text_color_4"
                             android:textSize="@dimen/_8ssp" />
 

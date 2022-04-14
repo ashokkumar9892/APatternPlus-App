@@ -28,5 +28,6 @@ class MessageFragment : Fragment() {
         binding.ivMenu.setOnClickListener {
             (activity as HomeScreenActivity).binding!!.drawerLayout.openDrawer((activity as HomeScreenActivity).binding!!.sideBar)
         }
+
     }
 }
