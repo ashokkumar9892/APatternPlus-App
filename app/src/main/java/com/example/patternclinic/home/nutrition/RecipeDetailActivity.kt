@@ -18,7 +18,7 @@ class RecipeDetailActivity : AppCompatActivity() {
     }
 
     private fun initDesign() {
-        binding!!.toolBarNutrition.tvTitle.text = getString(R.string.nutrition_tracking)
+        binding!!.toolBarNutrition.tvTitle.text = getString(R.string.recipe_detail)
         binding!!.toolBarNutrition.ivBack.visibility = View.VISIBLE
         binding!!.toolBarNutrition.ivBack.setOnClickListener {
             finish()

@@ -76,7 +76,6 @@
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/btn_subscribe"
                         android:layout_width="match_parent"
-
                         android:layout_height="@dimen/_50sdp"
                         android:layout_marginTop="@dimen/_28sdp"
                         android:fontFamily="@font/outfit_semibold"
@@ -88,10 +87,10 @@
                         android:id="@+id/image"
                         android:layout_width="match_parent"
                         android:layout_marginTop="@dimen/_8sdp"
-                        android:visibility="gone"
+android:visibility="gone"
                         android:layout_height="wrap_content"
                         android:scaleType="fitXY"
-                        app:srcCompat="@drawable/nutrition_graph" />
+                        app:srcCompat="@drawable/health_graph" />
 
 
                 </LinearLayout>

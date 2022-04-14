@@ -8,6 +8,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.example.patternclinic.R
 import com.example.patternclinic.accountability.TrendsActivity
+import com.example.patternclinic.auth.LoginActivity
 import com.example.patternclinic.databinding.ActivityHomeScreenBinding
 import com.example.patternclinic.databinding.BottomSheetExerciseCompletedBinding
 import com.example.patternclinic.home.cardiacDetails.YourMetrics
@@ -91,6 +92,18 @@ class HomeScreenActivity : AppCompatActivity() {
         binding!!.rlApScore.setOnClickListener {
             startActivity(Intent(this, ApScoreActivity::class.java))
         }
+        binding!!.layoutDrawer.llHome.setOnClickListener {
+//            supportFragmentManager.popBackStackImmediate()
+            binding!!.drawerLayout.closeDrawer(binding!!.sideBar)
+            for (i in 0 until supportFragmentManager.backStackEntryCount) {
+                supportFragmentManager.popBackStackImmediate()
+            }
+
+        }
+        binding!!.layoutDrawer.tvLogOut.setOnClickListener {
+            startActivity(Intent(this, LoginActivity::class.java))
+            finishAffinity()
+        }
 
     }
 
@@ -118,8 +131,10 @@ class HomeScreenActivity : AppCompatActivity() {
     private fun openFragment(frag: Fragment) {
         binding!!.drawerLayout.closeDrawer(binding!!.sideBar)
         if (supportFragmentManager.findFragmentById(R.id.fragment_container) != frag) {
+            supportFragmentManager.popBackStackImmediate()
             supportFragmentManager.beginTransaction().replace(R.id.fragment_container, frag)
                 .addToBackStack(null).commit()
+
         }
     }
 }

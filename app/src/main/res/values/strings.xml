@@ -169,5 +169,8 @@
     <string name="select_your_height">Select your height</string>
     <string name="how_much_do_you_weigh">How much do you weigh?</string>
     <string name="previous">Previous</string>
+    <string name="heart_rate">Heart Rate</string>
+    <string name="calories_burnt">Calories Burnt</string>
+    <string name="recipe_detail">Recipe Details</string>
 
 </resources>

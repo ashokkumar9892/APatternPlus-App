@@ -18,16 +18,21 @@
         <entry key="..\:/Users/Paras Technologies/AndroidStudioProjects/APatternPlus-App/app/src/main/res/layout/activity_create_profile_weight.xml" value="0.18" />
         <entry key="..\:/Users/Paras Technologies/AndroidStudioProjects/APatternPlus-App/app/src/main/res/layout/activity_current_height.xml" value="0.22" />
         <entry key="..\:/Users/Paras Technologies/AndroidStudioProjects/APatternPlus-App/app/src/main/res/layout/activity_current_weight.xml" value="0.16" />
-        <entry key="..\:/Users/Paras Technologies/AndroidStudioProjects/APatternPlus-App/app/src/main/res/layout/activity_excercise_stats.xml" value="0.22" />
+        <entry key="..\:/Users/Paras Technologies/AndroidStudioProjects/APatternPlus-App/app/src/main/res/layout/activity_device_management.xml" value="0.18333333333333332" />
+        <entry key="..\:/Users/Paras Technologies/AndroidStudioProjects/APatternPlus-App/app/src/main/res/layout/activity_excercise_stats.xml" value="0.19747235387045814" />
+        <entry key="..\:/Users/Paras Technologies/AndroidStudioProjects/APatternPlus-App/app/src/main/res/layout/activity_health_tip_detail.xml" value="0.25" />
         <entry key="..\:/Users/Paras Technologies/AndroidStudioProjects/APatternPlus-App/app/src/main/res/layout/activity_home_screen.xml" value="0.2" />
         <entry key="..\:/Users/Paras Technologies/AndroidStudioProjects/APatternPlus-App/app/src/main/res/layout/activity_intro_screen.xml" value="0.19947916666666668" />
         <entry key="..\:/Users/Paras Technologies/AndroidStudioProjects/APatternPlus-App/app/src/main/res/layout/activity_login.xml" value="0.19947916666666668" />
         <entry key="..\:/Users/Paras Technologies/AndroidStudioProjects/APatternPlus-App/app/src/main/res/layout/activity_nutrition_tracking.xml" value="0.19947916666666668" />
         <entry key="..\:/Users/Paras Technologies/AndroidStudioProjects/APatternPlus-App/app/src/main/res/layout/activity_optimal_fitness.xml" value="0.19947916666666668" />
+        <entry key="..\:/Users/Paras Technologies/AndroidStudioProjects/APatternPlus-App/app/src/main/res/layout/activity_recipe_detail.xml" value="0.2" />
+        <entry key="..\:/Users/Paras Technologies/AndroidStudioProjects/APatternPlus-App/app/src/main/res/layout/activity_reset_password.xml" value="0.2" />
         <entry key="..\:/Users/Paras Technologies/AndroidStudioProjects/APatternPlus-App/app/src/main/res/layout/activity_select_team2.xml" value="0.19947916666666668" />
         <entry key="..\:/Users/Paras Technologies/AndroidStudioProjects/APatternPlus-App/app/src/main/res/layout/activity_term_policies.xml" value="0.19947916666666668" />
-        <entry key="..\:/Users/Paras Technologies/AndroidStudioProjects/APatternPlus-App/app/src/main/res/layout/activity_view_all_today.xml" value="0.2" />
-        <entry key="..\:/Users/Paras Technologies/AndroidStudioProjects/APatternPlus-App/app/src/main/res/layout/activity_your_metrics.xml" value="0.19947916666666668" />
+        <entry key="..\:/Users/Paras Technologies/AndroidStudioProjects/APatternPlus-App/app/src/main/res/layout/activity_view_all_today.xml" value="0.25" />
+        <entry key="..\:/Users/Paras Technologies/AndroidStudioProjects/APatternPlus-App/app/src/main/res/layout/activity_your_ap_team.xml" value="0.33" />
+        <entry key="..\:/Users/Paras Technologies/AndroidStudioProjects/APatternPlus-App/app/src/main/res/layout/activity_your_metrics.xml" value="0.25" />
         <entry key="..\:/Users/Paras Technologies/AndroidStudioProjects/APatternPlus-App/app/src/main/res/layout/bottom_sheet_chat_bot.xml" value="0.19947916666666668" />
         <entry key="..\:/Users/Paras Technologies/AndroidStudioProjects/APatternPlus-App/app/src/main/res/layout/bottom_sheet_do_you_like.xml" value="0.19947916666666668" />
         <entry key="..\:/Users/Paras Technologies/AndroidStudioProjects/APatternPlus-App/app/src/main/res/layout/fragment_health_tips.xml" value="0.19692307692307692" />

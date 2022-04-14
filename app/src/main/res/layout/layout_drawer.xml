@@ -26,9 +26,9 @@
                 app:srcCompat="@drawable/splash_logo" />
 
             <LinearLayout
+                android:id="@+id/ll_home"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_46sdp"
-                android:id="@+id/ll_home"
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
 
@@ -59,10 +59,10 @@
                 android:background="@color/stroke_color_1" />
 
             <LinearLayout
+                android:id="@+id/ll_coaching_appointments"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_46sdp"
                 android:gravity="center_vertical"
-                android:id="@+id/ll_coaching_appointments"
                 android:orientation="horizontal">
 
                 <View
@@ -263,10 +263,14 @@
         </LinearLayout>
 
         <TextView
+            android:id="@+id/tv_log_out"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:layout_margin="@dimen/_24sdp"
+            android:layout_marginStart="@dimen/_24sdp"
+            android:layout_marginTop="@dimen/_24sdp"
+            android:layout_marginEnd="@dimen/_24sdp"
+            android:layout_marginBottom="@dimen/_24sdp"
             android:background="@drawable/drawable_shape_8sdp"
             android:backgroundTint="@color/text_color_13_with_opacity_5"
             android:drawablePadding="@dimen/_4sdp"
