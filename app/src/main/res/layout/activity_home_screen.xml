@@ -16,6 +16,7 @@
         <RelativeLayout
             android:id="@+id/fragment_container"
             android:layout_width="match_parent"
+            android:background="@color/bg_color_5"
             android:layout_height="match_parent"
             tools:context=".home.HomeScreenActivity">
 
@@ -263,7 +264,6 @@
                                         android:layout_marginTop="@dimen/_2sdp"
                                         android:fontFamily="@font/outfit_regular"
                                         android:text="20 Mins"
-
                                         android:textColor="@color/text_color_2"
                                         android:textSize="@dimen/_10ssp" />
 
@@ -493,7 +493,7 @@
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentBottom="true"
                 android:layout_margin="@dimen/_14sdp"
-                android:rotation="90"
+                android:rotation="275"
                 app:srcCompat="@drawable/right_arrow" />
 
         </RelativeLayout>

@@ -20,14 +20,15 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@id/tool_bar"
+            android:background="@color/bg_color_5"
             android:fillViewport="true"
             android:fitsSystemWindows="true">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
                 android:clipToPadding="false"
+                android:orientation="vertical"
                 android:padding="@dimen/_21sdp">
 
                 <LinearLayout
@@ -326,7 +327,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_14sdp"
                     android:background="@drawable/drawable_shape_10sdp"
-                    android:elevation="@dimen/_1sdp"
+                    android:elevation="@dimen/_2sdp"
                     android:orientation="vertical"
                     android:padding="@dimen/_11sdp">
 
@@ -348,20 +349,20 @@
 
                         <TextView
                             android:layout_width="0dp"
-                            android:layout_weight="1"
-                            android:textSize="@dimen/_12ssp"
-                            android:textColor="@color/text_color_3"
-                            android:fontFamily="@font/outfit_light"
                             android:layout_height="wrap_content"
-                            android:text="@string/max_heart_rate" />
+                            android:layout_weight="1"
+                            android:fontFamily="@font/outfit_light"
+                            android:text="@string/max_heart_rate"
+                            android:textColor="@color/text_color_3"
+                            android:textSize="@dimen/_12ssp" />
 
                         <TextView
                             android:layout_width="wrap_content"
-                            android:textSize="@dimen/_12ssp"
-                            android:textColor="@color/text_color_3"
-                            android:fontFamily="@font/outfit_light"
                             android:layout_height="wrap_content"
-                            android:text="96" />
+                            android:fontFamily="@font/outfit_light"
+                            android:text="96"
+                            android:textColor="@color/text_color_3"
+                            android:textSize="@dimen/_12ssp" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -373,20 +374,20 @@
 
                         <TextView
                             android:layout_width="0dp"
-                            android:layout_weight="1"
-                            android:textSize="@dimen/_12ssp"
-                            android:textColor="@color/text_color_3"
-                            android:fontFamily="@font/outfit_light"
                             android:layout_height="wrap_content"
-                            android:text="@string/medium_heart_rate" />
+                            android:layout_weight="1"
+                            android:fontFamily="@font/outfit_light"
+                            android:text="@string/medium_heart_rate"
+                            android:textColor="@color/text_color_3"
+                            android:textSize="@dimen/_12ssp" />
 
                         <TextView
                             android:layout_width="wrap_content"
-                            android:textSize="@dimen/_12ssp"
-                            android:textColor="@color/text_color_3"
-                            android:fontFamily="@font/outfit_light"
                             android:layout_height="wrap_content"
-                            android:text="77" />
+                            android:fontFamily="@font/outfit_light"
+                            android:text="77"
+                            android:textColor="@color/text_color_3"
+                            android:textSize="@dimen/_12ssp" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -398,20 +399,20 @@
 
                         <TextView
                             android:layout_width="0dp"
-                            android:layout_weight="1"
-                            android:textSize="@dimen/_12ssp"
-                            android:textColor="@color/text_color_3"
-                            android:fontFamily="@font/outfit_light"
                             android:layout_height="wrap_content"
-                            android:text="@string/low_heart_rate" />
+                            android:layout_weight="1"
+                            android:fontFamily="@font/outfit_light"
+                            android:text="@string/low_heart_rate"
+                            android:textColor="@color/text_color_3"
+                            android:textSize="@dimen/_12ssp" />
 
                         <TextView
                             android:layout_width="wrap_content"
-                            android:textSize="@dimen/_12ssp"
-                            android:textColor="@color/text_color_3"
-                            android:fontFamily="@font/outfit_light"
                             android:layout_height="wrap_content"
-                            android:text="6" />
+                            android:fontFamily="@font/outfit_light"
+                            android:text="6"
+                            android:textColor="@color/text_color_3"
+                            android:textSize="@dimen/_12ssp" />
                     </LinearLayout>
                 </LinearLayout>
 

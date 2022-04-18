@@ -167,7 +167,7 @@
     <string name="exercise_stats">Exercise Stats</string>
     <string name="how_to_increase_your_ap_score">How to increase your AP+ Score?</string>
     <string name="select_your_height">Select your height</string>
-    <string name="how_much_do_you_weigh">How much do you weigh?</string>
+    <string name="how_much_do_you_weigh">How much do you weight?</string>
     <string name="previous">Previous</string>
     <string name="heart_rate">Heart Rate</string>
     <string name="calories_burnt">Calories Burnt</string>
@@ -179,5 +179,6 @@
     <string name="password_match">Password should be same on both side</string>
     <string name="otp">OTP</string>
     <string name="enter_otp">Enter Otp</string>
+    <string name="verification_code">Verification Code</string>
 
 </resources>
