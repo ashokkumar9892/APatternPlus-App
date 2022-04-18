@@ -3,6 +3,9 @@ package com.example.patternclinic.data
 object ApiConstants {
 
     const val LOGIN_API = "Basic/Login"
+    const val FORGOT_PASSWORD = "Basic/ForgotPassword"
+    const val RESET_PASSWORD = "Basic/ResetPassword"
+    const val UPDATE_PROFILE_API = "/Basic/UpdateProfile"
 
 
     const val CONNECT_TIMEOUT = 240L //seconds
@@ -19,7 +22,11 @@ object ApiConstants {
 
     enum class APIParams(val value: String) {
         USERNAME("Username"),
-        PASSWORD("Password")
+        PASSWORD("Password"),
+        FORGOT_PASSWORD_USER_NAME("UserName"),
+        RESET_PASSWORD_USER_NAME("username"),
+        NEW_PASSWORD("newpassword"),
+        CONFIRM_CODE("confirmationcode"),
 
 
     }

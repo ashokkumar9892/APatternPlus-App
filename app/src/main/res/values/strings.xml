@@ -173,7 +173,11 @@
     <string name="calories_burnt">Calories Burnt</string>
     <string name="recipe_detail">Recipe Details</string>
     <string name="enter_email">Enter your email</string>
+    <string name="enter_confirm_password">Enter your confirm email</string>
     <string name="enter_valid_email">Enter valid email address</string>
     <string name="enter_password">Enter your password</string>
+    <string name="password_match">Password should be same on both side</string>
+    <string name="otp">OTP</string>
+    <string name="enter_otp">Enter Otp</string>
 
 </resources>

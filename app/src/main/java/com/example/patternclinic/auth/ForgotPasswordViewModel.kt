@@ -8,26 +8,23 @@ import androidx.lifecycle.viewModelScope
 import com.example.patternclinic.R
 import com.example.patternclinic.base.BaseViewModel
 import com.example.patternclinic.data.ApiConstants
-import com.example.patternclinic.data.model.LoginResponse
+import com.example.patternclinic.data.model.ForgotPasswordResponse
 import com.example.patternclinic.data.repository.MainRepository
 import com.example.patternclinic.retrofit.ResponseResult
-import com.example.patternclinic.retrofit.ResponseWrapper
 import com.example.patternclinic.retrofit.getResult
-import com.example.patternclinic.utils.*
-import com.google.android.exoplayer2.metadata.id3.ApicFrame
-import com.google.android.material.button.MaterialButton
+import com.example.patternclinic.utils.Keys
+import com.example.patternclinic.utils.checkEmail
+import com.example.patternclinic.utils.showToast
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
-import okhttp3.RequestBody
-import okhttp3.RequestBody.Companion.toRequestBody
 import javax.inject.Inject
 
 @HiltViewModel
-class LoginViewModel @Inject constructor(val mainRepository: MainRepository) : BaseViewModel() {
-    var loginResponse = MutableLiveData<LoginResponse>()
+class ForgotPasswordViewModel @Inject constructor(val mainRepository: MainRepository) :
+    BaseViewModel() {
+    var forgotResponse = MutableLiveData<ForgotPasswordResponse>()
     var email = ObservableField<String>()
-    var password = ObservableField<String>()
-    var activity = LoginActivity.binding
+    var activity = ForgotPassword.binding
 
 
     fun validate(v: View): Boolean {
@@ -39,31 +36,31 @@ class LoginViewModel @Inject constructor(val mainRepository: MainRepository) : B
             activity.etEmail.error = v.context.getString(R.string.enter_valid_email)
             return false
         }
-        if (password.get().isNullOrEmpty()) {
-            activity.etPassword.error = v.context.getString(R.string.enter_password)
-            return false
-        }
+
         return true
     }
 
     fun onClick(v: View) {
         if (validate(v)) {
             var map = HashMap<String, Any>()
-            map.put(ApiConstants.APIParams.USERNAME.value, email.get().toString())
-            map.put(ApiConstants.APIParams.PASSWORD.value, password.get().toString())
+            map.put(ApiConstants.APIParams.FORGOT_PASSWORD_USER_NAME.value, email.get().toString())
+
             activity.loader.visibility = View.VISIBLE
             job = viewModelScope.launch {
-                var result = getResult({ mainRepository.login(map) }, "loginApi")
+                var result = getResult({ mainRepository.forgotPassword(map) }, "forgotApi")
 
                 when (result) {
                     is ResponseResult.SUCCESS -> {
-                        val response = (result.result.data as LoginResponse)
+                        val response = (result.result.data as ForgotPasswordResponse)
 
-                        loginResponse.postValue(response)
+                        forgotResponse.postValue(response)
                         if (response.response == 1) {
                             v.context.showToast(response.errorMessage)
-                            SharedPrefs.saveLoggedInUser(response)
-                            v.context.startActivity(Intent(v.context, CreateProfile::class.java))
+                            activity.root.context.startActivity(
+                                Intent(activity.root.context, ResetPassword::class.java).putExtra(
+                                    Keys.RESET_USER_NAME_KEY, email.get()!!.trim()
+                                )
+                            )
                         } else {
                             v.context.showToast(response.errorMessage)
                         }

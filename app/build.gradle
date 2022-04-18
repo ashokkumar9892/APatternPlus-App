@@ -91,8 +91,17 @@ dependencies {
     /* todo loader*/
     implementation 'com.agrawalsuneet.androidlibs:loaderspack:1.2.3'
 
-    implementation files('libs/gson-2.2.4.jar')
-    implementation files('libs/vpbluetooth_1.0.4.jar')
+    // todo glide lib
+    implementation 'com.github.bumptech.glide:glide:4.12.0'
+
+    // image uploading
+    implementation("com.robertlevonyan.components:Picker:2.1.6")
+    //dexture
+    implementation 'com.karumi:dexter:6.2.3'
+
+
+//    implementation files('libs/gson-2.2.4.jar')
+//    implementation files('libs/vpbluetooth_1.0.4.jar')
 //    implementation files('libs/vpprotocol-2.1.94.15.jar')
 
 //    implementation 'com.github.emreesen27:Android-Nested-Progress:v1.0.2'

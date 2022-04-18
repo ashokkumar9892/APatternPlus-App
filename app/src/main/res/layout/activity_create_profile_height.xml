@@ -76,6 +76,7 @@
                 android:layout_height="@dimen/_100sdp"
                 app:rv_indcatorColor="@color/color_primary"
                 app:rv_itemSpacing="@dimen/_14sdp"
+
                 app:rv_resultTextColor="@color/color_primary"
                 app:rv_unit="cm"
                 app:rv_unitTextColor="@color/color_primary" />

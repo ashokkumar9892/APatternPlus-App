@@ -145,9 +145,9 @@
                 android:focusable="true"
                 android:visibility="gone"
                 app:pulse_LineThickness="@dimen/_2sdp"
-                app:pulse_normalIncrementalValue="2"
+                app:pulse_normalIncrementalValue="3"
                 app:pulse_pulseColor="@color/color_primary"
-                app:pulse_pulseIncrementalValue="2"
+                app:pulse_pulseIncrementalValue="3"
                 app:pulse_sideLength="@dimen/_20sdp" />
         </RelativeLayout>
     </ScrollView>

@@ -1,7 +1,5 @@
 package com.example.patternclinic.data.model
 
-import com.google.gson.annotations.SerializedName
-
 
 data class LoginResponse(
 
