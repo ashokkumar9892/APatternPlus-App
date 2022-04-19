@@ -62,7 +62,7 @@ dependencies {
     def okhttp_version = '5.0.0-alpha.2'
 
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
-    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+
     implementation "com.squareup.okhttp3:okhttp:$okhttp_version"
     implementation "com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.2"
     implementation "com.squareup.retrofit2:converter-moshi:2.9.0"
@@ -102,7 +102,11 @@ dependencies {
 
 //    implementation files('libs/gson-2.2.4.jar')
     implementation files('libs/vpbluetooth_1.0.4.jar')
-//    implementation files('libs/vpprotocol-2.1.94.15.jar')
+    implementation files('libs/vpprotocol-2.1.94.15.aar')
+    implementation files('libs/libdfu-1.5.aar')
+    implementation files('libs/libfastdfu-0.5.aar')
+    implementation files('libs/libble-0.5.aar')
+    implementation files('libs/libcomx-0.5.jar')
 
 //    implementation 'com.github.emreesen27:Android-Nested-Progress:v1.0.2'
 

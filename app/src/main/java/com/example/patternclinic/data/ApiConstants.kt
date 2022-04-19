@@ -27,6 +27,18 @@ object ApiConstants {
         RESET_PASSWORD_USER_NAME("username"),
         NEW_PASSWORD("newpassword"),
         CONFIRM_CODE("confirmationcode"),
+        SK("SK"),
+        HEIGHT("Height"),
+        AUTH_TOKEN("AuthToken"),
+        WEIGHT("Weight"),
+        FIRST_NAME("FirstName"),
+        LAST_NAME("LastName"),
+        EMAIL("Email"),
+        COUNTRY("Country"),
+        PROFILE_PIC("ProfilePic"),
+        DOB("DOB"),
+        GENDER("Gender"),
+        REFER_AS("ReferAs"),
 
 
     }

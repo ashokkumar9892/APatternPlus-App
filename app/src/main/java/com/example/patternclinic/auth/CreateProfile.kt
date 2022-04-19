@@ -18,6 +18,7 @@ import org.w3c.dom.Text
 class CreateProfile : BaseActivity() {
     companion object {
         lateinit var binding: ActivityCreateProfileBinding
+        var activity=this
     }
 
     val updateProfileViewModel: UpdateProfileViewModel by viewModels()

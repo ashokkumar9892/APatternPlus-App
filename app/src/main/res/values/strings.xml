@@ -180,5 +180,18 @@
     <string name="otp">OTP</string>
     <string name="enter_otp">Enter Otp</string>
     <string name="verification_code">Verification Code</string>
+    <string name="enter_first_name">Enter your first name</string>
+    <string name="enter_last_name">Enter your last name</string>
+    <string name="enter_country">Enter  country</string>
+    <string name="select_your_dob">Select your DOB</string>
+    <string name="select_refer">Select how should we refer you</string>
+    <string name="select_image">Select your image</string>
+
+    <string-array name="Gender">
+        <item></item>
+        <item>Male</item>
+        <item>Female</item>
+        <item>Others</item>
+    </string-array>
 
 </resources>

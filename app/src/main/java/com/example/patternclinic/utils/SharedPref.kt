@@ -181,7 +181,7 @@ object SharedPrefs {
 
     fun getLoggedInUser(): LoginResponse? {
         val gson = Gson()
-        return gson.fromJson(USER_DETAIL, LoginResponse::class.java)
+        return gson.fromJson(getString(USER_DETAIL), LoginResponse::class.java)
     }
 
 

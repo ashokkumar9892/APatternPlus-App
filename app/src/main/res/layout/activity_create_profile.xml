@@ -40,11 +40,11 @@
                 <com.google.android.material.imageview.ShapeableImageView
                     android:id="@+id/iv_user_image"
                     android:layout_width="@dimen/_110sdp"
-                    android:onClick="@{(v)->viewModel.onClick(v)}"
                     android:layout_height="@dimen/_110sdp"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="@dimen/_30sdp"
                     android:background="@color/black_with_opacity_5"
+                    android:onClick="@{(v)->viewModel.onClick(v)}"
                     android:scaleType="center"
 
                     app:shapeAppearanceOverlay="@style/shape_50"
@@ -172,6 +172,7 @@
                     android:fontFamily="@font/outfit_regular"
                     android:paddingStart="@dimen/_14sdp"
                     android:paddingEnd="@dimen/_14sdp"
+                    android:onClick="@{(v)->viewModel.onClick(v)}"
                     android:text="@={viewModel.dob}"
                     android:textColor="@color/text_color_4"
                     android:textSize="@dimen/_14ssp" />
@@ -186,16 +187,19 @@
                     android:textColor="@color/text_color_3"
                     android:textSize="@dimen/_12ssp" />
 
-                <EditText
+                <Spinner
+                    android:id="@+id/sp_gender"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_38sdp"
                     android:layout_marginTop="@dimen/_8sdp"
                     android:background="@drawable/drawable_shape_login_2"
                     android:drawableEnd="@drawable/ic_dropdown_select"
+                    android:entries="@array/Gender"
                     android:fontFamily="@font/outfit_regular"
                     android:paddingStart="@dimen/_14sdp"
-
                     android:paddingEnd="@dimen/_14sdp"
+                    android:prompt="@android:layout/simple_list_item_1"
+                    android:selectedItemPosition="@{viewModel.gender}"
                     android:textColor="@color/text_color_4"
                     android:textSize="@dimen/_14ssp" />
 
@@ -229,7 +233,6 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:buttonTint="@color/black"
-                        android:checked="true"
                         android:fontFamily="@font/outfit_regular"
                         android:text="@string/he"
                         android:textColor="@color/text_color_4"

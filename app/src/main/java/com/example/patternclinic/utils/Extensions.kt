@@ -31,6 +31,8 @@ import okhttp3.RequestBody
 import okhttp3.RequestBody.Companion.toRequestBody
 import java.io.File
 import java.io.FileOutputStream
+import java.text.SimpleDateFormat
+import java.util.*
 import java.util.regex.Pattern
 
 
@@ -204,4 +206,13 @@ fun getMediaFilePathFor(
         Log.e("File Size %s", e.message!!)
     }
     return file.path
+}
+//date conversion
+
+fun dateConvert_3(type: String): String {
+    val output = SimpleDateFormat("dd-MMM-yyyy", Locale.ENGLISH)
+    val input = SimpleDateFormat("dd-MM-yyyy", Locale.ENGLISH)
+    val date = input.parse(type)
+    val result = output.format(date)
+    return result
 }
