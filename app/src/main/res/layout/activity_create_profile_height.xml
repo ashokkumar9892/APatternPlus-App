@@ -93,7 +93,7 @@
                 android:layout_height="@dimen/_50sdp"
                 android:layout_marginTop="@dimen/_28sdp"
                 android:fontFamily="@font/outfit_semibold"
-                android:onClick="@{(v)->viewModel.onClick(v)}"
+
                 android:text="@string/next"
                 android:textAllCaps="false"
                 android:textSize="@dimen/_14ssp"

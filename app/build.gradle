@@ -107,6 +107,9 @@ dependencies {
     implementation files('libs/libfastdfu-0.5.aar')
     implementation files('libs/libble-0.5.aar')
     implementation files('libs/libcomx-0.5.jar')
+    //BluetoothScannerCompat
+    implementation 'no.nordicsemi.android.support.v18:scanner:1.6.0'
+
 
 //    implementation 'com.github.emreesen27:Android-Nested-Progress:v1.0.2'
 

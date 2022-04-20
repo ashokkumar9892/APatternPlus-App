@@ -71,101 +71,109 @@
 
                 </LinearLayout>
 
-                <LinearLayout
+                <!--                <LinearLayout-->
+                <!--                    android:layout_width="match_parent"-->
+                <!--                    android:layout_height="@dimen/_82sdp"-->
+                <!--                    android:layout_marginStart="@dimen/_2sdp"-->
+                <!--                    android:layout_marginTop="@dimen/_16sdp"-->
+                <!--                    android:layout_marginEnd="@dimen/_2sdp"-->
+                <!--                    android:layout_marginBottom="@dimen/_2sdp"-->
+                <!--                    android:background="@drawable/drawable_shape_connect"-->
+                <!--                    android:elevation="@dimen/_2sdp"-->
+                <!--                    android:orientation="horizontal">-->
+
+                <!--                    <com.google.android.material.imageview.ShapeableImageView-->
+                <!--                        android:layout_width="0dp"-->
+                <!--                        android:layout_height="match_parent"-->
+                <!--                        android:layout_marginStart="@dimen/_8sdp"-->
+                <!--                        android:layout_weight="1"-->
+                <!--                        android:padding="@dimen/_20sdp"-->
+                <!--                        app:srcCompat="@drawable/ic_scale" />-->
+
+                <!--                    <TextView-->
+                <!--                        android:layout_width="0dp"-->
+                <!--                        android:layout_height="wrap_content"-->
+                <!--                        android:layout_gravity="center_vertical"-->
+                <!--                        android:layout_weight="2"-->
+                <!--                        android:fontFamily="@font/outfit_medium"-->
+                <!--                        android:text="@string/scale"-->
+                <!--                        android:textColor="@color/text_color_6"-->
+                <!--                        android:textSize="@dimen/_16ssp" />-->
+
+
+                <!--                </LinearLayout>-->
+
+                <!--                <LinearLayout-->
+                <!--                    android:layout_width="match_parent"-->
+                <!--                    android:layout_height="@dimen/_82sdp"-->
+                <!--                    android:layout_marginStart="@dimen/_2sdp"-->
+                <!--                    android:layout_marginTop="@dimen/_16sdp"-->
+                <!--                    android:layout_marginEnd="@dimen/_2sdp"-->
+                <!--                    android:layout_marginBottom="@dimen/_2sdp"-->
+                <!--                    android:background="@drawable/drawable_shape_connect"-->
+                <!--                    android:elevation="@dimen/_2sdp"-->
+                <!--                    android:orientation="horizontal">-->
+
+                <!--                    <com.google.android.material.imageview.ShapeableImageView-->
+                <!--                        android:layout_width="0dp"-->
+                <!--                        android:layout_height="match_parent"-->
+                <!--                        android:layout_marginStart="@dimen/_8sdp"-->
+                <!--                        android:layout_weight="1"-->
+                <!--                        android:padding="@dimen/_20sdp"-->
+                <!--                        app:srcCompat="@drawable/ic_blood_pressure" />-->
+
+                <!--                    <TextView-->
+                <!--                        android:layout_width="0dp"-->
+                <!--                        android:layout_height="wrap_content"-->
+                <!--                        android:layout_gravity="center_vertical"-->
+                <!--                        android:layout_weight="2"-->
+                <!--                        android:fontFamily="@font/outfit_medium"-->
+                <!--                        android:text="@string/blood_pressure"-->
+                <!--                        android:textColor="@color/text_color_6"-->
+                <!--                        android:textSize="@dimen/_16ssp" />-->
+
+
+                <!--                </LinearLayout>-->
+
+                <!--                <LinearLayout-->
+                <!--                    android:layout_width="match_parent"-->
+                <!--                    android:layout_height="@dimen/_82sdp"-->
+                <!--                    android:layout_marginStart="@dimen/_2sdp"-->
+                <!--                    android:layout_marginTop="@dimen/_16sdp"-->
+                <!--                    android:layout_marginEnd="@dimen/_2sdp"-->
+                <!--                    android:layout_marginBottom="@dimen/_2sdp"-->
+                <!--                    android:background="@drawable/drawable_shape_connect"-->
+                <!--                    android:elevation="@dimen/_2sdp"-->
+                <!--                    android:orientation="horizontal">-->
+
+                <!--                    <com.google.android.material.imageview.ShapeableImageView-->
+                <!--                        android:layout_width="0dp"-->
+                <!--                        android:layout_height="match_parent"-->
+                <!--                        android:layout_marginStart="@dimen/_8sdp"-->
+                <!--                        android:layout_weight="1"-->
+                <!--                        android:padding="@dimen/_20sdp"-->
+                <!--                        app:srcCompat="@drawable/ic_glucose_device" />-->
+
+                <!--                    <TextView-->
+                <!--                        android:layout_width="0dp"-->
+                <!--                        android:layout_height="wrap_content"-->
+                <!--                        android:layout_gravity="center_vertical"-->
+                <!--                        android:layout_weight="2"-->
+                <!--                        android:fontFamily="@font/outfit_medium"-->
+                <!--                        android:text="@string/blood_glucose"-->
+                <!--                        android:textColor="@color/text_color_6"-->
+                <!--                        android:textSize="@dimen/_16ssp" />-->
+
+
+                <!--                </LinearLayout>-->
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_devices"
+                    android:layout_marginTop="@dimen/_10sdp"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_82sdp"
-                    android:layout_marginStart="@dimen/_2sdp"
-                    android:layout_marginTop="@dimen/_16sdp"
-                    android:layout_marginEnd="@dimen/_2sdp"
-                    android:layout_marginBottom="@dimen/_2sdp"
-                    android:background="@drawable/drawable_shape_connect"
-                    android:elevation="@dimen/_2sdp"
-                    android:orientation="horizontal">
-
-                    <com.google.android.material.imageview.ShapeableImageView
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_marginStart="@dimen/_8sdp"
-                        android:layout_weight="1"
-                        android:padding="@dimen/_20sdp"
-                        app:srcCompat="@drawable/ic_scale" />
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:layout_weight="2"
-                        android:fontFamily="@font/outfit_medium"
-                        android:text="@string/scale"
-                        android:textColor="@color/text_color_6"
-                        android:textSize="@dimen/_16ssp" />
-
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_82sdp"
-                    android:layout_marginStart="@dimen/_2sdp"
-                    android:layout_marginTop="@dimen/_16sdp"
-                    android:layout_marginEnd="@dimen/_2sdp"
-                    android:layout_marginBottom="@dimen/_2sdp"
-                    android:background="@drawable/drawable_shape_connect"
-                    android:elevation="@dimen/_2sdp"
-                    android:orientation="horizontal">
-
-                    <com.google.android.material.imageview.ShapeableImageView
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_marginStart="@dimen/_8sdp"
-                        android:layout_weight="1"
-                        android:padding="@dimen/_20sdp"
-                        app:srcCompat="@drawable/ic_blood_pressure" />
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:layout_weight="2"
-                        android:fontFamily="@font/outfit_medium"
-                        android:text="@string/blood_pressure"
-                        android:textColor="@color/text_color_6"
-                        android:textSize="@dimen/_16ssp" />
-
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_82sdp"
-                    android:layout_marginStart="@dimen/_2sdp"
-                    android:layout_marginTop="@dimen/_16sdp"
-                    android:layout_marginEnd="@dimen/_2sdp"
-                    android:layout_marginBottom="@dimen/_2sdp"
-                    android:background="@drawable/drawable_shape_connect"
-                    android:elevation="@dimen/_2sdp"
-                    android:orientation="horizontal">
-
-                    <com.google.android.material.imageview.ShapeableImageView
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_marginStart="@dimen/_8sdp"
-                        android:layout_weight="1"
-                        android:padding="@dimen/_20sdp"
-                        app:srcCompat="@drawable/ic_glucose_device" />
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:layout_weight="2"
-                        android:fontFamily="@font/outfit_medium"
-                        android:text="@string/blood_glucose"
-                        android:textColor="@color/text_color_6"
-                        android:textSize="@dimen/_16ssp" />
-
-
-                </LinearLayout>
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/cv_start"
@@ -186,8 +194,8 @@
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="@dimen/_14sdp"
                     android:layout_marginBottom="@dimen/_5sdp"
-                    android:padding="@dimen/_10sdp"
                     android:fontFamily="@font/outfit_regular"
+                    android:padding="@dimen/_10sdp"
 
                     android:text="@string/text_line_support"
                     android:textColor="@color/text_color_5"
@@ -205,5 +213,19 @@
             android:id="@+id/layout_disconnected"
             layout="@layout/layout_watch_disconnected"
             android:visibility="gone" />
+        <com.agrawalsuneet.loaderspack.loaders.PulseLoader
+            android:id="@+id/loader"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:backgroundTint="@color/color_primary"
+            android:clickable="true"
+            android:focusable="true"
+            android:visibility="gone"
+            app:pulse_LineThickness="@dimen/_2sdp"
+            app:pulse_normalIncrementalValue="3"
+            app:pulse_pulseColor="@color/color_primary"
+            app:pulse_pulseIncrementalValue="3"
+            app:pulse_sideLength="@dimen/_20sdp" />
     </RelativeLayout>
 </layout>

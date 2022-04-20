@@ -12,6 +12,7 @@ import com.example.patternclinic.databinding.ActivityCurrentHeightBinding
 import com.example.patternclinic.setupDevice.ConnectDeviceActivity
 import com.example.patternclinic.utils.Keys
 import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.google.gson.Gson
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -26,11 +27,13 @@ class CreateProfileHeight : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        if(intent.hasExtra(Keys.mapKeyProfile)) {
-            map = intent.extras!!.get(Keys.mapKeyProfile) as HashMap<String, Any>
-        }
+//        if(intent.hasExtra(Keys.mapKeyProfile)) {
+//            map = intent.extras!!.get(Keys.mapKeyProfile) as HashMap<String, Any>
+//        }
+        map = Gson().fromJson(Keys.updateProfileData,HashMap::class.java) as HashMap<String, Any>
+
         //default value
-        map.put(ApiConstants.APIParams.HEIGHT.value,50)
+        map.put(ApiConstants.APIParams.HEIGHT.value,"50")
 
         binding=DataBindingUtil.setContentView(this,R.layout.activity_create_profile_height)
         binding.viewModel=finalViewModel
@@ -46,7 +49,10 @@ class CreateProfileHeight : AppCompatActivity() {
 
             binding.tvFeet.text=(it.toInt()/12).toString()
             binding.tvInch.text=(it.toInt()%12).toString()
-            map.put(ApiConstants.APIParams.HEIGHT.value,it.toInt())
+            map.put(ApiConstants.APIParams.HEIGHT.value,it.toInt().toString())
+        }
+        binding.btnNext.setOnClickListener {
+            finalViewModel.createProfileApi(map)
         }
     }
 

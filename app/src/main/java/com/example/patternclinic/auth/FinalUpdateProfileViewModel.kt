@@ -10,6 +10,7 @@ import com.example.patternclinic.data.model.UpdateProfileResponse
 import com.example.patternclinic.data.repository.MainRepository
 import com.example.patternclinic.retrofit.ResponseResult
 import com.example.patternclinic.retrofit.getResult
+import com.example.patternclinic.setupDevice.ConnectDeviceActivity
 import com.example.patternclinic.utils.showToast
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -23,7 +24,8 @@ class FinalUpdateProfileViewModel @Inject constructor(val mainRepository: MainRe
     var map = CreateProfileHeight.map
 
     fun onClick(v: View) {
-        createProfileApi(map)
+
+//        createProfileApi(map)
     }
 
     fun createProfileApi(map: HashMap<String, Any>) {
@@ -42,7 +44,7 @@ class FinalUpdateProfileViewModel @Inject constructor(val mainRepository: MainRe
                         activity.root.context.startActivity(
                             Intent(
                                 activity.root.context,
-                                LoginActivity::class.java
+                                ConnectDeviceActivity::class.java
                             )
                         )
                     } else {

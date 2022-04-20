@@ -5,6 +5,6 @@ object Keys {
     const val FROM_CARD_TWO="cv2"
     const val RESET_USER_NAME_KEY="resetKey"
     const val mapKeyProfile="profileKey"
-    val map=HashMap<String,Any>()
+    var updateProfileData=""
 
 }

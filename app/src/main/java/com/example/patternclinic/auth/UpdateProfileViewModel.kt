@@ -102,13 +102,13 @@ class UpdateProfileViewModel @Inject constructor(val mainRepository: MainReposit
             }
             R.id.tv_continue_create_profile -> {
                 if (validate(v)) {
-                    var map = HashMap<String, Any>()
-                    map.put(ApiConstants.APIParams.EMAIL.value, email.get().toString())
-                    map.put(ApiConstants.APIParams.FIRST_NAME.value, firstName.get().toString())
-                    map.put(ApiConstants.APIParams.LAST_NAME.value, lastName.get().toString())
-                    map.put(ApiConstants.APIParams.COUNTRY.value, country.get().toString())
+                    val map = HashMap<String, Any>()
+                    map[ApiConstants.APIParams.EMAIL.value] = email.get().toString()
+                    map[ApiConstants.APIParams.FIRST_NAME.value] = firstName.get().toString()
+                    map[ApiConstants.APIParams.LAST_NAME.value] = lastName.get().toString()
+                    map[ApiConstants.APIParams.COUNTRY.value] = country.get().toString()
                     map.put(ApiConstants.APIParams.AUTH_TOKEN.value, userData!!.authToken)
-                    map.put(ApiConstants.APIParams.AUTH_TOKEN.value, userData!!.authToken)
+                    map.put(ApiConstants.APIParams.SK.value, userData!!.patientInfo.sk)
                     map.put(ApiConstants.APIParams.PROFILE_PIC.value, encodedImage!!)
                     map.put(ApiConstants.APIParams.DOB.value, dob.get().toString())
                     map.put(
@@ -123,8 +123,9 @@ class UpdateProfileViewModel @Inject constructor(val mainRepository: MainReposit
 
 //                    map.put(ApiConstants.APIParams.EMAIL.value, email.get().toString())
 //                    map.put(ApiConstants.APIParams.EMAIL.value, email.get().toString())
-                    var intent=Intent(v.context, CreateProfileWeight::class.java)
-                    intent.putExtra(Keys.mapKeyProfile, Gson().toJson(map))
+                    var intent = Intent(v.context, CreateProfileWeight::class.java)
+//                    intent.putExtra(Keys.mapKeyProfile, Gson().toJson(map))
+                    Keys.updateProfileData = Gson().toJson(map)
 
                     binding.root.context.startActivity(intent)
                 }
@@ -133,7 +134,6 @@ class UpdateProfileViewModel @Inject constructor(val mainRepository: MainReposit
         }
 
     }
-
 
 
     private fun calenderDialog(context: Context?) {

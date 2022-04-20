@@ -8,6 +8,7 @@ import android.os.Looper
 import android.view.Window
 import android.view.WindowManager
 import com.example.patternclinic.introScreen.IntroScreen
+import com.example.patternclinic.setupDevice.ConnectDeviceActivity
 
 class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -19,7 +20,8 @@ class SplashActivity : AppCompatActivity() {
         );
         setContentView(R.layout.activity_splash)
         Handler(Looper.getMainLooper()).postDelayed(Runnable {
-            startActivity(Intent(this, IntroScreen::class.java))
+//            startActivity(Intent(this, IntroScreen::class.java))
+            startActivity(Intent(this, ConnectDeviceActivity::class.java))
             finish()
 
         }, 1000)

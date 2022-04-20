@@ -19,17 +19,17 @@ class CreateProfileWeight : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        if (intent.hasExtra(Keys.mapKeyProfile)) {
-            map = Gson().fromJson(intent.getStringExtra(Keys.mapKeyProfile), HashMap::class.java) as HashMap<String, Any>
-        }
-        map.put(ApiConstants.APIParams.WEIGHT.value, 50)
+//        if (intent.hasExtra(Keys.mapKeyProfile)) {
+//            map = Gson().fromJson(intent.getStringExtra(Keys.mapKeyProfile), HashMap::class.java) as HashMap<String, Any>
+//        }
+        map = Gson().fromJson(Keys.updateProfileData, HashMap::class.java) as HashMap<String, Any>
+        map.put(ApiConstants.APIParams.WEIGHT.value, "50")
         binding = DataBindingUtil.setContentView(this, R.layout.activity_create_profile_weight)
         binding.btnNext.setOnClickListener {
+            Keys.updateProfileData = Gson().toJson(map)
             startActivity(
-                Intent(this, CreateProfileHeight::class.java).putExtra(
-                    Keys.mapKeyProfile,
-                    map
-                )
+                Intent(this, CreateProfileHeight::class.java)
+
             )
         }
         binding.tvPrevious.setOnClickListener {
@@ -40,7 +40,7 @@ class CreateProfileWeight : AppCompatActivity() {
         }
 
         binding.rulerView.setChooseValueChangeListener {
-            map.put(ApiConstants.APIParams.WEIGHT.value, it.toInt())
+            map.put(ApiConstants.APIParams.WEIGHT.value, it.toInt().toString())
             binding.tvValue.text = it.toInt().toString()
         }
     }
