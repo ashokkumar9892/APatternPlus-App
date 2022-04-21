@@ -205,20 +205,27 @@ class ConnectDeviceActivity : AppCompatActivity(), OnItemClicked {
                     //蓝牙与设备的连接状态
                     vpo.settingDeviceLanguage(
                         {
-                            showToast("writeResponse")
+//                            showToast("writeResponse")
                         }, {
                             var message = "设置语言(英文):\n$it";
                             sendMsg(message, 1)
                         }, ELanguage.ENGLISH
                     )
 
-                    showToast("connected")
-//                    isStartConnecting = true
+
                     binding!!.loader.visibility = View.GONE
-                    val intent = Intent(this, HomeScreenActivity::class.java)
+                    binding!!.layoutDisconnected.visibility = View.VISIBLE
+                    Handler(Looper.getMainLooper()).postDelayed(Runnable {
+                        binding!!.layoutDisconnected.visibility = View.GONE
+                        binding!!.layoutConnected.visibility = View.VISIBLE
+                        val intent = Intent(this, HomeScreenActivity::class.java)
+                        startActivity(intent)
+
+                    }, 1000)
+
 //                    intent.putExtra("isoadmodel", mIsOadModel)
 //                    intent.putExtra("deviceaddress", mac)
-                    startActivity(intent)
+
                 } else {
 //                    Logger.t(MainActivity.TAG).i("监听失败，重新连接")
 //                    isStartConnecting = false
@@ -299,22 +306,22 @@ class ConnectDeviceActivity : AppCompatActivity(), OnItemClicked {
         binding!!.cvStart.setOnClickListener {
             startActivity(Intent(this, SelectPatternPlusTeam::class.java))
         }
-        binding!!.llWatch.setOnClickListener {
-            binding!!.layoutDisconnected.visibility = View.VISIBLE
-            Handler(Looper.getMainLooper()).postDelayed(Runnable {
-                binding!!.layoutDisconnected.visibility = View.GONE
-                binding!!.layoutConnected.visibility = View.VISIBLE
-
-            }, 1000)
-            Handler(Looper.getMainLooper()).postDelayed(Runnable {
-                binding!!.layoutConnected.visibility = View.GONE
-                binding!!.llWatch.setBackgroundResource(R.drawable.drawable_shape_connect_2)
-                binding!!.cvStart.backgroundTintList =
-                    ContextCompat.getColorStateList(this, R.color.color_primary)
-//                binding!!.cvStart.setback
-
-            }, 2000)
-        }
+//        binding!!.llWatch.setOnClickListener {
+//            binding!!.layoutDisconnected.visibility = View.VISIBLE
+//            Handler(Looper.getMainLooper()).postDelayed(Runnable {
+//                binding!!.layoutDisconnected.visibility = View.GONE
+//                binding!!.layoutConnected.visibility = View.VISIBLE
+//
+//            }, 1000)
+//            Handler(Looper.getMainLooper()).postDelayed(Runnable {
+//                binding!!.layoutConnected.visibility = View.GONE
+//                binding!!.llWatch.setBackgroundResource(R.drawable.drawable_shape_connect_2)
+//                binding!!.cvStart.backgroundTintList =
+//                    ContextCompat.getColorStateList(this, R.color.color_primary)
+////                binding!!.cvStart.setback
+//
+//            }, 2000)
+//        }
         binding!!.tvChatBot.setOnClickListener {
             chatBotDialog()
         }

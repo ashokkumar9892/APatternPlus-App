@@ -109,7 +109,8 @@ class UpdateProfileViewModel @Inject constructor(val mainRepository: MainReposit
                     map[ApiConstants.APIParams.COUNTRY.value] = country.get().toString()
                     map.put(ApiConstants.APIParams.AUTH_TOKEN.value, userData!!.authToken)
                     map.put(ApiConstants.APIParams.SK.value, userData!!.patientInfo.sk)
-                    map.put(ApiConstants.APIParams.PROFILE_PIC.value, encodedImage!!)
+                    //todo change this after
+                    map.put(ApiConstants.APIParams.PROFILE_PIC.value, "")
                     map.put(ApiConstants.APIParams.DOB.value, dob.get().toString())
                     map.put(
                         ApiConstants.APIParams.GENDER.value,

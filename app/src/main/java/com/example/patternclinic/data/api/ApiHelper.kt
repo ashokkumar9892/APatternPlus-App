@@ -3,10 +3,7 @@ package com.example.patternclinic.data.api
 
 import com.example.patternclinic.auth.ForgotPassword
 import com.example.patternclinic.auth.ResetPassword
-import com.example.patternclinic.data.model.ForgotPasswordResponse
-import com.example.patternclinic.data.model.LoginResponse
-import com.example.patternclinic.data.model.ResetPasswordResponse
-import com.example.patternclinic.data.model.UpdateProfileResponse
+import com.example.patternclinic.data.model.*
 import okhttp3.RequestBody
 import retrofit2.Response
 import retrofit2.http.Body
@@ -21,4 +18,6 @@ interface ApiHelper {
     suspend fun resetPassword(@Body map: HashMap<String, Any>): Response<ResetPasswordResponse>
 
     suspend fun updateProfile(@Body map: HashMap<String, Any>):Response<UpdateProfileResponse>
+    suspend fun getCoachList(@Body map: HashMap<String, Any>):Response<CoachProviderListResponse>
+    suspend fun getDoctorList(@Body map: HashMap<String, Any>): Response<CoachProviderListResponse>
 }

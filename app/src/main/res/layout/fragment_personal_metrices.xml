@@ -13,7 +13,7 @@
         android:clickable="true"
         android:focusable="true"
         android:background="@color/white"
-        tools:context=".home.drawerFragments.appointments.personalMetrics.PersonalMetricsFragment">
+        tools:context=".home.drawerFragments.personalMetrics.PersonalMetricsFragment">
 
         <RelativeLayout
             android:id="@+id/tool_bar_setting"

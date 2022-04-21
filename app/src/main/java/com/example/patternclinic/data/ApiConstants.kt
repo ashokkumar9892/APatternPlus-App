@@ -1,11 +1,13 @@
 package com.example.patternclinic.data
 
 object ApiConstants {
-
+    //API END POINTS
     const val LOGIN_API = "Basic/Login"
     const val FORGOT_PASSWORD = "Basic/ForgotPassword"
     const val RESET_PASSWORD = "Basic/ResetPassword"
     const val UPDATE_PROFILE_API = "Basic/UpdateProfile"
+    const val COACH_LIST_API = "Basic/CoachList"
+    const val DOCTOR_LIST_API = "Basic/DoctorsList"
 
 
     const val CONNECT_TIMEOUT = 240L //seconds

@@ -1,4 +1,4 @@
-package com.example.patternclinic.home.drawerFragments.appointments.personalMetrics
+package com.example.patternclinic.home.drawerFragments.personalMetrics
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

@@ -17,7 +17,7 @@ import com.example.patternclinic.home.drawerFragments.appointments.healthTips.He
 import com.example.patternclinic.home.drawerFragments.appointments.myProfile.MyProfileFragment
 import com.example.patternclinic.home.nutrition.NutritionTrackingActivity
 import com.example.patternclinic.home.optimalFitness.OptimalFitnessActivity
-import com.example.patternclinic.home.drawerFragments.appointments.personalMetrics.PersonalMetricsFragment
+import com.example.patternclinic.home.drawerFragments.personalMetrics.PersonalMetricsFragment
 import com.example.patternclinic.home.drawerFragments.appointments.settings.SettingFragment
 import com.example.patternclinic.home.drawerFragments.messages.MessageFragment
 import com.example.patternclinic.home.progressTracker.ApScoreActivity

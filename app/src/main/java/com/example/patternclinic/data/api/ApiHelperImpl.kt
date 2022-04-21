@@ -4,10 +4,7 @@ import com.example.patternclinic.auth.ForgotPassword
 import com.example.patternclinic.auth.ResetPassword
 import com.example.patternclinic.data.api.ApiHelper
 import com.example.patternclinic.data.api.ApiService
-import com.example.patternclinic.data.model.ForgotPasswordResponse
-import com.example.patternclinic.data.model.LoginResponse
-import com.example.patternclinic.data.model.ResetPasswordResponse
-import com.example.patternclinic.data.model.UpdateProfileResponse
+import com.example.patternclinic.data.model.*
 import okhttp3.RequestBody
 import retrofit2.Response
 import javax.inject.Inject
@@ -23,6 +20,8 @@ class ApiHelperImpl @Inject constructor(private val apiService: ApiService) : Ap
         apiService.resetPassword(map)
 
     override suspend fun updateProfile(map: HashMap<String, Any>): Response<UpdateProfileResponse> =  apiService.updateProfile(map)
+    override suspend fun getCoachList(map: HashMap<String, Any>): Response<CoachProviderListResponse> = apiService.getCoachList(map)
+    override suspend fun getDoctorList(map: HashMap<String, Any>): Response<CoachProviderListResponse> = apiService.getDoctorList(map)
 
 
 }
