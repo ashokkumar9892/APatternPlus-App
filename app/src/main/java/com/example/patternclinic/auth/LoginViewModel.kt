@@ -31,15 +31,15 @@ class LoginViewModel @Inject constructor(val mainRepository: MainRepository) : B
 
 
     fun validate(v: View): Boolean {
-        if (email.get().isNullOrEmpty()) {
+        if (email.get()?.trim().isNullOrEmpty()) {
             activity.etEmail.setError(v.context.getString(R.string.enter_email))
             return false
         }
-        if (!checkEmail(email.get().toString())) {
+        if (!checkEmail(email.get()!!.trim().toString())) {
             activity.etEmail.error = v.context.getString(R.string.enter_valid_email)
             return false
         }
-        if (password.get().isNullOrEmpty()) {
+        if (password.get()?.trim().isNullOrEmpty()) {
             activity.etPassword.error = v.context.getString(R.string.enter_password)
             return false
         }
@@ -49,8 +49,8 @@ class LoginViewModel @Inject constructor(val mainRepository: MainRepository) : B
     fun onClick(v: View) {
         if (validate(v)) {
             var map = HashMap<String, Any>()
-            map.put(ApiConstants.APIParams.USERNAME.value, email.get().toString())
-            map.put(ApiConstants.APIParams.PASSWORD.value, password.get().toString())
+            map.put(ApiConstants.APIParams.USERNAME.value, email.get()?.trim().toString())
+            map.put(ApiConstants.APIParams.PASSWORD.value, password.get()?.trim().toString())
             activity.loader.visibility = View.VISIBLE
             job = viewModelScope.launch {
                 var result = getResult({ mainRepository.login(map) }, "loginApi")

@@ -17,26 +17,25 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class CreateProfileHeight : AppCompatActivity() {
+    val finalViewModel: FinalUpdateProfileViewModel by viewModels()
 
-
-    val finalViewModel:FinalUpdateProfileViewModel by viewModels()
-    companion object{
-        lateinit var binding:ActivityCreateProfileHeightBinding
-        lateinit var map:HashMap<String,Any>
+    companion object {
+        lateinit var binding: ActivityCreateProfileHeightBinding
+        lateinit var map: HashMap<String, Any>
     }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
 //        if(intent.hasExtra(Keys.mapKeyProfile)) {
 //            map = intent.extras!!.get(Keys.mapKeyProfile) as HashMap<String, Any>
 //        }
-        map = Gson().fromJson(Keys.updateProfileData,HashMap::class.java) as HashMap<String, Any>
-
+        map = Gson().fromJson(Keys.updateProfileData, HashMap::class.java) as HashMap<String, Any>
         //default value
-        map.put(ApiConstants.APIParams.HEIGHT.value,"50")
+        map.put(ApiConstants.APIParams.HEIGHT.value, "50")
 
-        binding=DataBindingUtil.setContentView(this,R.layout.activity_create_profile_height)
-        binding.viewModel=finalViewModel
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_create_profile_height)
+        binding.viewModel = finalViewModel
 
         binding.tvPrevious.setOnClickListener {
             finish()
@@ -47,9 +46,9 @@ class CreateProfileHeight : AppCompatActivity() {
 
         binding.rulerViewHeight.setChooseValueChangeListener {
 
-            binding.tvFeet.text=(it.toInt()/12).toString()
-            binding.tvInch.text=(it.toInt()%12).toString()
-            map.put(ApiConstants.APIParams.HEIGHT.value,it.toInt().toString())
+            binding.tvFeet.text = (it.toInt() / 12).toString()
+            binding.tvInch.text = (it.toInt() % 12).toString()
+            map.put(ApiConstants.APIParams.HEIGHT.value, it.toInt().toString())
         }
         binding.btnNext.setOnClickListener {
             finalViewModel.createProfileApi(map)
@@ -57,7 +56,7 @@ class CreateProfileHeight : AppCompatActivity() {
     }
 
     private fun chatBotDialog() {
-        val dialog=BottomSheetDialog(this)
+        val dialog = BottomSheetDialog(this)
         dialog.setContentView(R.layout.bottom_sheet_chat_bot)
         dialog.show()
     }

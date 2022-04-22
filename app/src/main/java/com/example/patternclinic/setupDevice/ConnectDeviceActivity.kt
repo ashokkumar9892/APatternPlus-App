@@ -67,7 +67,7 @@ class ConnectDeviceActivity : AppCompatActivity(), OnItemClicked {
 //            bleConnectAdatpter.notifyDataSetChanged()
 //        }
         if (!BluetoothUtils.isBluetoothEnabled()) {
-            Toast.makeText(this, "off mode", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Turn on your bluetooth", Toast.LENGTH_SHORT).show()
             return true
         }
         //        startScan();
@@ -102,7 +102,7 @@ class ConnectDeviceActivity : AppCompatActivity(), OnItemClicked {
             }
 
             override fun onSearchCanceled() {
-                showToast("cancel")
+//                showToast("cancel")
             }
         })
         return false
@@ -193,7 +193,7 @@ class ConnectDeviceActivity : AppCompatActivity(), OnItemClicked {
                     //蓝牙与设备的连接状态
 //                    Logger.t(MainActivity.TAG).i("连接成功")
 //                    Logger.t(MainActivity.TAG).i("是否是固件升级模式=$isoadModel")
-                    showToast(isoadModel.toString())
+//                    showToast(isoadModel.toString())
 //                    mIsOadModel = isoadModel
 //                    isStartConnecting = true
                 } else {
@@ -218,8 +218,9 @@ class ConnectDeviceActivity : AppCompatActivity(), OnItemClicked {
                     Handler(Looper.getMainLooper()).postDelayed(Runnable {
                         binding!!.layoutDisconnected.visibility = View.GONE
                         binding!!.layoutConnected.visibility = View.VISIBLE
-                        val intent = Intent(this, HomeScreenActivity::class.java)
+                        val intent = Intent(this, SelectPatternPlusTeam::class.java)
                         startActivity(intent)
+                        finishAffinity()
 
                     }, 1000)
 
@@ -303,10 +304,10 @@ class ConnectDeviceActivity : AppCompatActivity(), OnItemClicked {
     }
 
     private fun initDesign() {
-        binding!!.cvStart.setOnClickListener {
-            startActivity(Intent(this, SelectPatternPlusTeam::class.java))
-        }
-//        binding!!.llWatch.setOnClickListener {
+
+        binding!!.llWatch.setOnClickListener {
+
+            scanDevice()
 //            binding!!.layoutDisconnected.visibility = View.VISIBLE
 //            Handler(Looper.getMainLooper()).postDelayed(Runnable {
 //                binding!!.layoutDisconnected.visibility = View.GONE
@@ -321,7 +322,7 @@ class ConnectDeviceActivity : AppCompatActivity(), OnItemClicked {
 ////                binding!!.cvStart.setback
 //
 //            }, 2000)
-//        }
+        }
         binding!!.tvChatBot.setOnClickListener {
             chatBotDialog()
         }
@@ -343,8 +344,14 @@ class ConnectDeviceActivity : AppCompatActivity(), OnItemClicked {
     }
 
     override fun itemClicked(position: Int) {
-        binding!!.loader.visibility = View.VISIBLE
+
         val searchResult: SearchResult = listDetail[position]
-        connectDevice(searchResult.address, searchResult.name)
+//        connectDevice(searchResult.address, searchResult.name)
+        binding!!.cvStart.visibility = View.VISIBLE
+
+        binding!!.cvStart.setOnClickListener {
+                    binding!!.loader.visibility = View.VISIBLE
+            connectDevice(searchResult.address, searchResult.name)
+        }
     }
 }

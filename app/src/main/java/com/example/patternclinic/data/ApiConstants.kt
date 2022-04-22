@@ -41,6 +41,7 @@ object ApiConstants {
         DOB("DOB"),
         GENDER("Gender"),
         REFER_AS("ReferAs"),
+        USER_NAME("UserName"),
 
 
     }

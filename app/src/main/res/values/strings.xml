@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">PatternClinic</string>
+    <string name="app_name">Pattern Clinic</string>
     <string name="welcome">Welcome!</string>
     <string name="sign_in_to_continue">Sign in to continue</string>
     <string name="email_address">Email Address</string>
@@ -188,7 +188,7 @@
     <string name="select_image">Select your image</string>
 
     <string-array name="Gender">
-        <item></item>
+        <item>Select Gender</item>
         <item>Male</item>
         <item>Female</item>
         <item>Others</item>

@@ -4,6 +4,8 @@ import android.bluetooth.le.BluetoothLeScanner
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.method.HideReturnsTransformationMethod
+import android.text.method.PasswordTransformationMethod
 import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.databinding.DataBindingUtil
@@ -32,32 +34,21 @@ class LoginActivity : BaseActivity() {
     override fun binding() {
         changeStatusBarColor(R.color.color_primary_with_opacity_8)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_login)
-        binding.viewModel=loginViewModel
+        binding.viewModel = loginViewModel
         binding.tvForgotPassword.setOnClickListener {
             startActivity(Intent(this, ForgotPassword::class.java))
         }
+        binding.ivEyeLogin.setOnClickListener {
+            if (binding.etPassword.transformationMethod.equals(PasswordTransformationMethod.getInstance())) {
+                binding.etPassword.transformationMethod = HideReturnsTransformationMethod.getInstance()
+                binding.ivEyeLogin.setImageResource(R.drawable.ic_eye_show)
+                binding.etPassword.setSelection(binding.etPassword.text.trim().length)
+            } else {
+                binding.etPassword.transformationMethod = PasswordTransformationMethod.getInstance()
+                binding.ivEyeLogin.setImageResource(R.drawable.ic_eye_off)
+                binding.etPassword.setSelection(binding.etPassword.text.trim().length)
+            }
+        }
 
-//        VPOperateManager.getMangerInstance(this).startScanDevice(object :SearchResponse{
-//            override fun onSearchStarted() {
-//
-//                showToast("searching")
-//            }
-//
-//            override fun onDeviceFounded(p0: SearchResult?) {
-//               showToast(p0.toString() +"found")
-//            }
-//
-//            override fun onSearchStopped() {
-//
-//            }
-//
-//            override fun onSearchCanceled() {
-//
-//            }
-//        })
-//        binding.btnLogin.setOnClickListener {
-//            startActivity(Intent(this, CreateProfile::class.java))
-//
-//        }
     }
 }

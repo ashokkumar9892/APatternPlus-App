@@ -10,7 +10,7 @@ data class LoginResponse(
 
 data class PatientInfo(
     val country: Any,
-    val dob: String,
+    val dob: String?,
     val email: String,
     val firstName: String,
     val gender: String,

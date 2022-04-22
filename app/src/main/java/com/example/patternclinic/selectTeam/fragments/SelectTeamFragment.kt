@@ -58,9 +58,7 @@ class SelectTeamFragment : BottomSheetDialogFragment(), OnItemClicked {
             )
             selectTeamViewModel.providerListApi(map)
         }
-        bindingFragment.llTeam.setOnClickListener {
-            startActivity(Intent(requireContext(), SelectTeam2::class.java))
-        }
+
     }
 
     private fun setOberver() {

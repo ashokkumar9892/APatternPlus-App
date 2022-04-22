@@ -97,17 +97,31 @@
                         android:textColor="@color/text_color_3"
                         android:textSize="@dimen/_12ssp" />
 
-                    <EditText
-                        android:id="@+id/et_password"
+                    <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/_38sdp"
+                        android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_6sdp"
-                        android:background="@drawable/drawable_shape_login_2"
-                        android:drawableEnd="@drawable/ic_eye_show"
-                        android:inputType="textPassword"
-                        android:paddingStart="@dimen/_10sdp"
-                        android:paddingEnd="@dimen/_10sdp"
-                        android:text="@={viewModel.password}" />
+                        android:orientation="horizontal">
+
+                        <EditText
+                            android:id="@+id/et_password"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_38sdp"
+                            android:background="@drawable/drawable_shape_login_2"
+                            android:inputType="textPassword"
+                            android:paddingStart="@dimen/_10sdp"
+                            android:paddingEnd="@dimen/_10sdp"
+                            android:text="@={viewModel.password}" />
+
+                        <ImageView
+                            android:id="@+id/iv_eye_login"
+                            android:layout_width="@dimen/_38sdp"
+                            android:layout_alignParentEnd="true"
+                            android:padding="@dimen/_14sdp"
+                            android:layout_height="@dimen/_38sdp"
+                            android:src="@drawable/ic_eye_off" />
+
+                    </RelativeLayout>
 
 
                     <TextView

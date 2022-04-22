@@ -139,19 +139,32 @@
                     android:textColor="@color/text_color_3"
                     android:textSize="@dimen/_12ssp" />
 
-                <EditText
-                    android:id="@+id/et_country"
+                <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_38sdp"
-                    android:layout_marginTop="@dimen/_8sdp"
-                    android:background="@drawable/drawable_shape_login_2"
-                    android:drawableEnd="@drawable/ic_dropdown_select"
-                    android:fontFamily="@font/outfit_regular"
-                    android:paddingStart="@dimen/_14sdp"
-                    android:paddingEnd="@dimen/_14sdp"
-                    android:text="@={viewModel.country}"
-                    android:textColor="@color/text_color_4"
-                    android:textSize="@dimen/_14ssp" />
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_8sdp">
+
+                    <com.rilixtech.widget.countrycodepicker.CountryCodePicker
+                        android:id="@+id/ccp"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_38sdp"
+                        android:gravity="center_vertical" />
+
+                    <EditText
+                        android:id="@+id/et_country"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_38sdp"
+                        android:background="@drawable/drawable_shape_login_2"
+                        android:drawableEnd="@drawable/ic_dropdown_select"
+                        android:fontFamily="@font/outfit_regular"
+                        android:gravity="center_vertical"
+                        android:paddingStart="@dimen/_14sdp"
+                        android:paddingEnd="@dimen/_14sdp"
+                        android:text="@={viewModel.country}"
+                        android:textColor="@color/text_color_4"
+                        android:textSize="@dimen/_14ssp" />
+                </RelativeLayout>
+
 
                 <TextView
                     android:layout_width="match_parent"
@@ -165,15 +178,15 @@
                 <TextView
                     android:id="@+id/tv_dob"
                     android:layout_width="match_parent"
-                    android:gravity="center_vertical"
                     android:layout_height="@dimen/_38sdp"
                     android:layout_marginTop="@dimen/_8sdp"
                     android:background="@drawable/drawable_shape_login_2"
                     android:drawableEnd="@drawable/ic_calendar"
                     android:fontFamily="@font/outfit_regular"
+                    android:gravity="center_vertical"
+                    android:onClick="@{(v)->viewModel.onClick(v)}"
                     android:paddingStart="@dimen/_14sdp"
                     android:paddingEnd="@dimen/_14sdp"
-                    android:onClick="@{(v)->viewModel.onClick(v)}"
                     android:text="@={viewModel.dob}"
                     android:textColor="@color/text_color_4"
                     android:textSize="@dimen/_14ssp" />
@@ -188,21 +201,36 @@
                     android:textColor="@color/text_color_3"
                     android:textSize="@dimen/_12ssp" />
 
-                <Spinner
-                    android:id="@+id/sp_gender"
+                <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_38sdp"
-                    android:layout_marginTop="@dimen/_8sdp"
-                    android:background="@drawable/drawable_shape_login_2"
-                    android:drawableEnd="@drawable/ic_dropdown_select"
-                    android:entries="@array/Gender"
-                    android:fontFamily="@font/outfit_regular"
-                    android:paddingStart="@dimen/_14sdp"
-                    android:paddingEnd="@dimen/_14sdp"
-                    android:prompt="@android:layout/simple_list_item_1"
-                    android:selectedItemPosition="@{viewModel.gender}"
-                    android:textColor="@color/text_color_4"
-                    android:textSize="@dimen/_14ssp" />
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_8sdp">
+
+                    <Spinner
+                        android:id="@+id/sp_gender"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_38sdp"
+
+                        android:background="@drawable/drawable_shape_login_2"
+                        android:drawableEnd="@drawable/ic_dropdown_select"
+                        android:entries="@array/Gender"
+                        android:fontFamily="@font/outfit_regular"
+                        android:paddingStart="@dimen/_14sdp"
+                        android:paddingEnd="@dimen/_14sdp"
+                        android:prompt="@android:layout/simple_list_item_1"
+                        android:selectedItemPosition="@={viewModel.gender}"
+                        android:textColor="@color/text_color_4"
+                        android:textSize="@dimen/_14ssp" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="@dimen/_14sdp"
+                        android:src="@drawable/ic_dropdown_select" />
+                </RelativeLayout>
+
 
                 <TextView
                     android:layout_width="match_parent"

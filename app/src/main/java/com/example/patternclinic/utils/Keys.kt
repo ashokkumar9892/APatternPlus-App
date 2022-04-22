@@ -7,6 +7,8 @@ object Keys {
     const val PROVIDERS="providers"
     const val COACHES="coaches"
     const val mapKeyProfile="profileKey"
+    //these are used for send data in other param
     var updateProfileData=""
+
 
 }

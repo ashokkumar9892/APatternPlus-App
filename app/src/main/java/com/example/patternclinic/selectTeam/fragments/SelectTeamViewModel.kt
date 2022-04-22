@@ -53,7 +53,7 @@ class SelectTeamViewModel @Inject constructor(val mainRepository: MainRepository
                     binding.root.context.showToast(result.result.errorMsg.toString())
                 }
                 is ResponseResult.FAILURE -> {
-                    binding.root.context.showToast(result.toString())
+//                    binding.root.context.showToast(result.toString())
                 }
             }
             binding.loader.visibility = View.GONE
@@ -81,7 +81,7 @@ class SelectTeamViewModel @Inject constructor(val mainRepository: MainRepository
                     binding.root.context.showToast(result.result.errorMsg.toString())
                 }
                 is ResponseResult.FAILURE -> {
-                    binding.root.context.showToast(result.toString())
+//                    binding.root.context.showToast(result.toString())
                 }
             }
             binding.loader.visibility = View.GONE
