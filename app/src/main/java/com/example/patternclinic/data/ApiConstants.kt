@@ -43,6 +43,10 @@ object ApiConstants {
         GENDER("Gender"),
         REFER_AS("ReferAs"),
         USER_NAME("UserName"),
+        DOCTOR_ID("DoctorId"),
+        DOCTOR_NAME("DoctorName"),
+        COACH_NAME("CoachName"),
+        COACH_ID("CoachId"),
 
 
     }

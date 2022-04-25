@@ -22,13 +22,13 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class SelectTeamFragment : BottomSheetDialogFragment(), OnItemClicked {
-    val selectTeamViewModel: SelectTeamViewModel by viewModels()
+
     val map = HashMap<String, Any>()
 
     companion object {
-        lateinit var bindingFragment: FragmentSelectTeamBinding
+         var bindingFragment: FragmentSelectTeamBinding ?=null
     }
-
+    val selectTeamViewModel: SelectTeamViewModel by viewModels()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -37,25 +37,19 @@ class SelectTeamFragment : BottomSheetDialogFragment(), OnItemClicked {
         bindingFragment =
             DataBindingUtil.inflate(inflater, R.layout.fragment_select_team, container, false)
 
-        return bindingFragment.root
+        return bindingFragment!!.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        bindingFragment.viewModel = selectTeamViewModel
+        bindingFragment!!.viewModel = selectTeamViewModel
         setOberver()
         if (requireArguments().containsKey(Keys.COACHES)) {
             map.clear()
-            map.put(
-                ApiConstants.APIParams.AUTH_TOKEN.value,
-                SharedPrefs.getLoggedInUser()!!.authToken
-            )
+            map[ApiConstants.APIParams.AUTH_TOKEN.value] = SharedPrefs.getLoggedInUser()!!.authToken
             selectTeamViewModel.coachListApi(map)
         } else {
             map.clear()
-            map.put(
-                ApiConstants.APIParams.AUTH_TOKEN.value,
-                SharedPrefs.getLoggedInUser()!!.authToken
-            )
+            map[ApiConstants.APIParams.AUTH_TOKEN.value] = SharedPrefs.getLoggedInUser()!!.authToken
             selectTeamViewModel.providerListApi(map)
         }
 
@@ -70,36 +64,39 @@ class SelectTeamFragment : BottomSheetDialogFragment(), OnItemClicked {
             setAdapter(it.doctorInfo)
         }
 
+
     }
 
     private fun setAdapter(doctorInfo: List<DoctorInfo>?) {
-        bindingFragment.rvCoachProvList.adapter = CoachProviderListAdapter(doctorInfo!!, this)
+        bindingFragment!!.rvCoachProvList.adapter = CoachProviderListAdapter(doctorInfo!!, this)
     }
 
     override fun onClicked(it: DoctorInfo) {
         if (requireArguments().containsKey(Keys.COACHES)) {
 
-            (activity as SelectPatternPlusTeam).binding.tvCoachName.text = it.userName
-            (activity as SelectPatternPlusTeam).binding.rvCoachReselect.visibility = View.VISIBLE
+            SelectPatternPlusTeam.binding.tvCoachName.text = it.userName
+            SelectPatternPlusTeam.binding.rvCoachReselect.visibility = View.VISIBLE
             Glide.with(requireContext()).load(it.profileImage)
                 .placeholder(R.drawable.ic_dummy_coach)
-                .into((activity as SelectPatternPlusTeam).binding.ivCoach)
+                .into(SelectPatternPlusTeam.binding.ivCoach)
+            SelectPatternPlusTeam.coachInfo=it
             dialog!!.dismiss()
 
 
         } else {
-            (activity as SelectPatternPlusTeam).binding.tvProviderName.text = it.userName
-            (activity as SelectPatternPlusTeam).binding.rvProviderReselect.visibility = View.VISIBLE
+            SelectPatternPlusTeam.binding.tvProviderName.text = it.userName
+            SelectPatternPlusTeam.binding.rvProviderReselect.visibility = View.VISIBLE
             Glide.with(requireContext()).load(it.profileImage)
                 .placeholder(R.drawable.dummy_provider)
-                .into((activity as SelectPatternPlusTeam).binding.ivProvider)
+                .into(SelectPatternPlusTeam.binding.ivProvider)
+            SelectPatternPlusTeam.doctorInfo=it
             dialog!!.dismiss()
         }
-        if ((activity as SelectPatternPlusTeam).binding.rvCoachReselect.visibility.equals(View.VISIBLE) && (activity as SelectPatternPlusTeam).binding.rvProviderReselect.visibility.equals(
+        if (SelectPatternPlusTeam.binding.rvCoachReselect.visibility.equals(View.VISIBLE) && SelectPatternPlusTeam.binding.rvProviderReselect.visibility.equals(
                 View.VISIBLE
             )
         ) {
-            (activity as SelectPatternPlusTeam).binding.btnSubmit.visibility = View.VISIBLE
+            SelectPatternPlusTeam.binding.btnSubmit.visibility = View.VISIBLE
         }
     }
 

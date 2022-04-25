@@ -33,7 +33,7 @@ interface ApiService {
     suspend fun getDoctorList(@Body map: HashMap<String, Any>): Response<CoachProviderListResponse>
 
     @POST(ApiConstants.SELECT_AP_TEAM)
-    suspend fun selectApTeam(@Body map: HashMap<String, Any>): Response<ResponseBody>
+    suspend fun selectApTeam(@Body map: HashMap<String, Any>): Response<UpdateProfileResponse>
 
 
 

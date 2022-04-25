@@ -25,5 +25,5 @@ class MainRepository @Inject constructor(private val apiHelper: ApiHelper) {
     suspend fun updateProfile(@Body map: HashMap<String, Any>):Response<UpdateProfileResponse> =  apiHelper.updateProfile(map)
     suspend fun getCoachList(@Body map: HashMap<String, Any>): Response<CoachProviderListResponse> = apiHelper.getCoachList(map)
     suspend fun getDoctorList(@Body map: HashMap<String, Any>): Response<CoachProviderListResponse> = apiHelper.getDoctorList(map)
-    suspend fun selectApTeam(@Body map: HashMap<String, Any>): Response<ResponseBody> = apiHelper.selectApTeam(map)
+    suspend fun selectApTeam(@Body map: HashMap<String, Any>): Response<UpdateProfileResponse> = apiHelper.selectApTeam(map)
 }

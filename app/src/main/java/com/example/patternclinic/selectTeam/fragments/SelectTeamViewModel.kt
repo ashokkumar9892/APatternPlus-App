@@ -10,6 +10,7 @@ import com.example.patternclinic.data.ApiConstants
 import com.example.patternclinic.data.model.CoachProviderListResponse
 import com.example.patternclinic.data.model.DoctorInfo
 import com.example.patternclinic.data.model.LoginResponse
+import com.example.patternclinic.data.model.UpdateProfileResponse
 import com.example.patternclinic.data.repository.MainRepository
 import com.example.patternclinic.retrofit.ResponseResult
 import com.example.patternclinic.retrofit.getResult
@@ -26,7 +27,7 @@ class SelectTeamViewModel @Inject constructor(val mainRepository: MainRepository
     BaseViewModel() {
     var coachList = MutableLiveData<CoachProviderListResponse>()
     var providerList = MutableLiveData<CoachProviderListResponse>()
-    var selectTeamModel=MutableLiveData<ResponseBody>()
+    var selectTeamModel=MutableLiveData<UpdateProfileResponse>()
     var binding = SelectTeamFragment.bindingFragment
     var activityBinding = SelectPatternPlusTeam.binding
 //    init {
@@ -37,7 +38,7 @@ class SelectTeamViewModel @Inject constructor(val mainRepository: MainRepository
 
 
     fun coachListApi(map: HashMap<String, Any>) {
-        binding.loader.visibility = View.VISIBLE
+        binding!!.loader.visibility = View.VISIBLE
         job = viewModelScope.launch {
             val result = getResult({ mainRepository.getCoachList(map) }, "getCoachList")
             when (result) {
@@ -50,23 +51,23 @@ class SelectTeamViewModel @Inject constructor(val mainRepository: MainRepository
 //                        setAdapter(response.doctorInfo)
 
                     } else {
-                        binding.root.context.showToast(response.errorMessage)
+                        binding!!.root.context.showToast(response.errorMessage)
                     }
                 }
                 is ResponseResult.ERROR -> {
 //                        errorMessage.postValue(result.result.errorMsg.toString())
-                    binding.root.context.showToast(result.result.errorMsg.toString())
+                    binding!!.root.context.showToast(result.result.errorMsg.toString())
                 }
                 is ResponseResult.FAILURE -> {
 //                    binding.root.context.showToast(result.toString())
                 }
             }
-            binding.loader.visibility = View.GONE
+            binding!!.loader.visibility = View.GONE
         }
     }
 
     fun providerListApi(map: HashMap<String, Any>) {
-        binding.loader.visibility = View.VISIBLE
+        binding!!.loader.visibility = View.VISIBLE
         job = viewModelScope.launch {
             val result = getResult({ mainRepository.getDoctorList(map) }, "getDoctorApi")
             when (result) {
@@ -78,18 +79,18 @@ class SelectTeamViewModel @Inject constructor(val mainRepository: MainRepository
 //                        binding.root.context.showToast(response.errorMessage)
 
                     } else {
-                        binding.root.context.showToast(response.errorMessage)
+                        binding!!.root.context.showToast(response.errorMessage)
                     }
                 }
                 is ResponseResult.ERROR -> {
 //                        errorMessage.postValue(result.result.errorMsg.toString())
-                    binding.root.context.showToast(result.result.errorMsg.toString())
+                    binding!!.root.context.showToast(result.result.errorMsg.toString())
                 }
                 is ResponseResult.FAILURE -> {
 //                    binding.root.context.showToast(result.toString())
                 }
             }
-            binding.loader.visibility = View.GONE
+            binding!!.loader.visibility = View.GONE
         }
     }
 
@@ -99,22 +100,21 @@ class SelectTeamViewModel @Inject constructor(val mainRepository: MainRepository
             var result = getResult({ mainRepository.selectApTeam(map) }, "selectApTeamApi")
             when (result) {
                 is ResponseResult.SUCCESS -> {
-                    val response = (result.result.data as CoachProviderListResponse)
+                    val response = (result.result.data as UpdateProfileResponse)
 
-                    coachList.postValue(response)
+                    selectTeamModel.postValue(response)
                     if (response.response == 1) {
-//                        binding.root.context.showToast(response.errorMessage)
+                        activityBinding.root.context.showToast(response.errorMessage)
 
                     } else {
                         activityBinding.root.context.showToast(response.errorMessage)
                     }
                 }
                 is ResponseResult.ERROR -> {
-//                        errorMessage.postValue(result.result.errorMsg.toString())
                     activityBinding.root.context.showToast(result.result.errorMsg.toString())
                 }
                 is ResponseResult.FAILURE -> {
-//                    binding.root.context.showToast(result.toString())
+                    activityBinding.root.context.showToast(result.toString())
                 }
             }
             activityBinding.loader.visibility = View.GONE
