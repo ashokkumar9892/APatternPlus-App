@@ -8,6 +8,7 @@ object ApiConstants {
     const val UPDATE_PROFILE_API = "Basic/UpdateProfile"
     const val COACH_LIST_API = "Basic/CoachList"
     const val DOCTOR_LIST_API = "Basic/DoctorsList"
+    const val SELECT_AP_TEAM = "Basic/SelectAPTeam"
 
 
     const val CONNECT_TIMEOUT = 240L //seconds

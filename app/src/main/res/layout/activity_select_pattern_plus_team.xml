@@ -36,18 +36,48 @@
                     android:textColor="@color/text_color_1"
                     android:textSize="@dimen/_18ssp" />
 
-                <EditText
+                <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_38sdp"
                     android:layout_marginTop="@dimen/_24sdp"
                     android:background="@drawable/drawable_shape_login_2"
-                    android:drawableEnd="@drawable/ic_gps_location"
-                    android:fontFamily="@font/outfit_light"
-                    android:hint="@string/select_location"
-                    android:paddingStart="@dimen/_12sdp"
-                    android:paddingEnd="@dimen/_12sdp"
-                    android:textColorHint="@color/text_color_8"
-                    android:textSize="@dimen/_16ssp" />
+                    android:layout_height="wrap_content">
+
+                    <com.rilixtech.widget.countrycodepicker.CountryCodePicker
+                        android:id="@+id/ccp"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_38sdp"
+                        android:layout_toStartOf="@id/iv_location"
+                        android:drawableEnd="@drawable/ic_gps_location"
+                        android:gravity="center_vertical"
+                        android:paddingStart="@dimen/_12sdp"
+                        app:ccp_defaultNameCode="@string/country_united_states_code"
+                        app:ccp_hideNameCode="false"
+                        app:ccp_hidePhoneCode="true"
+                        app:ccp_showFullName="true" />
+
+                    <ImageView
+                        android:id="@+id/iv_location"
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="@dimen/_12sdp"
+                        android:src="@drawable/ic_gps_location" />
+                </RelativeLayout>
+
+<!--                <EditText-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="@dimen/_38sdp"-->
+<!--                    android:layout_marginTop="@dimen/_24sdp"-->
+<!--                    android:background="@drawable/drawable_shape_login_2"-->
+<!--                    android:drawableEnd="@drawable/ic_gps_location"-->
+<!--                    android:fontFamily="@font/outfit_light"-->
+<!--                    android:hint="@string/select_location"-->
+<!--                    android:paddingStart="@dimen/_12sdp"-->
+<!--                    android:paddingEnd="@dimen/_12sdp"-->
+<!--                    android:textColorHint="@color/text_color_8"-->
+<!--                    android:textSize="@dimen/_16ssp" />-->
 
                 <View
                     android:layout_width="match_parent"
@@ -210,7 +240,6 @@
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btn_submit"
-                    android:visibility="gone"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_50sdp"
                     android:layout_marginTop="@dimen/_28sdp"
@@ -219,10 +248,12 @@
                     android:text="@string/submit"
                     android:textAllCaps="false"
                     android:textSize="@dimen/_14ssp"
+                    android:visibility="gone"
                     app:cornerRadius="@dimen/_8sdp" />
 
             </LinearLayout>
         </ScrollView>
+
         <include
             android:id="@+id/request"
             layout="@layout/layout_request"
@@ -237,6 +268,20 @@
             android:id="@+id/approve"
             layout="@layout/layout_approved_profile"
             android:visibility="gone" />
+        <com.agrawalsuneet.loaderspack.loaders.PulseLoader
+            android:id="@+id/loader"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:backgroundTint="@color/color_primary"
+            android:clickable="true"
+            android:focusable="true"
+            android:visibility="gone"
+            app:pulse_LineThickness="@dimen/_2sdp"
+            app:pulse_normalIncrementalValue="3"
+            app:pulse_pulseColor="@color/color_primary"
+            app:pulse_pulseIncrementalValue="3"
+            app:pulse_sideLength="@dimen/_20sdp" />
     </RelativeLayout>
 </layout>
 

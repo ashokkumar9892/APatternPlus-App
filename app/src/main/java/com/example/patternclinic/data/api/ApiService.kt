@@ -6,6 +6,7 @@ import com.example.patternclinic.data.ApiConstants
 import com.example.patternclinic.data.model.*
 import com.google.android.exoplayer2.text.span.TextAnnotation
 import okhttp3.RequestBody
+import okhttp3.ResponseBody
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.FieldMap
@@ -30,6 +31,9 @@ interface ApiService {
 
     @POST(ApiConstants.DOCTOR_LIST_API)
     suspend fun getDoctorList(@Body map: HashMap<String, Any>): Response<CoachProviderListResponse>
+
+    @POST(ApiConstants.SELECT_AP_TEAM)
+    suspend fun selectApTeam(@Body map: HashMap<String, Any>): Response<ResponseBody>
 
 
 

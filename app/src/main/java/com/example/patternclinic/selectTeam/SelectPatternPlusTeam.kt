@@ -19,7 +19,10 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class SelectPatternPlusTeam : BaseActivity() {
     var bundle: Bundle? = null
-    lateinit var binding: ActivitySelectPatternPlusTeamBinding
+
+    companion object {
+        lateinit var binding: ActivitySelectPatternPlusTeamBinding
+    }
 
     override fun binding() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_select_pattern_plus_team)

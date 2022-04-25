@@ -5,6 +5,7 @@ import com.example.patternclinic.auth.ResetPassword
 import com.example.patternclinic.data.api.ApiHelper
 import com.example.patternclinic.data.model.*
 import okhttp3.RequestBody
+import okhttp3.ResponseBody
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.FieldMap
@@ -24,4 +25,5 @@ class MainRepository @Inject constructor(private val apiHelper: ApiHelper) {
     suspend fun updateProfile(@Body map: HashMap<String, Any>):Response<UpdateProfileResponse> =  apiHelper.updateProfile(map)
     suspend fun getCoachList(@Body map: HashMap<String, Any>): Response<CoachProviderListResponse> = apiHelper.getCoachList(map)
     suspend fun getDoctorList(@Body map: HashMap<String, Any>): Response<CoachProviderListResponse> = apiHelper.getDoctorList(map)
+    suspend fun selectApTeam(@Body map: HashMap<String, Any>): Response<ResponseBody> = apiHelper.selectApTeam(map)
 }

@@ -21,9 +21,9 @@ class SplashActivity : AppCompatActivity() {
         );
         setContentView(R.layout.activity_splash)
         Handler(Looper.getMainLooper()).postDelayed(Runnable {
-            startActivity(Intent(this, IntroScreen::class.java))
+//            startActivity(Intent(this, IntroScreen::class.java))
 //            startActivity(Intent(this, ConnectDeviceActivity::class.java))
-//            startActivity(Intent(this, SelectPatternPlusTeam::class.java))
+            startActivity(Intent(this, SelectPatternPlusTeam::class.java))
             finish()
 
         }, 1000)
