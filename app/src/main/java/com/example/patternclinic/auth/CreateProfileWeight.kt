@@ -10,6 +10,7 @@ import com.example.patternclinic.data.ApiConstants
 import com.example.patternclinic.databinding.ActivityCreateProfileWeightBinding
 import com.example.patternclinic.utils.Keys
 import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.google.android.material.tabs.TabLayout
 import com.google.gson.Gson
 import com.veepoo.protocol.VPOperateManager
 
@@ -38,10 +39,37 @@ class CreateProfileWeight : AppCompatActivity() {
         binding.tvChatBot.setOnClickListener {
             chatBotDialog()
         }
+        binding.tlKgLbs.addOnTabSelectedListener(object :TabLayout.OnTabSelectedListener{
+            override fun onTabSelected(tab: TabLayout.Tab?) {
+                if(tab!!.position==0){
+                    binding.tvValue.text=String.format("%.2f",(binding.tvValue.text.toString().toDouble()/2.205).toDouble())
+                    binding.tvUnit.text = "KG"
+                }else{
+                    binding.tvValue.text=String.format("%.2f",(binding.tvValue.text.toString().toDouble()*2.205).toDouble())
+                    binding.tvUnit.text = "LBS"
+                }
+
+            }
+
+            override fun onTabUnselected(tab: TabLayout.Tab?) {
+
+            }
+
+            override fun onTabReselected(tab: TabLayout.Tab?) {
+
+            }
+        })
 
         binding.rulerView.setChooseValueChangeListener {
-            map.put(ApiConstants.APIParams.WEIGHT.value, it.toInt().toString())
-            binding.tvValue.text = it.toInt().toString()
+            if(binding.tlKgLbs.selectedTabPosition==0) {
+                map.put(ApiConstants.APIParams.WEIGHT.value, it.toInt().toString())
+                binding.tvValue.text = it.toInt().toString()
+            }else{
+                map.put(ApiConstants.APIParams.WEIGHT.value, (it.toInt()*2.205).toDouble().toString())
+
+                var a=(it.toInt()*2.205).toDouble()
+                binding.tvValue.text = String.format("%.2f" ,a)
+            }
         }
     }
 
