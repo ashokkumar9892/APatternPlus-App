@@ -48,6 +48,7 @@
                     android:textSize="@dimen/_42ssp" />
 
                 <TextView
+                    android:id="@+id/tv_unit"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_6sdp"
@@ -76,6 +77,7 @@
                 app:cardCornerRadius="@dimen/_18sdp">
 
                 <com.google.android.material.tabs.TabLayout
+                    android:id="@+id/tl_kg_lbs"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     app:tabIndicatorColor="@color/color_primary_with_opacity_15"

@@ -42,6 +42,7 @@ object ApiConstants {
         DOB("DOB"),
         GENDER("Gender"),
         REFER_AS("ReferAs"),
+        WEIGHT_UNIT("weightUnit"),
         USER_NAME("UserName"),
         DOCTOR_ID("DoctorId"),
         DOCTOR_NAME("DoctorName"),

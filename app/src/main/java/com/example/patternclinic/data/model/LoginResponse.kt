@@ -17,6 +17,7 @@ data class PatientInfo(
     val height: String,
     val lastName: String,
     val profilePic: String,
+    val weightUnit: String,
     val referAs: Any,
     val sk: String,
     val userName: String,

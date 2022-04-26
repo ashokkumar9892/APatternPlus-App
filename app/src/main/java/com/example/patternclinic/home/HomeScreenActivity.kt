@@ -1,6 +1,7 @@
 package com.example.patternclinic.home
 
 import android.content.Intent
+import android.net.VpnManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -24,7 +25,20 @@ import com.example.patternclinic.home.progressTracker.ApScoreActivity
 import com.example.patternclinic.home.progressTracker.ProgressTrackerActivity
 import com.example.patternclinic.utils.changeStatusBarColor
 import com.example.patternclinic.utils.decorStatusBar
+import com.example.patternclinic.utils.showToast
 import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.google.gson.Gson
+import com.veepoo.protocol.VPOperateManager
+import com.veepoo.protocol.listener.base.IBleWriteResponse
+import com.veepoo.protocol.listener.data.IBreathDataListener
+import com.veepoo.protocol.listener.data.IHeartDataListener
+import com.veepoo.protocol.listener.data.ISpo2hDataListener
+import com.veepoo.protocol.listener.data.ISportDataListener
+import com.veepoo.protocol.model.datas.BreathData
+import com.veepoo.protocol.model.datas.HeartData
+import com.veepoo.protocol.model.datas.Spo2hData
+import com.veepoo.protocol.model.datas.SportData
+import com.veepoo.protocol.model.settings.BpSetting
 
 class HomeScreenActivity : AppCompatActivity() {
     var binding: ActivityHomeScreenBinding? = null
@@ -34,7 +48,46 @@ class HomeScreenActivity : AppCompatActivity() {
         decorStatusBar(false)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_home_screen)
         initDesign()
+        VPOperateManager.getMangerInstance(this).startDetectHeart(object : IBleWriteResponse {
+            override fun onResponse(p0: Int) {
+
+
+            }
+        }, object : IHeartDataListener {
+            override fun onDataChange(p0: HeartData?) {
+                Gson().toJson(p0)
+
+            }
+        })
+
+        VPOperateManager.getMangerInstance(this).startDetectBreath(object : IBleWriteResponse {
+            override fun onResponse(p0: Int) {
+
+
+            }
+        }, object : IBreathDataListener {
+            override fun onDataChange(p0: BreathData?) {
+
+                p0
+            }
+
+        })
+        VPOperateManager.getMangerInstance(this).startDetectSPO2H(object : IBleWriteResponse {
+            override fun onResponse(p0: Int) {
+
+
+            }
+        }, object : ISpo2hDataListener {
+            override fun onSpO2HADataChange(p0: Spo2hData?) {
+                p0
+                showToast(p0!!.rateValue.toString())
+            }
+        }
+        )
+//
+        HeartData().heartStatus
     }
+
 
     private fun initDesign() {
         binding!!.ivMenu.setOnClickListener {
@@ -59,11 +112,9 @@ class HomeScreenActivity : AppCompatActivity() {
         }
         binding!!.layoutDrawer.llSettings.setOnClickListener {
             openFragment(SettingFragment())
-
         }
         binding!!.layoutDrawer.llMyProfile.setOnClickListener {
             openFragment(MyProfileFragment())
-
         }
         binding!!.layoutDrawer.llHealthTips.setOnClickListener {
             openFragment(HealthTipsFragment())

@@ -21,7 +21,7 @@ class CreateProfileHeight : AppCompatActivity() {
 
     companion object {
         lateinit var binding: ActivityCreateProfileHeightBinding
-        lateinit var map: HashMap<String, Any>
+         var map: HashMap<String, Any> =HashMap()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,6 +33,7 @@ class CreateProfileHeight : AppCompatActivity() {
         map = Gson().fromJson(Keys.updateProfileData, HashMap::class.java) as HashMap<String, Any>
         //default value
         map.put(ApiConstants.APIParams.HEIGHT.value, "50")
+
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_create_profile_height)
         binding.viewModel = finalViewModel

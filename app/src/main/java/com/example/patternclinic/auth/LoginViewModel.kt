@@ -13,6 +13,7 @@ import com.example.patternclinic.data.repository.MainRepository
 import com.example.patternclinic.retrofit.ResponseResult
 import com.example.patternclinic.retrofit.ResponseWrapper
 import com.example.patternclinic.retrofit.getResult
+import com.example.patternclinic.setupDevice.ConnectDeviceActivity
 import com.example.patternclinic.utils.*
 import com.google.android.exoplayer2.metadata.id3.ApicFrame
 import com.google.android.material.button.MaterialButton
@@ -63,7 +64,14 @@ class LoginViewModel @Inject constructor(val mainRepository: MainRepository) : B
                         if (response.response == 1) {
                             v.context.showToast(response.errorMessage)
                             SharedPrefs.saveLoggedInUser(response)
-                            v.context.startActivity(Intent(v.context, CreateProfile::class.java))
+                            v.context.startActivity(
+                                Intent(
+                                    v.context,
+                                    ConnectDeviceActivity::class.java
+                                )
+                            )
+                            //remove below line after need
+//                            v.context.startActivity(Intent(v.context, CreateProfile::class.java))
                         } else {
                             v.context.showToast(response.errorMessage)
                         }

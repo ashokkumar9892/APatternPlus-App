@@ -4,9 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-<variable
-    name="viewModel"
-    type="com.example.patternclinic.selectTeam.fragments.SelectTeamViewModel" />
+
+        <variable
+            name="viewModel"
+            type="com.example.patternclinic.selectTeam.fragments.SelectTeamViewModel" />
     </data>
 
     <RelativeLayout
@@ -14,38 +15,37 @@
         android:layout_height="wrap_content"
         android:background="@color/transparent_color"
         tools:context=".selectTeam.fragments.SelectTeamFragment">
+
         <RelativeLayout
             android:layout_width="match_parent"
-            android:background="@drawable/drawable_shape_login"
             android:layout_height="wrap_content"
-            >
+            android:background="@drawable/drawable_shape_login">
 
-        <LinearLayout
-            android:id="@+id/ll_team"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-
-            android:orientation="vertical">
-
-            <View
-                android:layout_width="@dimen/_70sdp"
-                android:layout_height="@dimen/_4sdp"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="@dimen/_12sdp"
-                android:background="@color/text_color_9" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_coach_prov_list"
+            <LinearLayout
+                android:id="@+id/ll_team"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_8sdp"
-                android:orientation="vertical"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                tools:listitem="@layout/item_providers" />
+
+                android:orientation="vertical">
+
+                <View
+                    android:layout_width="@dimen/_70sdp"
+                    android:layout_height="@dimen/_4sdp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="@dimen/_12sdp"
+                    android:background="@color/text_color_9" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_coach_prov_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:orientation="vertical"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:listitem="@layout/item_providers" />
 
 
-
-        </LinearLayout>
+            </LinearLayout>
 
             <com.agrawalsuneet.loaderspack.loaders.PulseLoader
                 android:id="@+id/loader"
@@ -53,10 +53,10 @@
                 android:layout_height="match_parent"
                 android:layout_below="@+id/ll_team"
                 android:layout_centerInParent="true"
-android:visibility="gone"
                 android:backgroundTint="@color/color_primary"
                 android:clickable="true"
                 android:focusable="true"
+                android:visibility="gone"
                 app:pulse_LineThickness="@dimen/_2sdp"
                 app:pulse_normalIncrementalValue="3"
                 app:pulse_pulseColor="@color/color_primary"

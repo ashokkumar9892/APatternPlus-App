@@ -7,6 +7,7 @@ import android.os.Handler
 import android.os.Looper
 import android.view.Window
 import android.view.WindowManager
+import com.example.patternclinic.auth.CreateProfile
 import com.example.patternclinic.introScreen.IntroScreen
 import com.example.patternclinic.selectTeam.SelectPatternPlusTeam
 import com.example.patternclinic.setupDevice.ConnectDeviceActivity
@@ -21,9 +22,13 @@ class SplashActivity : AppCompatActivity() {
         );
         setContentView(R.layout.activity_splash)
         Handler(Looper.getMainLooper()).postDelayed(Runnable {
+
 //            startActivity(Intent(this, IntroScreen::class.java))
+//            startActivity(Intent(this, CreateProfile::class.java))
 //            startActivity(Intent(this, ConnectDeviceActivity::class.java))
-            startActivity(Intent(this, SelectPatternPlusTeam::class.java))
+            startActivity(Intent(this, IntroScreen::class.java))
+
+//            startActivity(Intent(this, SelectPatternPlusTeam::class.java))
             finish()
 
         }, 1000)
