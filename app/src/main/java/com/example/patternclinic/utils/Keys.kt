@@ -6,6 +6,7 @@ object Keys {
     const val RESET_USER_NAME_KEY="resetKey"
     const val PROVIDERS="providers"
     const val COACHES="coaches"
+    const val NEW_USER="newuser"
     const val mapKeyProfile="profileKey"
     //these are used for send data in other param
     var updateProfileData=""

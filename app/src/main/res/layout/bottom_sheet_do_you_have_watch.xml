@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#9C000000"
+        tools:context=".selectTeam.fragments.SelectTeamFragment">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/drawable_shape_login"
+            android:elevation="@dimen/_2sdp"
+            android:orientation="vertical">
+
+            <View
+                android:layout_width="@dimen/_70sdp"
+                android:layout_height="@dimen/_4sdp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/_12sdp"
+                android:background="@color/text_color_9" />
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:layout_width="@dimen/_100sdp"
+                android:layout_height="@dimen/_100sdp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/_36sdp"
+                app:srcCompat="@drawable/ic_watch" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:fontFamily="@font/outfit_semibold"
+                android:gravity="center"
+                android:text="@string/do_you_have_iwatch"
+                android:textColor="@color/text_color_1"
+                android:textSize="@dimen/_20sdp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_proceed"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_50sdp"
+                android:layout_marginStart="@dimen/_21sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_marginEnd="@dimen/_21sdp"
+                android:fontFamily="@font/outfit_semibold"
+                android:text="@string/yes_proceed"
+                android:textAllCaps="false"
+                android:textSize="@dimen/_14ssp"
+                app:cornerRadius="@dimen/_8sdp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_4sdp"
+                android:layout_marginTop="@dimen/_4sdp"
+                android:fontFamily="@font/outfit_regular"
+                android:gravity="center"
+                android:padding="@dimen/_4sdp"
+                android:text="@string/buy_now"
+                android:textColor="@color/text_color_3"
+                android:textSize="@dimen/_13ssp" />
+
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+</layout>

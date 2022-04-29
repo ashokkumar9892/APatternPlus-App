@@ -5,7 +5,7 @@
     <string name="email_address">Email Address</string>
     <string name="password">Password</string>
     <string name="forgot_password">Forgot Password?</string>
-    <string name="login">Login</string>
+
     <string name="forgot_your_password">Forgot Your Password?</string>
     <string name="text_enter_your_register">Enter your registered email below to reset your password.</string>
     <string name="john_mail">johnmusk@gmail.com</string>
@@ -186,6 +186,16 @@
     <string name="select_your_dob">Select your DOB</string>
     <string name="select_refer">Select how should we refer you</string>
     <string name="select_image">Select your image</string>
+    <string name="don_t_have_an_account">Don\'t have an account?</string>
+
+    <string name="skip_now"><u>Skip Now</u></string>
+    <string name="do_you_have_iwatch">Do you have iWatch?</string>
+    <string name="yes_proceed">Yes, Proceed</string>
+    <string name="buy_now">Buy Now</string>
+    <string name="sign_up">Sign up</string>
+    <string name="create_account_to_continue">Create account to continue</string>
+    <string name="have_an_account">Have an account?</string>
+    <string name="login">Login</string>
 
     <string-array name="Gender">
         <item>Select Gender</item>

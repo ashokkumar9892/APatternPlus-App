@@ -64,14 +64,14 @@ class LoginViewModel @Inject constructor(val mainRepository: MainRepository) : B
                         if (response.response == 1) {
                             v.context.showToast(response.errorMessage)
                             SharedPrefs.saveLoggedInUser(response)
-                            v.context.startActivity(
-                                Intent(
-                                    v.context,
-                                    ConnectDeviceActivity::class.java
-                                )
-                            )
+//                            v.context.startActivity(
+//                                Intent(
+//                                    v.context,
+//                                    ConnectDeviceActivity::class.java
+//                                )
+//                            )
                             //remove below line after need
-//                            v.context.startActivity(Intent(v.context, CreateProfile::class.java))
+                            v.context.startActivity(Intent(v.context, CreateProfile::class.java))
                         } else {
                             v.context.showToast(response.errorMessage)
                         }

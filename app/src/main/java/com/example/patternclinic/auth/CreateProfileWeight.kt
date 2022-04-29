@@ -26,7 +26,7 @@ class CreateProfileWeight : AppCompatActivity() {
 //        }
         map = Gson().fromJson(Keys.updateProfileData, HashMap::class.java) as HashMap<String, Any>
         map.put(ApiConstants.APIParams.WEIGHT.value, "50")
-        CreateProfileHeight.map.put(ApiConstants.APIParams.WEIGHT_UNIT.value, "KG")
+       map.put(ApiConstants.APIParams.WEIGHT_UNIT.value, "KG")
         binding = DataBindingUtil.setContentView(this, R.layout.activity_create_profile_weight)
         binding.btnNext.setOnClickListener {
             Keys.updateProfileData = Gson().toJson(map)

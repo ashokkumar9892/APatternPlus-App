@@ -41,7 +41,6 @@ class UpdateProfileViewModel @Inject constructor(val mainRepository: MainReposit
     var country = ObservableField<String>()
     var dob = ObservableField<String>()
     var gender = ObservableField<Int>()
-
     var binding = CreateProfile.binding
     var userData: LoginResponse? = null
     var encodedImage: String? = null
@@ -49,36 +48,44 @@ class UpdateProfileViewModel @Inject constructor(val mainRepository: MainReposit
     var activity = CreateProfile.activity
 
     init {
-        userData = SharedPrefs.getLoggedInUser()
-        if (userData!!.patientInfo.email.isNotEmpty()) {
-            email.set(userData!!.patientInfo.userName)
+        if (CreateProfile.newUser == 0) {
+            if (SharedPrefs.getLoggedInUser() != null) {
+                userData = SharedPrefs.getLoggedInUser()
+                if (userData!!.patientInfo.email.isNotEmpty()) {
+                    email.set(userData!!.patientInfo.userName)
+                }
+                if (!userData!!.patientInfo.firstName.isNullOrEmpty()) {
+                    firstName.set(userData!!.patientInfo.firstName)
+                }
+                if (!userData!!.patientInfo.lastName.isNullOrEmpty()) {
+                    lastName.set(userData!!.patientInfo.lastName)
+                }
+                if (userData!!.patientInfo.country != null) {
+                    country.set(userData!!.patientInfo.country.toString())
+                }
+                if (!userData!!.patientInfo.dob.isNullOrEmpty()) {
+//                    dob.set(dateConvert_4(userData!!.patientInfo.dob!!))
+                    dob.set(userData!!.patientInfo.dob!!)
+                }
+                if (!userData!!.patientInfo.gender.isNullOrEmpty()) {
+                    gender.set(
+                        binding.root.context.resources.getStringArray(R.array.Gender)
+                            .indexOf(userData!!.patientInfo.gender)
+                    )
+                }
+                if (!userData!!.patientInfo.profilePic.isNullOrEmpty()) {
+                    encodedImage = userData!!.patientInfo.profilePic.replace("\n", "")
+                    val decodedString =
+                        Base64.decode(
+                            userData!!.patientInfo.profilePic.replace("\n", ""),
+                            Base64.DEFAULT
+                        )
+                    val decodedByte =
+                        BitmapFactory.decodeByteArray(decodedString, 0, decodedString.size)
+                    binding.ivUserImage.setImageBitmap(decodedByte)
+                }
+            }
         }
-        if (!userData!!.patientInfo.firstName.isNullOrEmpty()) {
-            firstName.set(userData!!.patientInfo.firstName)
-        }
-        if (!userData!!.patientInfo.lastName.isNullOrEmpty()) {
-            lastName.set(userData!!.patientInfo.lastName)
-        }
-        if (userData!!.patientInfo.country != null) {
-            country.set(userData!!.patientInfo.country.toString())
-        }
-        if (!userData!!.patientInfo.dob.isNullOrEmpty()) {
-            dob.set(dateConvert_4(userData!!.patientInfo.dob!!))
-        }
-        if (!userData!!.patientInfo.gender.isNullOrEmpty()) {
-            gender.set(
-                binding.root.context.resources.getStringArray(R.array.Gender)
-                    .indexOf(userData!!.patientInfo.gender)
-            )
-        }
-        if (!userData!!.patientInfo.profilePic.isNullOrEmpty()) {
-            encodedImage=userData!!.patientInfo.profilePic.replace("\n", "")
-            val decodedString =
-                Base64.decode(userData!!.patientInfo.profilePic.replace("\n", ""), Base64.DEFAULT)
-            val decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.size)
-            binding.ivUserImage.setImageBitmap(decodedByte)
-        }
-
     }
 
 
@@ -143,14 +150,8 @@ class UpdateProfileViewModel @Inject constructor(val mainRepository: MainReposit
 
                         map.put(ApiConstants.APIParams.PROFILE_PIC.value, encodedImage!!)
 
-                    map.put(
-                        ApiConstants.APIParams.DOB.value,
-                        dateConvert_5(dob.get()?.trim().toString())
-                    )
-                    map.put(
-                        ApiConstants.APIParams.GENDER.value,
-                        binding.spGender.selectedItem.toString()
-                    )
+                    map[ApiConstants.APIParams.DOB.value] = dob.get()?.trim().toString()
+                    map[ApiConstants.APIParams.GENDER.value] = binding.spGender.selectedItem.toString()
                     binding.spGender.selectedItem
                     map.put(
                         ApiConstants.APIParams.REFER_AS.value,

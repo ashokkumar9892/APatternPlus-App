@@ -4,10 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
-        <variable
-            name="viewModel"
-            type="com.example.patternclinic.auth.LoginViewModel" />
     </data>
 
     <ScrollView
@@ -46,16 +42,16 @@
                     android:layout_weight="2"
                     android:background="@drawable/drawable_shape_login"
                     android:orientation="vertical"
+                    android:gravity="center_vertical"
                     android:paddingStart="@dimen/_25sdp"
                     android:paddingEnd="@dimen/_25sdp">
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_30sdp"
                         android:fontFamily="@font/outfit_semibold"
                         android:gravity="center_horizontal"
-                        android:text="@string/welcome"
+                        android:text="@string/sign_up"
                         android:textColor="@color/text_color_1"
                         android:textSize="@dimen/_28ssp" />
 
@@ -65,7 +61,7 @@
                         android:layout_marginTop="@dimen/_2sdp"
                         android:fontFamily="@font/outfit_regular"
                         android:gravity="center_horizontal"
-                        android:text="@string/sign_in_to_continue"
+                        android:text="@string/create_account_to_continue"
                         android:textColor="@color/text_color_2"
                         android:textSize="@dimen/_12ssp" />
 
@@ -86,7 +82,7 @@
                         android:background="@drawable/drawable_shape_login_2"
                         android:paddingStart="@dimen/_10sdp"
                         android:paddingEnd="@dimen/_10sdp"
-                        android:text="@={viewModel.email}" />
+                        />
 
                     <TextView
                         android:layout_width="match_parent"
@@ -111,69 +107,94 @@
                             android:inputType="textPassword"
                             android:paddingStart="@dimen/_10sdp"
                             android:paddingEnd="@dimen/_10sdp"
-                            android:text="@={viewModel.password}" />
+                           />
 
                         <ImageView
                             android:id="@+id/iv_eye_login"
                             android:layout_width="@dimen/_38sdp"
+                            android:layout_height="@dimen/_38sdp"
                             android:layout_alignParentEnd="true"
                             android:padding="@dimen/_14sdp"
+                            android:src="@drawable/ic_eye_off" />
+
+                    </RelativeLayout>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_12sdp"
+                        android:fontFamily="@font/outfit_light"
+                        android:text="@string/confirm_password"
+                        android:textColor="@color/text_color_3"
+                        android:textSize="@dimen/_12ssp" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_6sdp"
+                        android:orientation="horizontal">
+
+                        <EditText
+                            android:id="@+id/et_confirm_password"
+                            android:layout_width="match_parent"
                             android:layout_height="@dimen/_38sdp"
+                            android:background="@drawable/drawable_shape_login_2"
+                            android:inputType="textPassword"
+                            android:paddingStart="@dimen/_10sdp"
+                            android:paddingEnd="@dimen/_10sdp"
+                            />
+
+                        <ImageView
+                            android:id="@+id/iv_eye_login_2"
+                            android:layout_width="@dimen/_38sdp"
+                            android:layout_height="@dimen/_38sdp"
+                            android:layout_alignParentEnd="true"
+                            android:padding="@dimen/_14sdp"
                             android:src="@drawable/ic_eye_off" />
 
                     </RelativeLayout>
 
 
-                    <TextView
-                        android:id="@+id/tv_forgot_password"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_10sdp"
-                        android:fontFamily="@font/outfit_light"
-                        android:gravity="end"
-                        android:text="@string/forgot_password"
-                        android:textColor="@color/text_color_3"
-                        android:textSize="@dimen/_12ssp" />
-
                     <com.google.android.material.button.MaterialButton
-                        android:id="@+id/btlogin"
+                        android:id="@+id/btn_sign_up"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_50sdp"
                         android:layout_marginTop="@dimen/_28sdp"
                         android:fontFamily="@font/outfit_semibold"
-                        android:onClick="@{()->viewModel.onClick(btlogin)}"
-                        android:text="@string/login"
+                        android:text="@string/sign_up"
                         android:textAllCaps="false"
                         android:textSize="@dimen/_14ssp"
                         app:cornerRadius="@dimen/_8sdp" />
+
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingBottom="@dimen/_8sdp"
-                    android:gravity="center"
                     android:background="@color/white"
-                    android:orientation="horizontal">
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:paddingBottom="@dimen/_8sdp">
 
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="@dimen/_12ssp"
-                    android:textColor="@color/text_color_3"
-                    android:fontFamily="@font/outfit_light"
-                    android:text="@string/don_t_have_an_account"/>
 
                     <TextView
-                        android:id="@+id/tv_sign_up"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:padding="@dimen/_4sdp"
+                        android:fontFamily="@font/outfit_light"
+                        android:text="@string/have_an_account"
+                        android:textColor="@color/text_color_3"
+                        android:textSize="@dimen/_12ssp" />
+
+                    <TextView
+                        android:id="@+id/tv_log_in"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/_4sdp"
-                        android:textSize="@dimen/_12ssp"
-                        android:textColor="@color/color_primary"
                         android:fontFamily="@font/outfit_semibold"
-                        android:text="@string/sign_up"/>
+                        android:padding="@dimen/_4sdp"
+                        android:text="@string/login"
+                        android:textColor="@color/color_primary"
+                        android:textSize="@dimen/_12ssp" />
 
                 </LinearLayout>
             </LinearLayout>

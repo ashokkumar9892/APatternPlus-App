@@ -15,6 +15,7 @@ import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import com.example.patternclinic.R
 import com.example.patternclinic.databinding.ActivityConnectDeviceBinding
+import com.example.patternclinic.databinding.BottomSheetDoYouHaveWatchBinding
 import com.example.patternclinic.home.HomeScreenActivity
 import com.example.patternclinic.selectTeam.SelectPatternPlusTeam
 import com.example.patternclinic.utils.showToast
@@ -38,6 +39,7 @@ class ConnectDeviceActivity : AppCompatActivity(), OnItemClicked {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_connect_device)
         initDesign()
 
+        doWatch()
         connectDeivce()
         checkPermission()
         registerBluetoothStateListener()
@@ -214,15 +216,15 @@ class ConnectDeviceActivity : AppCompatActivity(), OnItemClicked {
 
 
                     binding!!.loader.visibility = View.GONE
-                    binding!!.layoutDisconnected.visibility = View.VISIBLE
-                    Handler(Looper.getMainLooper()).postDelayed(Runnable {
-                        binding!!.layoutDisconnected.visibility = View.GONE
+
+
                         binding!!.layoutConnected.visibility = View.VISIBLE
-                        val intent = Intent(this, SelectPatternPlusTeam::class.java)
+//                        val intent = Intent(this, SelectPatternPlusTeam::class.java)
+                        val intent = Intent(this, HomeScreenActivity::class.java)
                         startActivity(intent)
                         finishAffinity()
 
-                    }, 1000)
+
 
 //                    intent.putExtra("isoadmodel", mIsOadModel)
 //                    intent.putExtra("deviceaddress", mac)
@@ -304,9 +306,14 @@ class ConnectDeviceActivity : AppCompatActivity(), OnItemClicked {
     }
 
     private fun initDesign() {
+        binding!!.tvSkip.setOnClickListener {
+            val intent = Intent(this, SelectPatternPlusTeam::class.java)
+            startActivity(intent)
+
+        }
 
         binding!!.llWatch.setOnClickListener {
-
+            doWatch()
             scanDevice()
 //            binding!!.layoutDisconnected.visibility = View.VISIBLE
 //            Handler(Looper.getMainLooper()).postDelayed(Runnable {
@@ -335,6 +342,23 @@ class ConnectDeviceActivity : AppCompatActivity(), OnItemClicked {
 
     }
 
+    /**
+     * bottom dialog for "do you have watch"
+     */
+
+    private fun doWatch() {
+        val dialog = BottomSheetDialog(this)
+
+        val bindView = BottomSheetDoYouHaveWatchBinding.inflate(layoutInflater)
+        dialog.setContentView(bindView.root)
+        bindView.btnProceed.setOnClickListener {
+            dialog.dismiss()
+        }
+
+        dialog.show()
+
+    }
+
     private fun sendMsg(message: String, what: Int) {
         var msg = Message.obtain()
         msg.what = what
@@ -350,7 +374,7 @@ class ConnectDeviceActivity : AppCompatActivity(), OnItemClicked {
         binding!!.cvStart.visibility = View.VISIBLE
 
         binding!!.cvStart.setOnClickListener {
-                    binding!!.loader.visibility = View.VISIBLE
+            binding!!.loader.visibility = View.VISIBLE
             connectDevice(searchResult.address, searchResult.name)
         }
     }
