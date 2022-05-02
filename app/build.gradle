@@ -11,7 +11,6 @@ android {
         enabled = true
     }
 
-
     defaultConfig {
         applicationId "com.example.patternclinic"
         minSdk 21
@@ -21,6 +20,7 @@ android {
         buildConfigField 'String', 'BASE_URL', '"http://patternclinicapis.harishparas.com/api/"'
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
+
 
     buildTypes {
         release {
@@ -109,16 +109,14 @@ dependencies {
     implementation files('libs/libcomx-0.5.jar')
     //files for signalR
 
-    implementation files('libs/signalr-client-sdk.jar')
-    implementation files('libs/signalr-client-sdk-android.jar')
+
     //BluetoothScannerCompat
     implementation 'no.nordicsemi.android.support.v18:scanner:1.6.0'
     //country code picker
     implementation 'com.github.joielechong:countrycodepicker:2.4.2'
 
-//    implementation 'com.github.emreesen27:Android-Nested-Progress:v1.0.2'
-
-
+    //signal R
+    implementation 'com.smartarmenia:dotnetcoresignalrclientjava:1.14'
 
 
 }

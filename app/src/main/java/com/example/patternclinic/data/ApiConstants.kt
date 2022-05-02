@@ -48,6 +48,10 @@ object ApiConstants {
         DOCTOR_NAME("DoctorName"),
         COACH_NAME("CoachName"),
         COACH_ID("CoachId"),
+        SENDER_SK("SenderSK"),
+        RECEIVER_SK("ReceiverSK"),
+        MESSAGE_TYPE("MessageType"),
+        MESSAGE("Message"),
 
 
     }

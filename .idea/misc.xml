@@ -58,7 +58,7 @@
         <entry key="..\:/Users/Paras Technologies/AndroidStudioProjects/APatternPlus-App/app/src/main/res/layout/layout_watch_disconnected.xml" value="0.19947916666666668" />
         <entry key="app/src/main/res/drawable/drawable_shape_login.xml" value="0.17" />
         <entry key="app/src/main/res/drawable/drawable_shape_login_2.xml" value="0.17" />
-        <entry key="app/src/main/res/layout/activity_chat.xml" value="0.24010416666666667" />
+        <entry key="app/src/main/res/layout/activity_chat.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_connect_device.xml" value="0.21" />
         <entry key="app/src/main/res/layout/activity_create_profile.xml" value="0.26197916666666665" />
         <entry key="app/src/main/res/layout/activity_create_profile_height.xml" value="0.26197916666666665" />
@@ -70,6 +70,8 @@
         <entry key="app/src/main/res/layout/bottom_sheet_do_you_have_watch.xml" value="0.26197916666666665" />
         <entry key="app/src/main/res/layout/bottom_sheet_do_you_like.xml" value="0.26197916666666665" />
         <entry key="app/src/main/res/layout/fragment_select_team.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/item_message_reciever.xml" value="0.24010416666666667" />
+        <entry key="app/src/main/res/layout/item_message_sender.xml" value="0.25" />
       </map>
     </option>
   </component>
