@@ -117,6 +117,9 @@ dependencies {
 
     //signal R
     implementation 'com.smartarmenia:dotnetcoresignalrclientjava:1.14'
+    //pin view library
+    implementation 'io.github.chaosleung:pinview:1.4.4'
+//    implementation 'com.kevinschildhorn.otpview.OTPView'
 
 
 }

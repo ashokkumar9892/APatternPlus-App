@@ -22,4 +22,6 @@ interface ApiHelper {
     suspend fun getCoachList(@Body map: HashMap<String, Any>):Response<CoachProviderListResponse>
     suspend fun getDoctorList(@Body map: HashMap<String, Any>): Response<CoachProviderListResponse>
     suspend fun selectApTeam(@Body map: HashMap<String, Any>): Response<UpdateProfileResponse>
+    suspend fun signUp(@Body map: HashMap<String, Any>):Response<ForgotPasswordResponse>
+    suspend fun sendOtp(@Body map: HashMap<String, Any>):Response<ForgotPasswordResponse>
 }

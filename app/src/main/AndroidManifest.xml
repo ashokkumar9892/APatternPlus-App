@@ -23,9 +23,11 @@
         android:theme="@style/Theme.PatternClinic"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".auth.createProfile.SignupActivity"
+            android:name=".auth.createProfile.OtpActivity"
             android:exported="false" />
-        <!-- Bluetooth services -->
+        <activity
+            android:name=".auth.createProfile.SignupActivity"
+            android:exported="false" /> <!-- Bluetooth services -->
         <service android:name="com.inuker.bluetooth.library.BluetoothService" /> <!-- <service android:name=".oad.service.DfuService"/> -->
         <activity
             android:name=".home.drawerFragments.myProfile.YourApTeamActivity"

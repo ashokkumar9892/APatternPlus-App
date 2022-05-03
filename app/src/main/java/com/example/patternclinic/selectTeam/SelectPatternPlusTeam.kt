@@ -6,14 +6,11 @@ import android.os.Handler
 import android.os.Looper
 import android.view.View
 import androidx.activity.viewModels
-import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.viewModels
 import com.example.patternclinic.R
 import com.example.patternclinic.base.BaseActivity
 import com.example.patternclinic.data.ApiConstants
 import com.example.patternclinic.data.model.DoctorInfo
-import com.example.patternclinic.data.model.PatientInfo
 import com.example.patternclinic.databinding.ActivitySelectPatternPlusTeamBinding
 import com.example.patternclinic.home.HomeScreenActivity
 import com.example.patternclinic.selectTeam.fragments.SelectTeamFragment
@@ -25,13 +22,14 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class SelectPatternPlusTeam : BaseActivity() {
-    var map=HashMap<String,Any>()
+    var map = HashMap<String, Any>()
     var bundle: Bundle? = null
 
     val selectTeamViewModel: SelectTeamViewModel by viewModels()
+
     companion object {
-        var doctorInfo:DoctorInfo?=null
-        var coachInfo:DoctorInfo?=null
+        var doctorInfo: DoctorInfo? = null
+        var coachInfo: DoctorInfo? = null
         lateinit var binding: ActivitySelectPatternPlusTeamBinding
     }
 
@@ -58,17 +56,17 @@ class SelectPatternPlusTeam : BaseActivity() {
             provider.arguments = bundle
             provider.show(supportFragmentManager, "tag2")
         }
-        selectTeamViewModel.selectTeamModel.observe(this){
+        selectTeamViewModel.selectTeamModel.observe(this) {
             binding.request.visibility = View.VISIBLE
-            Handler(Looper.getMainLooper()).postDelayed(Runnable {
+            Handler(Looper.getMainLooper()).postDelayed({
                 binding.request.visibility = View.GONE
                 binding.approve.visibility = View.VISIBLE
             }, 1000)
-            Handler(Looper.getMainLooper()).postDelayed(Runnable {
+            Handler(Looper.getMainLooper()).postDelayed({
                 binding.approve.visibility = View.GONE
                 binding.decline.visibility = View.VISIBLE
             }, 2000)
-            Handler(Looper.getMainLooper()).postDelayed(Runnable {
+            Handler(Looper.getMainLooper()).postDelayed({
                 binding.decline.visibility = View.GONE
                 startActivity(Intent(this, HomeScreenActivity::class.java))
             }, 3000)

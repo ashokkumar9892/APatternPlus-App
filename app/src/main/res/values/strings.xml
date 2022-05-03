@@ -179,7 +179,7 @@
     <string name="password_match">Password should be same on both side</string>
     <string name="otp">OTP</string>
     <string name="enter_otp">Enter Otp</string>
-    <string name="verification_code">Verification Code</string>
+
     <string name="enter_first_name">Enter your first name</string>
     <string name="enter_last_name">Enter your last name</string>
     <string name="enter_country">Enter  country</string>
@@ -196,6 +196,10 @@
     <string name="create_account_to_continue">Create account to continue</string>
     <string name="have_an_account">Have an account?</string>
     <string name="login">Login</string>
+    <string name="verification_code">Verification Code</string>
+    <string name="please_enter_your_otp_code_sent_to_your_phone_number">Please enter your OTP code sent to your phone number.</string>
+    <string name="didn_t_receive_the_otp">Didn\'t receive the OTP?</string>
+    <string name="resend_code">Resend Code</string>
 
     <string-array name="Gender">
         <item>Select Gender</item>

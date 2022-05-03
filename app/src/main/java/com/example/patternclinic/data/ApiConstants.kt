@@ -9,6 +9,8 @@ object ApiConstants {
     const val COACH_LIST_API = "Basic/CoachList"
     const val DOCTOR_LIST_API = "Basic/DoctorsList"
     const val SELECT_AP_TEAM = "Basic/SelectAPTeam"
+    const val SIGN_UP = "Cognito/CognitoUser"
+    const val OTP = "Cognito/ConfirmOTP"
 
 
     const val CONNECT_TIMEOUT = 240L //seconds
@@ -33,6 +35,7 @@ object ApiConstants {
         SK("SK"),
         HEIGHT("Height"),
         AUTH_TOKEN("AuthToken"),
+        CONFIRMATION_CODE("confirmationcode"),
         WEIGHT("Weight"),
         FIRST_NAME("FirstName"),
         LAST_NAME("LastName"),

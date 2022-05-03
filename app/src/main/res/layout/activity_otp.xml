@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:fitsSystemWindows="true">
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+
+            android:layout_height="match_parent"
+            tools:context=".auth.ForgotPassword">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/iv_back_forgot"
+                    android:layout_width="@dimen/_40sdp"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_marginStart="@dimen/_8sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:padding="@dimen/_12sdp"
+                    app:srcCompat="@drawable/ic_back_icon" />
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginStart="@dimen/_30sdp"
+                    android:layout_marginEnd="@dimen/_30sdp"
+                    app:srcCompat="@drawable/ic_verify_otp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:fontFamily="@font/outfit_semibold"
+                    android:gravity="center_horizontal"
+                    android:text="@string/verification_code"
+                    android:textColor="@color/text_color_1"
+                    android:textSize="@dimen/_24ssp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_25sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+
+                    android:layout_marginEnd="@dimen/_25sdp"
+                    android:fontFamily="@font/outfit_regular"
+                    android:gravity="center_horizontal"
+                    android:text="@string/please_enter_your_otp_code_sent_to_your_phone_number"
+                    android:textColor="@color/text_color_2"
+                    android:textSize="@dimen/_14ssp" />
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_38sdp"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:id="@+id/et_1"
+                        android:layout_width="@dimen/_36sdp"
+                        android:layout_height="@dimen/_46sdp"
+                        android:background="@drawable/drawable_shape_8sdp"
+                        android:backgroundTint="@color/black_with_opacity_5"
+                        android:gravity="center"
+                        android:maxLength="1" />
+
+                    <EditText
+                        android:id="@+id/et_2"
+                        android:layout_width="@dimen/_36sdp"
+                        android:layout_height="@dimen/_46sdp"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:background="@drawable/drawable_shape_8sdp"
+                        android:backgroundTint="@color/black_with_opacity_5"
+                        android:gravity="center"
+                        android:maxLength="1" />
+
+                    <EditText
+                        android:id="@+id/et_3"
+                        android:layout_width="@dimen/_36sdp"
+                        android:layout_height="@dimen/_46sdp"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:background="@drawable/drawable_shape_8sdp"
+                        android:backgroundTint="@color/black_with_opacity_5"
+                        android:gravity="center"
+                        android:maxLength="1" />
+
+                    <EditText
+                        android:id="@+id/et_4"
+                        android:layout_width="@dimen/_36sdp"
+                        android:layout_height="@dimen/_46sdp"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:background="@drawable/drawable_shape_8sdp"
+                        android:backgroundTint="@color/black_with_opacity_5"
+                        android:gravity="center"
+                        android:maxLength="1" />
+
+                    <EditText
+                        android:id="@+id/et_5"
+                        android:layout_width="@dimen/_36sdp"
+                        android:layout_height="@dimen/_46sdp"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:background="@drawable/drawable_shape_8sdp"
+                        android:backgroundTint="@color/black_with_opacity_5"
+                        android:gravity="center"
+                        android:maxLength="1" />
+
+                    <EditText
+                        android:id="@+id/et_6"
+                        android:layout_width="@dimen/_36sdp"
+                        android:layout_height="@dimen/_46sdp"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:background="@drawable/drawable_shape_8sdp"
+                        android:backgroundTint="@color/black_with_opacity_5"
+                        android:gravity="center"
+                        android:maxLength="1" />
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:background="@color/white"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:paddingBottom="@dimen/_8sdp">
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/outfit_light"
+                        android:text="@string/didn_t_receive_the_otp"
+                        android:textColor="@color/text_color_3"
+                        android:textSize="@dimen/_12ssp" />
+
+                    <TextView
+                        android:id="@+id/tv_log_in"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_4sdp"
+                        android:fontFamily="@font/outfit_semibold"
+                        android:padding="@dimen/_4sdp"
+                        android:text="@string/resend_code"
+                        android:textColor="@color/color_primary"
+                        android:textSize="@dimen/_12ssp" />
+
+                </LinearLayout>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_submit"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_50sdp"
+                    android:layout_marginStart="@dimen/_20sdp"
+                    android:layout_marginTop="@dimen/_24sdp"
+                    android:layout_marginEnd="@dimen/_20sdp"
+                    android:fontFamily="@font/outfit_semibold"
+                    android:text="@string/submit"
+                    android:textAllCaps="false"
+                    android:textSize="@dimen/_14ssp"
+                    app:cornerRadius="@dimen/_8sdp" />
+
+
+            </LinearLayout>
+
+            <com.agrawalsuneet.loaderspack.loaders.PulseLoader
+                android:id="@+id/loader"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true"
+                android:backgroundTint="@color/color_primary"
+                android:clickable="true"
+                android:focusable="true"
+                android:visibility="gone"
+                app:pulse_LineThickness="@dimen/_2sdp"
+                app:pulse_normalIncrementalValue="3"
+                app:pulse_pulseColor="@color/color_primary"
+                app:pulse_pulseIncrementalValue="3"
+                app:pulse_sideLength="@dimen/_20sdp" />
+        </RelativeLayout>
+    </ScrollView>
+</layout>

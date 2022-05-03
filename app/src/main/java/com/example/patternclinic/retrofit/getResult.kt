@@ -5,6 +5,7 @@ import retrofit2.Response
 
 suspend fun <T> getResult(call: suspend () -> Response<T>, apiType:String): ResponseResult<ResponseWrapper<Any>> {
     try {
+
         val response = call()
         if (response.isSuccessful && (response.code() == 200 || response.code() == 201)) {
             val body = response.body()

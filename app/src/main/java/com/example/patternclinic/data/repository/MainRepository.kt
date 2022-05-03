@@ -13,17 +13,14 @@ import javax.inject.Inject
 
 class MainRepository @Inject constructor(private val apiHelper: ApiHelper) {
 
-    suspend fun login(map: HashMap<String, Any>): Response<LoginResponse> =
-        apiHelper.login(map)
+    suspend fun login(map: HashMap<String, Any>): Response<LoginResponse> = apiHelper.login(map)
 
-    suspend fun forgotPassword(@Body map: HashMap<String, Any>): Response<ForgotPasswordResponse> =
-        apiHelper.forgotPassword(map)
-
-    suspend fun resetPassword(@Body map: HashMap<String, Any>): Response<ResetPasswordResponse> =
-        apiHelper.resetPassword(map)
-
+    suspend fun forgotPassword(@Body map: HashMap<String, Any>): Response<ForgotPasswordResponse> = apiHelper.forgotPassword(map)
+    suspend fun resetPassword(@Body map: HashMap<String, Any>): Response<ResetPasswordResponse> = apiHelper.resetPassword(map)
     suspend fun updateProfile(@Body map: HashMap<String, Any>):Response<UpdateProfileResponse> =  apiHelper.updateProfile(map)
     suspend fun getCoachList(@Body map: HashMap<String, Any>): Response<CoachProviderListResponse> = apiHelper.getCoachList(map)
     suspend fun getDoctorList(@Body map: HashMap<String, Any>): Response<CoachProviderListResponse> = apiHelper.getDoctorList(map)
     suspend fun selectApTeam(@Body map: HashMap<String, Any>): Response<UpdateProfileResponse> = apiHelper.selectApTeam(map)
+    suspend fun signUp(@Body map: HashMap<String, Any>):Response<ForgotPasswordResponse> = apiHelper.signUp(map)
+    suspend fun sendOtp(@Body map: HashMap<String, Any>):Response<ForgotPasswordResponse> = apiHelper.sendOtp(map)
 }

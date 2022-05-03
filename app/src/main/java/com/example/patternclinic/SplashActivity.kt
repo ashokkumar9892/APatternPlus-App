@@ -8,6 +8,7 @@ import android.os.Looper
 import android.view.Window
 import android.view.WindowManager
 import com.example.patternclinic.auth.CreateProfile
+import com.example.patternclinic.auth.createProfile.OtpActivity
 import com.example.patternclinic.home.HomeScreenActivity
 import com.example.patternclinic.introScreen.IntroScreen
 import com.example.patternclinic.selectTeam.SelectPatternPlusTeam
@@ -30,10 +31,10 @@ class SplashActivity : AppCompatActivity() {
         setContentView(R.layout.activity_splash)
         Handler(Looper.getMainLooper()).postDelayed(Runnable {
 
-//            startActivity(Intent(this, IntroScreen::class.java))
-//            startActivity(Intent(this, CreateProfile::class.java))
+            startActivity(Intent(this, IntroScreen::class.java))
+//            startActivity(Intent(this, OtpActivity::class.java))
 //            startActivity(Intent(this, ConnectDeviceActivity::class.java))
-            startActivity(Intent(this, HomeScreenActivity::class.java))
+//            startActivity(Intent(this, HomeScreenActivity::class.java))
 
 //            startActivity(Intent(this, SelectPatternPlusTeam::class.java))
             finish()

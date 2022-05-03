@@ -24,6 +24,8 @@ class ApiHelperImpl @Inject constructor(private val apiService: ApiService) : Ap
     override suspend fun getCoachList(map: HashMap<String, Any>): Response<CoachProviderListResponse> = apiService.getCoachList(map)
     override suspend fun getDoctorList(map: HashMap<String, Any>): Response<CoachProviderListResponse> = apiService.getDoctorList(map)
     override suspend fun selectApTeam(map: HashMap<String, Any>): Response<UpdateProfileResponse> = apiService.selectApTeam(map)
+    override suspend fun signUp(map: HashMap<String, Any>): Response<ForgotPasswordResponse> = apiService.signUp(map)
+    override suspend fun sendOtp(map: HashMap<String, Any>): Response<ForgotPasswordResponse> = apiService.sendOtp(map)
 
 
 }
