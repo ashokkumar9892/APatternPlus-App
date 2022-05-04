@@ -9,6 +9,10 @@ import com.example.patternclinic.databinding.ActivityChatBinding
 import com.example.patternclinic.utils.showToast
 import com.google.gson.Gson
 import com.google.gson.JsonObject
+import com.microsoft.signalr.Action
+import com.microsoft.signalr.Action1
+import com.microsoft.signalr.HubConnection
+import com.microsoft.signalr.HubConnectionBuilder
 import com.smartarmenia.dotnetcoresignalrclientjava.HubConnectionListener
 import com.smartarmenia.dotnetcoresignalrclientjava.HubEventListener
 import com.smartarmenia.dotnetcoresignalrclientjava.HubMessage
@@ -18,9 +22,10 @@ import java.lang.Exception
 
 class ChatActivity : AppCompatActivity(), HubConnectionListener, HubEventListener {
     lateinit var binding: ActivityChatBinding
-    lateinit var connection: WebSocketHubConnectionP2
-    var chatList= mutableListOf<String>()
-    lateinit var chatAdapter:ChatAdapter
+//    lateinit var connection: WebSocketHubConnectionP2
+    var chatList = mutableListOf<String>()
+    lateinit var chatAdapter: ChatAdapter
+    var connection2: HubConnection? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_chat)
@@ -28,21 +33,30 @@ class ChatActivity : AppCompatActivity(), HubConnectionListener, HubEventListene
             finish()
         }
         clicks()
-        chatAdapter= ChatAdapter(chatList)
-        binding.rvMessages.adapter=chatAdapter
+        chatAdapter = ChatAdapter(chatList)
+        binding.rvMessages.adapter = chatAdapter
 
         var url = "https://patternclinicapis.harishparas.com/ChatHub"
+        connection2 = HubConnectionBuilder.create(url).build()
 
-        connection = WebSocketHubConnectionP2(
-            url, ""
-        )
-        connection.addListener(this)
-        connection.subscribeToEvent(
-            "SendMessages", this
-        )
-        connection.connect()
+        connection2!!.start().blockingAwait()
+
+        connection2!!.on("ReceiveMessage",object :Action1<String>{
+            override fun invoke(param1: String?) {
+                showToast(param1.toString())
+
+            }
+        },String::class.java)
 
 
+//        connection = WebSocketHubConnectionP2(
+//            url, ""
+//        )
+//        connection.addListener(this)
+//        connection.subscribeToEvent(
+//            "ReceiveMessage", this
+//        )
+//        connection.connect()
     }
 
     private fun clicks() {
@@ -51,21 +65,25 @@ class ChatActivity : AppCompatActivity(), HubConnectionListener, HubEventListene
                 var json = JSONObject()
                 json.put(ApiConstants.APIParams.SENDER_SK.value, "PATIENT_1650001697567")
                 json.put(ApiConstants.APIParams.RECEIVER_SK.value, "PATIENT_1645611610498")
-                json.put(ApiConstants.APIParams.MESSAGE_TYPE.value, "Location")
+                json.put(ApiConstants.APIParams.MESSAGE_TYPE.value, "Text")
                 json.put(ApiConstants.APIParams.MESSAGE.value, "hello")
                 json.put(
                     ApiConstants.APIParams.AUTH_TOKEN.value,
-                    "eyJraWQiOiI3UGloR0p3MFlcL1dxdDRuSnMxQ0x0R2syOUZGYTZiSEhZVXpwNUY3N3Zlaz0iLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJhZjIxNDFkMi0wMGU0LTQ4ZDItODZlZi1hZGEwOGE3YmNlOWMiLCJlbWFpbF92ZXJpZmllZCI6ZmFsc2UsImlzcyI6Imh0dHBzOlwvXC9jb2duaXRvLWlkcC51cy13ZXN0LTIuYW1hem9uYXdzLmNvbVwvdXMtd2VzdC0yXzVBMUI4dExjOSIsImNvZ25pdG86dXNlcm5hbWUiOiJhcHBzZGV2ZWxvcGVyMjJAZ21haWwuY29tIiwib3JpZ2luX2p0aSI6IjE0ZTU0NjA0LTZkYzAtNDQzZC04ODNjLWM0NmY5MmJkYjJkOSIsImF1ZCI6IjJncTBkN2k3YTZydWwwcTBhaTdsN2RzaWRzIiwiZXZlbnRfaWQiOiJjOThlYzEwZi1iNzkyLTQ5NzUtOTI2YS1iNTY3NWMyZmZlOTYiLCJ0b2tlbl91c2UiOiJpZCIsImF1dGhfdGltZSI6MTY1MTQ3MzIyOSwiZXhwIjoxNjUxNDc2ODI5LCJpYXQiOjE2NTE0NzMyMjksImp0aSI6ImM3OGIyNTI3LTE4OTctNDk1My1iYTdhLWU4NTQ2N2IzZDllMCIsImVtYWlsIjoiYXBwc2RldmVsb3BlcjIyQGdtYWlsLmNvbSJ9.JYGTBeGisLb1sX017TvmPcxgQDo6uHJ0MYcm8gEP8lel_0Y8VprDGvkfv8TqGYBT-ZBl9rjLZoqEm0wdKAWjguNpOmOz42-kemjHgDEhAQSvRb3sivZoXVFijClHD9Bt4By-xulaWy4IBYfCeBjZzI1kMYakIgYRsdNNEj9hL1CmticTn5eklUjFKeALuEkKdRCGJ_0nj4BvSAT23pu7f_Y_wvMby8L1nCUfk6Cbf2Ap8gg-Uf2hNWnNZUx88sxksG1c98tYqjvyKAhgoVFcJ6vOyPEh8gmL9T6BOmwy-zxnyw7Dm9vYTBuHoD_bj1rD1Tjdh5MbGgqbc-v84CsFkw"
+                    "eyJraWQiOiI3UGloR0p3MFlcL1dxdDRuSnMxQ0x0R2syOUZGYTZiSEhZVXpwNUY3N3Zlaz0iLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJhZjIxNDFkMi0wMGU0LTQ4ZDItODZlZi1hZGEwOGE3YmNlOWMiLCJlbWFpbF92ZXJpZmllZCI6ZmFsc2UsImlzcyI6Imh0dHBzOlwvXC9jb2duaXRvLWlkcC51cy13ZXN0LTIuYW1hem9uYXdzLmNvbVwvdXMtd2VzdC0yXzVBMUI4dExjOSIsImNvZ25pdG86dXNlcm5hbWUiOiJhcHBzZGV2ZWxvcGVyMjJAZ21haWwuY29tIiwib3JpZ2luX2p0aSI6ImQ0YjA2OTUwLThiOWYtNGU2OS1hMzY5LWViOGExOWE5MzQwMyIsImF1ZCI6IjJncTBkN2k3YTZydWwwcTBhaTdsN2RzaWRzIiwiZXZlbnRfaWQiOiI0MGZmMzBmNS1jMDE2LTRmYWMtYTllMC1jOTBhZWQzZDcwZjYiLCJ0b2tlbl91c2UiOiJpZCIsImF1dGhfdGltZSI6MTY1MTY2NjYxNCwiZXhwIjoxNjUxNjcwMjE0LCJpYXQiOjE2NTE2NjY2MTQsImp0aSI6IjExYWM4Y2RjLWM4MDUtNDA4NS1iZDMyLTY4NzZlMWM0ZjAwMCIsImVtYWlsIjoiYXBwc2RldmVsb3BlcjEyM0BnbWFpbC5jb20ifQ.UntgG1191IlCfLkoduKUCTrHNOcDyb_8ZoQ-BBmDDFWANE-4JjAia9BBUoKyjYbSShjboTVQ2_IkJ6dDzTXlGbDoqU4uVv9jlXcBRMO68iSBm7BzFfHuaWZmt-YJ_8p7mxxaNnWpmm5PLOAgniRPuvnZ1bg-WqRTKdiK766cpvnhUrtqvnvFQMrrA0VKQaDW0lZA9jNhGUuaUtMDYzzl77w6XP2bYn9Pdtnb7_taQpIz4zRh9XXKbcFNEfW4YP8Muhp3Fn2u3yS_52WgYS2xdFIlAKiKMVn2eKvEnp7twHbNlFOVQGSMrKxKxz14a2X0g00q_N5bb0WH6pMbyJ-WWA"
                 )
                 try {
-//                    connection.invoke("SendMessages", Gson().toJson(json))
-                    connection.invoke("SendMessages", json)
+//                    connection.invoke("SendMessages", json)
+                    connection2!!.send("SendMessages", json)
+//
+//                    showToast(connection2!!.connectionState.toString())
+////                    connection.invoke("SendMessages", json)
                     chatList.add(binding.etMessage.text.toString().trim())
                     chatAdapter.notifyDataSetChanged()
                 } catch (e: Exception) {
                     showToast(e.toString())
                 }
             }
+
         }
     }
 
@@ -73,7 +91,7 @@ class ChatActivity : AppCompatActivity(), HubConnectionListener, HubEventListene
         super.onPause()
         //connection.removeListener(this)
         //connection.unSubscribeFromEvent("SendMessages", this)
-       // connection.disconnect()
+        // connection.disconnect()
 
     }
 

@@ -77,6 +77,7 @@
 
                     <EditText
                         android:id="@+id/et_1"
+                        android:inputType="number"
                         android:layout_width="@dimen/_36sdp"
                         android:layout_height="@dimen/_46sdp"
                         android:background="@drawable/drawable_shape_8sdp"
@@ -87,6 +88,7 @@
                     <EditText
                         android:id="@+id/et_2"
                         android:layout_width="@dimen/_36sdp"
+                        android:inputType="number"
                         android:layout_height="@dimen/_46sdp"
                         android:layout_marginStart="@dimen/_10sdp"
                         android:background="@drawable/drawable_shape_8sdp"
@@ -96,6 +98,7 @@
 
                     <EditText
                         android:id="@+id/et_3"
+                        android:inputType="number"
                         android:layout_width="@dimen/_36sdp"
                         android:layout_height="@dimen/_46sdp"
                         android:layout_marginStart="@dimen/_10sdp"
@@ -106,6 +109,7 @@
 
                     <EditText
                         android:id="@+id/et_4"
+                        android:inputType="number"
                         android:layout_width="@dimen/_36sdp"
                         android:layout_height="@dimen/_46sdp"
                         android:layout_marginStart="@dimen/_10sdp"
@@ -116,6 +120,7 @@
 
                     <EditText
                         android:id="@+id/et_5"
+                        android:inputType="number"
                         android:layout_width="@dimen/_36sdp"
                         android:layout_height="@dimen/_46sdp"
                         android:layout_marginStart="@dimen/_10sdp"
@@ -126,6 +131,7 @@
 
                     <EditText
                         android:id="@+id/et_6"
+                        android:inputType="number"
                         android:layout_width="@dimen/_36sdp"
                         android:layout_height="@dimen/_46sdp"
                         android:layout_marginStart="@dimen/_10sdp"

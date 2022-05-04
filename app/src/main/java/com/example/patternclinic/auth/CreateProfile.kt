@@ -14,15 +14,12 @@ class CreateProfile : BaseActivity() {
     companion object {
         lateinit var binding: ActivityCreateProfileBinding
         var activity=this
-        var newUser=0
-    }
 
+    }
     val updateProfileViewModel: UpdateProfileViewModel by viewModels()
 
     override fun binding() {
-        if(intent.hasExtra(Keys.NEW_USER)){
-            newUser=1
-        }
+
         binding = DataBindingUtil.setContentView(this, R.layout.activity_create_profile)
         binding.viewModel = updateProfileViewModel
         binding.tvChatBot.setOnClickListener {

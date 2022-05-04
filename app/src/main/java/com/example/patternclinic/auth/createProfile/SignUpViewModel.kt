@@ -7,6 +7,7 @@ import com.example.patternclinic.R
 import com.example.patternclinic.auth.LoginActivity
 import com.example.patternclinic.base.BaseViewModel
 import com.example.patternclinic.data.model.ForgotPasswordResponse
+import com.example.patternclinic.data.model.LoginResponse
 import com.example.patternclinic.data.model.ResetPasswordResponse
 import com.example.patternclinic.data.repository.MainRepository
 import com.example.patternclinic.databinding.ActivitySignupBinding
@@ -21,7 +22,7 @@ import javax.inject.Inject
 @HiltViewModel
 class SignUpViewModel @Inject constructor(val mainRepository: MainRepository) : BaseViewModel() {
     var signUpResponse = MutableLiveData<ForgotPasswordResponse>()
-    var otpResponse = MutableLiveData<ForgotPasswordResponse>()
+    var otpResponse = MutableLiveData<LoginResponse>()
     var binding: ActivitySignupBinding? = null
 
 
@@ -94,7 +95,7 @@ class SignUpViewModel @Inject constructor(val mainRepository: MainRepository) : 
             val result = getResult({ mainRepository.sendOtp(map) }, "sendOtp")
             when (result) {
                 is ResponseResult.SUCCESS -> {
-                    val response = (result.result.data as ForgotPasswordResponse)
+                    val response = (result.result.data as LoginResponse)
 
                     otpResponse.postValue(response)
                 }

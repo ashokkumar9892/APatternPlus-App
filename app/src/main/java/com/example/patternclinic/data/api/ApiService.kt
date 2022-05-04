@@ -40,7 +40,7 @@ interface ApiService {
     suspend fun signUp(@Body map: HashMap<String, Any>):Response<ForgotPasswordResponse>
 
     @POST(ApiConstants.OTP)
-    suspend fun sendOtp(@Body map: HashMap<String, Any>):Response<ForgotPasswordResponse>
+    suspend fun sendOtp(@Body map: HashMap<String, Any>):Response<LoginResponse>
 
 
 

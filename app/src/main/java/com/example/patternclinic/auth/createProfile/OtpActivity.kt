@@ -1,5 +1,6 @@
 package com.example.patternclinic.auth.createProfile
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.KeyEvent
@@ -9,10 +10,12 @@ import androidx.core.content.ContextCompat
 import androidx.core.widget.addTextChangedListener
 import androidx.databinding.DataBindingUtil
 import com.example.patternclinic.R
+import com.example.patternclinic.auth.CreateProfile
 import com.example.patternclinic.base.BaseActivity
 import com.example.patternclinic.data.ApiConstants
 import com.example.patternclinic.databinding.ActivityOtpBinding
 import com.example.patternclinic.utils.Keys
+import com.example.patternclinic.utils.SharedPrefs
 import com.example.patternclinic.utils.showToast
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -36,6 +39,8 @@ class OtpActivity : BaseActivity(), View.OnKeyListener {
         viewModel.otpResponse.observe(this) {
             if (it.response == 1) {
                 showToast(it.errorMessage)
+                SharedPrefs.saveLoggedInUser(it)
+                startActivity(Intent(this, CreateProfile::class.java))
             } else {
                 showToast(it.errorMessage)
             }

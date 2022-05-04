@@ -48,10 +48,10 @@ class UpdateProfileViewModel @Inject constructor(val mainRepository: MainReposit
     var activity = CreateProfile.activity
 
     init {
-        if (CreateProfile.newUser == 0) {
+
             if (SharedPrefs.getLoggedInUser() != null) {
                 userData = SharedPrefs.getLoggedInUser()
-                if (userData!!.patientInfo.email.isNotEmpty()) {
+                if (!userData!!.patientInfo.email.isNullOrEmpty()) {
                     email.set(userData!!.patientInfo.userName)
                 }
                 if (!userData!!.patientInfo.firstName.isNullOrEmpty()) {
@@ -85,7 +85,6 @@ class UpdateProfileViewModel @Inject constructor(val mainRepository: MainReposit
                     binding.ivUserImage.setImageBitmap(decodedByte)
                 }
             }
-        }
     }
 
 
@@ -138,13 +137,13 @@ class UpdateProfileViewModel @Inject constructor(val mainRepository: MainReposit
             R.id.tv_continue_create_profile -> {
                 if (validate(v)) {
                     val map = HashMap<String, Any>()
-                    map[ApiConstants.APIParams.EMAIL.value] = userData!!.patientInfo.email
+                    map[ApiConstants.APIParams.EMAIL.value] = email.get()?.trim().toString()
                     map[ApiConstants.APIParams.FIRST_NAME.value] =
                         firstName.get()?.trim().toString()
                     map[ApiConstants.APIParams.LAST_NAME.value] = lastName.get()?.trim().toString()
                     map[ApiConstants.APIParams.COUNTRY.value] = country.get()?.trim().toString()
                     map.put(ApiConstants.APIParams.AUTH_TOKEN.value, userData!!.authToken)
-                    map.put(ApiConstants.APIParams.USER_NAME.value, email.get()?.trim().toString())
+                    map.put(ApiConstants.APIParams.USER_NAME.value, userData!!.patientInfo.userName)
                     map.put(ApiConstants.APIParams.SK.value, userData!!.patientInfo.sk)
                     //todo change this after
 

@@ -35,6 +35,7 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+
 }
 
 dependencies {
@@ -117,6 +118,8 @@ dependencies {
 
     //signal R
     implementation 'com.smartarmenia:dotnetcoresignalrclientjava:1.14'
+    implementation 'com.microsoft.signalr:signalr:1.0.0'
+    implementation 'org.slf4j:slf4j-jdk14:1.7.25'
     //pin view library
     implementation 'io.github.chaosleung:pinview:1.4.4'
 //    implementation 'com.kevinschildhorn.otpview.OTPView'
