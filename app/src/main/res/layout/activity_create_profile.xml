@@ -72,12 +72,12 @@
                 <EditText
                     android:id="@+id/et_email"
                     android:layout_width="match_parent"
-
                     android:layout_height="@dimen/_38sdp"
                     android:layout_marginTop="@dimen/_8sdp"
                     android:background="@drawable/drawable_shape_login_2"
                     android:backgroundTint="@color/color_primary_with_opacity_8"
                     android:fontFamily="@font/outfit_regular"
+                    android:inputType="textEmailAddress"
                     android:paddingStart="@dimen/_14sdp"
                     android:paddingEnd="@dimen/_14sdp"
                     android:text="@={viewModel.email}"

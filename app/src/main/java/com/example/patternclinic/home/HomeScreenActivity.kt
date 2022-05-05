@@ -32,11 +32,10 @@ import com.inuker.bluetooth.library.channel.Code
 import com.veepoo.protocol.VPOperateManager
 import com.veepoo.protocol.listener.base.IBleWriteResponse
 import com.veepoo.protocol.listener.data.*
-import com.veepoo.protocol.model.datas.BreathData
-import com.veepoo.protocol.model.datas.FunctionSocailMsgData
-import com.veepoo.protocol.model.datas.HeartData
-import com.veepoo.protocol.model.datas.Spo2hData
+import com.veepoo.protocol.model.datas.*
+import com.veepoo.protocol.model.enums.EBPDetectModel
 import com.veepoo.protocol.model.enums.EFunctionStatus
+import com.veepoo.protocol.model.enums.ESportType
 import com.veepoo.protocol.model.settings.CustomSetting
 import com.veepoo.protocol.model.settings.CustomSettingData
 
@@ -80,75 +79,55 @@ class HomeScreenActivity : AppCompatActivity(), IBleWriteResponse {
             isOpenAutoHRV,
             isOpenDisconnectRemind
         )
-        VPOperateManager.getMangerInstance(this).confirmDevicePwd(this, IPwdDataListener {
-                                                                                         showToast(it.toString())
+        VPOperateManager.getMangerInstance(this)
+            .changeCustomSetting(this, ICustomSettingDataListener {
+                showToast(it.autoHeartDetect.toString())
+            },customSetting)
 
-        }, IDeviceFuctionDataListener {
-                                      showToast(it.toString())
-
-        },object : ISocialMsgDataListener{
-            override fun onSocialMsgSupportDataChange(p0: FunctionSocailMsgData?) {
-
-                showToast(p0.toString())
+        binding!!.llTest.setOnClickListener {
+            VPOperateManager.getMangerInstance(this).startDetectHeart(this) {
+                showToast(it.toString())
             }
-
-            override fun onSocialMsgSupportDataChange2(p0: FunctionSocailMsgData?) {
-                showToast(p0.toString())
-            }
-        },"0000",false)
-
-//        VPOperateManager.getMangerInstance(this)?.startDetectSPO2H({
-//            Log.d("B360DeviceTag","Got O2 Response $it")
-//            showToast("sp")
-//            Code.SUCCESS
-//        },{
-//            Log.d("B360DeviceTag","Got o2 data ${it.rateValue} with state ${it.spState} and progress ${it.checkingProgress}")
-//        },{
-//            Log.d("B360DeviceTag","Got readings $it")
-//            showToast("spo02 ind"+ it.toString())
-//        })
-//
-//        VPOperateManager.getMangerInstance(this).changeCustomSetting(
-//            this,
-//            object : ICustomSettingDataListener {
-//                override fun OnSettingDataChange(p0: CustomSettingData?) {
-//                    showToast("woring")
-//
+        }
+        binding!!.ivUserImage.setOnClickListener {
+//            VPOperateManager.getMangerInstance(this).readSportStep(this) {
+//                showToast(it.toString())
+//            }
+//            VPOperateManager.getMangerInstance(this).startSportModel(this,object :ISportModelStateListener{
+//                override fun onSportModelStateChange(p0: SportModelStateData?) {
+//                    showToast(p0.toString())
 //
 //                }
-//            }, customSetting
-//        )
 //
-//        VPOperateManager.getMangerInstance(this).startDetectHeart(this) {
-//            showToast(it.toString())
-//        }
-////
-//        VPOperateManager.getMangerInstance(this).startDetectBreath(object : IBleWriteResponse {
-//            override fun onResponse(p0: Int) {
+//                override fun onSportStopped() {
 //
+//                }
+//            })
+
+
+            VPOperateManager.getMangerInstance(this).startMultSportModel(this,object :ISportModelStateListener{
+                override fun onSportModelStateChange(p0: SportModelStateData?) {
+                    showToast(p0.toString())
+
+                }
+
+                override fun onSportStopped() {
+
+                }
+            },ESportType.OUTDOOR_WALK)
+//            VPOperateManager.getMangerInstance(this).startDetectBP(this,object :IBPDetectDataListener{
+//                override fun onDataChange(p0: BpData?) {
+//                    showToast(p0.toString())
 //
-//            }
-//        }, object : IBreathDataListener {
-//            override fun onDataChange(p0: BreathData?) {
-//
-//                p0
-//            }
-//
-//        })
-//        VPOperateManager.getMangerInstance(this).startDetectSPO2H(object : IBleWriteResponse {
-//            override fun onResponse(p0: Int) {
-//
-//
-//            }
-//        }, object : ISpo2hDataListener {
-//            override fun onSpO2HADataChange(p0: Spo2hData?) {
-//                p0
-//                showToast(p0!!.rateValue.toString())
-//            }
-//        }
-//        )
-//
-        HeartData().heartStatus
+//                }
+//            },EBPDetectModel.DETECT_MODEL_PRIVATE)
+        }
+        binding!!.tvUserName.setOnClickListener {
+            VPOperateManager.getMangerInstance(this).startDetectSPO2H(this) {
+                showToast(it.toString())
+            }
+        }
+
     }
 
 
@@ -253,6 +232,6 @@ class HomeScreenActivity : AppCompatActivity(), IBleWriteResponse {
     }
 
     override fun onResponse(p0: Int) {
-showToast(p0.toString() )
+        showToast(p0.toString())
     }
 }

@@ -64,6 +64,7 @@
         <entry key="app/src/main/res/layout/activity_create_profile_height.xml" value="0.26197916666666665" />
         <entry key="app/src/main/res/layout/activity_create_profile_weight.xml" value="0.2625" />
         <entry key="app/src/main/res/layout/activity_forgot_password.xml" value="0.24010416666666667" />
+        <entry key="app/src/main/res/layout/activity_home_screen.xml" value="0.24010416666666667" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.33" />
         <entry key="app/src/main/res/layout/activity_otp.xml" value="0.22" />
         <entry key="app/src/main/res/layout/activity_select_pattern_plus_team.xml" value="0.25" />

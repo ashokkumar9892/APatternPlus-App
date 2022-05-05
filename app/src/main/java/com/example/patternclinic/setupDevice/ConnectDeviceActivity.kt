@@ -28,7 +28,15 @@ import com.inuker.bluetooth.library.utils.BluetoothUtils
 import com.veepoo.protocol.VPOperateManager
 import com.veepoo.protocol.listener.base.IABleConnectStatusListener
 import com.veepoo.protocol.listener.base.IABluetoothStateListener
+import com.veepoo.protocol.listener.base.IBleWriteResponse
+import com.veepoo.protocol.listener.data.ICustomSettingDataListener
+import com.veepoo.protocol.listener.data.IDeviceFuctionDataListener
+import com.veepoo.protocol.listener.data.IPwdDataListener
+import com.veepoo.protocol.listener.data.ISocialMsgDataListener
+import com.veepoo.protocol.model.datas.FunctionSocailMsgData
+import com.veepoo.protocol.model.enums.EFunctionStatus
 import com.veepoo.protocol.model.enums.ELanguage
+import com.veepoo.protocol.model.settings.CustomSettingData
 import no.nordicsemi.android.support.v18.scanner.BluetoothLeScannerCompat
 
 
@@ -205,25 +213,43 @@ class ConnectDeviceActivity : AppCompatActivity(), OnItemClicked {
             }, { state ->
                 if (state == Code.REQUEST_SUCCESS) {
                     //蓝牙与设备的连接状态
-                    vpo.settingDeviceLanguage(
-                        {
-//                            showToast("writeResponse")
-                        }, {
-                            var message = "设置语言(英文):\n$it";
-                            sendMsg(message, 1)
-                        }, ELanguage.ENGLISH
-                    )
+                    vpo.confirmDevicePwd(object : IBleWriteResponse {
+                        override fun onResponse(p0: Int) {
 
+                        }
+                    }, IPwdDataListener {
+
+                    }, IDeviceFuctionDataListener {
+
+                    }, object : ISocialMsgDataListener {
+                        override fun onSocialMsgSupportDataChange(p0: FunctionSocailMsgData?) {
+
+
+                        }
+
+                        override fun onSocialMsgSupportDataChange2(p0: FunctionSocailMsgData?) {
+
+                        }
+                    }, object : ICustomSettingDataListener {
+                        override fun OnSettingDataChange(p0: CustomSettingData?) {
+                            p0!!.autoHeartDetect = EFunctionStatus.SUPPORT
+                            p0!!.autoBpDetect = EFunctionStatus.SUPPORT
+                            p0.autoHrv = EFunctionStatus.SUPPORT
+                            p0!!.autoTemperatureDetect = EFunctionStatus.SUPPORT
+                            p0!!.lowSpo2hRemain = EFunctionStatus.SUPPORT
+
+                        }
+                    }, "0000", false)
 
                     binding!!.loader.visibility = View.GONE
 
 
-                        binding!!.layoutConnected.visibility = View.VISIBLE
-//                        val intent = Intent(this, SelectPatternPlusTeam::class.java)
-                        val intent = Intent(this, HomeScreenActivity::class.java)
-                        startActivity(intent)
-                        finishAffinity()
 
+                    binding!!.layoutConnected.visibility = View.VISIBLE
+//                        val intent = Intent(this, SelectPatternPlusTeam::class.java)
+                    val intent = Intent(this, HomeScreenActivity::class.java)
+                    startActivity(intent)
+                    finishAffinity()
 
 
 //                    intent.putExtra("isoadmodel", mIsOadModel)

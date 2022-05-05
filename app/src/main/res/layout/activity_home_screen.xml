@@ -52,12 +52,14 @@
                             android:orientation="horizontal">
 
                             <com.google.android.material.imageview.ShapeableImageView
+                                android:id="@+id/iv_user_image"
                                 android:layout_width="@dimen/_36sdp"
                                 android:layout_height="@dimen/_36sdp"
                                 app:shapeAppearanceOverlay="@style/shape_50"
                                 app:srcCompat="@drawable/user_img" />
 
                             <TextView
+                                android:id="@+id/tv_user_name"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="@dimen/_12sdp"
@@ -200,6 +202,7 @@
                     </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/ll_test"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/_20sdp"
