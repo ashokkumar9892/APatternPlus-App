@@ -246,8 +246,8 @@ class ConnectDeviceActivity : AppCompatActivity(), OnItemClicked {
 
 
                     binding!!.layoutConnected.visibility = View.VISIBLE
-//                        val intent = Intent(this, SelectPatternPlusTeam::class.java)
-                    val intent = Intent(this, HomeScreenActivity::class.java)
+                        val intent = Intent(this, SelectPatternPlusTeam::class.java)
+//                    val intent = Intent(this, HomeScreenActivity::class.java)
                     startActivity(intent)
                     finishAffinity()
 

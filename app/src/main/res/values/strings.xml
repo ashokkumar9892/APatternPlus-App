@@ -208,4 +208,10 @@
         <item>Others</item>
     </string-array>
 
+    <string-array name="locations">
+        <item>Select Location</item>
+        <item>5545 Little Debbie Pkwy, Ooltewah, TN 37363, United States</item>
+
+    </string-array>
+
 </resources>

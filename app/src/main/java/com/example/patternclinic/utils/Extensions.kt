@@ -230,3 +230,12 @@ fun dateConvert_5(type: String): String {
     val result = output.format(date)
     return result
 }
+
+fun dateConvert_6(type: String): String {
+    val output = SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH)
+    val input = SimpleDateFormat("dd-MMM-yyyy", Locale.ENGLISH)
+    val date = input.parse(type)
+    val result = output.format(date)
+    return result
+}
+

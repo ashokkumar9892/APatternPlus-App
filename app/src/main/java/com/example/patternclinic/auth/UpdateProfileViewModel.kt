@@ -26,6 +26,7 @@ import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.FileInputStream
 import java.io.FileNotFoundException
+import java.lang.Exception
 import java.util.*
 import javax.inject.Inject
 
@@ -49,31 +50,32 @@ class UpdateProfileViewModel @Inject constructor(val mainRepository: MainReposit
 
     init {
 
-            if (SharedPrefs.getLoggedInUser() != null) {
-                userData = SharedPrefs.getLoggedInUser()
-                if (!userData!!.patientInfo.email.isNullOrEmpty()) {
-                    email.set(userData!!.patientInfo.userName)
-                }
-                if (!userData!!.patientInfo.firstName.isNullOrEmpty()) {
-                    firstName.set(userData!!.patientInfo.firstName)
-                }
-                if (!userData!!.patientInfo.lastName.isNullOrEmpty()) {
-                    lastName.set(userData!!.patientInfo.lastName)
-                }
-                if (userData!!.patientInfo.country != null) {
-                    country.set(userData!!.patientInfo.country.toString())
-                }
-                if (!userData!!.patientInfo.dob.isNullOrEmpty()) {
+        if (SharedPrefs.getLoggedInUser() != null) {
+            userData = SharedPrefs.getLoggedInUser()
+            if (!userData!!.patientInfo.userName.isNullOrEmpty()) {
+                email.set(userData!!.patientInfo.userName)
+            }
+            if (!userData!!.patientInfo.firstName.isNullOrEmpty()) {
+                firstName.set(userData!!.patientInfo.firstName)
+            }
+            if (!userData!!.patientInfo.lastName.isNullOrEmpty()) {
+                lastName.set(userData!!.patientInfo.lastName)
+            }
+            if (userData!!.patientInfo.country != null) {
+                country.set(userData!!.patientInfo.country.toString())
+            }
+            if (!userData!!.patientInfo.dob.isNullOrEmpty()) {
 //                    dob.set(dateConvert_4(userData!!.patientInfo.dob!!))
-                    dob.set(userData!!.patientInfo.dob!!)
-                }
-                if (!userData!!.patientInfo.gender.isNullOrEmpty()) {
-                    gender.set(
-                        binding.root.context.resources.getStringArray(R.array.Gender)
-                            .indexOf(userData!!.patientInfo.gender)
-                    )
-                }
-                if (!userData!!.patientInfo.profilePic.isNullOrEmpty()) {
+                dob.set(userData!!.patientInfo.dob!!)
+            }
+            if (!userData!!.patientInfo.gender.isNullOrEmpty()) {
+                gender.set(
+                    binding.root.context.resources.getStringArray(R.array.Gender)
+                        .indexOf(userData!!.patientInfo.gender)
+                )
+            }
+            if (!userData!!.patientInfo.profilePic.isNullOrEmpty()) {
+                try {
                     encodedImage = userData!!.patientInfo.profilePic.replace("\n", "")
                     val decodedString =
                         Base64.decode(
@@ -83,8 +85,12 @@ class UpdateProfileViewModel @Inject constructor(val mainRepository: MainReposit
                     val decodedByte =
                         BitmapFactory.decodeByteArray(decodedString, 0, decodedString.size)
                     binding.ivUserImage.setImageBitmap(decodedByte)
+                } catch (e: Exception) {
+                    binding.root.context.showToast(e.printStackTrace().toString())
                 }
+
             }
+        }
     }
 
 
@@ -147,10 +153,11 @@ class UpdateProfileViewModel @Inject constructor(val mainRepository: MainReposit
                     map.put(ApiConstants.APIParams.SK.value, userData!!.patientInfo.sk)
                     //todo change this after
 
-                        map.put(ApiConstants.APIParams.PROFILE_PIC.value, encodedImage!!)
+                    map.put(ApiConstants.APIParams.PROFILE_PIC.value, encodedImage!!)
 
                     map[ApiConstants.APIParams.DOB.value] = dob.get()?.trim().toString()
-                    map[ApiConstants.APIParams.GENDER.value] = binding.spGender.selectedItem.toString()
+                    map[ApiConstants.APIParams.GENDER.value] =
+                        binding.spGender.selectedItem.toString()
                     binding.spGender.selectedItem
                     map.put(
                         ApiConstants.APIParams.REFER_AS.value,
@@ -221,7 +228,7 @@ class UpdateProfileViewModel @Inject constructor(val mainRepository: MainReposit
         }
         val bm = BitmapFactory.decodeStream(fis)
         val baos = ByteArrayOutputStream()
-        bm.compress(Bitmap.CompressFormat.JPEG, 50, baos)
+        bm.compress(Bitmap.CompressFormat.JPEG, 20, baos)
         val b = baos.toByteArray()
         //Base64.de
         return Base64.encodeToString(b, Base64.DEFAULT)

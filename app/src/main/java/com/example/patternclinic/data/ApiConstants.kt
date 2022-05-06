@@ -11,6 +11,8 @@ object ApiConstants {
     const val SELECT_AP_TEAM = "Basic/SelectAPTeam"
     const val SIGN_UP = "Cognito/CognitoUser"
     const val OTP = "Cognito/ConfirmOTP"
+    const val MY_CHAT_URL = "Chat/MyChat"
+    const val CHAT_HUB_URL = "https://patternclinicapis.harishparas.com/ChatHub"
 
 
     const val CONNECT_TIMEOUT = 240L //seconds
@@ -55,7 +57,6 @@ object ApiConstants {
         RECEIVER_SK("ReceiverSK"),
         MESSAGE_TYPE("MessageType"),
         MESSAGE("Message"),
-
 
     }
 

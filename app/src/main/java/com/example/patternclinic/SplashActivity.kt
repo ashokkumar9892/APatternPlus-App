@@ -13,6 +13,7 @@ import com.example.patternclinic.home.HomeScreenActivity
 import com.example.patternclinic.introScreen.IntroScreen
 import com.example.patternclinic.selectTeam.SelectPatternPlusTeam
 import com.example.patternclinic.setupDevice.ConnectDeviceActivity
+import com.example.patternclinic.utils.SharedPrefs
 import com.veepoo.protocol.VPOperateManager
 import com.veepoo.protocol.listener.base.IBleWriteResponse
 import com.veepoo.protocol.listener.data.ICustomSettingDataListener
@@ -30,13 +31,19 @@ class SplashActivity : AppCompatActivity() {
         );
         setContentView(R.layout.activity_splash)
         Handler(Looper.getMainLooper()).postDelayed(Runnable {
+            if (SharedPrefs.getLoggedInUser() != null) {
+                startActivity(Intent(this, HomeScreenActivity::class.java))
+//                startActivity(Intent(this, HomeScreenActivity::class.java))
 
-//            startActivity(Intent(this, IntroScreen::class.java))
+            } else {
+
+                startActivity(Intent(this, IntroScreen::class.java))
 //            startActivity(Intent(this, OtpActivity::class.java))
 //            startActivity(Intent(this, ConnectDeviceActivity::class.java))
-            startActivity(Intent(this, HomeScreenActivity::class.java))
+//            startActivity(Intent(this, HomeScreenActivity::class.java))
 
 //            startActivity(Intent(this, SelectPatternPlusTeam::class.java))
+            }
             finish()
 
         }, 1000)

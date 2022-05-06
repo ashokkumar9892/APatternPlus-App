@@ -17,6 +17,7 @@ import com.example.patternclinic.selectTeam.fragments.SelectTeamFragment
 import com.example.patternclinic.selectTeam.fragments.SelectTeamViewModel
 import com.example.patternclinic.utils.Keys
 import com.example.patternclinic.utils.SharedPrefs
+import com.example.patternclinic.utils.showToast
 import com.google.android.material.card.MaterialCardView
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -74,16 +75,22 @@ class SelectPatternPlusTeam : BaseActivity() {
 
 
         binding.btnSubmit.setOnClickListener {
-            map.clear()
-            map[ApiConstants.APIParams.SK.value] = SharedPrefs.getLoggedInUser()!!.patientInfo.sk
-            map[ApiConstants.APIParams.DOCTOR_ID.value] = doctorInfo!!.sk
-            map[ApiConstants.APIParams.DOCTOR_NAME.value] = doctorInfo!!.userName
-            map[ApiConstants.APIParams.COACH_ID.value] = coachInfo!!.sk
-            map[ApiConstants.APIParams.COACH_NAME.value] = coachInfo!!.userName
-            map[ApiConstants.APIParams.COUNTRY.value] = binding.ccp.selectedCountryName.toString()
-            map[ApiConstants.APIParams.AUTH_TOKEN.value] = SharedPrefs.getLoggedInUser()!!.authToken
-            selectTeamViewModel.selectTeamApi(map)
-
+            if(binding.spLocation.selectedItemPosition==0){
+                showToast("Select Location")
+            }else {
+                map.clear()
+                map[ApiConstants.APIParams.SK.value] =
+                    SharedPrefs.getLoggedInUser()!!.patientInfo.sk
+                map[ApiConstants.APIParams.DOCTOR_ID.value] = doctorInfo!!.sk
+                map[ApiConstants.APIParams.DOCTOR_NAME.value] = doctorInfo!!.userName
+                map[ApiConstants.APIParams.COACH_ID.value] = coachInfo!!.sk
+                map[ApiConstants.APIParams.COACH_NAME.value] = coachInfo!!.userName
+                map[ApiConstants.APIParams.COUNTRY.value] =
+                    binding.spLocation.selectedItem.toString()
+                map[ApiConstants.APIParams.AUTH_TOKEN.value] =
+                    SharedPrefs.getLoggedInUser()!!.authToken
+                selectTeamViewModel.selectTeamApi(map)
+            }
         }
     }
 }

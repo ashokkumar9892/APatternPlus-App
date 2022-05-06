@@ -1,71 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="@dimen/_12sdp"
-    android:layout_marginStart="@dimen/_22sdp"
-    android:layout_marginEnd="@dimen/_22sdp"
-    android:orientation="vertical">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
-        android:orientation="horizontal">
-
-        <com.google.android.material.imageview.ShapeableImageView
-            android:layout_width="@dimen/_44sdp"
-            android:layout_height="@dimen/_44sdp"
-            app:shapeAppearanceOverlay="@style/shape_50"
-            app:srcCompat="@drawable/coach_img" />
+        android:layout_marginTop="@dimen/_12sdp"
+        android:layout_marginStart="@dimen/_22sdp"
+        android:layout_marginEnd="@dimen/_22sdp"
+        android:orientation="vertical">
 
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_weight="1"
-            android:layout_height="match_parent"
-            android:layout_marginStart="@dimen/_12sdp"
-            android:orientation="vertical">
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:orientation="horizontal">
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:layout_width="@dimen/_44sdp"
+                android:id="@+id/iv_image"
+                android:layout_height="@dimen/_44sdp"
+                app:shapeAppearanceOverlay="@style/shape_50"
+                app:srcCompat="@drawable/doctor_dummy" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/_12sdp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/outfit_medium"
+                    android:gravity="center_vertical"
+                    android:text="@string/mellissa_smith"
+                    android:textColor="@color/text_color_1"
+                    android:textSize="@dimen/_15ssp" />
+
+                <TextView
+                    android:id="@+id/tv_message"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/outfit_light"
+
+                    android:text="@string/lorem_ipsum_is_a_dummy_text_2"
+                    android:textColor="@color/text_color_10"
+                    android:textSize="@dimen/_12ssp" />
+
+
+            </LinearLayout>
 
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:fontFamily="@font/outfit_medium"
-                android:gravity="center_vertical"
-                android:text="@string/mellissa_smith"
-                android:textColor="@color/text_color_1"
-                android:textSize="@dimen/_15ssp" />
+                android:id="@+id/tv_count"
+                android:layout_width="@dimen/_13sdp"
+                android:layout_height="@dimen/_13sdp"
+                android:text="2"
+                android:gravity="center"
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:fontFamily="@font/outfit_light"
-
-                android:text="@string/lorem_ipsum_is_a_dummy_text_2"
-                android:textColor="@color/text_color_10"
-                android:textSize="@dimen/_12ssp" />
-
-
+                android:layout_margin="@dimen/_4sdp"
+                android:background="@drawable/oval_shape"
+                android:layout_gravity="center_vertical"
+                android:textColor="@color/color_primary"
+                android:textSize="@dimen/_8ssp" />
         </LinearLayout>
 
-<TextView
-    android:layout_width="@dimen/_13sdp"
-    android:layout_height="@dimen/_13sdp"
-    android:text="2"
-    android:gravity="center"
-
-    android:layout_margin="@dimen/_4sdp"
-    android:background="@drawable/oval_shape"
-    android:layout_gravity="center_vertical"
-    android:textColor="@color/color_primary"
-    android:textSize="@dimen/_8ssp"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2px"
+            android:layout_marginTop="@dimen/_14sdp"
+            android:background="@color/stroke_color_1" />
     </LinearLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="2px"
-        android:layout_marginTop="@dimen/_14sdp"
-        android:background="@color/stroke_color_1" />
-</LinearLayout>
+</layout>

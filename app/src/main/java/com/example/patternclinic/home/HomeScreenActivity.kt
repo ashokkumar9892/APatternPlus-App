@@ -23,6 +23,7 @@ import com.example.patternclinic.home.nutrition.NutritionTrackingActivity
 import com.example.patternclinic.home.optimalFitness.OptimalFitnessActivity
 import com.example.patternclinic.home.progressTracker.ApScoreActivity
 import com.example.patternclinic.home.progressTracker.ProgressTrackerActivity
+import com.example.patternclinic.utils.SharedPrefs
 import com.example.patternclinic.utils.changeStatusBarColor
 import com.example.patternclinic.utils.decorStatusBar
 import com.example.patternclinic.utils.showToast
@@ -184,6 +185,11 @@ class HomeScreenActivity : AppCompatActivity(), IBleWriteResponse {
         }
         binding!!.rlApScore.setOnClickListener {
             startActivity(Intent(this, ApScoreActivity::class.java))
+        }
+        binding!!.layoutDrawer.tvLogOut.setOnClickListener {
+            startActivity(Intent(this,LoginActivity::class.java))
+            finishAffinity()
+            SharedPrefs.clearAll()
         }
         binding!!.layoutDrawer.llHome.setOnClickListener {
 //            supportFragmentManager.popBackStackImmediate()

@@ -64,5 +64,19 @@
 
 
         </RelativeLayout>
+        <com.agrawalsuneet.loaderspack.loaders.PulseLoader
+            android:id="@+id/loader"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:backgroundTint="@color/color_primary"
+            android:clickable="true"
+            android:focusable="true"
+            android:visibility="gone"
+            app:pulse_LineThickness="@dimen/_2sdp"
+            app:pulse_normalIncrementalValue="3"
+            app:pulse_pulseColor="@color/color_primary"
+            app:pulse_pulseIncrementalValue="3"
+            app:pulse_sideLength="@dimen/_20sdp" />
     </RelativeLayout>
 </layout>

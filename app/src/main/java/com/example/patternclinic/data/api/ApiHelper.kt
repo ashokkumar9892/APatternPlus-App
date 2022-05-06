@@ -24,4 +24,5 @@ interface ApiHelper {
     suspend fun selectApTeam(@Body map: HashMap<String, Any>): Response<UpdateProfileResponse>
     suspend fun signUp(@Body map: HashMap<String, Any>):Response<ForgotPasswordResponse>
     suspend fun sendOtp(@Body map: HashMap<String, Any>):Response<LoginResponse>
+    suspend fun myChat(@Body map: HashMap<String, Any>): Response<MyChatResponse>
 }

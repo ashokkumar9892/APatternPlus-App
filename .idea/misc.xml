@@ -67,14 +67,18 @@
         <entry key="app/src/main/res/layout/activity_home_screen.xml" value="0.24010416666666667" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.33" />
         <entry key="app/src/main/res/layout/activity_otp.xml" value="0.22" />
-        <entry key="app/src/main/res/layout/activity_select_pattern_plus_team.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_select_pattern_plus_team.xml" value="0.33" />
         <entry key="app/src/main/res/layout/activity_signup.xml" value="0.25" />
         <entry key="app/src/main/res/layout/bottom_sheet_chat_bot.xml" value="0.26197916666666665" />
         <entry key="app/src/main/res/layout/bottom_sheet_do_you_have_watch.xml" value="0.26197916666666665" />
         <entry key="app/src/main/res/layout/bottom_sheet_do_you_like.xml" value="0.26197916666666665" />
+        <entry key="app/src/main/res/layout/fragment_message.xml" value="0.23958333333333334" />
         <entry key="app/src/main/res/layout/fragment_select_team.xml" value="0.25" />
         <entry key="app/src/main/res/layout/item_message_reciever.xml" value="0.24010416666666667" />
+        <entry key="app/src/main/res/layout/item_message_recive.xml" value="0.33" />
         <entry key="app/src/main/res/layout/item_message_sender.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/item_messages.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/layout_drawer.xml" value="0.23958333333333334" />
       </map>
     </option>
   </component>

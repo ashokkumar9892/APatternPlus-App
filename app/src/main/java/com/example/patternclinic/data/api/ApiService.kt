@@ -19,16 +19,16 @@ interface ApiService {
     suspend fun login(@Body map: HashMap<String, Any>): Response<LoginResponse>
 
     @POST(ApiConstants.FORGOT_PASSWORD)
-    suspend fun forgotPassword(@Body map: HashMap<String, Any>):Response<ForgotPasswordResponse>
+    suspend fun forgotPassword(@Body map: HashMap<String, Any>): Response<ForgotPasswordResponse>
 
     @POST(ApiConstants.RESET_PASSWORD)
     suspend fun resetPassword(@Body map: HashMap<String, Any>): Response<ResetPasswordResponse>
 
     @POST(ApiConstants.UPDATE_PROFILE_API)
-    suspend fun updateProfile(@Body map: HashMap<String, Any>):Response<UpdateProfileResponse>
+    suspend fun updateProfile(@Body map: HashMap<String, Any>): Response<UpdateProfileResponse>
 
     @POST(ApiConstants.COACH_LIST_API)
-    suspend fun getCoachList(@Body map: HashMap<String, Any>):Response<CoachProviderListResponse>
+    suspend fun getCoachList(@Body map: HashMap<String, Any>): Response<CoachProviderListResponse>
 
     @POST(ApiConstants.DOCTOR_LIST_API)
     suspend fun getDoctorList(@Body map: HashMap<String, Any>): Response<CoachProviderListResponse>
@@ -37,13 +37,13 @@ interface ApiService {
     suspend fun selectApTeam(@Body map: HashMap<String, Any>): Response<UpdateProfileResponse>
 
     @POST(ApiConstants.SIGN_UP)
-    suspend fun signUp(@Body map: HashMap<String, Any>):Response<ForgotPasswordResponse>
+    suspend fun signUp(@Body map: HashMap<String, Any>): Response<ForgotPasswordResponse>
 
     @POST(ApiConstants.OTP)
-    suspend fun sendOtp(@Body map: HashMap<String, Any>):Response<LoginResponse>
+    suspend fun sendOtp(@Body map: HashMap<String, Any>): Response<LoginResponse>
 
-
-
+    @POST(ApiConstants.MY_CHAT_URL)
+    suspend fun myChat(@Body map: HashMap<String, Any>): Response<MyChatResponse>
 
 
 }

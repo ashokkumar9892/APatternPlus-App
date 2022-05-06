@@ -163,6 +163,7 @@
                         android:text="@={viewModel.country}"
                         android:textColor="@color/text_color_4"
                         android:textSize="@dimen/_14ssp" />
+
                 </RelativeLayout>
 
 
