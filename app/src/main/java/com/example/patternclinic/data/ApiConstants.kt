@@ -30,6 +30,8 @@ object ApiConstants {
     enum class APIParams(val value: String) {
         USERNAME("Username"),
         PASSWORD("Password"),
+        DEVICE_TOKEN("DeviceToken"),
+        DEVICE_TYPE("DeviceType"),
         FORGOT_PASSWORD_USER_NAME("UserName"),
         RESET_PASSWORD_USER_NAME("username"),
         NEW_PASSWORD("newpassword"),

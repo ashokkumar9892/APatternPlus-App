@@ -9,6 +9,7 @@ object Keys {
     const val NEW_USER="newuser"
     const val OTP="otp"
     const val CHAT="chat"
+    const val DEVICE_ANDROID="Android"
     const val mapKeyProfile="profileKey"
     //these are used for send data in other param
     var updateProfileData=""

@@ -200,6 +200,8 @@
     <string name="please_enter_your_otp_code_sent_to_your_phone_number">Please enter your OTP code sent to your phone number.</string>
     <string name="didn_t_receive_the_otp">Didn\'t receive the OTP?</string>
     <string name="resend_code">Resend Code</string>
+    <string name="default_notification_channel_id">com.example.patternclinic</string>
+    <string name="fcm_message">Pattern Clinic</string>
 
     <string-array name="Gender">
         <item>Select Gender</item>

@@ -12,6 +12,7 @@ object SharedPrefs {
     val preferenceName = "PatternClinic"
     var pref: SharedPreferences? = null
     val USER_DETAIL = "USER_DETAIL"
+    const val FCM_TOKEN = "fcmToken"
 
     init {
         pref = MyApplication.getApplicationInstance().getSharedPreferences(
@@ -174,6 +175,7 @@ object SharedPrefs {
     }
 
 
+
     fun saveLoggedInUser(userDetails: LoginResponse?) {
         val gson = Gson()
         save(USER_DETAIL, gson.toJson(userDetails))
@@ -184,6 +186,13 @@ object SharedPrefs {
         return gson.fromJson(getString(USER_DETAIL), LoginResponse::class.java)
     }
 
+    fun saveFcmToken(token: String?) {
+        save(FCM_TOKEN, token!!)
+    }
+
+    fun getFcmToken(): String? {
+        return getString(FCM_TOKEN)
+    }
 
     fun getUserToken(): String {
         return "Bearer " + getLoggedInUser()?.authToken

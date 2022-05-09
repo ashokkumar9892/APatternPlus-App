@@ -10,8 +10,8 @@ import com.example.patternclinic.databinding.ItemMessageSenderBinding
 
 class ChatAdapter(var list: MutableList<Chatlist>) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-    var SEND = 1
-    var RECIEVE = 2
+    private var SEND = 1
+    private var RECIEVE = 2
 
     class SendHolder(bind: ItemMessageSenderBinding) : RecyclerView.ViewHolder(bind.root) {
         var binding = bind

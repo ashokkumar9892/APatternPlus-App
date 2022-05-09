@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "14188647152",
+    "project_id": "pattern-clinic",
+    "storage_bucket": "pattern-clinic.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:14188647152:android:1de7c30fa2556246646835",
+        "android_client_info": {
+          "package_name": "com.example.patternclinic"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "14188647152-sblhh1vb9531iucp5qbcb3881rrslsku.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAaJLZxOffaEHZKVyfTG2vOc0qIFWk7otE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "14188647152-sblhh1vb9531iucp5qbcb3881rrslsku.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

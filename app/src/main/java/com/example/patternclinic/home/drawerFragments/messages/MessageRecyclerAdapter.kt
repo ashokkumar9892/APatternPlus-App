@@ -1,20 +1,18 @@
 package com.example.patternclinic.home.drawerFragments.messages
 
-import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.example.patternclinic.R
-import com.example.patternclinic.data.model.Argument
+import com.example.patternclinic.data.model.GetUserChatResponse
 //import com.example.patternclinic.data.model.Argument
 import com.example.patternclinic.databinding.ItemMessagesBinding
 import com.example.patternclinic.utils.Keys
 import com.google.gson.Gson
 
-class MessageRecyclerAdapter(var list: MutableList<Argument>) :
+class MessageRecyclerAdapter(var list: MutableList<GetUserChatResponse>) :
     RecyclerView.Adapter<MessageRecyclerAdapter.Viewfinder>() {
     inner class Viewfinder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var bind = ItemMessagesBinding.bind(itemView)

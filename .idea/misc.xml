@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="../../.gradle/caches/transforms-3/f8ff537cd1591ded84882af6bb1a1770/transformed/jetified-Picker-2.1.6/res/drawable/ic_image.xml" value="0.21" />
         <entry key="..\:/Users/Paras Technologies/AndroidStudioProjects/APatternPlus-App/app/src/main/res/drawable/drawable_shape_18.xml" value="0.1355" />
         <entry key="..\:/Users/Paras Technologies/AndroidStudioProjects/APatternPlus-App/app/src/main/res/drawable/drawable_shape_21sdp.xml" value="0.1355" />
         <entry key="..\:/Users/Paras Technologies/AndroidStudioProjects/APatternPlus-App/app/src/main/res/drawable/drawable_shape_login.xml" value="0.132" />
@@ -58,6 +59,11 @@
         <entry key="..\:/Users/Paras Technologies/AndroidStudioProjects/APatternPlus-App/app/src/main/res/layout/layout_watch_disconnected.xml" value="0.19947916666666668" />
         <entry key="app/src/main/res/drawable/drawable_shape_login.xml" value="0.17" />
         <entry key="app/src/main/res/drawable/drawable_shape_login_2.xml" value="0.17" />
+        <entry key="app/src/main/res/drawable/ic_blood_pressure.xml" value="0.21" />
+        <entry key="app/src/main/res/drawable/ic_bp.xml" value="0.21" />
+        <entry key="app/src/main/res/drawable/ic_clock.xml" value="0.21" />
+        <entry key="app/src/main/res/drawable/ic_messages.xml" value="0.21" />
+        <entry key="app/src/main/res/drawable/ic_splash_logo.xml" value="0.21" />
         <entry key="app/src/main/res/layout/activity_chat.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_connect_device.xml" value="0.21" />
         <entry key="app/src/main/res/layout/activity_create_profile.xml" value="0.26197916666666665" />
@@ -66,6 +72,7 @@
         <entry key="app/src/main/res/layout/activity_forgot_password.xml" value="0.24010416666666667" />
         <entry key="app/src/main/res/layout/activity_home_screen.xml" value="0.24010416666666667" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.24010416666666667" />
         <entry key="app/src/main/res/layout/activity_otp.xml" value="0.22" />
         <entry key="app/src/main/res/layout/activity_select_pattern_plus_team.xml" value="0.33" />
         <entry key="app/src/main/res/layout/activity_signup.xml" value="0.25" />

@@ -1,24 +1,24 @@
 package com.example.patternclinic.home.drawerFragments.messages
 
-import android.util.Log
 import android.view.View
 import androidx.activity.viewModels
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.patternclinic.R
 import com.example.patternclinic.base.BaseActivity
 import com.example.patternclinic.data.ApiConstants
+import com.example.patternclinic.data.model.GetUserChatResponse
 import com.example.patternclinic.data.model.Chatlist
 import com.example.patternclinic.data.model.LoginResponse
 import com.example.patternclinic.databinding.ActivityChatBinding
+import com.example.patternclinic.utils.Keys
 import com.example.patternclinic.utils.SharedPrefs
 import com.example.patternclinic.utils.showToast
+import com.google.gson.Gson
 import com.microsoft.signalr.Action1
 import com.microsoft.signalr.HubConnection
 import com.microsoft.signalr.HubConnectionBuilder
 import dagger.hilt.android.AndroidEntryPoint
-import java.util.*
 import kotlin.collections.HashMap
 
 @AndroidEntryPoint
@@ -30,10 +30,16 @@ class ChatActivity : BaseActivity() {
     val viewModel: ChatActivityViewModel by viewModels()
     var map: HashMap<String, Any>? = null
     var userDetail: LoginResponse? = null
+    var receiverUser:GetUserChatResponse?=null
+    var receiverSk:String?=null
 
     override fun binding() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_chat)
         userDetail = SharedPrefs.getLoggedInUser()
+        receiverUser= Gson().fromJson(intent.getStringExtra(Keys.CHAT),GetUserChatResponse::class.java)
+        receiverSk=if(receiverUser!!.senderSK!=userDetail!!.patientInfo.sk) receiverUser!!.senderSK else receiverUser!!.recieverSK
+
+
         clicks()
         setObservers()
         /**
@@ -41,8 +47,8 @@ class ChatActivity : BaseActivity() {
          */
         map = HashMap()
         map!![ApiConstants.APIParams.AUTH_TOKEN.value] = userDetail!!.authToken
-        map!![ApiConstants.APIParams.SENDER_SK.value] = "PATIENT_1650619112058"
-        map!![ApiConstants.APIParams.RECEIVER_SK.value] = "DOCTOR_120527155321379"
+        map!![ApiConstants.APIParams.SENDER_SK.value] = userDetail!!.patientInfo.sk
+        map!![ApiConstants.APIParams.RECEIVER_SK.value] = receiverSk!!
         viewModel.getChat(map!!)
 
 
@@ -144,9 +150,9 @@ class ChatActivity : BaseActivity() {
     private fun clicks() {
         binding.ivSend.setOnClickListener {
             if (!binding.etMessage.text.toString().trim().isNullOrEmpty()) {
-                var data = model(
-                    "PATIENT_1650619112058",
-                    "DOCTOR_120527155321379",
+                val data = model(
+                    userDetail!!.patientInfo.sk,
+                    receiverSk!!,
                     "Text",
                     binding.etMessage.text.trim().toString(),
                     SharedPrefs.getLoggedInUser()!!.authToken
@@ -159,31 +165,7 @@ class ChatActivity : BaseActivity() {
                         connection2!!.invoke("SendMessages", data)
                         binding.etMessage.setText("")
                         binding.loader.visibility=View.VISIBLE
-//                        chatAdapter.addMessage(
-//                            Chatlist(
-//                                userDetail!!.authToken,
-//                                "",
-//                                "",
-//                                "",
-//                                "",
-//                                false,
-//                                false,
-//                                binding.etMessage.text.trim().toString(),
-//                                "",
-//                                "",
-//                                "",
-//                                "PATIENT_1650619112058",
-//                                "",
-//                                "",
-//                                "",
-//                                ""
-//                            )
-//                        )
 //
-//                        (binding.rvMessages.layoutManager as LinearLayoutManager).scrollToPosition(
-//                            chatAdapter.list.size - 1
-//                        )
-//                        binding.etMessage.setText("")
                     }
 
                 } catch (e: Exception) {

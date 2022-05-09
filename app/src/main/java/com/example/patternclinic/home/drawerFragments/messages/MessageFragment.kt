@@ -9,18 +9,18 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.patternclinic.data.ApiConstants
-import com.example.patternclinic.data.model.Argument
+import com.example.patternclinic.data.model.GetUserChatResponse
+import com.example.patternclinic.data.model.LoginResponse
 import com.example.patternclinic.databinding.FragmentMessageBinding
 import com.example.patternclinic.home.HomeScreenActivity
 import com.example.patternclinic.utils.SharedPrefs
-import com.example.patternclinic.utils.showToast
 import com.microsoft.signalr.*
-import org.json.JSONObject
 
 
 class MessageFragment : Fragment() {
     lateinit var binding: FragmentMessageBinding
     var connection: HubConnection? = null
+    var userDetail:LoginResponse?=null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -28,7 +28,7 @@ class MessageFragment : Fragment() {
     ): View {
         // Inflate the layout for this fragment
         binding = FragmentMessageBinding.inflate(LayoutInflater.from(context))
-
+        userDetail=SharedPrefs.getLoggedInUser()
         return binding.root
     }
 
@@ -49,13 +49,9 @@ class MessageFragment : Fragment() {
         connection!!.start().blockingAwait()
 
         if (connection!!.connectionState.name.equals("connected", true)) {
-            var json = JSONObject()
-            var chat = getChat("PATIENT_1650619112058", SharedPrefs.getLoggedInUser()!!.authToken)
-            json.put(ApiConstants.APIParams.SK.value, "PATIENT_1650619112058")
-            json.put(
-                ApiConstants.APIParams.AUTH_TOKEN.value,
-                SharedPrefs.getLoggedInUser()!!.authToken
-            )
+
+            val chat = GetChats(userDetail!!.patientInfo.sk, userDetail!!.authToken)
+
 
             try {
                 connection!!.invoke("UserChatList", chat)
@@ -76,7 +72,7 @@ class MessageFragment : Fragment() {
                     }
 
 
-                }, Array<Argument>::class.java
+                }, Array<GetUserChatResponse>::class.java
             )
         }
 
@@ -89,4 +85,4 @@ class MessageFragment : Fragment() {
     }
 }
 
-data class getChat(var SK: String, var AuthToken: String)
+data class GetChats(var SK: String, var AuthToken: String)

@@ -187,9 +187,10 @@ class HomeScreenActivity : AppCompatActivity(), IBleWriteResponse {
             startActivity(Intent(this, ApScoreActivity::class.java))
         }
         binding!!.layoutDrawer.tvLogOut.setOnClickListener {
+            SharedPrefs.clearAll()
             startActivity(Intent(this,LoginActivity::class.java))
             finishAffinity()
-            SharedPrefs.clearAll()
+
         }
         binding!!.layoutDrawer.llHome.setOnClickListener {
 //            supportFragmentManager.popBackStackImmediate()

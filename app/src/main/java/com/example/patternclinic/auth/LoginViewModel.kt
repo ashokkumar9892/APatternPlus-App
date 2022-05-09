@@ -50,8 +50,10 @@ class LoginViewModel @Inject constructor(val mainRepository: MainRepository) : B
     fun onClick(v: View) {
         if (validate(v)) {
             var map = HashMap<String, Any>()
-            map.put(ApiConstants.APIParams.USERNAME.value, email.get()?.trim().toString())
-            map.put(ApiConstants.APIParams.PASSWORD.value, password.get()?.trim().toString())
+            map[ApiConstants.APIParams.USERNAME.value] = email.get()?.trim().toString()
+            map[ApiConstants.APIParams.PASSWORD.value] = password.get()?.trim().toString()
+            map[ApiConstants.APIParams.DEVICE_TOKEN.value] = SharedPrefs.getFcmToken().toString()
+            map[ApiConstants.APIParams.DEVICE_TYPE.value] = Keys.DEVICE_ANDROID
             activity.loader.visibility = View.VISIBLE
             job = viewModelScope.launch {
                 var result = getResult({ mainRepository.login(map) }, "loginApi")
