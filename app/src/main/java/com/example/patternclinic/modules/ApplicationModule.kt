@@ -7,6 +7,7 @@ import com.example.patternclinic.data.api.ApiHelper
 import com.example.patternclinic.data.api.ApiHelperImpl
 import com.example.patternclinic.data.api.ApiService
 import com.example.patternclinic.data.ApiConstants
+import com.example.patternclinic.utils.SharedPrefs
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -82,5 +83,7 @@ class ApplicationModule {
     @Provides
     @Singleton
     fun provideApiHelper(apiHelper: ApiHelperImpl): ApiHelper = apiHelper
+
+
 
 }

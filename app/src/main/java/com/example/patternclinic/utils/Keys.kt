@@ -14,5 +14,13 @@ object Keys {
     //these are used for send data in other param
     var updateProfileData=""
 
+    //File types
+    const val FILE_TYPE_IMAGE="Image"
+    const val FILE_TYPE_VIDEO="Video"
+    const val FILE_TYPE_AUDIO="Audio"
+    const val FILE_TYPE_FILE="file"
+    const val FILE_TYPE_TEXT="Text"
+
+
 
 }

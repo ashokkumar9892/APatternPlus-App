@@ -1,6 +1,6 @@
 package com.example.patternclinic.data.model
 
-data class MyChatResponse(
+data class  MyChatResponse(
     val chatlist: List<Chatlist>,
     val errorMessage: String,
     val response: Int

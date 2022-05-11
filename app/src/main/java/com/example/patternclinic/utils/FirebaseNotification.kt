@@ -9,10 +9,8 @@ import android.media.RingtoneManager
 import android.os.Build
 import android.util.Log
 import androidx.core.app.NotificationCompat
-import com.example.patternclinic.MainActivity
 import com.example.patternclinic.R
 import com.example.patternclinic.home.HomeScreenActivity
-import com.example.patternclinic.home.drawerFragments.messages.MessageFragment
 import com.google.firebase.messaging.FirebaseMessaging
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
@@ -29,15 +27,13 @@ class FirebaseNotification : FirebaseMessagingService() {
 
         }
 
+
+
         // Check if message contains a notification payload.
         remoteMessage.notification?.let {
             Log.d("TAG", "Message Notification Body: ${it.body}")
             sendNotification(it.body!!)
 
-//            if (MyApplication.wasInBackground()) {
-//                // HERE YOU CALL THE CODE YOU WANT TO HAPPEN ONLY ONCE WHEN YOUR APP WAS RESUMED FROM BACKGROUND
-//                mApplication.setWasInBackground(false);
-//            }
         }
 
     }

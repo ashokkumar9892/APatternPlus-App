@@ -59,9 +59,11 @@
         <entry key="..\:/Users/Paras Technologies/AndroidStudioProjects/APatternPlus-App/app/src/main/res/layout/layout_watch_disconnected.xml" value="0.19947916666666668" />
         <entry key="app/src/main/res/drawable/drawable_shape_login.xml" value="0.17" />
         <entry key="app/src/main/res/drawable/drawable_shape_login_2.xml" value="0.17" />
+        <entry key="app/src/main/res/drawable/drawable_shape_message_sender.xml" value="0.246" />
         <entry key="app/src/main/res/drawable/ic_blood_pressure.xml" value="0.21" />
         <entry key="app/src/main/res/drawable/ic_bp.xml" value="0.21" />
         <entry key="app/src/main/res/drawable/ic_clock.xml" value="0.21" />
+        <entry key="app/src/main/res/drawable/ic_dummy_user.xml" value="0.198" />
         <entry key="app/src/main/res/drawable/ic_messages.xml" value="0.21" />
         <entry key="app/src/main/res/drawable/ic_splash_logo.xml" value="0.21" />
         <entry key="app/src/main/res/layout/activity_chat.xml" value="0.25" />
@@ -81,10 +83,12 @@
         <entry key="app/src/main/res/layout/bottom_sheet_do_you_like.xml" value="0.26197916666666665" />
         <entry key="app/src/main/res/layout/fragment_message.xml" value="0.23958333333333334" />
         <entry key="app/src/main/res/layout/fragment_select_team.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/item_docx_message.xml" value="0.33" />
         <entry key="app/src/main/res/layout/item_message_reciever.xml" value="0.24010416666666667" />
         <entry key="app/src/main/res/layout/item_message_recive.xml" value="0.33" />
         <entry key="app/src/main/res/layout/item_message_sender.xml" value="0.25" />
         <entry key="app/src/main/res/layout/item_messages.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/item_video_message.xml" value="0.33" />
         <entry key="app/src/main/res/layout/layout_drawer.xml" value="0.23958333333333334" />
       </map>
     </option>

@@ -6,13 +6,11 @@ import com.example.patternclinic.data.ApiConstants
 import com.example.patternclinic.data.model.*
 import com.google.android.exoplayer2.metadata.id3.ApicFrame
 import com.google.android.exoplayer2.text.span.TextAnnotation
+import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import okhttp3.ResponseBody
 import retrofit2.Response
-import retrofit2.http.Body
-import retrofit2.http.FieldMap
-import retrofit2.http.FormUrlEncoded
-import retrofit2.http.POST
+import retrofit2.http.*
 
 interface ApiService {
     @POST(ApiConstants.LOGIN_API)
@@ -44,6 +42,13 @@ interface ApiService {
 
     @POST(ApiConstants.MY_CHAT_URL)
     suspend fun myChat(@Body map: HashMap<String, Any>): Response<MyChatResponse>
+
+    @POST(ApiConstants.USER_CHAT_LIST)
+    suspend fun getUserChatList(@Body map: HashMap<String, Any>): Response<GetUserChatResponse>
+
+    @Multipart
+    @POST(ApiConstants.UPLOAD_FILE_URL)
+    suspend fun uploadFiles(@Part file: MultipartBody.Part): Response<UploadFileResponse>
 
 
 }

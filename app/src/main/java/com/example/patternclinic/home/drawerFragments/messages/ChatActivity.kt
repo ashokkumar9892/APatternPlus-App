@@ -1,24 +1,31 @@
 package com.example.patternclinic.home.drawerFragments.messages
 
+import android.media.MediaRecorder
 import android.view.View
 import androidx.activity.viewModels
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.patternclinic.R
 import com.example.patternclinic.base.BaseActivity
 import com.example.patternclinic.data.ApiConstants
+import com.example.patternclinic.data.api.RequestBodyRetrofit
+import com.example.patternclinic.data.model.ChatInfo
 import com.example.patternclinic.data.model.GetUserChatResponse
 import com.example.patternclinic.data.model.Chatlist
 import com.example.patternclinic.data.model.LoginResponse
 import com.example.patternclinic.databinding.ActivityChatBinding
-import com.example.patternclinic.utils.Keys
-import com.example.patternclinic.utils.SharedPrefs
-import com.example.patternclinic.utils.showToast
+import com.example.patternclinic.utils.*
 import com.google.gson.Gson
 import com.microsoft.signalr.Action1
 import com.microsoft.signalr.HubConnection
 import com.microsoft.signalr.HubConnectionBuilder
 import dagger.hilt.android.AndroidEntryPoint
+import id.zelory.compressor.Compressor
+import kotlinx.coroutines.launch
+import okhttp3.RequestBody.Companion.asRequestBody
+import java.io.File
+import java.security.Key
 import kotlin.collections.HashMap
 
 @AndroidEntryPoint
@@ -30,14 +37,18 @@ class ChatActivity : BaseActivity() {
     val viewModel: ChatActivityViewModel by viewModels()
     var map: HashMap<String, Any>? = null
     var userDetail: LoginResponse? = null
-    var receiverUser:GetUserChatResponse?=null
-    var receiverSk:String?=null
+    var receiverUser: ChatInfo? = null
+    var receiverSk: String? = null
 
     override fun binding() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_chat)
         userDetail = SharedPrefs.getLoggedInUser()
-        receiverUser= Gson().fromJson(intent.getStringExtra(Keys.CHAT),GetUserChatResponse::class.java)
-        receiverSk=if(receiverUser!!.senderSK!=userDetail!!.patientInfo.sk) receiverUser!!.senderSK else receiverUser!!.recieverSK
+        receiverUser =
+            Gson().fromJson(intent.getStringExtra(Keys.CHAT), ChatInfo::class.java)
+        receiverSk =
+//            if (receiverUser!!.senderSK != userDetail!!.patientInfo.sk) receiverUser!!.senderSK else receiverUser!!.recieverSK
+           receiverUser!!.sk
+
 
 
         clicks()
@@ -50,9 +61,6 @@ class ChatActivity : BaseActivity() {
         map!![ApiConstants.APIParams.SENDER_SK.value] = userDetail!!.patientInfo.sk
         map!![ApiConstants.APIParams.RECEIVER_SK.value] = receiverSk!!
         viewModel.getChat(map!!)
-
-
-
 
         connection2 = HubConnectionBuilder.create(ApiConstants.CHAT_HUB_URL)
             .build()
@@ -68,12 +76,12 @@ class ChatActivity : BaseActivity() {
 
                 } else {
                     runOnUiThread {
-                        binding.loader.visibility=View.GONE
+                        binding.loader.visibility = View.GONE
                         chatAdapter.addMessage(
                             Chatlist(
                                 userDetail!!.authToken,
                                 "",
-                                "",
+                                param1.messageType,
                                 "",
                                 "",
                                 false,
@@ -144,6 +152,36 @@ class ChatActivity : BaseActivity() {
         {
             showToast(it.toString())
         }
+
+        /**
+         * observer for upload_file response
+         */
+        viewModel.uploadFileResponse.observe(this) {
+            if (it.response == 1) {
+                val data = model(
+                    userDetail!!.patientInfo.sk,
+                    receiverSk!!,
+                    it.imageurls[0].filetype,
+                    it.imageurls[0].files ,
+                    SharedPrefs.getLoggedInUser()!!.authToken
+                )
+
+                try {
+                    //invoke from one connection
+                    runOnUiThread {
+                        connection2!!.invoke("SendMessages", data)
+                        binding.etMessage.setText("")
+                        binding.loader.visibility = View.VISIBLE
+//
+                    }
+
+                } catch (e: Exception) {
+                    showToast(e.toString())
+                }
+            } else {
+                showToast(it.errorMessage)
+            }
+        }
     }
 
 
@@ -160,11 +198,10 @@ class ChatActivity : BaseActivity() {
 
                 try {
                     //invoke from one connection
-
                     runOnUiThread {
                         connection2!!.invoke("SendMessages", data)
                         binding.etMessage.setText("")
-                        binding.loader.visibility=View.VISIBLE
+                        binding.loader.visibility = View.VISIBLE
 //
                     }
 
@@ -176,6 +213,33 @@ class ChatActivity : BaseActivity() {
         }
         binding.ivBack.setOnClickListener {
             finish()
+        }
+        binding.ivCamera.setOnClickListener {
+            grantPermission(PermissionConstant.cameraGalleryPermissionList) {
+                imageVideoPicker {it,type->
+                    if(type==Keys.FILE_TYPE_IMAGE) {
+                        lifecycleScope.launch {
+                            val file = Compressor.compress(this@ChatActivity, File(it))
+                            val part = RequestBodyRetrofit.toRequestBodyFile(file.absolutePath)
+                            viewModel.uploadFile(part)
+                        }
+                    }
+                    if(type==Keys.FILE_TYPE_VIDEO){
+                        var convert:Boolean?=null
+                        var firsttype=it
+
+                         convert=File(it).renameTo(File(File(it).parent,"/${File(it).name}".replace("3gp","mp4")))
+                        var new: Boolean =convert
+
+                    }
+
+
+                }
+            }
+
+        }
+        binding.ivDocx.setOnClickListener {
+
         }
     }
 

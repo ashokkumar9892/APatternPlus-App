@@ -8,19 +8,25 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.patternclinic.data.ApiConstants
 import com.example.patternclinic.data.model.GetUserChatResponse
 import com.example.patternclinic.data.model.LoginResponse
 import com.example.patternclinic.databinding.FragmentMessageBinding
 import com.example.patternclinic.home.HomeScreenActivity
 import com.example.patternclinic.utils.SharedPrefs
+import com.example.patternclinic.utils.showToast
 import com.microsoft.signalr.*
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class MessageFragment : Fragment() {
     lateinit var binding: FragmentMessageBinding
     var connection: HubConnection? = null
-    var userDetail:LoginResponse?=null
+    var userDetail: LoginResponse? = null
+    val viewModel: MessageFragmentViewModel by viewModels()
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -28,61 +34,81 @@ class MessageFragment : Fragment() {
     ): View {
         // Inflate the layout for this fragment
         binding = FragmentMessageBinding.inflate(LayoutInflater.from(context))
-        userDetail=SharedPrefs.getLoggedInUser()
+        userDetail = SharedPrefs.getLoggedInUser()
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        clicks()
+        setObservers()
+        val map=HashMap<String,Any>()
+        map[ApiConstants.APIParams.AUTH_TOKEN.value]=userDetail!!.authToken
+        map[ApiConstants.APIParams.SK.value]=userDetail!!.patientInfo.sk
+        viewModel.getUserChatList(map)
+
+    }
+
+
+
+        fun setObservers() {
+            /**
+             * observer for getUsersChat up response
+             */
+            activity?.let {
+                viewModel.usersChat.observe(it) {
+                    if (it.response == 1) {
+                        binding.rvMessages.adapter =
+                            MessageRecyclerAdapter(it.chatlist.toMutableList())
+                    } else {
+                        activity?.showToast(it.errorMessage)
+                    }
+                }
+            }
+
+            /**
+             * observer for loader
+             */
+            activity?.let {
+                viewModel.showLoader.observe(it)
+                {
+                    if (it) {
+                        binding.loader.visibility = View.VISIBLE
+                    } else {
+                        binding.loader.visibility = View.GONE
+                    }
+                }
+            }
+            /**
+             * observer for error-response
+             */
+            activity?.let {
+                viewModel.errorMessage.observe(it)
+                {
+                    activity?.showToast(it)
+                }
+            }
+            /**
+             * observer for failure-response
+             */
+            activity?.let {
+                viewModel.onFailure.observe(it)
+                {
+                    activity?.showToast(it.toString())
+                }
+            }
+
+        }
+
+
+    private fun clicks() {
         binding.ivMenu.setOnClickListener {
             (activity as HomeScreenActivity).binding!!.drawerLayout.openDrawer((activity as HomeScreenActivity).binding!!.sideBar)
         }
-        binding.loader.visibility=View.VISIBLE
-        Handler(Looper.getMainLooper()).postDelayed({
-            makeConnection()
-        },700)
-
-    }
-
-    private fun makeConnection() {
-        connection = HubConnectionBuilder.create(ApiConstants.CHAT_HUB_URL).build()
-        connection!!.start().blockingAwait()
-
-        if (connection!!.connectionState.name.equals("connected", true)) {
-
-            val chat = GetChats(userDetail!!.patientInfo.sk, userDetail!!.authToken)
-
-
-            try {
-                connection!!.invoke("UserChatList", chat)
-            } catch (e: Exception) {
-                Log.e("exception socket", e.toString())
-            }
-
-
-
-            connection?.on(
-                "ShowUserChatList",
-                {
-                    activity?.runOnUiThread {
-                        binding.loader.visibility=View.GONE
-//                        activity?.showToast(it.toString())
-                        binding.rvMessages.adapter =
-                            MessageRecyclerAdapter(it.toMutableList())
-                    }
-
-
-                }, Array<GetUserChatResponse>::class.java
-            )
-        }
 
 
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        connection!!.stop()
-    }
+
 }
 
-data class GetChats(var SK: String, var AuthToken: String)

@@ -22,6 +22,14 @@ object RequestBodyRetrofit {
         return value!!.toString()
             .toRequestBody("application/json; charset=utf-8".toMediaTypeOrNull())
     }
-
+    fun toRequestBodyFile(value: String?): MultipartBody.Part {
+        val file = File(value)
+        val data = file.asRequestBody("image/*".toMediaTypeOrNull())
+        return MultipartBody.Part.createFormData(
+            ApiConstants.APIParams.FILE_NAME.value,
+            file.name,
+            data
+        )
+    }
 
 }

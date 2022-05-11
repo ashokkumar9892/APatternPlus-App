@@ -14,6 +14,8 @@ import com.example.patternclinic.introScreen.IntroScreen
 import com.example.patternclinic.selectTeam.SelectPatternPlusTeam
 import com.example.patternclinic.setupDevice.ConnectDeviceActivity
 import com.example.patternclinic.utils.SharedPrefs
+import com.google.firebase.messaging.RemoteMessage
+import com.google.firebase.messaging.ktx.remoteMessage
 import com.veepoo.protocol.VPOperateManager
 import com.veepoo.protocol.listener.base.IBleWriteResponse
 import com.veepoo.protocol.listener.data.ICustomSettingDataListener

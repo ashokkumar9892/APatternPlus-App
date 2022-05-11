@@ -39,7 +39,9 @@ import com.veepoo.protocol.model.enums.EFunctionStatus
 import com.veepoo.protocol.model.enums.ESportType
 import com.veepoo.protocol.model.settings.CustomSetting
 import com.veepoo.protocol.model.settings.CustomSettingData
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class HomeScreenActivity : AppCompatActivity(), IBleWriteResponse {
     var binding: ActivityHomeScreenBinding? = null
     var isHaveMetricSystem = true
@@ -128,12 +130,12 @@ class HomeScreenActivity : AppCompatActivity(), IBleWriteResponse {
                 showToast(it.toString())
             }
         }
-
     }
 
 
     private fun initDesign() {
         binding!!.ivMenu.setOnClickListener {
+
             binding!!.drawerLayout.openDrawer(binding!!.sideBar)
         }
 

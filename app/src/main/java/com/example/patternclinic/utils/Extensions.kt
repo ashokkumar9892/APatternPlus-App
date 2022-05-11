@@ -17,6 +17,7 @@ import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
 import androidx.fragment.app.FragmentActivity
+import androidx.recyclerview.widget.RecyclerView
 import com.example.patternclinic.R
 import com.karumi.dexter.Dexter
 import com.karumi.dexter.MultiplePermissionsReport
@@ -103,7 +104,9 @@ fun FragmentActivity.imagePicker(returnData: (String) -> Unit) = try {
         setItems(
             mutableSetOf(
                 ItemModel(ItemType.ITEM_CAMERA),
-                ItemModel(ItemType.ITEM_GALLERY)
+                ItemModel(ItemType.ITEM_GALLERY),
+
+
             )
         )          // List of ItemModel-s which should be in picker
     }.setPickerCloseListener { type: ItemType, uris: List<Uri> ->
@@ -129,6 +132,54 @@ fun FragmentActivity.imagePicker(returnData: (String) -> Unit) = try {
             ItemType.ITEM_FILES -> {
                 val link = getMediaFilePathFor(uris.first(), this@imagePicker)
                 returnData(link)
+            }
+        }
+    }.show()
+
+
+} catch (e: Exception) {
+    e.printStackTrace()
+}
+
+fun FragmentActivity.imageVideoPicker(returnData: (String,String) -> Unit) = try {
+    pickerDialog {
+        setTitle(getString(R.string.app_name))          // String value or resource ID
+        setTitleTextSize(22f)
+        setTitleTextBold(true)// Text size of title
+        setTitleTextColor(R.color.color_primary) // Color of title text
+        setListType(PickerDialog.ListType.TYPE_GRID)       // Type of the picker, must be PickerDialog.TYPE_LIST or PickerDialog.TYPE_Grid
+        setItems(
+            mutableSetOf(
+                ItemModel(ItemType.ITEM_CAMERA),
+                ItemModel(ItemType.ITEM_GALLERY),
+                ItemModel(ItemType.ITEM_VIDEO),
+                ItemModel(ItemType.ITEM_VIDEO_GALLERY),
+                ItemModel(ItemType.ITEM_FILES)
+                )
+        )          // List of ItemModel-s which should be in picker
+    }.setPickerCloseListener { type: ItemType, uris: List<Uri> ->
+        // Getting the result
+        when (type) {
+            ItemType.ITEM_CAMERA -> {
+                val link = getMediaFilePathFor(uris.first(), this@imageVideoPicker)
+                returnData(link,Keys.FILE_TYPE_IMAGE)
+            }
+
+            ItemType.ITEM_GALLERY -> {
+                val link = getMediaFilePathFor(uris.first(), this@imageVideoPicker)
+                returnData(link,Keys.FILE_TYPE_IMAGE)
+            }
+            ItemType.ITEM_VIDEO -> {
+                val link = getMediaFilePathFor(uris.first(), this@imageVideoPicker)
+                returnData(link,Keys.FILE_TYPE_VIDEO)
+            }
+            ItemType.ITEM_VIDEO_GALLERY -> {
+                val link = getMediaFilePathFor(uris.first(), this@imageVideoPicker)
+                returnData(link,Keys.FILE_TYPE_VIDEO)
+            }
+            ItemType.ITEM_FILES -> {
+                val link = getMediaFilePathFor(uris.first(), this@imageVideoPicker)
+                returnData(link,Keys.FILE_TYPE_FILE)
             }
         }
     }.show()
@@ -238,4 +289,3 @@ fun dateConvert_6(type: String): String {
     val result = output.format(date)
     return result
 }
-

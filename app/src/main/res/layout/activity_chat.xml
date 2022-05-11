@@ -87,15 +87,46 @@
                 android:textColorHint="@color/text_color_1"
                 android:textSize="@dimen/_13ssp" />
 
-            <ImageButton
-                android:id="@+id/iv_send"
+            <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginEnd="@dimen/_10sdp"
-                android:background="@color/white"
-                android:src="@drawable/ic_send" />
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/iv_docx"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:alpha="0.6"
+                    android:background="@color/white"
+                    android:padding="@dimen/_6sdp"
+                    android:src="@drawable/ic_baseline_note_add_24" />
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/iv_camera"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:alpha="0.6"
+                    android:background="@color/white"
+                    android:padding="@dimen/_6sdp"
+
+                    android:src="@drawable/ic_baseline_add_a_photo_24" />
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/iv_send"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:background="@color/white"
+                    android:padding="@dimen/_6sdp"
+                    android:src="@drawable/ic_send" />
+
+            </LinearLayout>
+
+
         </LinearLayout>
+
         <com.agrawalsuneet.loaderspack.loaders.PulseLoader
             android:id="@+id/loader"
             android:layout_width="match_parent"

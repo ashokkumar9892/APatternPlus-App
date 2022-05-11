@@ -2,15 +2,30 @@ package com.example.patternclinic.data.model
 
 
 data class GetUserChatResponse(
-    val chatId: Int,
-    val count: Int?,
-    val image: Any,
-    val lastMessage: String,
-    val lastMessageType: Any,
+    val chatlist: List<ChatInfo>,
+    val errorMessage: String,
+    val response: Int
+)
+
+data class ChatInfo(
+    val authToken: Any,
+    val chatId: Any,
+    val chatType: Any,
+    val connectionId: Any,
+    val fromIsRead: Any,
+    val isAdmin: Boolean,
+    val isNotification: Boolean,
+    val message: Any,
+    val messageOn: Any,
     val name: String?,
-    val recieverSK: String,
-    val senderSK: String,
-    val timeBefore: Any,
-    val uniqueNumber: Any,
-    val unseenCount: Int?
+    val profilePic: String,
+    val receiverId: Any,
+    val receiverImage: Any,
+    val senderId: Any,
+    val senderImage: Any,
+    val lastMessage: Any?,
+    val sentOn: Any,
+    val sk: String,
+    val toIsRead: Any,
+    val totalBill: Any
 )

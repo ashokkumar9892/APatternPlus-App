@@ -12,6 +12,8 @@ object ApiConstants {
     const val SIGN_UP = "Cognito/CognitoUser"
     const val OTP = "Cognito/ConfirmOTP"
     const val MY_CHAT_URL = "Chat/MyChat"
+    const val USER_CHAT_LIST = "Chat/ChatUsers"
+    const val UPLOAD_FILE_URL = "Chat/UploadFiles"
     const val CHAT_HUB_URL = "https://patternclinicapis.harishparas.com/ChatHub"
 
 
@@ -59,6 +61,7 @@ object ApiConstants {
         RECEIVER_SK("ReceiverSK"),
         MESSAGE_TYPE("MessageType"),
         MESSAGE("Message"),
+        FILE_NAME("files"),
 
     }
 
