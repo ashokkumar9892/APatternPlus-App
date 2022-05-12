@@ -289,3 +289,10 @@ fun dateConvert_6(type: String): String {
     val result = output.format(date)
     return result
 }
+fun chatDateFormat(type: String): String {
+    val input = SimpleDateFormat("MM/dd/yyyy hh:mm:ss aa", Locale.ENGLISH)
+    val output = SimpleDateFormat("dd-MMM-yyyy", Locale.ENGLISH)
+    val date = input.parse(type)
+    val result = output.format(date)
+    return result
+}

@@ -130,6 +130,8 @@ dependencies {
     implementation 'com.google.firebase:firebase-analytics-ktx'
     //image compressor
     implementation 'id.zelory:compressor:3.0.1'
+    //video compressor
+    implementation 'com.github.fishwjy:VideoCompressor:06c9bd762e'
 
 
 }

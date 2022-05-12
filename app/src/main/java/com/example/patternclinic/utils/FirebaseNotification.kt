@@ -11,6 +11,7 @@ import android.util.Log
 import androidx.core.app.NotificationCompat
 import com.example.patternclinic.R
 import com.example.patternclinic.home.HomeScreenActivity
+import com.example.patternclinic.home.nutrition.NutritionTrackingActivity
 import com.google.firebase.messaging.FirebaseMessaging
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
@@ -20,21 +21,8 @@ class FirebaseNotification : FirebaseMessagingService() {
     override fun onMessageReceived(remoteMessage: RemoteMessage) {
         Log.d("TAG", "From: ${remoteMessage.from}")
 
-        // Check if message contains a data payload.
-        if (remoteMessage.data.isNotEmpty()) {
-            Log.d("TAG", "Message data payload: ${remoteMessage.data}")
 
-
-        }
-
-
-
-        // Check if message contains a notification payload.
-        remoteMessage.notification?.let {
-            Log.d("TAG", "Message Notification Body: ${it.body}")
-            sendNotification(it.body!!)
-
-        }
+        sendNotification(remoteMessage.data)
 
     }
 
@@ -48,8 +36,8 @@ class FirebaseNotification : FirebaseMessagingService() {
 
     }
 
-    private fun sendNotification(messageBody: String) {
-        val intent = Intent(this, HomeScreenActivity::class.java)
+    private fun sendNotification(messageBody: MutableMap<String, String>) {
+        val intent = Intent(this, NutritionTrackingActivity::class.java)
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
         val pendingIntent = PendingIntent.getActivity(this, 0 /* Request code */, intent,
             PendingIntent.FLAG_ONE_SHOT)
@@ -60,7 +48,7 @@ class FirebaseNotification : FirebaseMessagingService() {
         val notificationBuilder = NotificationCompat.Builder(this, channelId)
             .setSmallIcon(R.drawable.ic_clock)
             .setContentTitle(getString(R.string.fcm_message))
-            .setContentText(messageBody)
+            .setContentText(messageBody.get("body"))
             .setAutoCancel(true)
             .setSound(defaultSoundUri)
             .setContentIntent(pendingIntent)

@@ -18,7 +18,7 @@ object Keys {
     const val FILE_TYPE_IMAGE="Image"
     const val FILE_TYPE_VIDEO="Video"
     const val FILE_TYPE_AUDIO="Audio"
-    const val FILE_TYPE_FILE="file"
+    const val FILE_TYPE_FILE="File"
     const val FILE_TYPE_TEXT="Text"
 
 

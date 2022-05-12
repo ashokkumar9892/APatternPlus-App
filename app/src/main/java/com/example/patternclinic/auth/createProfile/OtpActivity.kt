@@ -1,8 +1,6 @@
 package com.example.patternclinic.auth.createProfile
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
 import android.view.KeyEvent
 import android.view.View
 import androidx.activity.viewModels
@@ -162,6 +160,8 @@ class OtpActivity : BaseActivity(), View.OnKeyListener {
             if (otpValidation()) {
                 map.clear()
                 map.putAll(intent.getSerializableExtra(Keys.OTP) as HashMap<String, Any>)
+                map[ApiConstants.APIParams.DEVICE_TOKEN.value] = SharedPrefs.getFcmToken().toString()
+                map[ApiConstants.APIParams.DEVICE_TYPE.value] = Keys.DEVICE_ANDROID
                 map[ApiConstants.APIParams.CONFIRMATION_CODE.value] =
                     binding.et1.text.trim().toString() + binding.et2.text.trim()
                         .toString() + binding.et3.text.trim().toString() + binding.et4.text.trim()

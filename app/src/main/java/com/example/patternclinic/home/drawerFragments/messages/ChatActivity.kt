@@ -1,7 +1,11 @@
 package com.example.patternclinic.home.drawerFragments.messages
 
+import android.content.Intent
 import android.media.MediaRecorder
+import android.provider.MediaStore
 import android.view.View
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.activity.result.registerForActivityResult
 import androidx.activity.viewModels
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.lifecycleScope
@@ -20,6 +24,7 @@ import com.google.gson.Gson
 import com.microsoft.signalr.Action1
 import com.microsoft.signalr.HubConnection
 import com.microsoft.signalr.HubConnectionBuilder
+import com.vincent.videocompressor.VideoCompress
 import dagger.hilt.android.AndroidEntryPoint
 import id.zelory.compressor.Compressor
 import kotlinx.coroutines.launch
@@ -47,8 +52,8 @@ class ChatActivity : BaseActivity() {
             Gson().fromJson(intent.getStringExtra(Keys.CHAT), ChatInfo::class.java)
         receiverSk =
 //            if (receiverUser!!.senderSK != userDetail!!.patientInfo.sk) receiverUser!!.senderSK else receiverUser!!.recieverSK
-           receiverUser!!.sk
-
+            receiverUser!!.sk
+        binding.tvTitle.text=receiverUser!!.name?:""
 
 
         clicks()
@@ -115,6 +120,7 @@ class ChatActivity : BaseActivity() {
         /**
          * observer for sign up response
          */
+
         viewModel.chatData.observe(this) {
             if (it.response == 1) {
 
@@ -162,7 +168,7 @@ class ChatActivity : BaseActivity() {
                     userDetail!!.patientInfo.sk,
                     receiverSk!!,
                     it.imageurls[0].filetype,
-                    it.imageurls[0].files ,
+                    it.imageurls[0].files,
                     SharedPrefs.getLoggedInUser()!!.authToken
                 )
 
@@ -211,26 +217,67 @@ class ChatActivity : BaseActivity() {
             }
 
         }
+        var launcher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+            var uri = it.data!!.data
+        }
+        binding.ivDocx.setOnClickListener {
+
+        }
+
         binding.ivBack.setOnClickListener {
+//            Intent(MediaStore.ACTION_VIDEO_CAPTURE).also { takeVideoIntent ->
+//                takeVideoIntent.resolveActivity(packageManager)?.also {
+//                    launcher.launch(takeVideoIntent)
+//                }
+//            }
             finish()
         }
         binding.ivCamera.setOnClickListener {
             grantPermission(PermissionConstant.cameraGalleryPermissionList) {
-                imageVideoPicker {it,type->
-                    if(type==Keys.FILE_TYPE_IMAGE) {
+                imageVideoPicker { it, type ->
+                    if (type == Keys.FILE_TYPE_IMAGE) {
                         lifecycleScope.launch {
                             val file = Compressor.compress(this@ChatActivity, File(it))
                             val part = RequestBodyRetrofit.toRequestBodyFile(file.absolutePath)
                             viewModel.uploadFile(part)
                         }
                     }
-                    if(type==Keys.FILE_TYPE_VIDEO){
-                        var convert:Boolean?=null
-                        var firsttype=it
+                    if (type == Keys.FILE_TYPE_FILE) {
+                        val part = RequestBodyRetrofit.toRequestBodyFile(it)
+                        viewModel.uploadFile(part)
+                    }
+                    if (type == Keys.FILE_TYPE_VIDEO) {
+                        var convert: Boolean? = null
+                        var fileName = it.replace("3gp", "mp4")
 
-                         convert=File(it).renameTo(File(File(it).parent,"/${File(it).name}".replace("3gp","mp4")))
-                        var new: Boolean =convert
+                        convert = File(it).renameTo(
+                            File(
+                                File(it).parent,
+                                "/${File(it).name}".replace("3gp", "mp4")
+                            )
+                        )
+                        VideoCompress.compressVideoMedium(
+                            fileName,
+                            fileName,
+                            object : VideoCompress.CompressListener {
+                                override fun onStart() {
+                                    showToast("Compressing...")
 
+                                }
+
+                                override fun onSuccess() {
+                                    val part = RequestBodyRetrofit.toRequestBodyFile(fileName)
+                                    viewModel.uploadFile(part)
+                                }
+
+                                override fun onFail() {
+                                    showToast("Failed to compress...")
+                                }
+
+                                override fun onProgress(percent: Float) {
+                                    showToast(percent.toString())
+                                }
+                            })
                     }
 
 

@@ -1,14 +1,12 @@
 package com.example.patternclinic.home.drawerFragments.messages
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.patternclinic.data.model.Chatlist
-import com.example.patternclinic.databinding.ItemDocxMessageBinding
-import com.example.patternclinic.databinding.ItemMessageReciveBinding
-import com.example.patternclinic.databinding.ItemMessageSenderBinding
-import com.example.patternclinic.databinding.ItemVideoMessageBinding
+import com.example.patternclinic.databinding.*
 import com.example.patternclinic.utils.Keys
 import com.example.patternclinic.utils.SharedPrefs
 
@@ -17,7 +15,9 @@ class ChatAdapter(var list: MutableList<Chatlist>) :
     private var SEND_TEXT = 1
     private var RECIEVE_TEXT = 2
     private var SEND_IMAGE_VIDEO = 3
-    private var SEND_DOCX = 4
+    private var RECEIVE_IMAGE_VIDEO = 4
+    private var SEND_DOCX = 5
+    private var RECEIVE_DOCX = 6
 
     //    private var  = 2
 //    private var RECIEVE = 2
@@ -40,7 +40,19 @@ class ChatAdapter(var list: MutableList<Chatlist>) :
 
     }
 
+    class VideoHolderReceiver(bind: ItemVideoMessageReceiverBinding) :
+        RecyclerView.ViewHolder(bind.root) {
+        var binding = bind
+
+    }
+
     class DocxHolder(bind: ItemDocxMessageBinding) : RecyclerView.ViewHolder(bind.root) {
+        var binding = bind
+
+    }
+
+    class DocxHolderReceiver(bind: ItemDocxMessageReceiverBinding) :
+        RecyclerView.ViewHolder(bind.root) {
         var binding = bind
 
     }
@@ -86,6 +98,27 @@ class ChatAdapter(var list: MutableList<Chatlist>) :
                     )
                 return DocxHolder(bind)
             }
+
+            RECEIVE_IMAGE_VIDEO -> {
+                val bind =
+                    ItemVideoMessageReceiverBinding.inflate(
+                        LayoutInflater.from(parent.context),
+                        parent,
+                        false
+                    )
+                return VideoHolderReceiver(bind)
+            }
+
+            RECEIVE_DOCX -> {
+                val bind =
+                    ItemDocxMessageReceiverBinding.inflate(
+                        LayoutInflater.from(parent.context),
+                        parent,
+                        false
+                    )
+                return DocxHolderReceiver(bind)
+            }
+
         }
 
         val bind =
@@ -110,6 +143,37 @@ class ChatAdapter(var list: MutableList<Chatlist>) :
             SEND_IMAGE_VIDEO -> {
                 val holder1 = holder as VideoHolder
                 with(holder1.binding) {
+                    if (list[position].chatType == Keys.FILE_TYPE_IMAGE) {
+                        holder1.binding.rlPlayContainer.visibility = View.GONE
+                    } else {
+                        holder1.binding.rlPlayContainer.visibility = View.VISIBLE
+                    }
+                    Glide.with(holder1.itemView.context).load(list[position].message)
+                        .into(ivImageMessage)
+                }
+            }
+            SEND_DOCX->{
+                val holder1=holder as DocxHolder
+                with(holder.binding){
+                    tvDocName.text="File"
+                }
+            }
+
+            RECEIVE_DOCX->{
+                val holder1=holder as DocxHolderReceiver
+                with(holder.binding){
+                    tvDocName.text="File"
+                }
+            }
+
+            RECEIVE_IMAGE_VIDEO -> {
+                val holder1 = holder as VideoHolderReceiver
+                with(holder1.binding) {
+                    if (list[position].chatType == Keys.FILE_TYPE_IMAGE) {
+                        holder1.binding.rlPlayContainer.visibility = View.GONE
+                    } else {
+                        holder1.binding.rlPlayContainer.visibility = View.VISIBLE
+                    }
                     Glide.with(holder1.itemView.context).load(list[position].message)
                         .into(ivImageMessage)
                 }
@@ -121,7 +185,7 @@ class ChatAdapter(var list: MutableList<Chatlist>) :
                     tvMessage.text = list[position].message
                 }
             }
-        }
+         }
     }
 
     override fun getItemViewType(position: Int): Int {
@@ -132,9 +196,13 @@ class ChatAdapter(var list: MutableList<Chatlist>) :
             } else if (list[position].chatType == Keys.FILE_TYPE_FILE) {
                 return SEND_DOCX
             }
-
             return SEND_TEXT
         } else {
+            if (list[position].chatType == Keys.FILE_TYPE_VIDEO || list[position].chatType == Keys.FILE_TYPE_IMAGE) {
+                return RECEIVE_IMAGE_VIDEO
+            } else if (list[position].chatType == Keys.FILE_TYPE_FILE) {
+                return RECEIVE_DOCX
+                }
             return RECIEVE_TEXT
         }
     }

@@ -40,12 +40,12 @@ class MessageRecyclerAdapter(var list: MutableList<ChatInfo>) :
     override fun onBindViewHolder(holder: Viewfinder, position: Int) {
         with(holder) {
             bind.tvName.text = list[position].name ?: ""
-            bind.tvMessage.text = list[position].lastMessage?.toString()?:""
-//            if(list[position].unseenCount==0){
-//                bind.tvCount.visibility=View.GONE
-//            }else {
-//                bind.tvCount.text = list[position].unseenCount?.toString()
-//            }
+            bind.tvMessage.text = list[position].message?:""
+            if(list[position].unseenCount==0){
+                bind.tvCount.visibility=View.GONE
+            }else {
+                bind.tvCount.text = list[position].unseenCount?.toString()
+            }
 
         }
 
