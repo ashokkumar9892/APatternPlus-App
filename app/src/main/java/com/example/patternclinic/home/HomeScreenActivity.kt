@@ -167,6 +167,7 @@ class HomeScreenActivity : AppCompatActivity(), IBleWriteResponse {
         binding!!.layoutDrawer.llPersonalMetrics.setOnClickListener {
             openFragment(PersonalMetricsFragment())
         }
+
         binding!!.layoutDrawer.llMessage.setOnClickListener {
             openFragment(MessageFragment())
         }
