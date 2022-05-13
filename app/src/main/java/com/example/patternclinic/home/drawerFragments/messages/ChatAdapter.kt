@@ -9,6 +9,10 @@ import com.example.patternclinic.data.model.Chatlist
 import com.example.patternclinic.databinding.*
 import com.example.patternclinic.utils.Keys
 import com.example.patternclinic.utils.SharedPrefs
+import com.example.patternclinic.utils.chatDateFormat
+import okhttp3.RequestBody
+import okhttp3.RequestBody.Companion.asRequestBody
+import java.io.File
 
 class ChatAdapter(var list: MutableList<Chatlist>) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -19,10 +23,6 @@ class ChatAdapter(var list: MutableList<Chatlist>) :
     private var SEND_DOCX = 5
     private var RECEIVE_DOCX = 6
 
-    //    private var  = 2
-//    private var RECIEVE = 2
-//    private var RECIEVE = 2
-//    private var RECIEVE = 2
     val user_id = SharedPrefs.getLoggedInUser()?.patientInfo?.sk
 
     class SendHolder(bind: ItemMessageSenderBinding) : RecyclerView.ViewHolder(bind.root) {
@@ -35,8 +35,15 @@ class ChatAdapter(var list: MutableList<Chatlist>) :
 
     }
 
-    class VideoHolder(bind: ItemVideoMessageBinding) : RecyclerView.ViewHolder(bind.root) {
+    inner class VideoHolder(bind: ItemVideoMessageBinding) : RecyclerView.ViewHolder(bind.root) {
         var binding = bind
+
+        init {
+            binding.root.setOnClickListener {
+                Glide.with(binding.root.context).load(list[absoluteAdapterPosition].message)
+                    .into(binding.ivImageMessage)
+            }
+        }
 
     }
 
@@ -136,6 +143,7 @@ class ChatAdapter(var list: MutableList<Chatlist>) :
                 val holder1 = holder as SendHolder
                 with(holder1.binding) {
                     tvMessage.text = list[position].message
+                    tvTime.text = chatDateFormat(list[position].sentOn)
                 }
 
             }
@@ -150,22 +158,25 @@ class ChatAdapter(var list: MutableList<Chatlist>) :
                     }
                     Glide.with(holder1.itemView.context).load(list[position].message)
                         .into(ivImageMessage)
+                    tvTime.text = chatDateFormat(list[position].sentOn)
+
                 }
             }
-            SEND_DOCX->{
-                val holder1=holder as DocxHolder
-                with(holder.binding){
-                    tvDocName.text="File"
+            SEND_DOCX -> {
+                val holder1 = holder as DocxHolder
+                with(holder.binding) {
+                    tvDocName.text = "File"
+                    tvTime.text = chatDateFormat(list[position].sentOn)
                 }
             }
 
-            RECEIVE_DOCX->{
-                val holder1=holder as DocxHolderReceiver
-                with(holder.binding){
-                    tvDocName.text="File"
+            RECEIVE_DOCX -> {
+                val holder1 = holder as DocxHolderReceiver
+                with(holder.binding) {
+                    tvDocName.text = "File"
+                    tvTime.text = chatDateFormat(list[position].sentOn)
                 }
             }
-
             RECEIVE_IMAGE_VIDEO -> {
                 val holder1 = holder as VideoHolderReceiver
                 with(holder1.binding) {
@@ -176,6 +187,7 @@ class ChatAdapter(var list: MutableList<Chatlist>) :
                     }
                     Glide.with(holder1.itemView.context).load(list[position].message)
                         .into(ivImageMessage)
+                    tvTime.text = chatDateFormat(list[position].sentOn)
                 }
             }
             RECIEVE_TEXT -> {
@@ -183,14 +195,14 @@ class ChatAdapter(var list: MutableList<Chatlist>) :
                 val holder1 = holder as RecieveHolder
                 with(holder1.binding) {
                     tvMessage.text = list[position].message
+                    tvTime.text = chatDateFormat(list[position].sentOn)
                 }
             }
-         }
+        }
     }
 
     override fun getItemViewType(position: Int): Int {
         if (list[position].senderId == user_id) {
-
             if (list[position].chatType == Keys.FILE_TYPE_VIDEO || list[position].chatType == Keys.FILE_TYPE_IMAGE) {
                 return SEND_IMAGE_VIDEO
             } else if (list[position].chatType == Keys.FILE_TYPE_FILE) {
@@ -202,7 +214,7 @@ class ChatAdapter(var list: MutableList<Chatlist>) :
                 return RECEIVE_IMAGE_VIDEO
             } else if (list[position].chatType == Keys.FILE_TYPE_FILE) {
                 return RECEIVE_DOCX
-                }
+            }
             return RECIEVE_TEXT
         }
     }

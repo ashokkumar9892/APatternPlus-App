@@ -76,6 +76,7 @@
             android:exported="false" />
         <activity
             android:name=".home.drawerFragments.messages.ChatActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".home.drawerFragments.myProfile.CurrentHeightActivity"

@@ -13,6 +13,8 @@ object Keys {
     const val mapKeyProfile="profileKey"
     //these are used for send data in other param
     var updateProfileData=""
+    //intent Keys
+    const val  NOTIFICATIONS="NOTIFICATIONS"
 
     //File types
     const val FILE_TYPE_IMAGE="Image"

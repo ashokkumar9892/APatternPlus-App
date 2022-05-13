@@ -63,14 +63,16 @@
 
 
             <TextView
+                android:id="@+id/tv_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textAllCaps="true"
                 android:layout_marginTop="@dimen/_2sdp"
                 android:fontFamily="@font/outfit_light"
                 android:text="@string/_07_55_am"
                 android:textColor="@color/text_color_15"
                 android:textSize="@dimen/_10ssp"
-                android:visibility="gone" />
+                />
         </LinearLayout>
 
     </RelativeLayout>

@@ -15,7 +15,7 @@ data class Chatlist(
     val isAdmin: Boolean,
     val isNotification: Boolean,
     val message: String,
-    val messageOn: Any,
+    val messageOn: String?,
     val receiverId: Any,
     val receiverImage: Any,
     val senderId: Any,

@@ -31,5 +31,14 @@ object RequestBodyRetrofit {
             data
         )
     }
+    fun toRequestBodyFileVideo(value: String?): MultipartBody.Part {
+        val file = File(value)
+        val data = file.asRequestBody("video/*".toMediaTypeOrNull())
+        return MultipartBody.Part.createFormData(
+            ApiConstants.APIParams.FILE_NAME.value,
+            file.name,
+            data
+        )
+    }
 
 }

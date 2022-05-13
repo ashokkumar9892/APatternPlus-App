@@ -1,11 +1,6 @@
 package com.example.patternclinic.home.drawerFragments.messages
 
-import android.content.Intent
-import android.media.MediaRecorder
-import android.provider.MediaStore
 import android.view.View
-import androidx.activity.result.contract.ActivityResultContracts
-import androidx.activity.result.registerForActivityResult
 import androidx.activity.viewModels
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.lifecycleScope
@@ -15,7 +10,6 @@ import com.example.patternclinic.base.BaseActivity
 import com.example.patternclinic.data.ApiConstants
 import com.example.patternclinic.data.api.RequestBodyRetrofit
 import com.example.patternclinic.data.model.ChatInfo
-import com.example.patternclinic.data.model.GetUserChatResponse
 import com.example.patternclinic.data.model.Chatlist
 import com.example.patternclinic.data.model.LoginResponse
 import com.example.patternclinic.databinding.ActivityChatBinding
@@ -24,14 +18,10 @@ import com.google.gson.Gson
 import com.microsoft.signalr.Action1
 import com.microsoft.signalr.HubConnection
 import com.microsoft.signalr.HubConnectionBuilder
-import com.vincent.videocompressor.VideoCompress
 import dagger.hilt.android.AndroidEntryPoint
 import id.zelory.compressor.Compressor
 import kotlinx.coroutines.launch
-import okhttp3.RequestBody.Companion.asRequestBody
 import java.io.File
-import java.security.Key
-import kotlin.collections.HashMap
 
 @AndroidEntryPoint
 class ChatActivity : BaseActivity() {
@@ -44,16 +34,25 @@ class ChatActivity : BaseActivity() {
     var userDetail: LoginResponse? = null
     var receiverUser: ChatInfo? = null
     var receiverSk: String? = null
+    var notificationData: MutableMap<String, Any>? = null
 
     override fun binding() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_chat)
         userDetail = SharedPrefs.getLoggedInUser()
-        receiverUser =
-            Gson().fromJson(intent.getStringExtra(Keys.CHAT), ChatInfo::class.java)
-        receiverSk =
-//            if (receiverUser!!.senderSK != userDetail!!.patientInfo.sk) receiverUser!!.senderSK else receiverUser!!.recieverSK
-            receiverUser!!.sk
-        binding.tvTitle.text=receiverUser!!.name?:""
+
+        if (intent.hasExtra(Keys.NOTIFICATIONS)) {
+
+            notificationData =
+                Gson().fromJson(
+                    intent.getStringExtra(Keys.NOTIFICATIONS),
+                    MutableMap::class.java
+                ) as MutableMap<String, Any>
+            receiverSk = notificationData!!.get("messagesentby").toString()
+        } else {
+            receiverUser = Gson().fromJson(intent.getStringExtra(Keys.CHAT), ChatInfo::class.java)
+            receiverSk = receiverUser!!.sk
+            binding.tvTitle.text = receiverUser!!.name ?: ""
+        }
 
 
         clicks()
@@ -64,12 +63,13 @@ class ChatActivity : BaseActivity() {
         map = HashMap()
         map!![ApiConstants.APIParams.AUTH_TOKEN.value] = userDetail!!.authToken
         map!![ApiConstants.APIParams.SENDER_SK.value] = userDetail!!.patientInfo.sk
-        map!![ApiConstants.APIParams.RECEIVER_SK.value] = receiverSk!!
+        map!![ApiConstants.APIParams.RECEIVER_SK.value] = receiverSk!!.uppercase()
         viewModel.getChat(map!!)
 
         connection2 = HubConnectionBuilder.create(ApiConstants.CHAT_HUB_URL)
             .build()
         connection2!!.start()
+
 
         connection2!!.on("ReceiveMessage", object : Action1<responsemodel> {
             override fun invoke(param1: responsemodel?) {
@@ -97,7 +97,7 @@ class ChatActivity : BaseActivity() {
                                 "",
                                 param1.senderSK,
                                 "",
-                                "",
+                                param1.senton,
                                 "",
                                 ""
                             )
@@ -193,7 +193,7 @@ class ChatActivity : BaseActivity() {
 
     private fun clicks() {
         binding.ivSend.setOnClickListener {
-            if (!binding.etMessage.text.toString().trim().isNullOrEmpty()) {
+            if (binding.etMessage.text.toString().trim().isNotEmpty()) {
                 val data = model(
                     userDetail!!.patientInfo.sk,
                     receiverSk!!,
@@ -217,19 +217,9 @@ class ChatActivity : BaseActivity() {
             }
 
         }
-        var launcher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
-            var uri = it.data!!.data
-        }
-        binding.ivDocx.setOnClickListener {
-
-        }
 
         binding.ivBack.setOnClickListener {
-//            Intent(MediaStore.ACTION_VIDEO_CAPTURE).also { takeVideoIntent ->
-//                takeVideoIntent.resolveActivity(packageManager)?.also {
-//                    launcher.launch(takeVideoIntent)
-//                }
-//            }
+
             finish()
         }
         binding.ivCamera.setOnClickListener {
@@ -243,41 +233,46 @@ class ChatActivity : BaseActivity() {
                         }
                     }
                     if (type == Keys.FILE_TYPE_FILE) {
-                        val part = RequestBodyRetrofit.toRequestBodyFile(it)
-                        viewModel.uploadFile(part)
+                            val part = RequestBodyRetrofit.toRequestBodyFile(it)
+                            viewModel.uploadFile(part)
+
                     }
                     if (type == Keys.FILE_TYPE_VIDEO) {
-                        var convert: Boolean? = null
-                        var fileName = it.replace("3gp", "mp4")
 
-                        convert = File(it).renameTo(
-                            File(
-                                File(it).parent,
-                                "/${File(it).name}".replace("3gp", "mp4")
-                            )
-                        )
-                        VideoCompress.compressVideoMedium(
-                            fileName,
-                            fileName,
-                            object : VideoCompress.CompressListener {
-                                override fun onStart() {
-                                    showToast("Compressing...")
+                            val part = RequestBodyRetrofit.toRequestBodyFileVideo(it)
+                            viewModel.uploadFile(part)
 
-                                }
-
-                                override fun onSuccess() {
-                                    val part = RequestBodyRetrofit.toRequestBodyFile(fileName)
-                                    viewModel.uploadFile(part)
-                                }
-
-                                override fun onFail() {
-                                    showToast("Failed to compress...")
-                                }
-
-                                override fun onProgress(percent: Float) {
-                                    showToast(percent.toString())
-                                }
-                            })
+//                        var convert: Boolean? = null
+//                        var fileName = it.replace("3gp", "mp4")
+//
+//                        convert = File(it).renameTo(
+//                            File(
+//                                File(it).parent,
+//                                "/${File(it).name}".replace("3gp", "mp4")
+//                            )
+//                        )
+//                        VideoCompress.compressVideoMedium(
+//                            it,
+//                            it,
+//                            object : VideoCompress.CompressListener {
+//                                override fun onStart() {
+//                                    showToast("Compressing...")
+//
+//                                }
+//
+//                                override fun onSuccess() {
+//                                    val part = RequestBodyRetrofit.toRequestBodyFileVideo(it)
+//                                    viewModel.uploadFile(part)
+//                                }
+//
+//                                override fun onFail() {
+//                                    showToast("Failed to compress...")
+//                                }
+//
+//                                override fun onProgress(percent: Float) {
+//                                    showToast(percent.toString())
+//                                }
+//                            })
                     }
 
 

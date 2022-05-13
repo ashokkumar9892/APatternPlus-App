@@ -31,11 +31,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:maxLength="16"
-                android:ellipsize="end"
                 android:drawablePadding="@dimen/_6sdp"
+                android:ellipsize="end"
                 android:fontFamily="@font/outfit_semibold"
                 android:gravity="center_vertical"
+                android:maxLength="16"
                 android:text="@string/dr_shaun"
                 android:textColor="@color/text_color_1"
                 android:textSize="@dimen/_15ssp"
@@ -85,6 +85,7 @@
                 android:gravity="center_vertical"
                 android:hint="@string/type_your_message"
                 android:paddingStart="@dimen/_12sdp"
+                android:textCursorDrawable="@drawable/drawable_cursor"
                 android:paddingEnd="@dimen/_6sdp"
                 android:textColorHint="@color/text_color_1"
                 android:textSize="@dimen/_13ssp" />
@@ -100,6 +101,7 @@
                     android:layout_height="match_parent"
                     android:layout_gravity="center_vertical"
                     android:alpha="0.6"
+                    android:visibility="gone"
                     android:background="@color/white"
                     android:padding="@dimen/_6sdp"
                     android:src="@drawable/ic_baseline_note_add_24" />
@@ -129,19 +131,25 @@
 
         </LinearLayout>
 
-        <com.agrawalsuneet.loaderspack.loaders.PulseLoader
+        <RelativeLayout
             android:id="@+id/loader"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_centerInParent="true"
-            android:backgroundTint="@color/color_primary"
             android:clickable="true"
-            android:focusable="true"
-            android:visibility="gone"
-            app:pulse_LineThickness="@dimen/_2sdp"
-            app:pulse_normalIncrementalValue="3"
-            app:pulse_pulseColor="@color/color_primary"
-            app:pulse_pulseIncrementalValue="3"
-            app:pulse_sideLength="@dimen/_20sdp" />
+            android:focusable="true">
+
+            <com.agrawalsuneet.loaderspack.loaders.PulseLoader
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true"
+                android:backgroundTint="@color/color_primary"
+                android:clickable="true"
+                android:focusable="true"
+                app:pulse_LineThickness="@dimen/_2sdp"
+                app:pulse_normalIncrementalValue="3"
+                app:pulse_pulseColor="@color/color_primary"
+                app:pulse_pulseIncrementalValue="3"
+                app:pulse_sideLength="@dimen/_20sdp" />
+        </RelativeLayout>
     </RelativeLayout>
 </layout>
