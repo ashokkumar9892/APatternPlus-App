@@ -1,18 +1,28 @@
 package com.example.patternclinic.home.drawerFragments.messages
 
+import android.app.Activity
+import android.app.ActivityOptions
+import android.app.ActivityOptions.makeSceneTransitionAnimation
+import android.app.DownloadManager
+import android.content.Context
+import android.content.Intent
+import android.net.Uri
+import android.os.Environment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat.getSystemService
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.patternclinic.R
 import com.example.patternclinic.data.model.Chatlist
 import com.example.patternclinic.databinding.*
 import com.example.patternclinic.utils.Keys
 import com.example.patternclinic.utils.SharedPrefs
 import com.example.patternclinic.utils.chatDateFormat
-import okhttp3.RequestBody
-import okhttp3.RequestBody.Companion.asRequestBody
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import java.io.File
+
 
 class ChatAdapter(var list: MutableList<Chatlist>) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -43,6 +53,10 @@ class ChatAdapter(var list: MutableList<Chatlist>) :
                 Glide.with(binding.root.context).load(list[absoluteAdapterPosition].message)
                     .into(binding.ivImageMessage)
             }
+
+            itemView.setOnClickListener {
+                bottomDialog(absoluteAdapterPosition, this)
+            }
         }
 
     }
@@ -62,6 +76,63 @@ class ChatAdapter(var list: MutableList<Chatlist>) :
         RecyclerView.ViewHolder(bind.root) {
         var binding = bind
 
+    }
+
+    fun bottomDialog(position: Int, holder: RecyclerView.ViewHolder) {
+        val dialog = BottomSheetDialog(holder.itemView.context)
+        val bind = BottomSheetOptionsBinding.inflate(LayoutInflater.from(holder.itemView.context))
+        dialog.setContentView(bind.root)
+        bind.tvView.setOnClickListener {
+            dialog.dismiss()
+            when (holder.itemViewType) {
+                SEND_IMAGE_VIDEO -> {
+
+                        with(holder as VideoHolder) {
+                            val intent = Intent(itemView.context, ViewMessageActivity::class.java)
+                            var trans: ActivityOptions? = null
+                            if (list[position].chatType == Keys.FILE_TYPE_IMAGE) {
+                                trans = makeSceneTransitionAnimation(
+                                    itemView.context as Activity,
+                                    binding.ivImageMessage as View?,
+                                    itemView.context.getString(R.string.transition_name)
+                                )
+
+                                intent.putExtra(
+                                    Keys.FILE_TYPE_IMAGE,
+                                    list[absoluteAdapterPosition].message
+                                )
+                            } else {
+                                trans = makeSceneTransitionAnimation(
+                                    itemView.context as Activity,
+                                    binding.vv as View?,
+                                    itemView.context.getString(R.string.transition_name)
+                                )
+                                intent.putExtra(
+                                    Keys.FILE_TYPE_VIDEO,
+                                    list[absoluteAdapterPosition].message
+                                )
+                            }
+                            itemView.context.startActivity(intent, trans.toBundle())
+                        }
+                }
+            }
+        }
+        bind.tvDownloadOption.setOnClickListener {
+            dialog.dismiss()
+            val manager =
+                holder.itemView.context.getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager?
+            val uri: Uri =
+                Uri.parse(list[holder.absoluteAdapterPosition].message)
+            val request: DownloadManager.Request = DownloadManager.Request(uri)
+            request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
+            request.setDestinationInExternalPublicDir(
+                Environment.DIRECTORY_PICTURES,
+                File(list[holder.absoluteAdapterPosition].message).name
+            )
+            val reference: Long = manager!!.enqueue(request)
+
+        }
+        dialog.show()
     }
 
     fun addMessage(message: Chatlist) {
@@ -168,6 +239,7 @@ class ChatAdapter(var list: MutableList<Chatlist>) :
                     tvDocName.text = "File"
                     tvTime.text = chatDateFormat(list[position].sentOn)
                 }
+
             }
 
             RECEIVE_DOCX -> {
@@ -217,6 +289,8 @@ class ChatAdapter(var list: MutableList<Chatlist>) :
             }
             return RECIEVE_TEXT
         }
+
     }
+
 
 }

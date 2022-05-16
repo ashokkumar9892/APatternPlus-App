@@ -37,6 +37,7 @@ class FirebaseNotification : FirebaseMessagingService() {
         FirebaseMessaging.getInstance().token.addOnCompleteListener {
             Log.d("TAG", "Refreshed token: $token")
             SharedPrefs.saveFcmToken(token)
+
         }
 
 
@@ -61,6 +62,7 @@ class FirebaseNotification : FirebaseMessagingService() {
             .setAutoCancel(true)
             .setSound(defaultSoundUri)
             .setContentIntent(pendingIntent)
+
 
         val notificationManager =
             getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager

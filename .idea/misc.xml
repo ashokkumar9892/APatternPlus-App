@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="../../../../layout/custom_preview.xml" value="0.16770833333333332" />
         <entry key="../../.gradle/caches/transforms-3/f8ff537cd1591ded84882af6bb1a1770/transformed/jetified-Picker-2.1.6/res/drawable/ic_image.xml" value="0.21" />
         <entry key="..\:/Users/Paras Technologies/AndroidStudioProjects/APatternPlus-App/app/src/main/res/drawable/drawable_shape_18.xml" value="0.1355" />
         <entry key="..\:/Users/Paras Technologies/AndroidStudioProjects/APatternPlus-App/app/src/main/res/drawable/drawable_shape_21sdp.xml" value="0.1355" />
@@ -79,9 +80,11 @@
         <entry key="app/src/main/res/layout/activity_otp.xml" value="0.22" />
         <entry key="app/src/main/res/layout/activity_select_pattern_plus_team.xml" value="0.33" />
         <entry key="app/src/main/res/layout/activity_signup.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_view_message.xml" value="0.22" />
         <entry key="app/src/main/res/layout/bottom_sheet_chat_bot.xml" value="0.26197916666666665" />
         <entry key="app/src/main/res/layout/bottom_sheet_do_you_have_watch.xml" value="0.26197916666666665" />
         <entry key="app/src/main/res/layout/bottom_sheet_do_you_like.xml" value="0.26197916666666665" />
+        <entry key="app/src/main/res/layout/bottom_sheet_options.xml" value="0.22" />
         <entry key="app/src/main/res/layout/fragment_message.xml" value="0.23958333333333334" />
         <entry key="app/src/main/res/layout/fragment_select_team.xml" value="0.25" />
         <entry key="app/src/main/res/layout/item_docx_message.xml" value="0.33" />

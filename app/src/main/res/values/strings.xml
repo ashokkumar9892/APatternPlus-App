@@ -202,6 +202,9 @@
     <string name="resend_code">Resend Code</string>
     <string name="default_notification_channel_id">com.example.patternclinic</string>
     <string name="fcm_message">Pattern Clinic</string>
+    <string name="transition_name">trnansition</string>
+    <string name="view">View</string>
+    <string name="download">Download</string>
 
     <string-array name="Gender">
         <item>Select Gender</item>

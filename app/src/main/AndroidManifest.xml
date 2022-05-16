@@ -22,26 +22,28 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PatternClinic"
         android:usesCleartextTraffic="true">
-
+        <activity
+            android:name=".home.drawerFragments.messages.ViewMessageActivity"
+            android:exported="false" />
 
         <service
             android:name=".utils.FirebaseNotification"
-
             android:exported="true">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
+
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_icon"
             android:resource="@drawable/login_logo" />
-        <!-- Set color used with incoming notification messages. This is used when no color is set for the incoming
-             notification message. See README(https://goo.gl/6BKBk7) for more. -->
+        <!--
+ Set color used with incoming notification messages. This is used when no color is set for the incoming
+             notification message. See README(https://goo.gl/6BKBk7) for more.
+        -->
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_color"
             android:resource="@color/color_primary" />
-
-
 
         <activity
             android:name=".auth.createProfile.OtpActivity"
@@ -76,8 +78,8 @@
             android:exported="false" />
         <activity
             android:name=".home.drawerFragments.messages.ChatActivity"
-            android:screenOrientation="portrait"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".home.drawerFragments.myProfile.CurrentHeightActivity"
             android:exported="false" />

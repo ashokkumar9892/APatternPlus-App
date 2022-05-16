@@ -132,6 +132,8 @@ dependencies {
     implementation 'id.zelory:compressor:3.0.1'
     //video compressor
     implementation 'com.github.fishwjy:VideoCompressor:06c9bd762e'
+    //zoom image view
+    implementation 'com.jsibbold:zoomage:1.3.1'
 
 
 }

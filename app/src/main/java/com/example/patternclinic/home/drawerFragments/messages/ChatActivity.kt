@@ -232,6 +232,7 @@ class ChatActivity : BaseActivity() {
                             viewModel.uploadFile(part)
                         }
                     }
+
                     if (type == Keys.FILE_TYPE_FILE) {
                             val part = RequestBodyRetrofit.toRequestBodyFile(it)
                             viewModel.uploadFile(part)
