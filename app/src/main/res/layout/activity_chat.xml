@@ -15,6 +15,7 @@
         <RelativeLayout
             android:id="@+id/tool_bar_message"
             android:layout_width="match_parent"
+            android:background="@color/white"
             android:layout_height="@dimen/_45sdp">
 
             <ImageView
@@ -50,86 +51,120 @@
 
 
         </RelativeLayout>
+       <LinearLayout
+           android:layout_width="match_parent"
+           android:layout_below="@+id/tool_bar_message"
+           android:layout_height="match_parent">
+           <androidx.recyclerview.widget.RecyclerView
+               android:id="@+id/rv_messages"
+               android:layout_width="match_parent"
+               android:layout_height="match_parent"
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_messages"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@+id/tool_bar_message"
-            android:clipToPadding="false"
-            android:orientation="vertical"
-            android:paddingStart="@dimen/_21sdp"
-            android:paddingTop="@dimen/_21sdp"
-            android:paddingEnd="@dimen/_21sdp"
-            android:paddingBottom="@dimen/_68sdp"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+               android:clipToPadding="false"
+               android:orientation="vertical"
+               android:paddingStart="@dimen/_21sdp"
+               android:paddingTop="@dimen/_21sdp"
+               android:paddingEnd="@dimen/_21sdp"
+               android:paddingBottom="@dimen/_68sdp"
+               app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+       </LinearLayout>
 
-        <LinearLayout
+
+
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/_44sdp"
             android:layout_alignParentBottom="true"
             android:layout_marginStart="@dimen/_21sdp"
             android:layout_marginEnd="@dimen/_21sdp"
             android:layout_marginBottom="@dimen/_8sdp"
             android:background="@drawable/drawable_shape_21sdp"
+            android:clickable="true"
+            android:focusable="true"
             android:orientation="horizontal">
+
 
             <EditText
                 android:id="@+id/et_message"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="@dimen/_44sdp"
-                android:layout_weight="1"
+                android:layout_toStartOf="@id/iv_camera"
                 android:background="@null"
                 android:drawablePadding="@dimen/_8sdp"
                 android:fontFamily="@font/outfit_light"
                 android:gravity="center_vertical"
                 android:hint="@string/type_your_message"
                 android:paddingStart="@dimen/_12sdp"
-                android:textCursorDrawable="@drawable/drawable_cursor"
                 android:paddingEnd="@dimen/_6sdp"
                 android:textColorHint="@color/text_color_1"
+                android:textCursorDrawable="@drawable/drawable_cursor"
                 android:textSize="@dimen/_13ssp" />
 
-            <LinearLayout
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/iv_camera"
+
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:orientation="horizontal">
+                android:layout_gravity="center_vertical"
+                android:layout_toStartOf="@id/record_button"
+                android:alpha="0.6"
+                android:background="@color/white"
+                android:padding="@dimen/_6sdp"
 
-                <com.google.android.material.imageview.ShapeableImageView
-                    android:id="@+id/iv_docx"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center_vertical"
-                    android:alpha="0.6"
-                    android:visibility="gone"
-                    android:background="@color/white"
-                    android:padding="@dimen/_6sdp"
-                    android:src="@drawable/ic_baseline_note_add_24" />
+                android:src="@drawable/ic_baseline_add_a_photo_24" />
+            <!--                <com.google.android.material.imageview.ShapeableImageView-->
+            <!--                    android:id="@+id/iv_mic"-->
+            <!--                    android:layout_width="wrap_content"-->
+            <!--                    android:layout_height="match_parent"-->
+            <!--                    android:layout_gravity="center_vertical"-->
+            <!--                    android:clickable="true"-->
+            <!--                    android:focusable="true"-->
+            <!--                    android:alpha="0.6"-->
 
-                <com.google.android.material.imageview.ShapeableImageView
-                    android:id="@+id/iv_camera"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center_vertical"
-                    android:alpha="0.6"
-                    android:background="@color/white"
-                    android:padding="@dimen/_6sdp"
-
-                    android:src="@drawable/ic_baseline_add_a_photo_24" />
-
-                <com.google.android.material.imageview.ShapeableImageView
-                    android:id="@+id/iv_send"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center_vertical"
-                    android:background="@color/white"
-                    android:padding="@dimen/_6sdp"
-                    android:src="@drawable/ic_send" />
-
-            </LinearLayout>
+            <!--                    android:background="@color/white"-->
+            <!--                    android:padding="@dimen/_4sdp"-->
+            <!--                    android:src="@drawable/ic_baseline_mic_24" />-->
 
 
-        </LinearLayout>
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/iv_send"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentEnd="true"
+                android:layout_gravity="center_vertical"
+                android:background="@color/white"
+                android:padding="@dimen/_6sdp"
+                android:src="@drawable/ic_send" />
+
+            <com.devlomi.record_view.RecordView
+                android:id="@+id/record_view"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/_44sdp"
+
+                android:layout_alignParentStart="true"
+
+                app:cancel_text_margin_right="@dimen/_12sdp"
+                app:counter_time_color="#ff0000"
+                app:slide_to_cancel_arrow="@drawable/recv_ic_arrow"
+                app:slide_to_cancel_arrow_color="#000000"
+                app:slide_to_cancel_bounds="@dimen/_40sdp"
+
+                app:slide_to_cancel_margin_right="10dp" />
+
+            <com.devlomi.record_view.RecordButton
+                android:id="@+id/record_button"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_toStartOf="@id/iv_send"
+                android:alpha="0.7"
+                android:padding="@dimen/_4sdp"
+                android:scaleType="centerInside"
+                app:mic_icon="@drawable/ic_baseline_mic_24" />
+
+
+        </RelativeLayout>
+
 
         <RelativeLayout
             android:id="@+id/loader"

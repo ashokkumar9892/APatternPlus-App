@@ -43,12 +43,13 @@
                     android:layout_height="match_parent"
                     android:background="@drawable/drawable_shape_message_sender"
                     android:backgroundTint="@color/transparent_color_2">
-                    <WebView
-                        android:id="@+id/vv"
-                        android:layout_width="match_parent"
 
-                        android:transitionName="@string/transition_name"
-                        android:layout_height="match_parent"/>
+<!--                    <WebView-->
+<!--                        android:id="@+id/vv"-->
+<!--                        android:layout_width="match_parent"-->
+
+<!--                        android:layout_height="match_parent"-->
+<!--                        android:transitionName="@string/transition_name" />-->
 
                     <ImageView
                         android:layout_width="wrap_content"

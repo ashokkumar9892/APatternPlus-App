@@ -135,5 +135,11 @@ dependencies {
     //zoom image view
     implementation 'com.jsibbold:zoomage:1.3.1'
 
+    //whats app like recording
+//    implementation 'com.devlomi.record-view:record-view:2.0.1'
+
+    //for AndroidX use:
+    implementation 'com.github.3llomi:RecordView:3.1.1'
+
 
 }

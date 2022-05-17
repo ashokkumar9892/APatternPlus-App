@@ -68,7 +68,7 @@
         <entry key="app/src/main/res/drawable/ic_dummy_user.xml" value="0.198" />
         <entry key="app/src/main/res/drawable/ic_messages.xml" value="0.21" />
         <entry key="app/src/main/res/drawable/ic_splash_logo.xml" value="0.21" />
-        <entry key="app/src/main/res/layout/activity_chat.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_chat.xml" value="0.22" />
         <entry key="app/src/main/res/layout/activity_connect_device.xml" value="0.21" />
         <entry key="app/src/main/res/layout/activity_create_profile.xml" value="0.26197916666666665" />
         <entry key="app/src/main/res/layout/activity_create_profile_height.xml" value="0.26197916666666665" />

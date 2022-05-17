@@ -104,7 +104,7 @@ class ChatAdapter(var list: MutableList<Chatlist>) :
                             } else {
                                 trans = makeSceneTransitionAnimation(
                                     itemView.context as Activity,
-                                    binding.vv as View?,
+                                    binding.ivImageMessage as View?,
                                     itemView.context.getString(R.string.transition_name)
                                 )
                                 intent.putExtra(

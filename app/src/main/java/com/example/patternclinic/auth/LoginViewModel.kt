@@ -17,6 +17,7 @@ import com.example.patternclinic.setupDevice.ConnectDeviceActivity
 import com.example.patternclinic.utils.*
 import com.google.android.exoplayer2.metadata.id3.ApicFrame
 import com.google.android.material.button.MaterialButton
+import com.google.firebase.messaging.FirebaseMessaging
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import okhttp3.RequestBody
@@ -29,6 +30,12 @@ class LoginViewModel @Inject constructor(val mainRepository: MainRepository) : B
     var email = ObservableField<String>()
     var password = ObservableField<String>()
     var activity = LoginActivity.binding
+
+    init {
+        FirebaseMessaging.getInstance().token.addOnCompleteListener {
+            SharedPrefs.saveFcmToken(it.result)
+        }
+    }
 
 
     fun validate(v: View): Boolean {
