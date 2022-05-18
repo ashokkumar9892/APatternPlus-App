@@ -413,7 +413,7 @@ class ChatActivity : BaseActivity() {
             file.mkdirs()
         }
 
-        return file.absolutePath + "/" + System.currentTimeMillis() + ".mp4"
+        return file.absolutePath + "/" + System.currentTimeMillis() + ".m4a"
     }
 
     private fun startRecording() {
@@ -424,7 +424,7 @@ class ChatActivity : BaseActivity() {
         }
         recorder!!.setAudioSource(MediaRecorder.AudioSource.MIC)
         recorder!!.setOutputFormat(MediaRecorder.OutputFormat.MPEG_4)
-        recorder!!.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB)
+        recorder!!.setAudioEncoder(MediaRecorder.AudioEncoder.AAC)
         currentFile=File(getFilename())
         recorder!!.setOutputFile(currentFile!!.path)
         recorder!!.setOnErrorListener(errorListener)
@@ -449,8 +449,6 @@ class ChatActivity : BaseActivity() {
 
     private val infoListener =
         MediaRecorder.OnInfoListener { mr, what, extra -> }
-
-
 }
 
 

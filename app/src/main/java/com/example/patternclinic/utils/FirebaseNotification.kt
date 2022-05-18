@@ -27,7 +27,6 @@ class FirebaseNotification : FirebaseMessagingService() {
 
     override fun onMessageReceived(remoteMessage: RemoteMessage) {
         Log.d("TAG", "From: ${remoteMessage.from}")
-
         sendNotification(remoteMessage.data)
 
     }
@@ -37,10 +36,7 @@ class FirebaseNotification : FirebaseMessagingService() {
         FirebaseMessaging.getInstance().token.addOnCompleteListener {
             Log.d("TAG", "Refreshed token: $token")
             SharedPrefs.saveFcmToken(token)
-
         }
-
-
     }
 
     private fun sendNotification(messageBody: MutableMap<String, String>) {

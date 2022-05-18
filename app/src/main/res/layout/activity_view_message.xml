@@ -44,6 +44,11 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             />
+        <WebView
+            android:id="@+id/web_view"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/iv_back_forgot"
             android:layout_width="@dimen/_40sdp"

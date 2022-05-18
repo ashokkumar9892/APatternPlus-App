@@ -6,11 +6,14 @@ import android.app.ActivityOptions.makeSceneTransitionAnimation
 import android.app.DownloadManager
 import android.content.Context
 import android.content.Intent
+import android.graphics.ColorFilter
 import android.net.Uri
 import android.os.Environment
+import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.core.content.ContextCompat.getSystemService
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -20,7 +23,9 @@ import com.example.patternclinic.databinding.*
 import com.example.patternclinic.utils.Keys
 import com.example.patternclinic.utils.SharedPrefs
 import com.example.patternclinic.utils.chatDateFormat
+import com.example.patternclinic.utils.showToast
 import com.google.android.material.bottomsheet.BottomSheetDialog
+import kotlinx.coroutines.Job
 import java.io.File
 
 
@@ -32,6 +37,8 @@ class ChatAdapter(var list: MutableList<Chatlist>) :
     private var RECEIVE_IMAGE_VIDEO = 4
     private var SEND_DOCX = 5
     private var RECEIVE_DOCX = 6
+    private var SEND_AUDIO = 10
+    private var RECIEVE_AUDIO = 8
 
     val user_id = SharedPrefs.getLoggedInUser()?.patientInfo?.sk
 
@@ -40,9 +47,12 @@ class ChatAdapter(var list: MutableList<Chatlist>) :
 
     }
 
-    class RecieveHolder(bind: ItemMessageReciveBinding) : RecyclerView.ViewHolder(bind.root) {
+    inner class RecieveHolder(bind: ItemMessageReciveBinding) : RecyclerView.ViewHolder(bind.root) {
         var binding = bind
 
+        init {
+
+        }
     }
 
     inner class VideoHolder(bind: ItemVideoMessageBinding) : RecyclerView.ViewHolder(bind.root) {
@@ -61,22 +71,47 @@ class ChatAdapter(var list: MutableList<Chatlist>) :
 
     }
 
-    class VideoHolderReceiver(bind: ItemVideoMessageReceiverBinding) :
+    inner class VideoHolderReceiver(bind: ItemVideoMessageReceiverBinding) :
         RecyclerView.ViewHolder(bind.root) {
         var binding = bind
 
+        init {
+
+            binding.root.setOnClickListener {
+                Glide.with(binding.root.context).load(list[absoluteAdapterPosition].message)
+                    .into(binding.ivImageMessage)
+            }
+
+            itemView.setOnClickListener {
+                bottomDialog(absoluteAdapterPosition, this)
+            }
+        }
+
     }
 
-    class DocxHolder(bind: ItemDocxMessageBinding) : RecyclerView.ViewHolder(bind.root) {
+    inner class DocxHolder(bind: ItemDocxMessageBinding) : RecyclerView.ViewHolder(bind.root) {
         var binding = bind
 
+        init {
+            itemView.setOnClickListener {
+                bottomDialog(absoluteAdapterPosition, this)
+            }
+        }
+
     }
 
-    class DocxHolderReceiver(bind: ItemDocxMessageReceiverBinding) :
+    inner class DocxHolderReceiver(bind: ItemDocxMessageReceiverBinding) :
         RecyclerView.ViewHolder(bind.root) {
         var binding = bind
 
+        init {
+            itemView.setOnClickListener {
+                bottomDialog(absoluteAdapterPosition, this)
+            }
+        }
+
     }
+
 
     fun bottomDialog(position: Int, holder: RecyclerView.ViewHolder) {
         val dialog = BottomSheetDialog(holder.itemView.context)
@@ -85,35 +120,83 @@ class ChatAdapter(var list: MutableList<Chatlist>) :
         bind.tvView.setOnClickListener {
             dialog.dismiss()
             when (holder.itemViewType) {
+
+                SEND_DOCX -> {
+                    with(holder as DocxHolder) {
+                        val intent = Intent(itemView.context, ViewMessageActivity::class.java)
+                        intent.putExtra(Keys.FILE_TYPE_FILE, list[absoluteAdapterPosition].message)
+                        itemView.context.startActivity(intent)
+                    }
+                }
+                RECEIVE_DOCX -> {
+                    with(holder as DocxHolderReceiver) {
+                        val intent = Intent(itemView.context, ViewMessageActivity::class.java)
+                        intent.putExtra(Keys.FILE_TYPE_FILE, list[absoluteAdapterPosition].message)
+                        itemView.context.startActivity(intent)
+                    }
+                }
+
+                RECEIVE_IMAGE_VIDEO -> {
+
+                    with(holder as VideoHolderReceiver) {
+                        val intent = Intent(itemView.context, ViewMessageActivity::class.java)
+                        var trans: ActivityOptions? = null
+                        if (list[position].chatType == Keys.FILE_TYPE_IMAGE) {
+                            trans = makeSceneTransitionAnimation(
+                                itemView.context as Activity,
+                                binding.ivImageMessage as View?,
+                                itemView.context.getString(R.string.transition_name)
+                            )
+
+                            intent.putExtra(
+                                Keys.FILE_TYPE_IMAGE,
+                                list[absoluteAdapterPosition].message
+                            )
+                        } else {
+                            trans = makeSceneTransitionAnimation(
+                                itemView.context as Activity,
+                                binding.ivImageMessage as View?,
+                                itemView.context.getString(R.string.transition_name)
+                            )
+                            intent.putExtra(
+                                Keys.FILE_TYPE_VIDEO,
+                                list[absoluteAdapterPosition].message
+                            )
+                        }
+                        itemView.context.startActivity(intent, trans.toBundle())
+                    }
+
+                }
+
                 SEND_IMAGE_VIDEO -> {
 
-                        with(holder as VideoHolder) {
-                            val intent = Intent(itemView.context, ViewMessageActivity::class.java)
-                            var trans: ActivityOptions? = null
-                            if (list[position].chatType == Keys.FILE_TYPE_IMAGE) {
-                                trans = makeSceneTransitionAnimation(
-                                    itemView.context as Activity,
-                                    binding.ivImageMessage as View?,
-                                    itemView.context.getString(R.string.transition_name)
-                                )
+                    with(holder as VideoHolder) {
+                        val intent = Intent(itemView.context, ViewMessageActivity::class.java)
+                        var tran: ActivityOptions? = null
+                        if (list[position].chatType == Keys.FILE_TYPE_IMAGE) {
+                            tran = makeSceneTransitionAnimation(
+                                itemView.context as Activity,
+                                binding.ivImageMessage as View?,
+                                itemView.context.getString(R.string.transition_name)
+                            )
 
-                                intent.putExtra(
-                                    Keys.FILE_TYPE_IMAGE,
-                                    list[absoluteAdapterPosition].message
-                                )
-                            } else {
-                                trans = makeSceneTransitionAnimation(
-                                    itemView.context as Activity,
-                                    binding.ivImageMessage as View?,
-                                    itemView.context.getString(R.string.transition_name)
-                                )
-                                intent.putExtra(
-                                    Keys.FILE_TYPE_VIDEO,
-                                    list[absoluteAdapterPosition].message
-                                )
-                            }
-                            itemView.context.startActivity(intent, trans.toBundle())
+                            intent.putExtra(
+                                Keys.FILE_TYPE_IMAGE,
+                                list[absoluteAdapterPosition].message
+                            )
+                        } else {
+                            tran = makeSceneTransitionAnimation(
+                                itemView.context as Activity,
+                                binding.ivImageMessage as View?,
+                                itemView.context.getString(R.string.transition_name)
+                            )
+                            intent.putExtra(
+                                Keys.FILE_TYPE_VIDEO,
+                                list[absoluteAdapterPosition].message
+                            )
                         }
+                        itemView.context.startActivity(intent, tran!!.toBundle())
+                    }
                 }
             }
         }
@@ -167,6 +250,7 @@ class ChatAdapter(var list: MutableList<Chatlist>) :
                 return VideoHolder(bind)
             }
 
+
             SEND_DOCX -> {
                 val bind =
                     ItemDocxMessageBinding.inflate(
@@ -186,6 +270,7 @@ class ChatAdapter(var list: MutableList<Chatlist>) :
                     )
                 return VideoHolderReceiver(bind)
             }
+
 
             RECEIVE_DOCX -> {
                 val bind =
@@ -224,8 +309,29 @@ class ChatAdapter(var list: MutableList<Chatlist>) :
                 with(holder1.binding) {
                     if (list[position].chatType == Keys.FILE_TYPE_IMAGE) {
                         holder1.binding.rlPlayContainer.visibility = View.GONE
-                    } else {
+                    } else if (list[position].chatType == Keys.FILE_TYPE_VIDEO) {
                         holder1.binding.rlPlayContainer.visibility = View.VISIBLE
+                        holder1.binding.ivPlay.setImageDrawable(
+                            ContextCompat.getDrawable(
+                                holder1.itemView.context,
+                                R.drawable.play
+                            )
+                        )
+                    } else {
+                        //Audio
+                        holder1.binding.rlPlayContainer.visibility = View.VISIBLE
+                        holder1.binding.ivPlay.setImageDrawable(
+                            ContextCompat.getDrawable(
+                                holder1.itemView.context,
+                                com.devlomi.record_view.R.drawable.recv_ic_mic
+                            )
+                        )
+                        holder.binding.ivPlay.imageTintList = ContextCompat.getColorStateList(
+                            holder1.itemView.context,
+                            R.color.color_primary
+                        )
+
+
                     }
                     Glide.with(holder1.itemView.context).load(list[position].message)
                         .into(ivImageMessage)
@@ -275,18 +381,20 @@ class ChatAdapter(var list: MutableList<Chatlist>) :
 
     override fun getItemViewType(position: Int): Int {
         if (list[position].senderId == user_id) {
-            if (list[position].chatType == Keys.FILE_TYPE_VIDEO || list[position].chatType == Keys.FILE_TYPE_IMAGE) {
+            if (list[position].chatType == Keys.FILE_TYPE_VIDEO || list[position].chatType == Keys.FILE_TYPE_IMAGE || list[position].chatType == Keys.FILE_TYPE_AUDIO) {
                 return SEND_IMAGE_VIDEO
             } else if (list[position].chatType == Keys.FILE_TYPE_FILE) {
                 return SEND_DOCX
             }
+
             return SEND_TEXT
         } else {
-            if (list[position].chatType == Keys.FILE_TYPE_VIDEO || list[position].chatType == Keys.FILE_TYPE_IMAGE) {
+            if (list[position].chatType == Keys.FILE_TYPE_VIDEO || list[position].chatType == Keys.FILE_TYPE_IMAGE || list[position].chatType == Keys.FILE_TYPE_AUDIO) {
                 return RECEIVE_IMAGE_VIDEO
             } else if (list[position].chatType == Keys.FILE_TYPE_FILE) {
                 return RECEIVE_DOCX
             }
+
             return RECIEVE_TEXT
         }
 
