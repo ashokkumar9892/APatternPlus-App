@@ -34,6 +34,8 @@ class ViewMessageActivity : BaseActivity() {
             binding.vvVideo.start()
 
         } else {
+
+
             binding.webView.visibility = View.VISIBLE
             val doc = intent.getStringExtra(Keys.FILE_TYPE_FILE)
 
