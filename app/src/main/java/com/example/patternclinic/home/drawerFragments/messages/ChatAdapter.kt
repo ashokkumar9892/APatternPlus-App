@@ -65,7 +65,25 @@ class ChatAdapter(var list: MutableList<Chatlist>) :
             }
 
             itemView.setOnClickListener {
-                bottomDialog(absoluteAdapterPosition, this)
+
+                val intent = Intent(itemView.context, ViewMessageActivity::class.java)
+                var trans: ActivityOptions? = null
+                if (list[absoluteAdapterPosition].chatType == Keys.FILE_TYPE_IMAGE) {
+                    bottomDialog(absoluteAdapterPosition, this)
+                } else {
+
+                    trans = makeSceneTransitionAnimation(
+                        itemView.context as Activity,
+                        binding.ivImageMessage as View?,
+                        itemView.context.getString(R.string.transition_name)
+                    )
+                    intent.putExtra(
+                        Keys.FILE_TYPE_VIDEO,
+                        list[absoluteAdapterPosition].message
+                    )
+                    itemView.context.startActivity(intent, trans!!.toBundle())
+                }
+
             }
         }
 
@@ -83,7 +101,24 @@ class ChatAdapter(var list: MutableList<Chatlist>) :
             }
 
             itemView.setOnClickListener {
-                bottomDialog(absoluteAdapterPosition, this)
+                val intent = Intent(itemView.context, ViewMessageActivity::class.java)
+                var trans: ActivityOptions? = null
+                if (list[absoluteAdapterPosition].chatType == Keys.FILE_TYPE_IMAGE) {
+                    bottomDialog(absoluteAdapterPosition, this)
+                } else {
+
+                    trans = makeSceneTransitionAnimation(
+                        itemView.context as Activity,
+                        binding.ivImageMessage as View?,
+                        itemView.context.getString(R.string.transition_name)
+                    )
+                    intent.putExtra(
+                        Keys.FILE_TYPE_VIDEO,
+                        list[absoluteAdapterPosition].message
+                    )
+                    itemView.context.startActivity(intent, trans!!.toBundle())
+                }
+
             }
         }
 
@@ -117,6 +152,9 @@ class ChatAdapter(var list: MutableList<Chatlist>) :
         val dialog = BottomSheetDialog(holder.itemView.context)
         val bind = BottomSheetOptionsBinding.inflate(LayoutInflater.from(holder.itemView.context))
         dialog.setContentView(bind.root)
+        if(list[position].chatType==Keys.FILE_TYPE_VIDEO || list[position].chatType==Keys.FILE_TYPE_AUDIO){
+            bind.tvDownloadOption.visibility=View.GONE
+        }
         bind.tvView.setOnClickListener {
             dialog.dismiss()
             when (holder.itemViewType) {
@@ -342,7 +380,7 @@ class ChatAdapter(var list: MutableList<Chatlist>) :
             SEND_DOCX -> {
                 val holder1 = holder as DocxHolder
                 with(holder.binding) {
-                    tvDocName.text = "File"
+                    tvDocName.text = File(list[position].message).name
                     tvTime.text = chatDateFormat(list[position].sentOn)
                 }
 
@@ -351,7 +389,7 @@ class ChatAdapter(var list: MutableList<Chatlist>) :
             RECEIVE_DOCX -> {
                 val holder1 = holder as DocxHolderReceiver
                 with(holder.binding) {
-                    tvDocName.text = "File"
+                    tvDocName.text = File(list[position].message).name
                     tvTime.text = chatDateFormat(list[position].sentOn)
                 }
             }
@@ -360,8 +398,29 @@ class ChatAdapter(var list: MutableList<Chatlist>) :
                 with(holder1.binding) {
                     if (list[position].chatType == Keys.FILE_TYPE_IMAGE) {
                         holder1.binding.rlPlayContainer.visibility = View.GONE
-                    } else {
+                    } else if (list[position].chatType == Keys.FILE_TYPE_VIDEO) {
                         holder1.binding.rlPlayContainer.visibility = View.VISIBLE
+                        holder1.binding.ivPlay.setImageDrawable(
+                            ContextCompat.getDrawable(
+                                holder1.itemView.context,
+                                R.drawable.play
+                            )
+                        )
+                    }else {
+                        //Audio
+                        holder1.binding.rlPlayContainer.visibility = View.VISIBLE
+                        holder1.binding.ivPlay.setImageDrawable(
+                            ContextCompat.getDrawable(
+                                holder1.itemView.context,
+                                com.devlomi.record_view.R.drawable.recv_ic_mic
+                            )
+                        )
+                        holder.binding.ivPlay.imageTintList = ContextCompat.getColorStateList(
+                            holder1.itemView.context,
+                            R.color.color_primary
+                        )
+
+
                     }
                     Glide.with(holder1.itemView.context).load(list[position].message)
                         .into(ivImageMessage)

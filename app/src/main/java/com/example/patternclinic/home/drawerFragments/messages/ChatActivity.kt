@@ -28,6 +28,7 @@ import com.google.gson.Gson
 import com.microsoft.signalr.Action1
 import com.microsoft.signalr.HubConnection
 import com.microsoft.signalr.HubConnectionBuilder
+import com.vincent.videocompressor.VideoCompress
 import dagger.hilt.android.AndroidEntryPoint
 import id.zelory.compressor.Compressor
 import kotlinx.coroutines.launch
@@ -49,7 +50,7 @@ class ChatActivity : BaseActivity() {
     var receiverUser: ChatInfo? = null
     var receiverSk: String? = null
     var notificationData: MutableMap<String, Any>? = null
-    var currentFile:File?=null
+    var currentFile: File? = null
 
     override fun binding() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_chat)
@@ -67,6 +68,9 @@ class ChatActivity : BaseActivity() {
             receiverUser = Gson().fromJson(intent.getStringExtra(Keys.CHAT), ChatInfo::class.java)
             receiverSk = receiverUser!!.sk
             binding.tvTitle.text = receiverUser!!.name ?: ""
+            if (receiverUser!!.chatStatus == Keys.STATUS_INACTIVE) {
+                binding.rlSendingFunctionalityContainer.visibility = View.GONE
+            }
         }
 
 
@@ -84,6 +88,10 @@ class ChatActivity : BaseActivity() {
         connection2 = HubConnectionBuilder.create(ApiConstants.CHAT_HUB_URL)
             .build()
         connection2!!.start()
+        connection2!!.serverTimeout=10000000
+        connection2!!.onClosed {
+            connection2!!.start()
+        }
 
 
         connection2!!.on("ReceiveMessage", object : Action1<responsemodel> {
@@ -184,8 +192,10 @@ class ChatActivity : BaseActivity() {
                     receiverSk!!,
                     it.imageurls[0].filetype,
                     it.imageurls[0].files,
-                    SharedPrefs.getLoggedInUser()!!.authToken
-                )
+                    SharedPrefs.getLoggedInUser()!!.authToken,
+
+
+                    )
 
                 try {
                     //invoke from one connection
@@ -215,7 +225,7 @@ class ChatActivity : BaseActivity() {
                     receiverSk!!,
                     "Text",
                     binding.etMessage.text.trim().toString(),
-                    SharedPrefs.getLoggedInUser()!!.authToken
+                    SharedPrefs.getLoggedInUser()!!.authToken,
                 )
 
                 try {
@@ -256,40 +266,45 @@ class ChatActivity : BaseActivity() {
                     }
                     if (type == Keys.FILE_TYPE_VIDEO) {
 
-                        val part = RequestBodyRetrofit.toRequestBodyFileVideo(it)
-                        viewModel.uploadFile(part)
+//                        val part = RequestBodyRetrofit.toRequestBodyFileVideo(it)
+//                        viewModel.uploadFile(part)
+                        val newFile = File(File(it).parentFile, "/compressed_${File(it).name}")
+                        if (!newFile.exists()) {
+                            newFile.createNewFile()
+                        }
 
-//                        var convert: Boolean? = null
-//                        var fileName = it.replace("3gp", "mp4")
-//
-//                        convert = File(it).renameTo(
-//                            File(
-//                                File(it).parent,
-//                                "/${File(it).name}".replace("3gp", "mp4")
-//                            )
-//                        )
-//                        VideoCompress.compressVideoMedium(
-//                            it,
-//                            it,
-//                            object : VideoCompress.CompressListener {
-//                                override fun onStart() {
-//                                    showToast("Compressing...")
-//
-//                                }
-//
-//                                override fun onSuccess() {
-//                                    val part = RequestBodyRetrofit.toRequestBodyFileVideo(it)
-//                                    viewModel.uploadFile(part)
-//                                }
-//
-//                                override fun onFail() {
-//                                    showToast("Failed to compress...")
-//                                }
-//
-//                                override fun onProgress(percent: Float) {
-//                                    showToast(percent.toString())
-//                                }
-//                            })
+                        VideoCompress.compressVideoLow(
+                            it,
+                            newFile.path,
+                            object : VideoCompress.CompressListener {
+                                override fun onStart() {
+                                    runOnUiThread {
+                                        showToast("Compressing...")
+                                    }
+
+                                }
+
+                                override fun onSuccess() {
+                                    runOnUiThread {
+                                        val part =
+                                            RequestBodyRetrofit.toRequestBodyFileVideo(newFile.path)
+                                        viewModel.uploadFile(part)
+                                    }
+
+                                }
+
+                                override fun onFail() {
+                                    runOnUiThread {
+                                        showToast("Failed to compress...")
+                                    }
+                                }
+
+                                override fun onProgress(percent: Float) {
+//                                    runOnUiThread {
+//                                        showToast(+percent.toInt().toString()+"%")
+//                                    }
+                                }
+                            })
                     }
 
 
@@ -321,10 +336,7 @@ class ChatActivity : BaseActivity() {
         binding.recordButton.setOnRecordClickListener {
             showToast("recording")
         }
-        binding.recordButton.setOnClickListener {
 
-            showToast("recording")
-        }
         binding.recordView.setOnRecordListener(object : OnRecordListener {
             override fun onStart() {
 
@@ -345,14 +357,14 @@ class ChatActivity : BaseActivity() {
 
                 stopRecording()
                 binding.etMessage.visibility = View.VISIBLE
-                if(currentFile!=null) {
+                if (currentFile != null) {
                     val part = RequestBodyRetrofit.toRequestBodyFile(currentFile!!.absolutePath)
                     viewModel.uploadFile(part)
                 }
             }
 
             override fun onLessThanSecond() {
-                stopRecording()
+
                 currentFile!!.delete()
                 binding.etMessage.visibility = View.VISIBLE
             }
@@ -398,11 +410,12 @@ class ChatActivity : BaseActivity() {
         }
 
     private fun stopRecording() {
-        if (null != recorder) {
+        if (recorder != null) {
             recorder!!.stop()
             recorder!!.reset()
             recorder!!.release()
-            recorder = null
+            recorder=null
+
         }
     }
 
@@ -425,7 +438,7 @@ class ChatActivity : BaseActivity() {
         recorder!!.setAudioSource(MediaRecorder.AudioSource.MIC)
         recorder!!.setOutputFormat(MediaRecorder.OutputFormat.MPEG_4)
         recorder!!.setAudioEncoder(MediaRecorder.AudioEncoder.AAC)
-        currentFile=File(getFilename())
+        currentFile = File(getFilename())
         recorder!!.setOutputFile(currentFile!!.path)
         recorder!!.setOnErrorListener(errorListener)
         recorder!!.setOnInfoListener(infoListener)
@@ -457,13 +470,15 @@ data class model(
     var ReceiverSK: String,
     var MessageType: String,
     var Message: String,
-    var AuthToken: String
-)
+    var AuthToken: String,
+
+    )
 
 data class responsemodel(
     var image: String,
     var message: String?,
     var messageType: String,
     var senderSK: String,
-    var senton: String
+    var senton: String,
+    var Name: String
 )

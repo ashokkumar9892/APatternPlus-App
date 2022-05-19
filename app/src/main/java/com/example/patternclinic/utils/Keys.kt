@@ -11,6 +11,8 @@ object Keys {
     const val CHAT="chat"
     const val DEVICE_ANDROID="Android"
     const val mapKeyProfile="profileKey"
+    const val STATUS_ACTIVE="Active"
+    const val STATUS_INACTIVE="InActive"
     //these are used for send data in other param
     var updateProfileData=""
     //intent Keys

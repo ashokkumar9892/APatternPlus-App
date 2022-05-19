@@ -8,5 +8,6 @@ data class UploadFileResponse(
 
 data class Imageurl(
     val files: String,
-    val filetype: String
+    val filetype: String,
+
 )

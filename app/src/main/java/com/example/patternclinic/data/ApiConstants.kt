@@ -14,7 +14,7 @@ object ApiConstants {
     const val MY_CHAT_URL = "Chat/MyChat"
     const val USER_CHAT_LIST = "Chat/ChatUsers"
     const val UPLOAD_FILE_URL = "Chat/UploadFiles"
-    const val CHAT_HUB_URL = "https://patternclinicapis.harishparas.com/ChatHub"
+    const val CHAT_HUB_URL = "https://annexappapi.apatternplus.com/chatHub"
 
 
     const val CONNECT_TIMEOUT = 240L //seconds

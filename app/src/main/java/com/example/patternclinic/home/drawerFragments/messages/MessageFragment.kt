@@ -1,29 +1,22 @@
 package com.example.patternclinic.home.drawerFragments.messages
 
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.patternclinic.data.ApiConstants
-import com.example.patternclinic.data.model.GetUserChatResponse
 import com.example.patternclinic.data.model.LoginResponse
 import com.example.patternclinic.databinding.FragmentMessageBinding
 import com.example.patternclinic.home.HomeScreenActivity
 import com.example.patternclinic.utils.SharedPrefs
 import com.example.patternclinic.utils.showToast
-import com.microsoft.signalr.*
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MessageFragment : Fragment() {
     lateinit var binding: FragmentMessageBinding
-    var connection: HubConnection? = null
     var userDetail: LoginResponse? = null
     val viewModel: MessageFragmentViewModel by viewModels()
 

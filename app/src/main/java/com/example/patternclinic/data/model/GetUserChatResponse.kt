@@ -28,5 +28,6 @@ data class ChatInfo(
     val sentOn: Any,
     val sk: String,
     val toIsRead: Any,
-    val totalBill: Any
+    val totalBill: Any,
+    val chatStatus: String
 )

@@ -119,10 +119,10 @@ class UpdateProfileViewModel @Inject constructor(val mainRepository: MainReposit
             binding.root.context.showToast(binding.root.context.getString(R.string.select_refer))
             return false
         }
-        if (encodedImage?.trim().isNullOrEmpty()) {
-            binding.root.context.showToast(binding.root.context.getString(R.string.select_image))
-            return false
-        }
+//        if (encodedImage?.trim().isNullOrEmpty()) {
+//            binding.root.context.showToast(binding.root.context.getString(R.string.select_image))
+//            return false
+//        }
         return true
     }
 
@@ -133,7 +133,9 @@ class UpdateProfileViewModel @Inject constructor(val mainRepository: MainReposit
                     (v.context as AppCompatActivity).imagePicker {
                         Glide.with(v).load(it).into(binding.ivUserImage)
 //                        convertToBase64(it)
-                        encodedImage = encodeImage(it)
+                        //Todo change to encode again
+//                        encodedImage = encodeImage(it)
+                        encodedImage = ""
                     }
                 }
             }
@@ -153,7 +155,11 @@ class UpdateProfileViewModel @Inject constructor(val mainRepository: MainReposit
                     map.put(ApiConstants.APIParams.SK.value, userData!!.patientInfo.sk)
                     //todo change this after
 
-                    map.put(ApiConstants.APIParams.PROFILE_PIC.value, encodedImage!!)
+                    if (encodedImage != null) {
+                        map.put(ApiConstants.APIParams.PROFILE_PIC.value, encodedImage!!)
+                    }else{
+                        map.put(ApiConstants.APIParams.PROFILE_PIC.value, "")
+                    }
 
                     map[ApiConstants.APIParams.DOB.value] = dob.get()?.trim().toString()
                     map[ApiConstants.APIParams.GENDER.value] =
