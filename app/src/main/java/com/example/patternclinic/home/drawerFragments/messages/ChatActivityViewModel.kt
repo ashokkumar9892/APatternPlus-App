@@ -7,12 +7,15 @@ import androidx.annotation.RequiresApi
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.patternclinic.base.BaseViewModel
+import com.example.patternclinic.data.ApiConstants
 import com.example.patternclinic.data.model.LoginResponse
 import com.example.patternclinic.data.model.MyChatResponse
 import com.example.patternclinic.data.model.UploadFileResponse
 import com.example.patternclinic.data.repository.MainRepository
 import com.example.patternclinic.retrofit.ResponseResult
 import com.example.patternclinic.retrofit.getResult
+import com.microsoft.signalr.HubConnection
+import com.microsoft.signalr.HubConnectionBuilder
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.launch
@@ -24,7 +27,16 @@ import javax.inject.Inject
 class ChatActivityViewModel @Inject constructor(val mainRepository: MainRepository):BaseViewModel() {
     var chatData= MutableLiveData<MyChatResponse>()
     var uploadFileResponse= MutableLiveData<UploadFileResponse>()
+    var connection2: HubConnection? = null
 
+
+    init {
+        connection2 = HubConnectionBuilder.create(ApiConstants.CHAT_HUB_URL)
+            .build()
+        connection2!!.serverTimeout=10000000
+        connection2!!.start()
+
+    }
     /**
      * below method used for get chat
      */

@@ -42,7 +42,7 @@ class ChatActivity : BaseActivity() {
     lateinit var binding: ActivityChatBinding
 
     lateinit var chatAdapter: ChatAdapter
-    var connection2: HubConnection? = null
+//    var connection2: HubConnection? = null
     val viewModel: ChatActivityViewModel by viewModels()
     var recorder: MediaRecorder? = null
     var map: HashMap<String, Any>? = null
@@ -85,16 +85,16 @@ class ChatActivity : BaseActivity() {
         map!![ApiConstants.APIParams.RECEIVER_SK.value] = receiverSk!!.uppercase()
         viewModel.getChat(map!!)
 
-        connection2 = HubConnectionBuilder.create(ApiConstants.CHAT_HUB_URL)
-            .build()
-        connection2!!.start()
-        connection2!!.serverTimeout=10000000
-        connection2!!.onClosed {
-            connection2!!.start()
-        }
+//        connection2 = HubConnectionBuilder.create(ApiConstants.CHAT_HUB_URL)
+//            .build()
+//        connection2!!.start()
+//        connection2!!.serverTimeout=10000000
+//        connection2!!.onClosed {
+//            connection2!!.start()
+//        }
 
 
-        connection2!!.on("ReceiveMessage", object : Action1<responsemodel> {
+       viewModel.connection2!!.on("ReceiveMessage", object : Action1<responsemodel> {
             override fun invoke(param1: responsemodel?) {
 
                 if (param1!!.message.isNullOrEmpty()) {
@@ -200,7 +200,7 @@ class ChatActivity : BaseActivity() {
                 try {
                     //invoke from one connection
                     runOnUiThread {
-                        connection2!!.invoke("SendMessages", data)
+                        viewModel.connection2!!.invoke("SendMessages", data)
                         binding.etMessage.setText("")
                         binding.loader.visibility = View.VISIBLE
 //
@@ -231,7 +231,7 @@ class ChatActivity : BaseActivity() {
                 try {
                     //invoke from one connection
                     runOnUiThread {
-                        connection2!!.invoke("SendMessages", data)
+                        viewModel.connection2!!.invoke("SendMessages", data)
                         binding.etMessage.setText("")
                         binding.loader.visibility = View.VISIBLE
 //
@@ -454,7 +454,7 @@ class ChatActivity : BaseActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
-        connection2!!.stop()
+        viewModel.connection2!!.close()
     }
 
     private val errorListener =
