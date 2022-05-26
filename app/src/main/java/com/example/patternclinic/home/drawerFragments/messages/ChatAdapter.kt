@@ -152,8 +152,8 @@ class ChatAdapter(var list: MutableList<Chatlist>) :
         val dialog = BottomSheetDialog(holder.itemView.context)
         val bind = BottomSheetOptionsBinding.inflate(LayoutInflater.from(holder.itemView.context))
         dialog.setContentView(bind.root)
-        if(list[position].chatType==Keys.FILE_TYPE_VIDEO || list[position].chatType==Keys.FILE_TYPE_AUDIO){
-            bind.tvDownloadOption.visibility=View.GONE
+        if (list[position].chatType == Keys.FILE_TYPE_VIDEO || list[position].chatType == Keys.FILE_TYPE_AUDIO) {
+            bind.tvDownloadOption.visibility = View.GONE
         }
         bind.tvView.setOnClickListener {
             dialog.dismiss()
@@ -339,9 +339,7 @@ class ChatAdapter(var list: MutableList<Chatlist>) :
                     tvMessage.text = list[position].message
                     tvTime.text = chatDateFormat(list[position].sentOn)
                 }
-
             }
-
             SEND_IMAGE_VIDEO -> {
                 val holder1 = holder as VideoHolder
                 with(holder1.binding) {
@@ -368,8 +366,6 @@ class ChatAdapter(var list: MutableList<Chatlist>) :
                             holder1.itemView.context,
                             R.color.color_primary
                         )
-
-
                     }
                     Glide.with(holder1.itemView.context).load(list[position].message)
                         .into(ivImageMessage)
@@ -406,7 +402,7 @@ class ChatAdapter(var list: MutableList<Chatlist>) :
                                 R.drawable.play
                             )
                         )
-                    }else {
+                    } else {
                         //Audio
                         holder1.binding.rlPlayContainer.visibility = View.VISIBLE
                         holder1.binding.ivPlay.setImageDrawable(

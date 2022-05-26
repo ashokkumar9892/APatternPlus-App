@@ -83,6 +83,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_38sdp"
                         android:layout_marginTop="@dimen/_6sdp"
+                        android:inputType="textEmailAddress"
                         android:singleLine="true"
                         android:background="@drawable/drawable_shape_login_2"
                         android:paddingStart="@dimen/_10sdp"

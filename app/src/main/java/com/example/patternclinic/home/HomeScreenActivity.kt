@@ -2,7 +2,6 @@ package com.example.patternclinic.home
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -26,109 +25,36 @@ import com.example.patternclinic.home.progressTracker.ProgressTrackerActivity
 import com.example.patternclinic.utils.SharedPrefs
 import com.example.patternclinic.utils.changeStatusBarColor
 import com.example.patternclinic.utils.decorStatusBar
-import com.example.patternclinic.utils.showToast
 import com.google.android.material.bottomsheet.BottomSheetDialog
-import com.google.gson.Gson
-import com.inuker.bluetooth.library.channel.Code
-import com.veepoo.protocol.VPOperateManager
-import com.veepoo.protocol.listener.base.IBleWriteResponse
-import com.veepoo.protocol.listener.data.*
-import com.veepoo.protocol.model.datas.*
-import com.veepoo.protocol.model.enums.EBPDetectModel
-import com.veepoo.protocol.model.enums.EFunctionStatus
-import com.veepoo.protocol.model.enums.ESportType
-import com.veepoo.protocol.model.settings.CustomSetting
-import com.veepoo.protocol.model.settings.CustomSettingData
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class HomeScreenActivity : AppCompatActivity(), IBleWriteResponse {
+class HomeScreenActivity : AppCompatActivity() {
     var binding: ActivityHomeScreenBinding? = null
     var isHaveMetricSystem = true
     var isMetric = true
     var is24Hour = true
     var isOpenAutoHeartDetect = true
     var isOpenAutoBpDetect = true
-    var isCelsius = true
-    var isOpenSportRemain = EFunctionStatus.SUPPORT
-    var isOpenVoiceBpHeart = EFunctionStatus.SUPPORT
-    var isOpenFindPhoneUI = EFunctionStatus.SUPPORT
-    var isOpenStopWatch = EFunctionStatus.SUPPORT
-    var isOpenSpo2hLowRemind = EFunctionStatus.SUPPORT
-    var isOpenWearDetectSkin = EFunctionStatus.SUPPORT
-    var isOpenAutoInCall = EFunctionStatus.SUPPORT
-    var isOpenAutoHRV = EFunctionStatus.SUPPORT
-    var isOpenDisconnectRemind = EFunctionStatus.SUPPORT
-    var isAutoTemperatureDetect = EFunctionStatus.SUPPORT
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         changeStatusBarColor(R.color.color_primary)
         decorStatusBar(false)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_home_screen)
         initDesign()
-        val customSetting = CustomSetting(
-            isHaveMetricSystem,
-            isMetric,
-            is24Hour,
-            isOpenAutoHeartDetect,
-            isOpenAutoBpDetect,
-            isOpenSportRemain,
-            isOpenVoiceBpHeart,
-            isOpenFindPhoneUI,
-            isOpenStopWatch,
-            isOpenSpo2hLowRemind,
-            isOpenWearDetectSkin,
-            isOpenAutoInCall,
-            isOpenAutoHRV,
-            isOpenDisconnectRemind
-        )
-        VPOperateManager.getMangerInstance(this)
-            .changeCustomSetting(this, ICustomSettingDataListener {
-                showToast(it.autoHeartDetect.toString())
-            },customSetting)
 
-        binding!!.llTest.setOnClickListener {
-            VPOperateManager.getMangerInstance(this).startDetectHeart(this) {
-                showToast(it.toString())
-            }
-        }
+
         binding!!.ivUserImage.setOnClickListener {
-//            VPOperateManager.getMangerInstance(this).readSportStep(this) {
-//                showToast(it.toString())
-//            }
-//            VPOperateManager.getMangerInstance(this).startSportModel(this,object :ISportModelStateListener{
-//                override fun onSportModelStateChange(p0: SportModelStateData?) {
-//                    showToast(p0.toString())
+//            YCBTClient.startScanBle(object : BleScanResponse {
+//                override fun onScanResponse(p0: Int, p1: ScanDeviceBean?) {
 //
+//                    runOnUiThread {
+//                        showToast("searching")
+//                    }
 //                }
-//
-//                override fun onSportStopped() {
-//
-//                }
-//            })
+//            }, 6)
 
-
-            VPOperateManager.getMangerInstance(this).startMultSportModel(this,object :ISportModelStateListener{
-                override fun onSportModelStateChange(p0: SportModelStateData?) {
-                    showToast(p0.toString())
-
-                }
-
-                override fun onSportStopped() {
-
-                }
-            },ESportType.OUTDOOR_WALK)
-//            VPOperateManager.getMangerInstance(this).startDetectBP(this,object :IBPDetectDataListener{
-//                override fun onDataChange(p0: BpData?) {
-//                    showToast(p0.toString())
-//
-//                }
-//            },EBPDetectModel.DETECT_MODEL_PRIVATE)
-        }
-        binding!!.tvUserName.setOnClickListener {
-            VPOperateManager.getMangerInstance(this).startDetectSPO2H(this) {
-                showToast(it.toString())
-            }
         }
     }
 
@@ -191,7 +117,7 @@ class HomeScreenActivity : AppCompatActivity(), IBleWriteResponse {
         }
         binding!!.layoutDrawer.tvLogOut.setOnClickListener {
             SharedPrefs.clearAll()
-            startActivity(Intent(this,LoginActivity::class.java))
+            startActivity(Intent(this, LoginActivity::class.java))
             finishAffinity()
 
         }
@@ -241,7 +167,5 @@ class HomeScreenActivity : AppCompatActivity(), IBleWriteResponse {
         }
     }
 
-    override fun onResponse(p0: Int) {
-        showToast(p0.toString())
-    }
+
 }

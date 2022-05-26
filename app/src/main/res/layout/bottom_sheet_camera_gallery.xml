@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#9C000000"
+        tools:context=".selectTeam.fragments.SelectTeamFragment">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:elevation="@dimen/_2sdp"
+            android:background="@drawable/drawable_shape_login"
+            android:orientation="vertical">
+
+            <View
+                android:layout_width="@dimen/_70sdp"
+                android:layout_height="@dimen/_4sdp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/_12sdp"
+                android:background="@color/text_color_9" />
+
+            <TextView
+                android:id="@+id/tv_camera"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="@dimen/_8sdp"
+                android:layout_gravity="center_horizontal"
+                android:textSize="@dimen/_18ssp"
+                android:fontFamily="@font/outfit_semibold"
+                android:layout_marginTop="@dimen/_19sdp"
+                android:textColor="@color/text_color_4"
+                android:text="@string/camera" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2px"
+                android:background="@color/stroke_color_1" />
+            <TextView
+                android:id="@+id/tv_image_gallery"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="@dimen/_8sdp"
+                android:layout_gravity="center_horizontal"
+                android:textSize="@dimen/_18ssp"
+                android:fontFamily="@font/outfit_semibold"
+
+                android:textColor="@color/text_color_4"
+                android:text="@string/image_gallery" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2px"
+                android:background="@color/stroke_color_1" />
+
+            <TextView
+                android:id="@+id/tv_record_video"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="@dimen/_8sdp"
+                android:layout_gravity="center_horizontal"
+                android:textSize="@dimen/_18ssp"
+                android:fontFamily="@font/outfit_semibold"
+
+                android:textColor="@color/text_color_4"
+                android:text="@string/record_video" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2px"
+                android:background="@color/stroke_color_1" />
+
+
+            <TextView
+                android:id="@+id/tv_video_gallery"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="@dimen/_8sdp"
+                android:layout_marginBottom="@dimen/_20sdp"
+                android:layout_gravity="center_horizontal"
+                android:textSize="@dimen/_18ssp"
+                android:fontFamily="@font/outfit_semibold"
+
+                android:textColor="@color/text_color_4"
+                android:text="@string/video_gallery" />
+
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+</layout>

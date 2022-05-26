@@ -12,6 +12,8 @@ android {
         enabled = true
     }
 
+
+
     defaultConfig {
         applicationId "com.example.patternclinic"
         minSdk 21
@@ -20,6 +22,8 @@ android {
         versionName "1.0"
         buildConfigField 'String', 'BASE_URL', '"https://annexappapi.apatternplus.com/api/"'
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
+
     }
 
 
@@ -41,6 +45,7 @@ android {
 
 dependencies {
 
+    implementation 'com.android.support:multidex:1.0.3'
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.4.1'
     implementation 'com.google.android.material:material:1.5.0'
@@ -71,7 +76,6 @@ dependencies {
     implementation "com.squareup.retrofit2:converter-moshi:2.9.0"
     implementation "com.squareup.retrofit2:converter-gson:2.9.0"
 
-
     /* todo Dagger hilt */
     implementation 'androidx.fragment:fragment-ktx:1.4.1'
     implementation 'androidx.activity:activity-ktx:1.4.0'
@@ -98,18 +102,31 @@ dependencies {
     implementation 'com.github.bumptech.glide:glide:4.12.0'
 
     // image uploading
-    implementation("com.robertlevonyan.components:Picker:2.1.6")
+//    implementation("com.robertlevonyan.components:Picker:2.2.3") {
+//        exclude group: 'com.robertlevonyan.components', module: 'a.a'
+//    }
+    /**
+     * watch integration
+     */
+    api files('libs/ycbtsdk-release.aar')
+
+
     //dexture
     implementation 'com.karumi:dexter:6.2.3'
 
+    //media picker
+    implementation 'net.alhazmy13.MediaPicker:libary:2.4.4'
+
 
 //    implementation files('libs/gson-2.2.4.jar')
-    implementation files('libs/vpbluetooth_1.0.4.jar')
-    implementation files('libs/vpprotocol-2.1.94.15.aar')
-    implementation files('libs/libdfu-1.5.aar')
-    implementation files('libs/libfastdfu-0.5.aar')
-    implementation files('libs/libble-0.5.aar')
-    implementation files('libs/libcomx-0.5.jar')
+//    implementation files('libs/vpbluetooth_1.0.4.jar')
+//    implementation files('libs/vpprotocol-2.1.94.15.aar')
+//    implementation files('libs/libdfu-1.5.aar')
+//    implementation files('libs/libfastdfu-0.5.aar')
+//    implementation files('libs/libble-0.5.aar')
+//    implementation files('libs/libcomx-0.5.jar')
+
+
     //files for signalR
 
 
@@ -140,6 +157,9 @@ dependencies {
 
     //for AndroidX use:
     implementation 'com.github.3llomi:RecordView:3.1.1'
+
+    /*Doc picker */
+    implementation 'com.github.abhishekti7:UnicornFilePicker:1.0.2'
 
 
 }

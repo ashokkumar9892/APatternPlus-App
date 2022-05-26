@@ -1,12 +1,14 @@
 package com.example.patternclinic.home.drawerFragments.messages
 
+import abhishekti7.unicorn.filepicker.UnicornFilePicker
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.content.pm.PackageManager
-import android.media.AudioRecord
 import android.media.MediaRecorder
+import android.net.Uri
 import android.os.Build
 import android.os.Environment
-import android.view.MotionEvent
+import android.util.Log
 import android.view.View
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
@@ -23,18 +25,18 @@ import com.example.patternclinic.data.model.ChatInfo
 import com.example.patternclinic.data.model.Chatlist
 import com.example.patternclinic.data.model.LoginResponse
 import com.example.patternclinic.databinding.ActivityChatBinding
+import com.example.patternclinic.databinding.BottomSheetCameraGalleryBinding
 import com.example.patternclinic.utils.*
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.gson.Gson
 import com.microsoft.signalr.Action1
-import com.microsoft.signalr.HubConnection
-import com.microsoft.signalr.HubConnectionBuilder
 import com.vincent.videocompressor.VideoCompress
 import dagger.hilt.android.AndroidEntryPoint
 import id.zelory.compressor.Compressor
 import kotlinx.coroutines.launch
-import java.io.File
-import java.io.IOException
-import java.util.jar.Manifest
+import net.alhazmy13.mediapicker.Image.ImagePicker
+import net.alhazmy13.mediapicker.Video.VideoPicker
+import java.io.*
 
 
 @AndroidEntryPoint
@@ -42,7 +44,8 @@ class ChatActivity : BaseActivity() {
     lateinit var binding: ActivityChatBinding
 
     lateinit var chatAdapter: ChatAdapter
-//    var connection2: HubConnection? = null
+
+    //    var connection2: HubConnection? = null
     val viewModel: ChatActivityViewModel by viewModels()
     var recorder: MediaRecorder? = null
     var map: HashMap<String, Any>? = null
@@ -51,6 +54,127 @@ class ChatActivity : BaseActivity() {
     var receiverSk: String? = null
     var notificationData: MutableMap<String, Any>? = null
     var currentFile: File? = null
+    var pickerDialog: BottomSheetDialog? = null
+    var latestFile: Uri? = null
+    val pickImageGalleryLauncher = registerForActivityResult(ActivityResultContracts.GetContent()) {
+        if (it != null) {
+            var file = FileUtils.getFile(this, it)
+            lifecycleScope.launch {
+                var compressFile = Compressor.compress(this@ChatActivity, file!!)
+                val part = RequestBodyRetrofit.toRequestBodyFile(compressFile.path)
+                viewModel.uploadFile(part)
+            }
+            Log.e("file dir", file?.path.toString())
+        }
+    }
+
+    val cameraLauncher = registerForActivityResult(ActivityResultContracts.TakePicture()) {
+        if (it) {
+            var name = File(latestFile?.toString()).name
+            var file = File(getExternalFilesDir(null), "/$name")
+            lifecycleScope.launch {
+                var compressFile = Compressor.compress(this@ChatActivity, file)
+                val part = RequestBodyRetrofit.toRequestBodyFile(compressFile.path)
+                viewModel.uploadFile(part)
+            }
+
+//              var  a=  BufferedReader(InputStreamReader(InputStream()))
+        }
+    }
+
+    val pickVideo = registerForActivityResult(ActivityResultContracts.GetContent()) {
+        if (it != null) {
+            val file = FileUtils.getFile(this, it)
+            val newFile = File(file?.parentFile, "/compressed_${file?.name}")
+            if (!newFile.exists()) {
+                newFile.createNewFile()
+            }
+
+            VideoCompress.compressVideoLow(
+                file?.path,
+                newFile.path,
+                object : VideoCompress.CompressListener {
+                    override fun onStart() {
+                        runOnUiThread {
+                            showToast("Compressing...")
+                        }
+
+                    }
+
+                    override fun onSuccess() {
+                        runOnUiThread {
+                            val part =
+                                RequestBodyRetrofit.toRequestBodyFileVideo(newFile.path)
+                            viewModel.uploadFile(part)
+                        }
+
+                    }
+
+                    override fun onFail() {
+                        runOnUiThread {
+                            showToast("Failed to compress...")
+                        }
+                    }
+
+                    override fun onProgress(percent: Float) {
+//                                    runOnUiThread {
+//                                        showToast(+percent.toInt().toString()+"%")
+//                                    }
+                    }
+                })
+        }
+    }
+
+
+    val videoLauncher = registerForActivityResult(ActivityResultContracts.CaptureVideo()) {
+        if (it) {
+            var name = File(latestFile?.toString()).name
+            var file = File(getExternalFilesDir(null), "/$name")
+//            lifecycleScope.launch {
+//                var compressFile = Compressor.compress(this@ChatActivity, file)
+//                val part = RequestBodyRetrofit.toRequestBodyFile(compressFile.path)
+//                viewModel.uploadFile(part)
+//            }
+            val newFile = File(file.parentFile, "/compressed_${file.name}")
+            if (!newFile.exists()) {
+                newFile.createNewFile()
+            }
+
+            VideoCompress.compressVideoLow(
+                file.path,
+                newFile.path,
+                object : VideoCompress.CompressListener {
+                    override fun onStart() {
+                        runOnUiThread {
+                            showToast("Compressing...")
+                        }
+
+                    }
+
+                    override fun onSuccess() {
+                        runOnUiThread {
+                            val part =
+                                RequestBodyRetrofit.toRequestBodyFileVideo(newFile.path)
+                            viewModel.uploadFile(part)
+                        }
+                    }
+
+                    override fun onFail() {
+                        runOnUiThread {
+                            showToast("Failed to compress...")
+                        }
+                    }
+
+                    override fun onProgress(percent: Float) {
+//                                    runOnUiThread {
+//                                        showToast(+percent.toInt().toString()+"%")
+//                                    }
+                    }
+                })
+
+//              var  a=  BufferedReader(InputStreamReader(InputStream()))
+        }
+    }
 
     override fun binding() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_chat)
@@ -94,7 +218,7 @@ class ChatActivity : BaseActivity() {
 //        }
 
 
-       viewModel.connection2!!.on("ReceiveMessage", object : Action1<responsemodel> {
+        viewModel.connection2!!.on("ReceiveMessage", object : Action1<responsemodel> {
             override fun invoke(param1: responsemodel?) {
 
                 if (param1!!.message.isNullOrEmpty()) {
@@ -215,8 +339,40 @@ class ChatActivity : BaseActivity() {
         }
     }
 
+    @Suppress("DEPRECATION")
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
 
-    @SuppressLint("ClickableViewAccessibility")
+        if (requestCode == VideoPicker.VIDEO_PICKER_REQUEST_CODE && resultCode == RESULT_OK) {
+            val file =
+                data!!.getStringArrayListExtra(VideoPicker.EXTRA_VIDEO_PATH)!![0]!!
+            val part = RequestBodyRetrofit.toRequestBodyFileVideo(file)
+            viewModel.uploadFile(part)
+
+        }
+
+        if (requestCode == ImagePicker.IMAGE_PICKER_REQUEST_CODE && resultCode == RESULT_OK) {
+            val file =
+                data!!.getStringArrayListExtra(ImagePicker.EXTRA_IMAGE_PATH)!![0]!!
+            if (!File(file).exists()) {
+                File(file).createNewFile()
+            }
+            val part = RequestBodyRetrofit.toRequestBodyFile(file)
+            viewModel.uploadFile(part)
+
+        }
+
+        if (requestCode == Keys.UNICORN_RESULT && resultCode == RESULT_OK) {
+            val file: String? = data?.getStringArrayListExtra("filePaths")!![0]
+            val part = RequestBodyRetrofit.toRequestBodyFile(file)
+            viewModel.uploadFile(part)
+
+        }
+
+    }
+
+
+    @SuppressLint("ClickableViewAccessibility", "CheckResult")
     private fun clicks() {
         binding.ivSend.setOnClickListener {
             if (binding.etMessage.text.toString().trim().isNotEmpty()) {
@@ -239,6 +395,7 @@ class ChatActivity : BaseActivity() {
 
                 } catch (e: Exception) {
                     showToast(e.toString())
+                    viewModel.makeConnection()
                 }
             }
 
@@ -248,70 +405,158 @@ class ChatActivity : BaseActivity() {
 
             finish()
         }
+        binding.ivDoc.setOnClickListener {
+            UnicornFilePicker.from(this@ChatActivity)
+                .addConfigBuilder()
+                .selectMultipleFiles(false)
+                .showOnlyDirectory(true)
+                .setRootDirectory(Environment.getExternalStorageDirectory().absolutePath)
+                .showHiddenFiles(false)
+                .setFilters(arrayOf("pdf", "png", "jpg", "jpeg"))
+                .addItemDivider(true)
+                .theme(abhishekti7.unicorn.filepicker.R.style.UnicornFilePicker_Default)
+                .build()
+                .forResult(Keys.UNICORN_RESULT)
+        }
         binding.ivCamera.setOnClickListener {
-            grantPermission(PermissionConstant.cameraGalleryPermissionList) {
-                imageVideoPicker { it, type ->
-                    if (type == Keys.FILE_TYPE_IMAGE) {
-                        lifecycleScope.launch {
-                            val file = Compressor.compress(this@ChatActivity, File(it))
-                            val part = RequestBodyRetrofit.toRequestBodyFile(file.absolutePath)
-                            viewModel.uploadFile(part)
-                        }
-                    }
 
-                    if (type == Keys.FILE_TYPE_FILE) {
-                        val part = RequestBodyRetrofit.toRequestBodyFile(it)
-                        viewModel.uploadFile(part)
-
-                    }
-                    if (type == Keys.FILE_TYPE_VIDEO) {
-
-//                        val part = RequestBodyRetrofit.toRequestBodyFileVideo(it)
-//                        viewModel.uploadFile(part)
-                        val newFile = File(File(it).parentFile, "/compressed_${File(it).name}")
-                        if (!newFile.exists()) {
-                            newFile.createNewFile()
-                        }
-
-                        VideoCompress.compressVideoLow(
-                            it,
-                            newFile.path,
-                            object : VideoCompress.CompressListener {
-                                override fun onStart() {
-                                    runOnUiThread {
-                                        showToast("Compressing...")
-                                    }
-
-                                }
-
-                                override fun onSuccess() {
-                                    runOnUiThread {
-                                        val part =
-                                            RequestBodyRetrofit.toRequestBodyFileVideo(newFile.path)
-                                        viewModel.uploadFile(part)
-                                    }
-
-                                }
-
-                                override fun onFail() {
-                                    runOnUiThread {
-                                        showToast("Failed to compress...")
-                                    }
-                                }
-
-                                override fun onProgress(percent: Float) {
-//                                    runOnUiThread {
-//                                        showToast(+percent.toInt().toString()+"%")
-//                                    }
-                                }
-                            })
-                    }
-
-
-                }
+            pickerDialog = BottomSheetDialog(this)
+            val bind = BottomSheetCameraGalleryBinding.inflate(layoutInflater)
+            pickerDialog?.setContentView(bind.root)
+            bind.tvCamera.setOnClickListener {
+//                ImagePicker.Builder(this@ChatActivity)
+//                    .mode(ImagePicker.Mode.CAMERA)
+//                    .compressLevel(ImagePicker.ComperesLevel.MEDIUM)
+//                    .directory(getExternalFilesDir(null)!!.path)
+//                    .extension(ImagePicker.Extension.JPG)
+//                    .scale(600, 600)
+//                    .allowMultipleImages(false)
+//                    .enableDebuggingMode(true)
+//                    .build()
+//                pickerDialog?.dismiss()
+                latestFile = getTmpFileUri(this@ChatActivity)
+                cameraLauncher.launch(latestFile)
             }
 
+
+            bind.tvImageGallery.setOnClickListener {
+
+                latestFile = getTmpFileUri(this@ChatActivity)
+                pickImageGalleryLauncher.launch("image/*")
+
+
+//                ImagePicker.Builder(this@ChatActivity)
+//                    .mode(ImagePicker.Mode.GALLERY)
+//                    .compressLevel(ImagePicker.ComperesLevel.MEDIUM)
+//                    .directory(getExternalFilesDir(null)!!.path)
+//                    .extension(ImagePicker.Extension.JPG)
+//                    .scale(600, 600)
+//                    .allowMultipleImages(false)
+//                    .enableDebuggingMode(true)
+//                    .build()
+//                pickerDialog?.dismiss()
+            }
+
+
+            bind.tvRecordVideo.setOnClickListener {
+                latestFile = getVideoTmpFileUri(this)
+                videoLauncher.launch(latestFile)
+//                VideoPicker.Builder(this@ChatActivity)
+//                    .mode(VideoPicker.Mode.CAMERA)
+//                    .directory(getExternalFilesDir(null)!!.path)
+//                    .extension(VideoPicker.Extension.MP4)
+//                    .enableDebuggingMode(true)
+//                    .build()
+//                pickerDialog?.dismiss()
+            }
+            bind.tvVideoGallery.setOnClickListener {
+                pickVideo.launch("video/*")
+
+//                VideoPicker.Builder(this@ChatActivity)
+//                    .mode(VideoPicker.Mode.GALLERY)
+//                    .directory(getExternalFilesDir(null)!!.path)
+//                    .extension(VideoPicker.Extension.MP4)
+//                    .enableDebuggingMode(true)
+//                    .build()
+                pickerDialog?.dismiss()
+            }
+            pickerDialog?.show()
+
+
+//            ImagePicker.Builder(this@ChatActivity)
+//                .mode(ImagePicker.Mode.CAMERA_AND_GALLERY)
+//                .compressLevel(ImagePicker.ComperesLevel.MEDIUM)
+//                .directory(ImagePicker.Directory.DEFAULT)
+//                .extension(ImagePicker.Extension.PNG)
+//                .scale(600, 600)
+//                .allowMultipleImages(false)
+//                .enableDebuggingMode(true)
+//                .build()
+
         }
+//            grantPermission(PermissionConstant.cameraGalleryPermissionList) {
+//                imageVideoPicker { it, type ->
+//                    if (type == Keys.FILE_TYPE_IMAGE) {
+//                        lifecycleScope.launch {
+//                            val file = Compressor.compress(this@ChatActivity, File(it))
+//                            val part = RequestBodyRetrofit.toRequestBodyFile(file.absolutePath)
+//                            viewModel.uploadFile(part)
+//                        }
+//                    }
+//
+//                    if (type == Keys.FILE_TYPE_FILE) {
+//                        val part = RequestBodyRetrofit.toRequestBodyFile(it)
+//                        viewModel.uploadFile(part)
+//
+//                    }
+//                    if (type == Keys.FILE_TYPE_VIDEO) {
+//
+////                        val part = RequestBodyRetrofit.toRequestBodyFileVideo(it)
+////                        viewModel.uploadFile(part)
+//                        val newFile = File(File(it).parentFile, "/compressed_${File(it).name}")
+//                        if (!newFile.exists()) {
+//                            newFile.createNewFile()
+//                        }
+//
+//                        VideoCompress.compressVideoLow(
+//                            it,
+//                            newFile.path,
+//                            object : VideoCompress.CompressListener {
+//                                override fun onStart() {
+//                                    runOnUiThread {
+//                                        showToast("Compressing...")
+//                                    }
+//
+//                                }
+//
+//                                override fun onSuccess() {
+//                                    runOnUiThread {
+//                                        val part =
+//                                            RequestBodyRetrofit.toRequestBodyFileVideo(newFile.path)
+//                                        viewModel.uploadFile(part)
+//                                    }
+//
+//                                }
+//
+//                                override fun onFail() {
+//                                    runOnUiThread {
+//                                        showToast("Failed to compress...")
+//                                    }
+//                                }
+//
+//                                override fun onProgress(percent: Float) {
+////                                    runOnUiThread {
+////                                        showToast(+percent.toInt().toString()+"%")
+////                                    }
+//                                }
+//                            })
+//                    }
+//
+//
+//                }
+//            }
+//
+//        }
 //        binding.ivMic.setOnTouchListener(object : View.OnTouchListener {
 //            override fun onTouch(p0: View?, p1: MotionEvent?): Boolean {
 //                if (permissions()) {
@@ -339,9 +584,13 @@ class ChatActivity : BaseActivity() {
 
         binding.recordView.setOnRecordListener(object : OnRecordListener {
             override fun onStart() {
-
                 binding.etMessage.visibility = View.INVISIBLE
-                if (permissions()) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    if (permissions()) {
+                        startRecording()
+                    }
+
+                } else {
                     startRecording()
                 }
 
@@ -355,23 +604,23 @@ class ChatActivity : BaseActivity() {
 
             override fun onFinish(recordTime: Long, limitReached: Boolean) {
 
-                stopRecording()
+
                 binding.etMessage.visibility = View.VISIBLE
                 if (currentFile != null) {
+                    stopRecording()
                     val part = RequestBodyRetrofit.toRequestBodyFile(currentFile!!.absolutePath)
                     viewModel.uploadFile(part)
                 }
+
             }
 
             override fun onLessThanSecond() {
-
-                currentFile!!.delete()
-                binding.etMessage.visibility = View.VISIBLE
+                if (currentFile != null) {
+                    currentFile!!.delete()
+                    binding.etMessage.visibility = View.VISIBLE
+                }
             }
         })
-        binding.recordView.setOnBasketAnimationEndListener {
-
-        }
 
 
     }
@@ -414,7 +663,7 @@ class ChatActivity : BaseActivity() {
             recorder!!.stop()
             recorder!!.reset()
             recorder!!.release()
-            recorder=null
+            recorder = null
 
         }
     }
@@ -452,10 +701,6 @@ class ChatActivity : BaseActivity() {
         }
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        viewModel.connection2!!.close()
-    }
 
     private val errorListener =
         MediaRecorder.OnErrorListener { mr, what, extra -> }

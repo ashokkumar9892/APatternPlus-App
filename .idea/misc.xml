@@ -71,7 +71,7 @@
         <entry key="app/src/main/res/drawable/ic_dummy_user.xml" value="0.198" />
         <entry key="app/src/main/res/drawable/ic_messages.xml" value="0.21" />
         <entry key="app/src/main/res/drawable/ic_splash_logo.xml" value="0.21" />
-        <entry key="app/src/main/res/layout/activity_chat.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/activity_chat.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_connect_device.xml" value="0.21" />
         <entry key="app/src/main/res/layout/activity_create_profile.xml" value="0.26197916666666665" />
         <entry key="app/src/main/res/layout/activity_create_profile_height.xml" value="0.26197916666666665" />
@@ -84,6 +84,7 @@
         <entry key="app/src/main/res/layout/activity_select_pattern_plus_team.xml" value="0.33" />
         <entry key="app/src/main/res/layout/activity_signup.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_view_message.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/bottom_sheet_camera_gallery.xml" value="0.33" />
         <entry key="app/src/main/res/layout/bottom_sheet_chat_bot.xml" value="0.26197916666666665" />
         <entry key="app/src/main/res/layout/bottom_sheet_do_you_have_watch.xml" value="0.26197916666666665" />
         <entry key="app/src/main/res/layout/bottom_sheet_do_you_like.xml" value="0.26197916666666665" />
@@ -99,6 +100,8 @@
         <entry key="app/src/main/res/layout/item_video_message.xml" value="0.25" />
         <entry key="app/src/main/res/layout/item_video_message_receiver.xml" value="0.18271898533491876" />
         <entry key="app/src/main/res/layout/layout_drawer.xml" value="0.23958333333333334" />
+        <entry key="app/src/main/res/layout/provider_paths.xml" value="0.24010416666666667" />
+        <entry key="app/src/main/res/xml/provider_paths.xml" value="0.14739583333333334" />
       </map>
     </option>
   </component>

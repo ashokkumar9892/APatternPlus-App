@@ -2,12 +2,10 @@ package com.example.patternclinic.setupDevice
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.annotation.NonNull
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.patternclinic.R
 import com.example.patternclinic.databinding.ItemDevicesBinding
-import com.inuker.bluetooth.library.search.response.SearchResponse
 
 class ConnectDeviceAdapter(var list: List<String>,var click: OnItemClicked) :
     RecyclerView.Adapter<ConnectDeviceAdapter.ViewHolder>() {
@@ -20,6 +18,7 @@ class ConnectDeviceAdapter(var list: List<String>,var click: OnItemClicked) :
                 selected=absoluteAdapterPosition
                 notifyDataSetChanged()
             }
+
         }
 
     }

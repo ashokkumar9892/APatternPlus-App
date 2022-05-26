@@ -9,24 +9,16 @@ import android.util.Log
 import android.view.View
 import android.view.Window
 import android.view.WindowManager
-import android.webkit.PermissionRequest
-import android.widget.RadioButton
-import android.widget.RadioGroup
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
-import androidx.databinding.BindingAdapter
-import androidx.fragment.app.FragmentActivity
-import androidx.recyclerview.widget.RecyclerView
+import androidx.core.content.FileProvider
+import com.example.patternclinic.BuildConfig
 import com.example.patternclinic.R
 import com.karumi.dexter.Dexter
 import com.karumi.dexter.MultiplePermissionsReport
 import com.karumi.dexter.PermissionToken
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener
-import com.robertlevonyan.components.picker.ItemModel
-import com.robertlevonyan.components.picker.ItemType
-import com.robertlevonyan.components.picker.PickerDialog
-import com.robertlevonyan.components.picker.pickerDialog
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import okhttp3.RequestBody.Companion.toRequestBody
@@ -72,6 +64,7 @@ fun Activity.decorStatusBar(shouldChangeStatusBarTintToDark: Boolean) {
         decor.systemUiVisibility = 0
     }
 }
+
 fun Context.showToast(string: String) {
     Toast.makeText(this, string, Toast.LENGTH_SHORT).show()
 }
@@ -87,107 +80,109 @@ val EMAIL_ADDRESS_PATTERN: Pattern by lazy {
                 ")+"
     )
 }
+
 fun checkEmail(email: String): Boolean {
     return EMAIL_ADDRESS_PATTERN.matcher(email).matches()
 }
+
 fun String.createPartFromString(): RequestBody {
     return this.toRequestBody(MultipartBody.FORM)
 }
 
-fun FragmentActivity.imagePicker(returnData: (String) -> Unit) = try {
-    pickerDialog {
-        setTitle(getString(R.string.app_name))          // String value or resource ID
-        setTitleTextSize(22f)
-        setTitleTextBold(true)// Text size of title
-        setTitleTextColor(R.color.color_primary) // Color of title text
-        setListType(PickerDialog.ListType.TYPE_GRID)       // Type of the picker, must be PickerDialog.TYPE_LIST or PickerDialog.TYPE_Grid
-        setItems(
-            mutableSetOf(
-                ItemModel(ItemType.ITEM_CAMERA),
-                ItemModel(ItemType.ITEM_GALLERY),
+//fun FragmentActivity.imagePicker(returnData: (String) -> Unit) = try {
+//    pickerDialog {
+//        setTitle(getString(R.string.app_name))          // String value or resource ID
+//        setTitleTextSize(22f)
+//        setTitleTextBold(true)// Text size of title
+//        setTitleTextColor(R.color.color_primary) // Color of title text
+//        setListType(PickerDialog.ListType.TYPE_GRID)       // Type of the picker, must be PickerDialog.TYPE_LIST or PickerDialog.TYPE_Grid
+//        setItems(
+//            mutableSetOf(
+//                ItemModel(ItemType.Camera),
+//                ItemModel(ItemType.ImageGallery()),
+//
+//
+//            )
+//        )          // List of ItemModel-s which should be in picker
+//    }.setPickerCloseListener { type: ItemType, uris: List<Uri> ->
+//        // Getting the result
+//        when (type) {
+//            ItemType.Camera -> {
+//                val link = getMediaFilePathFor(uris.first(), this@imagePicker)
+//                returnData(link)
+//            }
+//
+//            ItemType.ImageGallery() -> {
+//                val link = getMediaFilePathFor(uris.first(), this@imagePicker)
+//                returnData(link)
+//            }
+//            ItemType.Video -> {
+//                val link = getMediaFilePathFor(uris.first(), this@imagePicker)
+//                returnData(link)
+//            }
+//            ItemType.VideoGallery() -> {
+//                val link = getMediaFilePathFor(uris.first(), this@imagePicker)
+//                returnData(link)
+//            }
+//            ItemType.Files() -> {
+//                val link = getMediaFilePathFor(uris.first(), this@imagePicker)
+//                returnData(link)
+//            }
+//        }
+//    }.show()
+//
+//
+//} catch (e: Exception) {
+//    e.printStackTrace()
+//}
+//
+//fun FragmentActivity.imageVideoPicker(returnData: (String,String) -> Unit) = try {
+//    pickerDialog {
+//        setTitle(getString(R.string.app_name))          // String value or resource ID
+//        setTitleTextSize(22f)
+//        setTitleTextBold(true)// Text size of title
+//        setTitleTextColor(R.color.color_primary) // Color of title text
+//        setListType(PickerDialog.ListType.TYPE_GRID)       // Type of the picker, must be PickerDialog.TYPE_LIST or PickerDialog.TYPE_Grid
+//        setItems(
+//            mutableSetOf(
+//                ItemModel(ItemType.Camera),
+//                ItemModel(ItemType.ImageGallery()),
+//                ItemModel(ItemType.Video),
+//                ItemModel(ItemType.VideoGallery()),
+//                ItemModel(ItemType.Files())
+//                )
+//        )          // List of ItemModel-s which should be in picker
+//    }.setPickerCloseListener { type: ItemType, uris: List<Uri> ->
+//        // Getting the result
+//        when (type) {
+//            ItemType.Camera -> {
+//                val link = getMediaFilePathFor(uris.first(), this@imageVideoPicker)
+//                returnData(link,Keys.FILE_TYPE_IMAGE)
+//            }
+//
+//            ItemType.ImageGallery() -> {
+//                val link = getMediaFilePathFor(uris.first(), this@imageVideoPicker)
+//                returnData(link,Keys.FILE_TYPE_IMAGE)
+//            }
+//            ItemType.Video -> {
+//                val link = getMediaFilePathFor(uris.first(), this@imageVideoPicker)
+//                returnData(link,Keys.FILE_TYPE_VIDEO)
+//            }
+//            ItemType.VideoGallery() -> {
+//                val link = getMediaFilePathFor(uris.first(), this@imageVideoPicker)
+//                returnData(link,Keys.FILE_TYPE_VIDEO)
+//            }
+//            ItemType.Files() -> {
+//                val link = getMediaFilePathFor(uris.first(), this@imageVideoPicker)
+//                returnData(link,Keys.FILE_TYPE_FILE)
+//            }
+//        }
+//    }.show()
 
 
-            )
-        )          // List of ItemModel-s which should be in picker
-    }.setPickerCloseListener { type: ItemType, uris: List<Uri> ->
-        // Getting the result
-        when (type) {
-            ItemType.ITEM_CAMERA -> {
-                val link = getMediaFilePathFor(uris.first(), this@imagePicker)
-                returnData(link)
-            }
-
-            ItemType.ITEM_GALLERY -> {
-                val link = getMediaFilePathFor(uris.first(), this@imagePicker)
-                returnData(link)
-            }
-            ItemType.ITEM_VIDEO -> {
-                val link = getMediaFilePathFor(uris.first(), this@imagePicker)
-                returnData(link)
-            }
-            ItemType.ITEM_VIDEO_GALLERY -> {
-                val link = getMediaFilePathFor(uris.first(), this@imagePicker)
-                returnData(link)
-            }
-            ItemType.ITEM_FILES -> {
-                val link = getMediaFilePathFor(uris.first(), this@imagePicker)
-                returnData(link)
-            }
-        }
-    }.show()
-
-
-} catch (e: Exception) {
-    e.printStackTrace()
-}
-
-fun FragmentActivity.imageVideoPicker(returnData: (String,String) -> Unit) = try {
-    pickerDialog {
-        setTitle(getString(R.string.app_name))          // String value or resource ID
-        setTitleTextSize(22f)
-        setTitleTextBold(true)// Text size of title
-        setTitleTextColor(R.color.color_primary) // Color of title text
-        setListType(PickerDialog.ListType.TYPE_GRID)       // Type of the picker, must be PickerDialog.TYPE_LIST or PickerDialog.TYPE_Grid
-        setItems(
-            mutableSetOf(
-                ItemModel(ItemType.ITEM_CAMERA),
-                ItemModel(ItemType.ITEM_GALLERY),
-                ItemModel(ItemType.ITEM_VIDEO),
-                ItemModel(ItemType.ITEM_VIDEO_GALLERY),
-                ItemModel(ItemType.ITEM_FILES)
-                )
-        )          // List of ItemModel-s which should be in picker
-    }.setPickerCloseListener { type: ItemType, uris: List<Uri> ->
-        // Getting the result
-        when (type) {
-            ItemType.ITEM_CAMERA -> {
-                val link = getMediaFilePathFor(uris.first(), this@imageVideoPicker)
-                returnData(link,Keys.FILE_TYPE_IMAGE)
-            }
-
-            ItemType.ITEM_GALLERY -> {
-                val link = getMediaFilePathFor(uris.first(), this@imageVideoPicker)
-                returnData(link,Keys.FILE_TYPE_IMAGE)
-            }
-            ItemType.ITEM_VIDEO -> {
-                val link = getMediaFilePathFor(uris.first(), this@imageVideoPicker)
-                returnData(link,Keys.FILE_TYPE_VIDEO)
-            }
-            ItemType.ITEM_VIDEO_GALLERY -> {
-                val link = getMediaFilePathFor(uris.first(), this@imageVideoPicker)
-                returnData(link,Keys.FILE_TYPE_VIDEO)
-            }
-            ItemType.ITEM_FILES -> {
-                val link = getMediaFilePathFor(uris.first(), this@imageVideoPicker)
-                returnData(link,Keys.FILE_TYPE_FILE)
-            }
-        }
-    }.show()
-
-
-} catch (e: Exception) {
-    e.printStackTrace()
-}
+//} catch (e: Exception) {
+//    e.printStackTrace()
+//}
 
 //grant permissions
 fun Context.grantPermission(permissionList: List<String>, granted: (String) -> Unit) {
@@ -217,6 +212,7 @@ fun Context.grantPermission(permissionList: List<String>, granted: (String) -> U
         Toast.makeText(this, it.name, Toast.LENGTH_SHORT).show()
     }.check()
 }
+
 //get media file
 fun getMediaFilePathFor(
     uri: Uri,
@@ -267,6 +263,7 @@ fun dateConvert_3(type: String): String {
     val result = output.format(date)
     return result
 }
+
 fun dateConvert_4(type: String): String {
     val input = SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH)
     val output = SimpleDateFormat("dd-MMM-yyyy", Locale.ENGLISH)
@@ -274,6 +271,7 @@ fun dateConvert_4(type: String): String {
     val result = output.format(date)
     return result
 }
+
 fun dateConvert_5(type: String): String {
     val output = SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH)
     val input = SimpleDateFormat("dd-MMM-yyyy", Locale.ENGLISH)
@@ -289,10 +287,37 @@ fun dateConvert_6(type: String): String {
     val result = output.format(date)
     return result
 }
+
 fun chatDateFormat(type: String): String {
     val input = SimpleDateFormat("dd/MM/yyyy HH:mm:ss", Locale.ENGLISH)
     val output = SimpleDateFormat("hh:mm aa", Locale.ENGLISH)
     val date = input.parse(type)
     val result = output.format(date)
     return result
+}
+
+fun getTmpFileUri(context: Context): Uri {
+    val tmpFile = File.createTempFile(
+        System.currentTimeMillis().toString(),
+        ".jpg",
+        context.getExternalFilesDir(null)
+    ).apply {
+        createNewFile()
+    }
+
+//    return tmpFile.ui
+    return FileProvider.getUriForFile(context, "${BuildConfig.APPLICATION_ID}.provider", tmpFile)
+}
+
+fun getVideoTmpFileUri(context: Context): Uri {
+    val tmpFile = File.createTempFile(
+        System.currentTimeMillis().toString(),
+        ".mp4",
+        context.getExternalFilesDir(null)
+    ).apply {
+        createNewFile()
+    }
+
+//    return tmpFile.ui
+    return FileProvider.getUriForFile(context, "${BuildConfig.APPLICATION_ID}.provider", tmpFile)
 }

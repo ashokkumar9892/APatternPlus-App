@@ -1,9 +1,8 @@
 package com.example.patternclinic.auth
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.example.patternclinic.R
 import com.example.patternclinic.data.ApiConstants
@@ -12,8 +11,6 @@ import com.example.patternclinic.utils.Keys
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.tabs.TabLayout
 import com.google.gson.Gson
-import com.veepoo.protocol.VPOperateManager
-import com.veepoo.protocol.listener.base.IBleWriteResponse
 
 class CreateProfileWeight : AppCompatActivity() {
     lateinit var binding: ActivityCreateProfileWeightBinding

@@ -130,13 +130,13 @@ class UpdateProfileViewModel @Inject constructor(val mainRepository: MainReposit
         when (v.id) {
             R.id.iv_user_image -> {
                 v.context.grantPermission(PermissionConstant.cameraGalleryPermissionList) {
-                    (v.context as AppCompatActivity).imagePicker {
-                        Glide.with(v).load(it).into(binding.ivUserImage)
-//                        convertToBase64(it)
-                        //Todo change to encode again
-//                        encodedImage = encodeImage(it)
-                        encodedImage = ""
-                    }
+//                    (v.context as AppCompatActivity).imagePicker {
+//                        Glide.with(v).load(it).into(binding.ivUserImage)
+////                        convertToBase64(it)
+//                        //Todo change to encode again
+////                        encodedImage = encodeImage(it)
+//                        encodedImage = ""
+//                    }
                 }
             }
             R.id.tv_dob -> {

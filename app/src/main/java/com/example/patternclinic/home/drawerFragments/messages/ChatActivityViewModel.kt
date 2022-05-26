@@ -24,19 +24,28 @@ import java.util.concurrent.Executor
 import javax.inject.Inject
 
 @HiltViewModel
-class ChatActivityViewModel @Inject constructor(val mainRepository: MainRepository):BaseViewModel() {
-    var chatData= MutableLiveData<MyChatResponse>()
-    var uploadFileResponse= MutableLiveData<UploadFileResponse>()
+class ChatActivityViewModel @Inject constructor(val mainRepository: MainRepository) :
+    BaseViewModel() {
+    var chatData = MutableLiveData<MyChatResponse>()
+    var uploadFileResponse = MutableLiveData<UploadFileResponse>()
     var connection2: HubConnection? = null
 
 
     init {
+        makeConnection()
+    }
+
+    /**
+     * making connection to socket
+     */
+    fun makeConnection() {
         connection2 = HubConnectionBuilder.create(ApiConstants.CHAT_HUB_URL)
             .build()
-        connection2!!.serverTimeout=10000000
+        connection2!!.serverTimeout = 10000000
+        connection2!!.keepAliveInterval=10000000
         connection2!!.start()
-
     }
+
     /**
      * below method used for get chat
      */
@@ -69,7 +78,7 @@ class ChatActivityViewModel @Inject constructor(val mainRepository: MainReposito
      * below method used for get upload_files
      */
 
-    fun uploadFile(file:MultipartBody.Part) {
+    fun uploadFile(file: MultipartBody.Part) {
         showLoader.value = true
         job = viewModelScope.launch {
             val result = getResult({ mainRepository.uploadFiles(file) }, "uploadFile")
@@ -89,6 +98,11 @@ class ChatActivityViewModel @Inject constructor(val mainRepository: MainReposito
             }
             showLoader.value = false
         }
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        connection2!!.close()
     }
 
 

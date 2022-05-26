@@ -5,7 +5,6 @@
     <string name="email_address">Email Address</string>
     <string name="password">Password</string>
     <string name="forgot_password">Forgot Password?</string>
-
     <string name="forgot_your_password">Forgot Your Password?</string>
     <string name="text_enter_your_register">Enter your registered email below to reset your password.</string>
     <string name="john_mail">johnmusk@gmail.com</string>
@@ -205,6 +204,10 @@
     <string name="transition_name">trnansition</string>
     <string name="view">View</string>
     <string name="download">Download</string>
+    <string name="camera">Camera</string>
+    <string name="image_gallery">Image Gallery</string>
+    <string name="record_video">Record Video</string>
+    <string name="video_gallery">Video Gallery</string>
 
     <string-array name="Gender">
         <item>Select Gender</item>

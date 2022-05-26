@@ -13,6 +13,7 @@ object Keys {
     const val mapKeyProfile="profileKey"
     const val STATUS_ACTIVE="Active"
     const val STATUS_INACTIVE="InActive"
+    const val UNICORN_RESULT=54545
     //these are used for send data in other param
     var updateProfileData=""
     //intent Keys

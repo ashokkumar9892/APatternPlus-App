@@ -31,9 +31,9 @@ class LoginActivity : BaseActivity() {
     }
 
     private fun initDesign() {
-        binding.tvSignUp.setOnClickListener{
+        binding.tvSignUp.setOnClickListener {
 //            startActivity(Intent(this,CreateProfile::class.java).putExtra(Keys.NEW_USER,"1"))
-            startActivity(Intent(this,SignupActivity::class.java))
+            startActivity(Intent(this, SignupActivity::class.java))
         }
         changeStatusBarColor(R.color.color_primary_with_opacity_8)
 
@@ -42,7 +42,8 @@ class LoginActivity : BaseActivity() {
         }
         binding.ivEyeLogin.setOnClickListener {
             if (binding.etPassword.transformationMethod.equals(PasswordTransformationMethod.getInstance())) {
-                binding.etPassword.transformationMethod = HideReturnsTransformationMethod.getInstance()
+                binding.etPassword.transformationMethod =
+                    HideReturnsTransformationMethod.getInstance()
                 binding.ivEyeLogin.setImageResource(R.drawable.ic_eye_show)
                 binding.etPassword.setSelection(binding.etPassword.text.trim().length)
             } else {
