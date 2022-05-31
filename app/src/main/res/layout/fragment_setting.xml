@@ -13,7 +13,7 @@
         android:clickable="true"
         android:focusable="true"
         android:layout_height="match_parent"
-        tools:context=".home.drawerFragments.appointments.settings.SettingFragment">
+        tools:context=".home.drawerFragments.settings.SettingFragment">
 
         <RelativeLayout
             android:id="@+id/tool_bar_setting"
@@ -291,6 +291,26 @@
 
         </LinearLayout>
 
+        <RelativeLayout
+            android:id="@+id/loader"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone"
+            android:clickable="true"
+            android:focusable="true">
 
+            <com.agrawalsuneet.loaderspack.loaders.PulseLoader
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true"
+                android:backgroundTint="@color/color_primary"
+                android:clickable="true"
+                android:focusable="true"
+                app:pulse_LineThickness="@dimen/_2sdp"
+                app:pulse_normalIncrementalValue="3"
+                app:pulse_pulseColor="@color/color_primary"
+                app:pulse_pulseIncrementalValue="3"
+                app:pulse_sideLength="@dimen/_20sdp" />
+        </RelativeLayout>
     </RelativeLayout>
 </layout>

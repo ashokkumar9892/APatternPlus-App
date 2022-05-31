@@ -76,11 +76,13 @@
         <entry key="app/src/main/res/layout/activity_create_profile.xml" value="0.26197916666666665" />
         <entry key="app/src/main/res/layout/activity_create_profile_height.xml" value="0.26197916666666665" />
         <entry key="app/src/main/res/layout/activity_create_profile_weight.xml" value="0.2625" />
+        <entry key="app/src/main/res/layout/activity_current_weight.xml" value="0.24010416666666667" />
         <entry key="app/src/main/res/layout/activity_forgot_password.xml" value="0.24010416666666667" />
         <entry key="app/src/main/res/layout/activity_home_screen.xml" value="0.24010416666666667" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.33" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.24010416666666667" />
         <entry key="app/src/main/res/layout/activity_otp.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/activity_personal_information.xml" value="0.33" />
         <entry key="app/src/main/res/layout/activity_select_pattern_plus_team.xml" value="0.33" />
         <entry key="app/src/main/res/layout/activity_signup.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_view_message.xml" value="0.22" />
@@ -90,7 +92,9 @@
         <entry key="app/src/main/res/layout/bottom_sheet_do_you_like.xml" value="0.26197916666666665" />
         <entry key="app/src/main/res/layout/bottom_sheet_options.xml" value="0.22" />
         <entry key="app/src/main/res/layout/fragment_message.xml" value="0.23958333333333334" />
+        <entry key="app/src/main/res/layout/fragment_my_profile.xml" value="0.24010416666666667" />
         <entry key="app/src/main/res/layout/fragment_select_team.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_setting.xml" value="0.24010416666666667" />
         <entry key="app/src/main/res/layout/item_docx_message.xml" value="0.33" />
         <entry key="app/src/main/res/layout/item_docx_message_receiver.xml" value="0.5" />
         <entry key="app/src/main/res/layout/item_message_reciever.xml" value="0.24010416666666667" />
@@ -100,6 +104,7 @@
         <entry key="app/src/main/res/layout/item_video_message.xml" value="0.25" />
         <entry key="app/src/main/res/layout/item_video_message_receiver.xml" value="0.18271898533491876" />
         <entry key="app/src/main/res/layout/layout_drawer.xml" value="0.23958333333333334" />
+        <entry key="app/src/main/res/layout/layout_tool_bar.xml" value="0.24010416666666667" />
         <entry key="app/src/main/res/layout/provider_paths.xml" value="0.24010416666666667" />
         <entry key="app/src/main/res/xml/provider_paths.xml" value="0.14739583333333334" />
       </map>

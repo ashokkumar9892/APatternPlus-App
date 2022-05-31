@@ -6,12 +6,16 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.patternclinic.base.BaseViewModel
 import com.example.patternclinic.data.ApiConstants
+import com.example.patternclinic.data.model.LoginResponse
+import com.example.patternclinic.data.model.PatientInfo
 import com.example.patternclinic.data.model.UpdateProfileResponse
 import com.example.patternclinic.data.repository.MainRepository
 import com.example.patternclinic.retrofit.ResponseResult
 import com.example.patternclinic.retrofit.getResult
 import com.example.patternclinic.setupDevice.ConnectDeviceActivity
+import com.example.patternclinic.utils.SharedPrefs
 import com.example.patternclinic.utils.showToast
+import com.google.gson.Gson
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -40,7 +44,12 @@ class FinalUpdateProfileViewModel @Inject constructor(val mainRepository: MainRe
 
                     updateProfileResponse.postValue(response)
                     if (response.response == 1) {
+//                        var mapJson=Gson().toJson(map)
+//                        var response=Gson().fromJson<PatientInfo>(mapJson)
                         activity.root.context.showToast(response.errorMessage)
+                        val convert =
+                            Gson().fromJson(Gson().toJson(response), LoginResponse::class.java)
+                        SharedPrefs.saveLoggedInUser(convert)
                         activity.root.context.startActivity(
                             Intent(
                                 activity.root.context,

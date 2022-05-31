@@ -27,6 +27,7 @@ class ApiHelperImpl @Inject constructor(private val apiService: ApiService) : Ap
     override suspend fun myChat(map: HashMap<String, Any>): Response<MyChatResponse> = apiService.myChat(map)
     override suspend fun uploadFiles(file: MultipartBody.Part): Response<UploadFileResponse> = apiService.uploadFiles(file)
     override suspend fun getUserChatList(map: HashMap<String, Any>): Response<GetUserChatResponse> = apiService.getUserChatList(map)
+    override suspend fun manageNotification(map: HashMap<String, Any>): Response<ForgotPasswordResponse> = apiService.manageNotification(map)
 
 
 }

@@ -309,7 +309,6 @@ class ChatAdapter(var list: MutableList<Chatlist>) :
                 return VideoHolderReceiver(bind)
             }
 
-
             RECEIVE_DOCX -> {
                 val bind =
                     ItemDocxMessageReceiverBinding.inflate(

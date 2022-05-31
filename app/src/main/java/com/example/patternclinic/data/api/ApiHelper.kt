@@ -29,5 +29,6 @@ interface ApiHelper {
     suspend fun myChat(@Body map: HashMap<String, Any>): Response<MyChatResponse>
     suspend fun uploadFiles(@Part file: MultipartBody.Part): Response<UploadFileResponse>
     suspend fun getUserChatList(@Body map: HashMap<String, Any>): Response<GetUserChatResponse>
+    suspend fun manageNotification(@Body map: HashMap<String, Any>): Response<ForgotPasswordResponse>
 
 }

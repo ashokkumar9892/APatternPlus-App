@@ -28,4 +28,5 @@ class MainRepository @Inject constructor(private val apiHelper: ApiHelper) {
     suspend fun myChat(@Body map: HashMap<String, Any>): Response<MyChatResponse> = apiHelper.myChat(map)
     suspend fun uploadFiles(@Part file: MultipartBody.Part): Response<UploadFileResponse> = apiHelper.uploadFiles(file)
     suspend fun getUserChatList(@Body map: HashMap<String, Any>): Response<GetUserChatResponse> = apiHelper.getUserChatList(map)
+    suspend fun manageNotification(@Body map: HashMap<String, Any>): Response<ForgotPasswordResponse> = apiHelper.manageNotification(map)
 }

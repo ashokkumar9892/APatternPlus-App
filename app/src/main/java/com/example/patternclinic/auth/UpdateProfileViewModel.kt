@@ -173,7 +173,7 @@ class UpdateProfileViewModel @Inject constructor(val mainRepository: MainReposit
 //                    map.put(ApiConstants.APIParams.EMAIL.value, email.get().toString())
 //                    map.put(ApiConstants.APIParams.EMAIL.value, email.get().toString())
                     var intent = Intent(v.context, CreateProfileWeight::class.java)
-//                    intent.putExtra(Keys.mapKeyProfile, Gson().toJson(map))
+                    intent.putExtra(Keys.mapKeyProfile, "")
                     Keys.updateProfileData = Gson().toJson(map)
                     binding.root.context.startActivity(intent)
                 }

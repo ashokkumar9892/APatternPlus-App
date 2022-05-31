@@ -12,7 +12,7 @@ data class PatientInfo(
     val country: Any,
     val dob: String?,
     val email: String,
-    val firstName: String,
+    val firstName: String?,
     val gender: String,
     val height: String,
     val lastName: String,

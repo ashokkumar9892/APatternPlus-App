@@ -14,6 +14,7 @@ object ApiConstants {
     const val MY_CHAT_URL = "Chat/MyChat"
     const val USER_CHAT_LIST = "Chat/ChatUsers"
     const val UPLOAD_FILE_URL = "Chat/UploadFiles"
+    const val MANAGE_NOTIFICATION = "Basic/ManageNotifications"
     const val CHAT_HUB_URL = "https://annexappapi.apatternplus.com/chatHub"
 
 
@@ -39,7 +40,7 @@ object ApiConstants {
         NEW_PASSWORD("newpassword"),
         CONFIRM_CODE("confirmationcode"),
         SK("SK"),
-
+        IS_NOTIFICATION_ON("IsNotificationOn"),
         HEIGHT("Height"),
         AUTH_TOKEN("AuthToken"),
         CONFIRMATION_CODE("confirmationcode"),

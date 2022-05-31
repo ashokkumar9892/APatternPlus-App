@@ -45,6 +45,7 @@
                     app:strokeWidth="@dimen/_4sdp" />
 
                 <TextView
+                    android:id="@+id/tv_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
@@ -55,6 +56,7 @@
                     android:textSize="@dimen/_20ssp" />
 
                 <TextView
+                    android:id="@+id/tv_email"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
@@ -85,6 +87,7 @@
                             android:textSize="@dimen/_13ssp" />
 
                         <TextView
+                            android:id="@+id/tv_country"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/_4sdp"
@@ -110,6 +113,7 @@
                             android:textSize="@dimen/_13ssp" />
 
                         <TextView
+                            android:id="@+id/tv_dob"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/_4sdp"

@@ -15,7 +15,7 @@ import com.example.patternclinic.home.cardiacDetails.YourMetrics
 import com.example.patternclinic.home.drawerFragments.appointments.CoachAppointments
 import com.example.patternclinic.home.drawerFragments.appointments.healthTips.HealthTipsFragment
 import com.example.patternclinic.home.drawerFragments.appointments.myProfile.MyProfileFragment
-import com.example.patternclinic.home.drawerFragments.appointments.settings.SettingFragment
+import com.example.patternclinic.home.drawerFragments.settings.SettingFragment
 import com.example.patternclinic.home.drawerFragments.messages.MessageFragment
 import com.example.patternclinic.home.drawerFragments.personalMetrics.PersonalMetricsFragment
 import com.example.patternclinic.home.nutrition.NutritionTrackingActivity
@@ -31,11 +31,9 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class HomeScreenActivity : AppCompatActivity() {
     var binding: ActivityHomeScreenBinding? = null
-    var isHaveMetricSystem = true
-    var isMetric = true
-    var is24Hour = true
-    var isOpenAutoHeartDetect = true
-    var isOpenAutoBpDetect = true
+    val userDetail by lazy {
+        SharedPrefs.getLoggedInUser()
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -60,6 +58,8 @@ class HomeScreenActivity : AppCompatActivity() {
 
 
     private fun initDesign() {
+
+        binding!!.tvUserName.text="Hi ${userDetail?.patientInfo?.firstName?:""}!"
         binding!!.ivMenu.setOnClickListener {
 
             binding!!.drawerLayout.openDrawer(binding!!.sideBar)
@@ -129,10 +129,10 @@ class HomeScreenActivity : AppCompatActivity() {
             }
 
         }
-        binding!!.layoutDrawer.tvLogOut.setOnClickListener {
-            startActivity(Intent(this, LoginActivity::class.java))
-            finishAffinity()
-        }
+//        binding!!.layoutDrawer.tvLogOut.setOnClickListener {
+//            startActivity(Intent(this, LoginActivity::class.java))
+//            finishAffinity()
+//        }
 
     }
 

@@ -1,6 +1,5 @@
 package com.example.patternclinic.home.drawerFragments.messages
 
-import abhishekti7.unicorn.filepicker.UnicornFilePicker
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -36,9 +35,11 @@ import id.zelory.compressor.Compressor
 import kotlinx.coroutines.launch
 import net.alhazmy13.mediapicker.Image.ImagePicker
 import net.alhazmy13.mediapicker.Video.VideoPicker
-import java.io.*
+import java.io.File
+import java.io.IOException
 
 
+@Suppress("INACCESSIBLE_TYPE")
 @AndroidEntryPoint
 class ChatActivity : BaseActivity() {
     lateinit var binding: ActivityChatBinding
@@ -56,40 +57,50 @@ class ChatActivity : BaseActivity() {
     var currentFile: File? = null
     var pickerDialog: BottomSheetDialog? = null
     var latestFile: Uri? = null
-    val pickImageGalleryLauncher = registerForActivityResult(ActivityResultContracts.GetContent()) {
-        if (it != null) {
-            var file = FileUtils.getFile(this, it)
-            lifecycleScope.launch {
-                var compressFile = Compressor.compress(this@ChatActivity, file!!)
-                val part = RequestBodyRetrofit.toRequestBodyFile(compressFile.path)
-                viewModel.uploadFile(part)
+    private val pickImageGalleryLauncher =
+        registerForActivityResult(ActivityResultContracts.GetContent()) {
+            if (it != null) {
+                val file = FileUtils.getFile(this, it)
+                lifecycleScope.launch {
+                    var compressFile = Compressor.compress(this@ChatActivity, file!!)
+                    val part = RequestBodyRetrofit.toRequestBodyFile(compressFile.path)
+                    viewModel.uploadFile(part)
+                }
+                Log.e("file dir", file?.path.toString())
             }
-            Log.e("file dir", file?.path.toString())
         }
-    }
 
-    val cameraLauncher = registerForActivityResult(ActivityResultContracts.TakePicture()) {
+    private val docPicker =
+        registerForActivityResult(ActivityResultContracts.GetContent()) {
+            if (it != null) {
+                val file = FileUtils.getFile(this, it)
+
+                val part = RequestBodyRetrofit.toRequestBodyFile(file?.path)
+                viewModel.uploadFile(part)
+
+                Log.e("file dir", file?.path.toString())
+            }
+        }
+
+    private val cameraLauncher = registerForActivityResult(ActivityResultContracts.TakePicture()) {
         if (it) {
-            var name = File(latestFile?.toString()).name
-            var file = File(getExternalFilesDir(null), "/$name")
+            val name = File(latestFile?.toString()).name
+            val file = File(getExternalFilesDir(null), "/$name")
             lifecycleScope.launch {
-                var compressFile = Compressor.compress(this@ChatActivity, file)
+                val compressFile = Compressor.compress(this@ChatActivity, file)
                 val part = RequestBodyRetrofit.toRequestBodyFile(compressFile.path)
                 viewModel.uploadFile(part)
             }
-
-//              var  a=  BufferedReader(InputStreamReader(InputStream()))
         }
     }
 
-    val pickVideo = registerForActivityResult(ActivityResultContracts.GetContent()) {
+    private val pickVideo = registerForActivityResult(ActivityResultContracts.GetContent()) {
         if (it != null) {
             val file = FileUtils.getFile(this, it)
             val newFile = File(file?.parentFile, "/compressed_${file?.name}")
             if (!newFile.exists()) {
                 newFile.createNewFile()
             }
-
             VideoCompress.compressVideoLow(
                 file?.path,
                 newFile.path,
@@ -126,10 +137,10 @@ class ChatActivity : BaseActivity() {
     }
 
 
-    val videoLauncher = registerForActivityResult(ActivityResultContracts.CaptureVideo()) {
+    private val videoLauncher = registerForActivityResult(ActivityResultContracts.CaptureVideo()) {
         if (it) {
-            var name = File(latestFile?.toString()).name
-            var file = File(getExternalFilesDir(null), "/$name")
+            val name = File(latestFile!!.toString()).name
+            val file = File(getExternalFilesDir(null), "/$name")
 //            lifecycleScope.launch {
 //                var compressFile = Compressor.compress(this@ChatActivity, file)
 //                val part = RequestBodyRetrofit.toRequestBodyFile(compressFile.path)
@@ -166,13 +177,11 @@ class ChatActivity : BaseActivity() {
                     }
 
                     override fun onProgress(percent: Float) {
-//                                    runOnUiThread {
-//                                        showToast(+percent.toInt().toString()+"%")
-//                                    }
+
                     }
                 })
 
-//              var  a=  BufferedReader(InputStreamReader(InputStream()))
+
         }
     }
 
@@ -249,7 +258,6 @@ class ChatActivity : BaseActivity() {
                                 ""
                             )
                         )
-
                         (binding.rvMessages.layoutManager as LinearLayoutManager).scrollToPosition(
                             chatAdapter.list.size - 1
                         )
@@ -271,7 +279,7 @@ class ChatActivity : BaseActivity() {
         viewModel.chatData.observe(this) {
             if (it.response == 1) {
 
-                var a = it.chatlist.reversed()
+                val a = it.chatlist.reversed()
                 chatAdapter = ChatAdapter(a.toMutableList())
                 (binding.rvMessages.layoutManager as LinearLayoutManager).stackFromEnd = true
                 binding.rvMessages.adapter = chatAdapter
@@ -339,39 +347,6 @@ class ChatActivity : BaseActivity() {
         }
     }
 
-    @Suppress("DEPRECATION")
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-
-        if (requestCode == VideoPicker.VIDEO_PICKER_REQUEST_CODE && resultCode == RESULT_OK) {
-            val file =
-                data!!.getStringArrayListExtra(VideoPicker.EXTRA_VIDEO_PATH)!![0]!!
-            val part = RequestBodyRetrofit.toRequestBodyFileVideo(file)
-            viewModel.uploadFile(part)
-
-        }
-
-        if (requestCode == ImagePicker.IMAGE_PICKER_REQUEST_CODE && resultCode == RESULT_OK) {
-            val file =
-                data!!.getStringArrayListExtra(ImagePicker.EXTRA_IMAGE_PATH)!![0]!!
-            if (!File(file).exists()) {
-                File(file).createNewFile()
-            }
-            val part = RequestBodyRetrofit.toRequestBodyFile(file)
-            viewModel.uploadFile(part)
-
-        }
-
-        if (requestCode == Keys.UNICORN_RESULT && resultCode == RESULT_OK) {
-            val file: String? = data?.getStringArrayListExtra("filePaths")!![0]
-            val part = RequestBodyRetrofit.toRequestBodyFile(file)
-            viewModel.uploadFile(part)
-
-        }
-
-    }
-
-
     @SuppressLint("ClickableViewAccessibility", "CheckResult")
     private fun clicks() {
         binding.ivSend.setOnClickListener {
@@ -390,15 +365,13 @@ class ChatActivity : BaseActivity() {
                         viewModel.connection2!!.invoke("SendMessages", data)
                         binding.etMessage.setText("")
                         binding.loader.visibility = View.VISIBLE
-//
-                    }
 
+                    }
                 } catch (e: Exception) {
                     showToast(e.toString())
                     viewModel.makeConnection()
                 }
             }
-
         }
 
         binding.ivBack.setOnClickListener {
@@ -406,17 +379,7 @@ class ChatActivity : BaseActivity() {
             finish()
         }
         binding.ivDoc.setOnClickListener {
-            UnicornFilePicker.from(this@ChatActivity)
-                .addConfigBuilder()
-                .selectMultipleFiles(false)
-                .showOnlyDirectory(true)
-                .setRootDirectory(Environment.getExternalStorageDirectory().absolutePath)
-                .showHiddenFiles(false)
-                .setFilters(arrayOf("pdf", "png", "jpg", "jpeg"))
-                .addItemDivider(true)
-                .theme(abhishekti7.unicorn.filepicker.R.style.UnicornFilePicker_Default)
-                .build()
-                .forResult(Keys.UNICORN_RESULT)
+            docPicker.launch("application/pdf")
         }
         binding.ivCamera.setOnClickListener {
 
@@ -424,16 +387,8 @@ class ChatActivity : BaseActivity() {
             val bind = BottomSheetCameraGalleryBinding.inflate(layoutInflater)
             pickerDialog?.setContentView(bind.root)
             bind.tvCamera.setOnClickListener {
-//                ImagePicker.Builder(this@ChatActivity)
-//                    .mode(ImagePicker.Mode.CAMERA)
-//                    .compressLevel(ImagePicker.ComperesLevel.MEDIUM)
-//                    .directory(getExternalFilesDir(null)!!.path)
-//                    .extension(ImagePicker.Extension.JPG)
-//                    .scale(600, 600)
-//                    .allowMultipleImages(false)
-//                    .enableDebuggingMode(true)
-//                    .build()
-//                pickerDialog?.dismiss()
+
+                pickerDialog?.dismiss()
                 latestFile = getTmpFileUri(this@ChatActivity)
                 cameraLauncher.launch(latestFile)
             }
@@ -443,139 +398,25 @@ class ChatActivity : BaseActivity() {
 
                 latestFile = getTmpFileUri(this@ChatActivity)
                 pickImageGalleryLauncher.launch("image/*")
-
-
-//                ImagePicker.Builder(this@ChatActivity)
-//                    .mode(ImagePicker.Mode.GALLERY)
-//                    .compressLevel(ImagePicker.ComperesLevel.MEDIUM)
-//                    .directory(getExternalFilesDir(null)!!.path)
-//                    .extension(ImagePicker.Extension.JPG)
-//                    .scale(600, 600)
-//                    .allowMultipleImages(false)
-//                    .enableDebuggingMode(true)
-//                    .build()
-//                pickerDialog?.dismiss()
+                pickerDialog?.dismiss()
             }
 
 
             bind.tvRecordVideo.setOnClickListener {
                 latestFile = getVideoTmpFileUri(this)
                 videoLauncher.launch(latestFile)
-//                VideoPicker.Builder(this@ChatActivity)
-//                    .mode(VideoPicker.Mode.CAMERA)
-//                    .directory(getExternalFilesDir(null)!!.path)
-//                    .extension(VideoPicker.Extension.MP4)
-//                    .enableDebuggingMode(true)
-//                    .build()
-//                pickerDialog?.dismiss()
+                pickerDialog?.dismiss()
             }
             bind.tvVideoGallery.setOnClickListener {
                 pickVideo.launch("video/*")
-
-//                VideoPicker.Builder(this@ChatActivity)
-//                    .mode(VideoPicker.Mode.GALLERY)
-//                    .directory(getExternalFilesDir(null)!!.path)
-//                    .extension(VideoPicker.Extension.MP4)
-//                    .enableDebuggingMode(true)
-//                    .build()
                 pickerDialog?.dismiss()
             }
-            pickerDialog?.show()
+            if (permissions()) {
+                pickerDialog?.show()
+            }
 
-
-//            ImagePicker.Builder(this@ChatActivity)
-//                .mode(ImagePicker.Mode.CAMERA_AND_GALLERY)
-//                .compressLevel(ImagePicker.ComperesLevel.MEDIUM)
-//                .directory(ImagePicker.Directory.DEFAULT)
-//                .extension(ImagePicker.Extension.PNG)
-//                .scale(600, 600)
-//                .allowMultipleImages(false)
-//                .enableDebuggingMode(true)
-//                .build()
 
         }
-//            grantPermission(PermissionConstant.cameraGalleryPermissionList) {
-//                imageVideoPicker { it, type ->
-//                    if (type == Keys.FILE_TYPE_IMAGE) {
-//                        lifecycleScope.launch {
-//                            val file = Compressor.compress(this@ChatActivity, File(it))
-//                            val part = RequestBodyRetrofit.toRequestBodyFile(file.absolutePath)
-//                            viewModel.uploadFile(part)
-//                        }
-//                    }
-//
-//                    if (type == Keys.FILE_TYPE_FILE) {
-//                        val part = RequestBodyRetrofit.toRequestBodyFile(it)
-//                        viewModel.uploadFile(part)
-//
-//                    }
-//                    if (type == Keys.FILE_TYPE_VIDEO) {
-//
-////                        val part = RequestBodyRetrofit.toRequestBodyFileVideo(it)
-////                        viewModel.uploadFile(part)
-//                        val newFile = File(File(it).parentFile, "/compressed_${File(it).name}")
-//                        if (!newFile.exists()) {
-//                            newFile.createNewFile()
-//                        }
-//
-//                        VideoCompress.compressVideoLow(
-//                            it,
-//                            newFile.path,
-//                            object : VideoCompress.CompressListener {
-//                                override fun onStart() {
-//                                    runOnUiThread {
-//                                        showToast("Compressing...")
-//                                    }
-//
-//                                }
-//
-//                                override fun onSuccess() {
-//                                    runOnUiThread {
-//                                        val part =
-//                                            RequestBodyRetrofit.toRequestBodyFileVideo(newFile.path)
-//                                        viewModel.uploadFile(part)
-//                                    }
-//
-//                                }
-//
-//                                override fun onFail() {
-//                                    runOnUiThread {
-//                                        showToast("Failed to compress...")
-//                                    }
-//                                }
-//
-//                                override fun onProgress(percent: Float) {
-////                                    runOnUiThread {
-////                                        showToast(+percent.toInt().toString()+"%")
-////                                    }
-//                                }
-//                            })
-//                    }
-//
-//
-//                }
-//            }
-//
-//        }
-//        binding.ivMic.setOnTouchListener(object : View.OnTouchListener {
-//            override fun onTouch(p0: View?, p1: MotionEvent?): Boolean {
-//                if (permissions()) {
-//
-//                    when (p1!!.action) {
-//
-//                        MotionEvent.ACTION_DOWN -> {
-//                            startRecording()
-//
-//                        }
-//                        MotionEvent.ACTION_UP -> {
-//                            stopRecording()
-//                        }
-//                    }
-//
-//                }
-//                return false
-//            }
-//        })
 
         binding.recordButton.setRecordView(binding.recordView)
         binding.recordButton.setOnRecordClickListener {
@@ -593,7 +434,6 @@ class ChatActivity : BaseActivity() {
                 } else {
                     startRecording()
                 }
-
             }
 
             override fun onCancel() {
@@ -636,12 +476,17 @@ class ChatActivity : BaseActivity() {
                 this,
                 android.Manifest.permission.READ_EXTERNAL_STORAGE
             ) != PackageManager.PERMISSION_GRANTED
+            || ContextCompat.checkSelfPermission(
+                this,
+                android.Manifest.permission.CAMERA
+            ) != PackageManager.PERMISSION_GRANTED
         ) {
             requestPerm.launch(
                 arrayOf(
                     android.Manifest.permission.RECORD_AUDIO,
                     android.Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                    android.Manifest.permission.READ_EXTERNAL_STORAGE
+                    android.Manifest.permission.READ_EXTERNAL_STORAGE,
+                    android.Manifest.permission.CAMERA,
                 )
             )
             return false
@@ -650,10 +495,10 @@ class ChatActivity : BaseActivity() {
         return true
     }
 
-    val requestPerm =
+    private val requestPerm =
         registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) {
             if (it[android.Manifest.permission.READ_EXTERNAL_STORAGE] == true && it[android.Manifest.permission.WRITE_EXTERNAL_STORAGE] == true && it[android.Manifest.permission.RECORD_AUDIO] == true) {
-                startRecording()
+//                startRecording()
 
             }
         }

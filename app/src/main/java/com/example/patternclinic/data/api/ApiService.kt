@@ -46,6 +46,9 @@ interface ApiService {
     @POST(ApiConstants.USER_CHAT_LIST)
     suspend fun getUserChatList(@Body map: HashMap<String, Any>): Response<GetUserChatResponse>
 
+    @POST(ApiConstants.MANAGE_NOTIFICATION)
+    suspend fun manageNotification(@Body map: HashMap<String, Any>): Response<ForgotPasswordResponse>
+
     @Multipart
     @POST(ApiConstants.UPLOAD_FILE_URL)
     suspend fun uploadFiles(@Part file: MultipartBody.Part): Response<UploadFileResponse>
