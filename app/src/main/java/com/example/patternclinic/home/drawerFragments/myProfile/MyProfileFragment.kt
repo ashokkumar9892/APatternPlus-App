@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import androidx.core.app.ActivityCompat.finishAffinity
 import androidx.databinding.DataBindingUtil
 import com.example.patternclinic.R
+import com.example.patternclinic.auth.CreateProfileHeight
 import com.example.patternclinic.auth.CreateProfileWeight
 import com.example.patternclinic.auth.LoginActivity
 import com.example.patternclinic.data.model.LoginResponse
@@ -59,7 +60,7 @@ class MyProfileFragment : Fragment() {
             startActivity(Intent(requireContext(), PersonalInformationActivity::class.java))
         }
         bindingFragment.llCurrentHeight.setOnClickListener {
-            startActivity(Intent(requireContext(), CurrentHeightActivity::class.java))
+            startActivity(Intent(requireContext(), CreateProfileHeight::class.java))
         }
         bindingFragment.llWeight.setOnClickListener {
             startActivity(Intent(requireContext(), CreateProfileWeight::class.java))

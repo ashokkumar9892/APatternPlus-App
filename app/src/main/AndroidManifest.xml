@@ -23,9 +23,11 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-
         android:theme="@style/Theme.PatternClinic"
         android:usesCleartextTraffic="true">
+        <activity
+            android:name=".home.drawerFragments.appointments.AddAppointmentActivity"
+            android:exported="false" />
         <activity
             android:name=".home.drawerFragments.messages.ViewMessageActivity"
             android:exported="false" />
@@ -55,7 +57,7 @@
         <activity
             android:name=".auth.createProfile.SignupActivity"
             android:exported="false" /> <!-- Bluetooth services -->
-<!--        <service android:name="com.inuker.bluetooth.library.BluetoothService" /> &lt;!&ndash; <service android:name=".oad.service.DfuService"/> &ndash;&gt;-->
+        <!-- <service android:name="com.inuker.bluetooth.library.BluetoothService" /> &lt;!&ndash; <service android:name=".oad.service.DfuService"/> &ndash;&gt; -->
         <activity
             android:name=".home.drawerFragments.myProfile.YourApTeamActivity"
             android:exported="false" />
@@ -161,12 +163,14 @@
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
             android:name=".MainActivity"
             android:exported="true" />
+
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}.provider"

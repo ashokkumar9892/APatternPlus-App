@@ -1,27 +1,23 @@
 package com.example.patternclinic.auth.createProfile
 
-import android.content.Intent
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.patternclinic.R
-import com.example.patternclinic.auth.LoginActivity
 import com.example.patternclinic.base.BaseViewModel
-import com.example.patternclinic.data.model.ForgotPasswordResponse
+import com.example.patternclinic.data.model.BasicResponse
 import com.example.patternclinic.data.model.LoginResponse
-import com.example.patternclinic.data.model.ResetPasswordResponse
 import com.example.patternclinic.data.repository.MainRepository
 import com.example.patternclinic.databinding.ActivitySignupBinding
 import com.example.patternclinic.retrofit.ResponseResult
 import com.example.patternclinic.retrofit.getResult
 import com.example.patternclinic.utils.checkEmail
-import com.example.patternclinic.utils.showToast
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class SignUpViewModel @Inject constructor(val mainRepository: MainRepository) : BaseViewModel() {
-    var signUpResponse = MutableLiveData<ForgotPasswordResponse>()
+    var signUpResponse = MutableLiveData<BasicResponse>()
     var otpResponse = MutableLiveData<LoginResponse>()
     var binding: ActivitySignupBinding? = null
 
@@ -69,7 +65,7 @@ class SignUpViewModel @Inject constructor(val mainRepository: MainRepository) : 
             val result = getResult({ mainRepository.signUp(map) }, "signUp")
             when (result) {
                 is ResponseResult.SUCCESS -> {
-                    val response = (result.result.data as ForgotPasswordResponse)
+                    val response = (result.result.data as BasicResponse)
 
                     signUpResponse.postValue(response)
                 }

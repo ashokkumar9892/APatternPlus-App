@@ -21,5 +21,12 @@ data class PatientInfo(
     val referAs: Any,
     val sk: String,
     val userName: String,
-    val weight: Any
+    val weight: String?,
+    val teamLocation:String?,
+    val coachSK:String?,
+    val doctorSK:String?,
+    val doctorName:String?,
+    val doctorPic:String?,
+    val coachName:String?,
+    val coachPic:String?
 )

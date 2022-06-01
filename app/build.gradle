@@ -12,8 +12,6 @@ android {
         enabled = true
     }
 
-
-
     defaultConfig {
         applicationId "com.example.patternclinic"
         minSdk 21
@@ -157,8 +155,6 @@ dependencies {
 
     //for AndroidX use:
     implementation 'com.github.3llomi:RecordView:3.1.1'
-
-
 
 
 }

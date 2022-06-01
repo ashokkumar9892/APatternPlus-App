@@ -15,6 +15,7 @@ object ApiConstants {
     const val USER_CHAT_LIST = "Chat/ChatUsers"
     const val UPLOAD_FILE_URL = "Chat/UploadFiles"
     const val MANAGE_NOTIFICATION = "Basic/ManageNotifications"
+    const val CREATE_APPOINTMENT = "Basic/CreateAppointment"
     const val CHAT_HUB_URL = "https://annexappapi.apatternplus.com/chatHub"
 
 

@@ -71,16 +71,21 @@
         <entry key="app/src/main/res/drawable/ic_dummy_user.xml" value="0.198" />
         <entry key="app/src/main/res/drawable/ic_messages.xml" value="0.21" />
         <entry key="app/src/main/res/drawable/ic_splash_logo.xml" value="0.21" />
+        <entry key="app/src/main/res/layout/activity_add_appointment.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/activity_change_password.xml" value="0.24010416666666667" />
         <entry key="app/src/main/res/layout/activity_chat.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_coach_appointments.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/activity_coach_profile.xml" value="0.24010416666666667" />
         <entry key="app/src/main/res/layout/activity_connect_device.xml" value="0.21" />
         <entry key="app/src/main/res/layout/activity_create_profile.xml" value="0.26197916666666665" />
-        <entry key="app/src/main/res/layout/activity_create_profile_height.xml" value="0.26197916666666665" />
-        <entry key="app/src/main/res/layout/activity_create_profile_weight.xml" value="0.2625" />
+        <entry key="app/src/main/res/layout/activity_create_profile_height.xml" value="0.5" />
+        <entry key="app/src/main/res/layout/activity_create_profile_weight.xml" value="0.18" />
         <entry key="app/src/main/res/layout/activity_current_weight.xml" value="0.24010416666666667" />
         <entry key="app/src/main/res/layout/activity_forgot_password.xml" value="0.24010416666666667" />
         <entry key="app/src/main/res/layout/activity_home_screen.xml" value="0.24010416666666667" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.33" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.24010416666666667" />
+        <entry key="app/src/main/res/layout/activity_nutrition_tracking.xml" value="0.24010416666666667" />
         <entry key="app/src/main/res/layout/activity_otp.xml" value="0.22" />
         <entry key="app/src/main/res/layout/activity_personal_information.xml" value="0.33" />
         <entry key="app/src/main/res/layout/activity_select_pattern_plus_team.xml" value="0.33" />

@@ -3,7 +3,7 @@ package com.example.patternclinic.home.drawerFragments.settings
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.patternclinic.base.BaseViewModel
-import com.example.patternclinic.data.model.ForgotPasswordResponse
+import com.example.patternclinic.data.model.BasicResponse
 import com.example.patternclinic.data.repository.MainRepository
 import com.example.patternclinic.retrofit.ResponseResult
 import com.example.patternclinic.retrofit.getResult
@@ -15,7 +15,7 @@ import javax.inject.Inject
 class SettingFragmentViewModel @Inject constructor(val mainRepository: MainRepository) :
     BaseViewModel() {
 
-    val notificationResponse = MutableLiveData<ForgotPasswordResponse>()
+    val notificationResponse = MutableLiveData<BasicResponse>()
 
     /**
      * below method used for manageNotification
@@ -27,7 +27,7 @@ class SettingFragmentViewModel @Inject constructor(val mainRepository: MainRepos
             val result = getResult({ mainRepository.manageNotification(map) }, "manageNotification")
             when (result) {
                 is ResponseResult.SUCCESS -> {
-                    val response = (result.result.data as ForgotPasswordResponse)
+                    val response = (result.result.data as BasicResponse)
 
                     notificationResponse.postValue(response)
                 }

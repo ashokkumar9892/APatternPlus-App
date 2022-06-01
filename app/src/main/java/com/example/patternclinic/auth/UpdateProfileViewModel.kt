@@ -185,7 +185,7 @@ class UpdateProfileViewModel @Inject constructor(val mainRepository: MainReposit
 
 
     private fun calenderDialog(context: Context?) {
-        var datePicker =
+        val datePicker =
             DatePickerDialog(binding.root.context, object : DatePickerDialog.OnDateSetListener {
                 override fun onDateSet(p0: DatePicker?, p1: Int, p2: Int, p3: Int) {
                     var day = p3.toString()

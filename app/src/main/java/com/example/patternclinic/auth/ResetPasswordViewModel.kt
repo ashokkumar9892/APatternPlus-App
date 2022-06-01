@@ -8,12 +8,10 @@ import androidx.lifecycle.viewModelScope
 import com.example.patternclinic.R
 import com.example.patternclinic.base.BaseViewModel
 import com.example.patternclinic.data.ApiConstants
-import com.example.patternclinic.data.model.ForgotPasswordResponse
 import com.example.patternclinic.data.model.ResetPasswordResponse
 import com.example.patternclinic.data.repository.MainRepository
 import com.example.patternclinic.retrofit.ResponseResult
 import com.example.patternclinic.retrofit.getResult
-import com.example.patternclinic.utils.checkEmail
 import com.example.patternclinic.utils.showToast
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch

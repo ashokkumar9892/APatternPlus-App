@@ -33,6 +33,14 @@ class CoachAppointments : Fragment() {
         bindingFragment.ivMenu.setOnClickListener {
             (activity as HomeScreenActivity).binding!!.drawerLayout.openDrawer((activity as HomeScreenActivity).binding!!.sideBar)
         }
+        bindingFragment.fabAdd.setOnClickListener {
+            requireActivity().startActivity(
+                Intent(
+                    requireContext(),
+                    AddAppointmentActivity::class.java
+                )
+            )
+        }
         bindingFragment.llEmmaWatson.setOnClickListener {
             requireActivity().startActivity(
                 Intent(

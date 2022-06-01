@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".home.drawerFragments.settings.ChangePassword">
+
+        <include
+            android:id="@+id/tool_bar"
+            layout="@layout/layout_tool_bar" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/tool_bar"
+            android:fillViewport="true"
+            android:fitsSystemWindows="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clipToPadding="false"
+                android:orientation="vertical"
+                android:padding="@dimen/_21sdp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:fontFamily="@font/outfit_light"
+                    android:text="@string/appointment_type"
+                    android:textColor="@color/text_color_3"
+                    android:textSize="@dimen/_12ssp" />
+
+                <RadioGroup
+                    android:id="@+id/rg_group"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <com.google.android.material.radiobutton.MaterialRadioButton
+                        android:layout_width="wrap_content"
+                        android:id="@+id/rb_virtual"
+                        android:layout_height="wrap_content"
+                        android:buttonTint="@color/black"
+                        android:fontFamily="@font/outfit_regular"
+                        android:paddingEnd="@dimen/_10sdp"
+                        android:checked="true"
+                        android:text="@string/virtual"
+                        android:textColor="@color/text_color_4"
+                        android:textSize="@dimen/_13ssp" />
+
+                    <com.google.android.material.radiobutton.MaterialRadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/rb_in_person"
+                        android:buttonTint="@color/black"
+                        android:fontFamily="@font/outfit_regular"
+                        android:paddingEnd="@dimen/_10sdp"
+                        android:text="@string/in_person_meeting"
+                        android:textColor="@color/text_color_4"
+                        android:textSize="@dimen/_13ssp" />
+
+
+                </RadioGroup>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_18sdp"
+                    android:fontFamily="@font/outfit_light"
+                    android:text="@string/select_date"
+                    android:textColor="@color/text_color_3"
+                    android:textSize="@dimen/_12sdp" />
+
+                <TextView
+                    android:id="@+id/tv_date"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_38sdp"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:background="@drawable/drawable_shape_login_2"
+                    android:fontFamily="@font/outfit_regular"
+                    android:gravity="center_vertical"
+                    android:paddingStart="@dimen/_14sdp"
+                    android:paddingEnd="@dimen/_14sdp"
+                    android:textColor="@color/text_color_4"
+                    android:textSize="@dimen/_14ssp"
+                    app:drawableEndCompat="@drawable/ic_calendar" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_18sdp"
+                    android:fontFamily="@font/outfit_light"
+                    android:text="@string/select_time"
+                    android:textColor="@color/text_color_3"
+                    android:textSize="@dimen/_12sdp" />
+
+                <TextView
+                    android:id="@+id/tv_time"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_38sdp"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:background="@drawable/drawable_shape_login_2"
+                    android:fontFamily="@font/outfit_regular"
+                    android:gravity="center_vertical"
+
+                    android:paddingStart="@dimen/_14sdp"
+                    android:paddingEnd="@dimen/_14sdp"
+
+                    android:textColor="@color/text_color_4"
+                    android:textSize="@dimen/_14ssp"
+                    app:drawableEndCompat="@drawable/ic_clock" />
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_12sdp"
+                    android:fontFamily="@font/outfit_light"
+                    android:text="@string/select_coach"
+                    android:textColor="@color/text_color_3"
+                    android:textSize="@dimen/_12ssp" />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_38sdp"
+                    android:layout_marginTop="@dimen/_6sdp"
+                    android:background="@drawable/drawable_shape_login_2"
+                    android:drawableEnd="@drawable/ic_dropdown_select"
+                    android:paddingStart="@dimen/_10sdp"
+                    android:paddingEnd="@dimen/_14sdp" />
+
+                <LinearLayout
+                    android:id="@+id/ll_clinic_container"
+                    android:layout_width="match_parent"
+                    android:visibility="gone"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_12sdp"
+                        android:fontFamily="@font/outfit_light"
+                        android:text="@string/select_clinic"
+                        android:textColor="@color/text_color_3"
+                        android:textSize="@dimen/_12ssp" />
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_38sdp"
+                        android:layout_marginTop="@dimen/_6sdp"
+                        android:background="@drawable/drawable_shape_login_2"
+                        android:drawableEnd="@drawable/ic_dropdown_select"
+                        android:paddingStart="@dimen/_10sdp"
+                        android:paddingEnd="@dimen/_14sdp" />
+
+                </LinearLayout>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_submit_reset"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_50sdp"
+                    android:layout_marginTop="@dimen/_32sdp"
+                    android:fontFamily="@font/outfit_semibold"
+                    android:text="@string/add"
+                    android:textAllCaps="false"
+                    android:textSize="@dimen/_14ssp"
+                    app:cornerRadius="@dimen/_8sdp" />
+
+            </LinearLayout>
+
+        </ScrollView>
+    </RelativeLayout>
+</layout>

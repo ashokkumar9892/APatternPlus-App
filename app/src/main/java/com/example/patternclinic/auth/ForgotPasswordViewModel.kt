@@ -8,7 +8,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.patternclinic.R
 import com.example.patternclinic.base.BaseViewModel
 import com.example.patternclinic.data.ApiConstants
-import com.example.patternclinic.data.model.ForgotPasswordResponse
+import com.example.patternclinic.data.model.BasicResponse
 import com.example.patternclinic.data.repository.MainRepository
 import com.example.patternclinic.retrofit.ResponseResult
 import com.example.patternclinic.retrofit.getResult
@@ -22,7 +22,7 @@ import javax.inject.Inject
 @HiltViewModel
 class ForgotPasswordViewModel @Inject constructor(val mainRepository: MainRepository) :
     BaseViewModel() {
-    var forgotResponse = MutableLiveData<ForgotPasswordResponse>()
+    var forgotResponse = MutableLiveData<BasicResponse>()
     var email = ObservableField<String>()
     var activity = ForgotPassword.binding
 
@@ -51,7 +51,7 @@ class ForgotPasswordViewModel @Inject constructor(val mainRepository: MainReposi
 
                 when (result) {
                     is ResponseResult.SUCCESS -> {
-                        val response = (result.result.data as ForgotPasswordResponse)
+                        val response = (result.result.data as BasicResponse)
 
                         forgotResponse.postValue(response)
                         if (response.response == 1) {

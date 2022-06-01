@@ -43,22 +43,7 @@ class FinalUpdateProfileViewModel @Inject constructor(val mainRepository: MainRe
                     val response = (result.result.data as UpdateProfileResponse)
 
                     updateProfileResponse.postValue(response)
-                    if (response.response == 1) {
-//                        var mapJson=Gson().toJson(map)
-//                        var response=Gson().fromJson<PatientInfo>(mapJson)
-                        activity.root.context.showToast(response.errorMessage)
-                        val convert =
-                            Gson().fromJson(Gson().toJson(response), LoginResponse::class.java)
-                        SharedPrefs.saveLoggedInUser(convert)
-                        activity.root.context.startActivity(
-                            Intent(
-                                activity.root.context,
-                                ConnectDeviceActivity::class.java
-                            )
-                        )
-                    } else {
-                        activity.root.context.showToast(response.errorMessage)
-                    }
+
                 }
                 is ResponseResult.ERROR -> {
 //                        errorMessage.postValue(result.result.errorMsg.toString())

@@ -1,14 +1,8 @@
 package com.example.patternclinic.data.api
 
-import com.example.patternclinic.auth.ForgotPassword
-import com.example.patternclinic.auth.ResetPassword
 import com.example.patternclinic.data.ApiConstants
 import com.example.patternclinic.data.model.*
-import com.google.android.exoplayer2.metadata.id3.ApicFrame
-import com.google.android.exoplayer2.text.span.TextAnnotation
 import okhttp3.MultipartBody
-import okhttp3.RequestBody
-import okhttp3.ResponseBody
 import retrofit2.Response
 import retrofit2.http.*
 
@@ -17,7 +11,7 @@ interface ApiService {
     suspend fun login(@Body map: HashMap<String, Any>): Response<LoginResponse>
 
     @POST(ApiConstants.FORGOT_PASSWORD)
-    suspend fun forgotPassword(@Body map: HashMap<String, Any>): Response<ForgotPasswordResponse>
+    suspend fun forgotPassword(@Body map: HashMap<String, Any>): Response<BasicResponse>
 
     @POST(ApiConstants.RESET_PASSWORD)
     suspend fun resetPassword(@Body map: HashMap<String, Any>): Response<ResetPasswordResponse>
@@ -35,7 +29,7 @@ interface ApiService {
     suspend fun selectApTeam(@Body map: HashMap<String, Any>): Response<UpdateProfileResponse>
 
     @POST(ApiConstants.SIGN_UP)
-    suspend fun signUp(@Body map: HashMap<String, Any>): Response<ForgotPasswordResponse>
+    suspend fun signUp(@Body map: HashMap<String, Any>): Response<BasicResponse>
 
     @POST(ApiConstants.OTP)
     suspend fun sendOtp(@Body map: HashMap<String, Any>): Response<LoginResponse>
@@ -47,7 +41,10 @@ interface ApiService {
     suspend fun getUserChatList(@Body map: HashMap<String, Any>): Response<GetUserChatResponse>
 
     @POST(ApiConstants.MANAGE_NOTIFICATION)
-    suspend fun manageNotification(@Body map: HashMap<String, Any>): Response<ForgotPasswordResponse>
+    suspend fun manageNotification(@Body map: HashMap<String, Any>): Response<BasicResponse>
+
+    @POST(ApiConstants.CREATE_APPOINTMENT)
+    suspend fun createAppointment(@Body map: HashMap<String, Any>): Response<BasicResponse>
 
     @Multipart
     @POST(ApiConstants.UPLOAD_FILE_URL)
