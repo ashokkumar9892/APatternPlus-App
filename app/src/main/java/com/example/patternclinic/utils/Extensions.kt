@@ -273,9 +273,26 @@ fun dateConvert_4(type: String): String {
     return result
 }
 
+fun timeConvert24to12(type: String): String {
+    val input = SimpleDateFormat("HH:mm", Locale.ENGLISH)
+    val output = SimpleDateFormat("hh:mm aa", Locale.ENGLISH)
+    val date = input.parse(type)
+    val result = output.format(date)
+    return result
+}
+
 fun dateConvert_5(type: String): String {
     val output = SimpleDateFormat("MMM dd,yyyy", Locale.ENGLISH)
     val input = SimpleDateFormat("dd-MMM-yyyy", Locale.ENGLISH)
+    val date = input.parse(type)
+    val result = output.format(date)
+    return result
+}
+
+
+fun dateConvert_7(type: String): String {
+    val output = SimpleDateFormat("MMM dd,yyyy", Locale.ENGLISH)
+    val input = SimpleDateFormat("dd-MM-yyyy", Locale.ENGLISH)
     val date = input.parse(type)
     val result = output.format(date)
     return result

@@ -57,6 +57,7 @@
                 android:padding="@dimen/_4sdp">
 
                 <com.google.android.material.tabs.TabLayout
+                    android:id="@+id/tab_layout"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_48sdp"
                     app:tabIndicator="@drawable/drawable_shape_8sdp"
@@ -77,275 +78,21 @@
                         android:layout_height="wrap_content"
                         android:text="@string/past" />
                 </com.google.android.material.tabs.TabLayout>
+
             </RelativeLayout>
 
-            <LinearLayout
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_appointments"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_21sdp"
                 android:layout_marginEnd="@dimen/_21sdp"
                 android:background="@drawable/drawable_shape_10sdp"
                 android:elevation="@dimen/_2sdp"
-                android:orientation="vertical">
-
-                <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                    xmlns:app="http://schemas.android.com/apk/res-auto"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_17sdp"
-                    android:layout_marginTop="@dimen/_12sdp"
-                    android:layout_marginEnd="@dimen/_17sdp"
-                    android:orientation="vertical">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-
-                        android:orientation="horizontal">
-
-                        <com.google.android.material.imageview.ShapeableImageView
-                            android:layout_width="@dimen/_48sdp"
-                            android:layout_height="@dimen/_48sdp"
-
-                            app:srcCompat="@drawable/coach_img" />
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_marginStart="@dimen/_12sdp"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:fontFamily="@font/outfit_medium"
-                                android:gravity="center_vertical"
-                                android:text="@string/exa_mellisa_smith"
-                                android:textColor="@color/text_color_1"
-                                android:textSize="@dimen/_15ssp" />
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:orientation="horizontal">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-
-                                    android:drawableStart="@drawable/ic_calendar"
-                                    android:drawablePadding="@dimen/_4sdp"
-                                    android:fontFamily="@font/outfit_light"
-                                    android:gravity="center_vertical"
-                                    android:text="Mar 5,2021"
-                                    android:textColor="@color/text_color_10"
-                                    android:textSize="@dimen/_9ssp" />
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginStart="@dimen/_8sdp"
-
-                                    android:drawablePadding="@dimen/_4sdp"
-                                    android:fontFamily="@font/outfit_light"
-                                    android:gravity="center_vertical"
-                                    android:text="9:30 AM"
-                                    android:textColor="@color/text_color_10"
-                                    android:textSize="@dimen/_9ssp"
-                                    app:drawableStartCompat="@drawable/ic_clock" />
-
-                            </LinearLayout>
-
-
-                        </LinearLayout>
-
-
-                    </LinearLayout>
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="2px"
-                        android:layout_marginTop="@dimen/_14sdp"
-                        android:background="@color/stroke_color_1" />
-                </LinearLayout>
-
-                <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                    xmlns:app="http://schemas.android.com/apk/res-auto"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_17sdp"
-                    android:layout_marginTop="@dimen/_12sdp"
-                    android:layout_marginEnd="@dimen/_17sdp"
-                    android:orientation="vertical">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-
-                        android:orientation="horizontal">
-
-                        <com.google.android.material.imageview.ShapeableImageView
-                            android:layout_width="@dimen/_48sdp"
-                            android:layout_height="@dimen/_48sdp"
-
-                            app:srcCompat="@drawable/coach_img2" />
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_marginStart="@dimen/_12sdp"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:fontFamily="@font/outfit_medium"
-                                android:gravity="center_vertical"
-                                android:text="@string/exa_stella_smith"
-                                android:textColor="@color/text_color_1"
-                                android:textSize="@dimen/_15ssp" />
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:orientation="horizontal">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-
-                                    android:drawableStart="@drawable/ic_calendar"
-                                    android:drawablePadding="@dimen/_4sdp"
-                                    android:fontFamily="@font/outfit_light"
-                                    android:gravity="center_vertical"
-                                    android:text="Mar 10,2021"
-                                    android:textColor="@color/text_color_10"
-                                    android:textSize="@dimen/_9ssp" />
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginStart="@dimen/_8sdp"
-
-                                    android:drawablePadding="@dimen/_4sdp"
-                                    android:fontFamily="@font/outfit_light"
-                                    android:gravity="center_vertical"
-                                    android:text="10:30 AM"
-                                    android:textColor="@color/text_color_10"
-                                    android:textSize="@dimen/_9ssp"
-                                    app:drawableStartCompat="@drawable/ic_clock" />
-
-                            </LinearLayout>
-
-
-                        </LinearLayout>
-
-
-                    </LinearLayout>
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="2px"
-                        android:layout_marginTop="@dimen/_14sdp"
-                        android:background="@color/stroke_color_1" />
-                </LinearLayout>
-
-                <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                    xmlns:app="http://schemas.android.com/apk/res-auto"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_17sdp"
-                    android:layout_marginTop="@dimen/_12sdp"
-                    android:layout_marginEnd="@dimen/_17sdp"
-                    android:orientation="vertical">
-
-                    <LinearLayout
-                        android:id="@+id/ll_emma_watson"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                        <com.google.android.material.card.MaterialCardView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            app:cardCornerRadius="@dimen/_10sdp">
-
-                            <com.google.android.material.imageview.ShapeableImageView
-                                android:layout_width="@dimen/_48sdp"
-                                android:layout_height="@dimen/_48sdp"
-                                android:scaleType="centerCrop"
-                                app:srcCompat="@drawable/nurse_dummy2" />
-                        </com.google.android.material.card.MaterialCardView>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_marginStart="@dimen/_12sdp"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:fontFamily="@font/outfit_medium"
-                                android:gravity="center_vertical"
-                                android:text="@string/exa_emma_watson"
-                                android:textColor="@color/text_color_1"
-                                android:textSize="@dimen/_15ssp" />
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:orientation="horizontal">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-
-                                    android:drawableStart="@drawable/ic_calendar"
-                                    android:drawablePadding="@dimen/_4sdp"
-                                    android:fontFamily="@font/outfit_light"
-                                    android:gravity="center_vertical"
-                                    android:text="Mar 22,2021"
-                                    android:textColor="@color/text_color_10"
-                                    android:textSize="@dimen/_9ssp" />
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginStart="@dimen/_8sdp"
-
-                                    android:drawablePadding="@dimen/_4sdp"
-                                    android:fontFamily="@font/outfit_light"
-                                    android:gravity="center_vertical"
-                                    android:text="9:30 AM"
-                                    android:textColor="@color/text_color_10"
-                                    android:textSize="@dimen/_9ssp"
-                                    app:drawableStartCompat="@drawable/ic_clock" />
-
-                            </LinearLayout>
-
-
-                        </LinearLayout>
-
-
-                    </LinearLayout>
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="2px"
-                        android:layout_marginTop="@dimen/_14sdp"
-                        android:background="@color/stroke_color_1" />
-                </LinearLayout>
-
-
-            </LinearLayout>
-
+                android:orientation="vertical"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:itemCount="3"
+                tools:listitem="@layout/item_coach_appoitments" />
         </LinearLayout>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -361,5 +108,26 @@
             app:backgroundTint="@color/color_primary"
             app:maxImageSize="@dimen/_24sdp"
             app:tint="@color/white" />
+        <RelativeLayout
+            android:id="@+id/loader"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clickable="true"
+            android:focusable="true">
+
+            <com.agrawalsuneet.loaderspack.loaders.PulseLoader
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true"
+                android:backgroundTint="@color/color_primary"
+                android:clickable="true"
+                android:focusable="true"
+                app:pulse_LineThickness="@dimen/_2sdp"
+                app:pulse_normalIncrementalValue="3"
+                app:pulse_pulseColor="@color/color_primary"
+                app:pulse_pulseIncrementalValue="3"
+                app:pulse_sideLength="@dimen/_20sdp" />
+        </RelativeLayout>
     </RelativeLayout>
 </layout>

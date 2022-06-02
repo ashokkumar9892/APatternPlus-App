@@ -5,6 +5,9 @@
 
     <data>
 
+        <variable
+            name="viewModel"
+            type="com.example.patternclinic.home.drawerFragments.appointments.AddAppointmentViewModel" />
     </data>
 
     <RelativeLayout
@@ -46,21 +49,21 @@
                     android:orientation="horizontal">
 
                     <com.google.android.material.radiobutton.MaterialRadioButton
-                        android:layout_width="wrap_content"
                         android:id="@+id/rb_virtual"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:buttonTint="@color/black"
+                        android:checked="true"
                         android:fontFamily="@font/outfit_regular"
                         android:paddingEnd="@dimen/_10sdp"
-                        android:checked="true"
                         android:text="@string/virtual"
                         android:textColor="@color/text_color_4"
                         android:textSize="@dimen/_13ssp" />
 
                     <com.google.android.material.radiobutton.MaterialRadioButton
+                        android:id="@+id/rb_in_person"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/rb_in_person"
                         android:buttonTint="@color/black"
                         android:fontFamily="@font/outfit_regular"
                         android:paddingEnd="@dimen/_10sdp"
@@ -89,6 +92,7 @@
                     android:fontFamily="@font/outfit_regular"
                     android:gravity="center_vertical"
                     android:paddingStart="@dimen/_14sdp"
+                    android:onClick="@{(v)->viewModel.click(v)}"
                     android:paddingEnd="@dimen/_14sdp"
                     android:textColor="@color/text_color_4"
                     android:textSize="@dimen/_14ssp"
@@ -111,7 +115,7 @@
                     android:background="@drawable/drawable_shape_login_2"
                     android:fontFamily="@font/outfit_regular"
                     android:gravity="center_vertical"
-
+                    android:onClick="@{(v)->viewModel.click(v)}"
                     android:paddingStart="@dimen/_14sdp"
                     android:paddingEnd="@dimen/_14sdp"
 
@@ -129,10 +133,15 @@
                     android:textColor="@color/text_color_3"
                     android:textSize="@dimen/_12ssp" />
 
-                <EditText
+                <TextView
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_38sdp"
+                    android:gravity="center_vertical"
+                    android:id="@+id/tv_coach_name"
                     android:layout_marginTop="@dimen/_6sdp"
+                    android:fontFamily="@font/outfit_regular"
+                    android:textSize="@dimen/_14ssp"
+                    android:textColor="@color/text_color_4"
                     android:background="@drawable/drawable_shape_login_2"
                     android:drawableEnd="@drawable/ic_dropdown_select"
                     android:paddingStart="@dimen/_10sdp"
@@ -141,9 +150,9 @@
                 <LinearLayout
                     android:id="@+id/ll_clinic_container"
                     android:layout_width="match_parent"
-                    android:visibility="gone"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:visibility="gone">
 
                     <TextView
                         android:layout_width="match_parent"
@@ -154,10 +163,15 @@
                         android:textColor="@color/text_color_3"
                         android:textSize="@dimen/_12ssp" />
 
-                    <EditText
+                    <TextView
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_38sdp"
+                        android:gravity="center_vertical"
+                        android:id="@+id/tv_location"
                         android:layout_marginTop="@dimen/_6sdp"
+                        android:fontFamily="@font/outfit_regular"
+                        android:textSize="@dimen/_14ssp"
+                        android:textColor="@color/text_color_4"
                         android:background="@drawable/drawable_shape_login_2"
                         android:drawableEnd="@drawable/ic_dropdown_select"
                         android:paddingStart="@dimen/_10sdp"
@@ -171,6 +185,7 @@
                     android:layout_height="@dimen/_50sdp"
                     android:layout_marginTop="@dimen/_32sdp"
                     android:fontFamily="@font/outfit_semibold"
+                    android:onClick="@{(v)->viewModel.click(v)}"
                     android:text="@string/add"
                     android:textAllCaps="false"
                     android:textSize="@dimen/_14ssp"
@@ -179,5 +194,26 @@
             </LinearLayout>
 
         </ScrollView>
+        <RelativeLayout
+            android:id="@+id/loader"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clickable="true"
+            android:focusable="true">
+
+            <com.agrawalsuneet.loaderspack.loaders.PulseLoader
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true"
+                android:backgroundTint="@color/color_primary"
+                android:clickable="true"
+                android:focusable="true"
+                app:pulse_LineThickness="@dimen/_2sdp"
+                app:pulse_normalIncrementalValue="3"
+                app:pulse_pulseColor="@color/color_primary"
+                app:pulse_pulseIncrementalValue="3"
+                app:pulse_sideLength="@dimen/_20sdp" />
+        </RelativeLayout>
     </RelativeLayout>
 </layout>

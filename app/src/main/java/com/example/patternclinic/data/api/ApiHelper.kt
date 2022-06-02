@@ -10,11 +10,8 @@ import retrofit2.http.Part
 interface ApiHelper {
 
     suspend fun login(@Body map: HashMap<String, Any>):Response<LoginResponse>
-
     suspend fun forgotPassword(@Body map: HashMap<String, Any>):Response<BasicResponse>
-
     suspend fun resetPassword(@Body map: HashMap<String, Any>): Response<ResetPasswordResponse>
-
     suspend fun updateProfile(@Body map: HashMap<String, Any>):Response<UpdateProfileResponse>
     suspend fun getCoachList(@Body map: HashMap<String, Any>):Response<CoachProviderListResponse>
     suspend fun getDoctorList(@Body map: HashMap<String, Any>): Response<CoachProviderListResponse>
@@ -26,5 +23,6 @@ interface ApiHelper {
     suspend fun getUserChatList(@Body map: HashMap<String, Any>): Response<GetUserChatResponse>
     suspend fun manageNotification(@Body map: HashMap<String, Any>): Response<BasicResponse>
     suspend fun createAppointment(@Body map: HashMap<String, Any>): Response<BasicResponse>
+    suspend fun appointmentList(@Body map: HashMap<String, Any>): Response<AppointmentListResponse>
 
 }

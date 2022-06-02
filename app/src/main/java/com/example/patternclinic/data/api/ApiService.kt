@@ -46,6 +46,9 @@ interface ApiService {
     @POST(ApiConstants.CREATE_APPOINTMENT)
     suspend fun createAppointment(@Body map: HashMap<String, Any>): Response<BasicResponse>
 
+    @POST(ApiConstants.APPOINTMENT_LIST)
+    suspend fun appointmentList(@Body map: HashMap<String, Any>): Response<AppointmentListResponse>
+
     @Multipart
     @POST(ApiConstants.UPLOAD_FILE_URL)
     suspend fun uploadFiles(@Part file: MultipartBody.Part): Response<UploadFileResponse>

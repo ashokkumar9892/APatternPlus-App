@@ -25,6 +25,7 @@ suspend fun <T> getResult(call: suspend () -> Response<T>, apiType:String): Resp
         if (response.code() == 401) {
             return ResponseResult.ERROR(ResponseWrapper("", "not authorize"))
         }
+
         return ResponseResult.ERROR(ResponseWrapper("", "Something went wrong, please try again"))
     } catch (e: Exception) {
         return ResponseResult.FAILURE(ResponseWrapper(apiType, e))

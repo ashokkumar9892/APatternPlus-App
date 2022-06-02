@@ -62,6 +62,7 @@
         <entry key="..\:/Users/Paras Technologies/AndroidStudioProjects/APatternPlus-App/app/src/main/res/layout/layout_tool_bar.xml" value="0.19947916666666668" />
         <entry key="..\:/Users/Paras Technologies/AndroidStudioProjects/APatternPlus-App/app/src/main/res/layout/layout_watch_disconnected.xml" value="0.19947916666666668" />
         <entry key="app/src/main/res/drawable/drawable_cursor.xml" value="0.198" />
+        <entry key="app/src/main/res/drawable/drawable_shape_10sdp.xml" value="0.2115" />
         <entry key="app/src/main/res/drawable/drawable_shape_login.xml" value="0.17" />
         <entry key="app/src/main/res/drawable/drawable_shape_login_2.xml" value="0.17" />
         <entry key="app/src/main/res/drawable/drawable_shape_message_sender.xml" value="0.246" />
@@ -71,10 +72,10 @@
         <entry key="app/src/main/res/drawable/ic_dummy_user.xml" value="0.198" />
         <entry key="app/src/main/res/drawable/ic_messages.xml" value="0.21" />
         <entry key="app/src/main/res/drawable/ic_splash_logo.xml" value="0.21" />
-        <entry key="app/src/main/res/layout/activity_add_appointment.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/activity_add_appointment.xml" value="0.33" />
         <entry key="app/src/main/res/layout/activity_change_password.xml" value="0.24010416666666667" />
         <entry key="app/src/main/res/layout/activity_chat.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/activity_coach_appointments.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/activity_coach_appointments.xml" value="0.33" />
         <entry key="app/src/main/res/layout/activity_coach_profile.xml" value="0.24010416666666667" />
         <entry key="app/src/main/res/layout/activity_connect_device.xml" value="0.21" />
         <entry key="app/src/main/res/layout/activity_create_profile.xml" value="0.26197916666666665" />
@@ -100,6 +101,7 @@
         <entry key="app/src/main/res/layout/fragment_my_profile.xml" value="0.24010416666666667" />
         <entry key="app/src/main/res/layout/fragment_select_team.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_setting.xml" value="0.24010416666666667" />
+        <entry key="app/src/main/res/layout/item_coach_appoitments.xml" value="0.5" />
         <entry key="app/src/main/res/layout/item_docx_message.xml" value="0.33" />
         <entry key="app/src/main/res/layout/item_docx_message_receiver.xml" value="0.5" />
         <entry key="app/src/main/res/layout/item_message_reciever.xml" value="0.24010416666666667" />

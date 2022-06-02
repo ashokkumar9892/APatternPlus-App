@@ -34,7 +34,7 @@ class ApplicationModule {
 
     @Provides
     @Singleton
-    fun getContext(@ApplicationContext context: Context):Context {
+    fun getContext(@ApplicationContext context: Context): Context {
         return context
     }
 
@@ -51,12 +51,12 @@ class ApplicationModule {
                 override fun intercept(chain: Interceptor.Chain): Response {
                     val original: Request = chain.request()
                     val request: Request = original.newBuilder()
-                        .header("Content-Type","application/json")
-                        .header("Accept","application/json")
+                        .header("Content-Type", "application/json")
+                        .header("Accept", "application/json")
 //                        .header("Token", SharedPrefs.getUserToken().replace("Bearer", ""))
                         .build()
                     val origResponse = chain.proceed(request)
-                    Log.e("","")
+                    Log.e("", "")
                     return origResponse
                 }
             }).build()
@@ -83,7 +83,6 @@ class ApplicationModule {
     @Provides
     @Singleton
     fun provideApiHelper(apiHelper: ApiHelperImpl): ApiHelper = apiHelper
-
 
 
 }
