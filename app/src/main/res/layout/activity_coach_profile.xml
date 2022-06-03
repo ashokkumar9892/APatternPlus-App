@@ -35,6 +35,7 @@
                     app:cardCornerRadius="@dimen/_12sdp">
 
                     <com.google.android.material.imageview.ShapeableImageView
+                        android:id="@+id/iv_image"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_178sdp"
                         android:background="@drawable/drawable_shape_18"
@@ -42,14 +43,43 @@
                         app:srcCompat="@drawable/nurse_dummy2" />
                 </com.google.android.material.card.MaterialCardView>
 
-                <TextView
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
                     android:layout_marginTop="@dimen/_16sdp"
-                    android:fontFamily="@font/outfit_semibold"
-                    android:text="@string/exa_emma_watson"
-                    android:textColor="@color/text_color_4"
-                    android:textSize="@dimen/_17sdp" />
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tv_name"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/outfit_semibold"
+                        android:text="@string/exa_emma_watson"
+                        android:textColor="@color/text_color_4"
+                        android:textSize="@dimen/_17sdp" />
+
+                    <TextView
+                        android:id="@+id/tv_type"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginEnd="@dimen/_4sdp"
+                        android:background="@drawable/drawable_shape_10sdp"
+                        android:backgroundTint="@color/color_primary_with_opacity_8"
+                        android:fontFamily="@font/outfit_medium"
+                        android:gravity="center"
+                        android:paddingStart="@dimen/_12sdp"
+
+                        android:paddingTop="@dimen/_6sdp"
+                        android:paddingEnd="@dimen/_12sdp"
+                        android:paddingBottom="@dimen/_6sdp"
+                        android:textColor="@color/color_primary"
+                        android:textSize="@dimen/_10ssp"
+                        tools:text="In Person" />
+                </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -59,6 +89,7 @@
                     android:orientation="horizontal">
 
                     <TextView
+                        android:id="@+id/tv_date"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
 
@@ -72,6 +103,7 @@
                         app:drawableStartCompat="@drawable/ic_calendar_dark" />
 
                     <TextView
+                        android:id="@+id/tv_time"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/_8sdp"
@@ -85,15 +117,16 @@
                         app:drawableStartCompat="@drawable/ic_clock_dark" />
 
                 </LinearLayout>
+
                 <TextView
+                    android:id="@+id/tv_description"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/exa_text"
-                    android:fontFamily="@font/outfit_light"
                     android:layout_marginTop="@dimen/_12sdp"
-                    android:textSize="@dimen/_12ssp"
+                    android:fontFamily="@font/outfit_light"
+                    android:text="@string/exa_text"
                     android:textColor="@color/text_color_3"
-                    />
+                    android:textSize="@dimen/_12ssp" />
 
             </LinearLayout>
 

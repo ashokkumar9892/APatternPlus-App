@@ -34,8 +34,7 @@ class CreateProfileWeight : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_create_profile_weight)
         if (intent.hasExtra(Keys.mapKeyProfile)) {
             binding.rlToolbar.visibility = View.GONE
-            map =
-                Gson().fromJson(Keys.updateProfileData, HashMap::class.java) as HashMap<String, Any>
+            map = Gson().fromJson(Keys.updateProfileData, HashMap::class.java) as HashMap<String, Any>
             map[ApiConstants.APIParams.WEIGHT.value] = "50"
             map[ApiConstants.APIParams.WEIGHT_UNIT.value] = "KG"
         } else {

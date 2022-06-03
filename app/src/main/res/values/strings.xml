@@ -217,6 +217,7 @@
     <string name="add">Add</string>
     <string name="select_coach">Select Coach</string>
     <string name="select_clinic">Select Clinic</string>
+    <string name="enter_your_subject">Enter your subject</string>
 
     <string-array name="Gender">
         <item>Select Gender</item>

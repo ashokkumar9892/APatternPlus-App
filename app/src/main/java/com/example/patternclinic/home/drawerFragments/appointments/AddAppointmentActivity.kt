@@ -33,7 +33,7 @@ class AddAppointmentActivity : AppCompatActivity() {
              team =
                 Gson().fromJson(intent.getStringExtra(Keys.CURRENT_TEAM), Currentteam::class.java)
             binding.tvCoachName.text = team!!.coachName ?: ""
-            binding.tvLocation.text= team!!.teamLocation?:""
+
 
         }
         setObservers()
@@ -55,6 +55,7 @@ class AddAppointmentActivity : AppCompatActivity() {
                     }
                     R.id.rb_in_person -> {
                         binding.llClinicContainer.visibility = View.VISIBLE
+                        binding.tvLocation.text= team!!.teamLocation?:""
                     }
                 }
             }

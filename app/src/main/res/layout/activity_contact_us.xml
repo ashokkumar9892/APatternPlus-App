@@ -5,6 +5,9 @@
 
     <data>
 
+        <variable
+            name="viewModel"
+            type="com.example.patternclinic.home.drawerFragments.settings.ContactUsViewModel" />
     </data>
 
     <RelativeLayout
@@ -40,16 +43,16 @@
                     android:textColor="@color/text_color_3"
                     android:textSize="@dimen/_12ssp" />
 
-                <EditText
+                <TextView
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_38sdp"
                     android:layout_marginTop="@dimen/_8sdp"
                     android:background="@drawable/drawable_shape_login_2"
-
                     android:fontFamily="@font/outfit_regular"
                     android:paddingStart="@dimen/_14sdp"
                     android:paddingEnd="@dimen/_14sdp"
-                    android:text="@string/john"
+                    android:gravity="center_vertical"
+                    android:text="@={viewModel.name}"
                     android:textColor="@color/text_color_4"
                     android:textSize="@dimen/_14ssp" />
 
@@ -62,15 +65,16 @@
                     android:textColor="@color/text_color_3"
                     android:textSize="@dimen/_12ssp" />
 
-                <EditText
+                <TextView
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_38sdp"
                     android:layout_marginTop="@dimen/_8sdp"
                     android:background="@drawable/drawable_shape_login_2"
-
+                    android:gravity="center_vertical"
                     android:fontFamily="@font/outfit_regular"
                     android:paddingStart="@dimen/_14sdp"
                     android:paddingEnd="@dimen/_14sdp"
+                    android:text="@={viewModel.email}"
 
                     android:textColor="@color/text_color_4"
                     android:textSize="@dimen/_14ssp" />
@@ -93,7 +97,7 @@
                     android:fontFamily="@font/outfit_regular"
                     android:paddingStart="@dimen/_14sdp"
                     android:paddingEnd="@dimen/_14sdp"
-
+                    android:text="@={viewModel.subject}"
                     android:textColor="@color/text_color_4"
                     android:textSize="@dimen/_14ssp" />
 
@@ -114,16 +118,17 @@
                     android:fontFamily="@font/outfit_regular"
                     android:paddingStart="@dimen/_14sdp"
                     android:paddingEnd="@dimen/_14sdp"
+                    android:text="@={viewModel.message}"
                     android:textColor="@color/text_color_4"
                     android:textSize="@dimen/_14ssp" />
 
                 <com.google.android.material.button.MaterialButton
-                    android:id="@+id/tv_continue_create_profile"
+                    android:id="@+id/tv_submit"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_50sdp"
                     android:layout_marginTop="@dimen/_28sdp"
-
                     android:fontFamily="@font/outfit_semibold"
+                    android:onClick="@{(v)->viewModel.click(v)}"
                     android:text="@string/submit"
                     android:textAllCaps="false"
                     android:textSize="@dimen/_14ssp"
@@ -131,7 +136,27 @@
 
             </LinearLayout>
         </ScrollView>
+        <RelativeLayout
+            android:id="@+id/loader"
+            android:layout_width="match_parent"
+            android:visibility="gone"
+            android:layout_height="match_parent"
+            android:clickable="true"
+            android:focusable="true">
 
+            <com.agrawalsuneet.loaderspack.loaders.PulseLoader
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true"
+                android:backgroundTint="@color/color_primary"
+                android:clickable="true"
+                android:focusable="true"
+                app:pulse_LineThickness="@dimen/_2sdp"
+                app:pulse_normalIncrementalValue="3"
+                app:pulse_pulseColor="@color/color_primary"
+                app:pulse_pulseIncrementalValue="3"
+                app:pulse_sideLength="@dimen/_20sdp" />
+        </RelativeLayout>
 
     </RelativeLayout>
 </layout>

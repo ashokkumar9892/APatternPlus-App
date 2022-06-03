@@ -1,5 +1,6 @@
 package com.example.patternclinic.auth
 
+import android.app.Activity
 import android.content.Intent
 import android.view.View
 import androidx.databinding.ObservableField
@@ -10,9 +11,11 @@ import com.example.patternclinic.base.BaseViewModel
 import com.example.patternclinic.data.ApiConstants
 import com.example.patternclinic.data.model.LoginResponse
 import com.example.patternclinic.data.repository.MainRepository
+import com.example.patternclinic.home.HomeScreenActivity
 import com.example.patternclinic.retrofit.ResponseResult
 import com.example.patternclinic.retrofit.ResponseWrapper
 import com.example.patternclinic.retrofit.getResult
+import com.example.patternclinic.selectTeam.SelectPatternPlusTeam
 import com.example.patternclinic.setupDevice.ConnectDeviceActivity
 import com.example.patternclinic.utils.*
 import com.google.android.exoplayer2.metadata.id3.ApicFrame
@@ -80,7 +83,26 @@ class LoginViewModel @Inject constructor(val mainRepository: MainRepository) : B
 //                                )
 //                            )
                             //remove below line after need
-                            v.context.startActivity(Intent(v.context, CreateProfile::class.java))
+                            if (response.patientInfo.height.isNullOrEmpty() || response.patientInfo.weight.isNullOrEmpty() || response.patientInfo.firstName.isNullOrEmpty() || response.patientInfo.lastName.isNullOrEmpty() || response.patientInfo.dob.isNullOrEmpty() || response.patientInfo.gender.isNullOrEmpty()) {
+                                v.context.startActivity(
+                                    Intent(
+                                        v.context,
+                                        CreateProfile::class.java
+                                    )
+                                )
+                            } else
+                                if (response.patientInfo.coachSK.isNullOrEmpty() || response.patientInfo.doctorSK.isNullOrEmpty()) {
+                                    v.context.startActivity(
+                                        Intent(
+                                            v.context,
+                                            SelectPatternPlusTeam::class.java
+                                        )
+                                    )
+                                }else{
+                                    v.context.startActivity(Intent(v.context, HomeScreenActivity::class.java))
+                                    (v.context as Activity).finish()
+                                }
+
                         } else {
                             v.context.showToast(response.errorMessage)
                         }

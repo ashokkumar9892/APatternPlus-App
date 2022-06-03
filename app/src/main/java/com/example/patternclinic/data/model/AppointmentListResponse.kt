@@ -10,13 +10,20 @@ data class AppointmentListResponse(
 
 data class AppointmentInfo(
 
+
     val appointmentDate: String,
     val appointmentStatus: String,
     val appointmentTime: String,
-    val appointmentType: String,
+    val appointmentType: String?,
+    val authToken: Any,
+    val createdOn: Any,
     val doctorName: String,
+    val doctorPic: String?,
     val doctorSK: String,
-    val patientSK: String
+    val location: Any,
+    val patientSK: String,
+    val pk: Any,
+    val sk: Any
 
 )
 

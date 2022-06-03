@@ -11,6 +11,8 @@ import com.example.patternclinic.data.ApiConstants
 import com.example.patternclinic.data.model.LoginResponse
 import com.example.patternclinic.databinding.ActivityCreateProfileHeightBinding
 import com.example.patternclinic.databinding.ActivityCurrentHeightBinding
+import com.example.patternclinic.home.HomeScreenActivity
+import com.example.patternclinic.selectTeam.SelectPatternPlusTeam
 import com.example.patternclinic.setupDevice.ConnectDeviceActivity
 import com.example.patternclinic.utils.Keys
 import com.example.patternclinic.utils.SharedPrefs
@@ -139,12 +141,22 @@ class CreateProfileHeight : AppCompatActivity() {
                     Gson().fromJson(Gson().toJson(it), LoginResponse::class.java)
                 SharedPrefs.saveLoggedInUser(convert)
                 if (intent.hasExtra(Keys.mapKeyProfile)) {
-                    startActivity(
-                        Intent(
-                            this,
-                            ConnectDeviceActivity::class.java
+                    if (it.patientInfo!!.coachSK.isNullOrEmpty() || it.patientInfo.doctorSK.isNullOrEmpty()) {
+                        startActivity(
+                            Intent(
+                                this,
+                                SelectPatternPlusTeam::class.java
+                            )
                         )
-                    )
+                    } else {
+                        startActivity(
+                            Intent(
+                                this,
+                                HomeScreenActivity::class.java
+//                            ConnectDeviceActivity::class.java
+                            )
+                        )
+                    }
                 } else {
                     finish()
 

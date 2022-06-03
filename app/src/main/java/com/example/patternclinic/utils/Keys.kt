@@ -21,6 +21,8 @@ object Keys {
     //intent Keys
     const val  NOTIFICATIONS="NOTIFICATIONS"
     const val  CURRENT_TEAM="currentTeam"
+    const val  HEALTH_TIP_DETAIL="detail"
+    const val  APPOINTMENT_DETAIL="apDetail"
 
     //File types
     const val FILE_TYPE_IMAGE="Image"

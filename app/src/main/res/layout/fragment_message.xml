@@ -18,7 +18,7 @@
             android:background="@color/bg_color_5"
             android:clickable="true"
             android:focusable="true"
-            tools:context=".home.drawerFragments.appointments.healthTips.HealthTipsFragment">
+            tools:context=".home.drawerFragments.healthTips.HealthTipsFragment">
 
             <RelativeLayout
                 android:id="@+id/tool_bar_health_tips"

@@ -5,6 +5,9 @@
 
     <data>
 
+        <variable
+            name="viewModel"
+            type="com.example.patternclinic.home.drawerFragments.healthTips.HealthTipViewModel" />
     </data>
 
     <RelativeLayout
@@ -13,7 +16,7 @@
         android:background="@color/bg_color_5"
         android:clickable="true"
         android:focusable="true"
-        tools:context=".home.drawerFragments.appointments.healthTips.HealthTipsFragment">
+        tools:context=".home.drawerFragments.healthTips.HealthTipsFragment">
 
         <RelativeLayout
             android:id="@+id/tool_bar_health_tips"
@@ -44,117 +47,35 @@
                 app:srcCompat="@drawable/ic_hamburger" />
         </RelativeLayout>
 
-        <ScrollView
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_health_tips"
+            adapter="@{viewModel.adapter}"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@id/tool_bar_health_tips"
-            android:fillViewport="true">
+            android:orientation="vertical"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
-            <LinearLayout
+        <RelativeLayout
+            android:id="@+id/loader"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clickable="true"
+            android:focusable="true"
+            android:visibility="gone">
+
+            <com.agrawalsuneet.loaderspack.loaders.PulseLoader
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-
-                android:clipToPadding="false"
-                android:orientation="vertical"
-                android:padding="@dimen/_21sdp">
-
-                <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/cv_1"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:cardCornerRadius="@dimen/_12sdp"
-                    app:cardElevation="@dimen/_2sdp">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
-
-                        <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="@dimen/_130sdp"
-                            android:scaleType="fitXY"
-                            android:src="@drawable/dummy_food" />
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="@dimen/_10sdp"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:fontFamily="@font/outfit_medium"
-                                android:text="Lorem ipsum is a dummy text."
-                                android:textColor="@color/text_color_4"
-                                android:textSize="@dimen/_13ssp" />
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="@dimen/_3sdp"
-                                android:ellipsize="end"
-                                android:fontFamily="@font/outfit_light"
-                                android:maxLines="3"
-                                android:text="@string/exa_text"
-                                android:textColor="@color/text_color_3"
-                                android:textSize="@dimen/_12ssp" />
-                        </LinearLayout>
-
-                    </LinearLayout>
-                </com.google.android.material.card.MaterialCardView>
-
-                <com.google.android.material.card.MaterialCardView
-                    android:layout_width="match_parent"
-                    android:id="@+id/cv_2"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_21sdp"
-                    app:cardCornerRadius="@dimen/_12sdp"
-                    app:cardElevation="@dimen/_2sdp">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
-
-                        <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="@dimen/_130sdp"
-                            android:scaleType="fitXY"
-                            android:src="@drawable/dummy_running" />
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="@dimen/_10sdp"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:fontFamily="@font/outfit_medium"
-                                android:text="Lorem ipsum is a dummy text."
-                                android:textColor="@color/text_color_4"
-                                android:textSize="@dimen/_13ssp" />
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="@dimen/_3sdp"
-                                android:ellipsize="end"
-                                android:fontFamily="@font/outfit_light"
-                                android:maxLines="3"
-                                android:text="@string/exa_text"
-                                android:textColor="@color/text_color_3"
-                                android:textSize="@dimen/_12ssp" />
-                        </LinearLayout>
-
-                    </LinearLayout>
-                </com.google.android.material.card.MaterialCardView>
-
-
-            </LinearLayout>
-        </ScrollView>
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true"
+                android:backgroundTint="@color/color_primary"
+                android:clickable="true"
+                android:focusable="true"
+                app:pulse_LineThickness="@dimen/_2sdp"
+                app:pulse_normalIncrementalValue="3"
+                app:pulse_pulseColor="@color/color_primary"
+                app:pulse_pulseIncrementalValue="3"
+                app:pulse_sideLength="@dimen/_20sdp" />
+        </RelativeLayout>
     </RelativeLayout>
 </layout>

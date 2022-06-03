@@ -87,6 +87,15 @@ class CoachAppointments : Fragment() {
 //        }
     }
 
+    override fun onResume() {
+        if(binding.tabLayout.selectedTabPosition==0){
+            upcomingAppointments()
+        }else{
+            completedAppointments()
+        }
+        super.onResume()
+    }
+
     private fun setObservers() {
 
         /**

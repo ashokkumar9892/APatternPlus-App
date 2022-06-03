@@ -18,6 +18,8 @@ object ApiConstants {
     const val CREATE_APPOINTMENT = "Basic/CreateAppointment"
     const val APPOINTMENT_LIST = "Basic/AppointmentList"
     const val ADD_STRIP_USER = "api/Stripe/AddStripeUsers"
+    const val HEALTH_TIPS_LIST = "Basic/HealthTipsList"
+    const val CONTACT_US = "Basic/ContactUs"
     const val CHAT_HUB_URL = "https://annexappapi.apatternplus.com/chatHub"
 
 
@@ -41,6 +43,8 @@ object ApiConstants {
         FORGOT_PASSWORD_USER_NAME("UserName"),
         RESET_PASSWORD_USER_NAME("username"),
         NEW_PASSWORD("newpassword"),
+        FULL_NAME("FullName"),
+        SUBJECT("Subject"),
         CONFIRM_CODE("confirmationcode"),
         APPOINTMENT_STATUS("AppointmentStatus"),
         APPOINTMENT_DATE("AppointmentDate"),
