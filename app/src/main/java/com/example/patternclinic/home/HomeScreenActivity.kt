@@ -14,7 +14,7 @@ import com.example.patternclinic.databinding.BottomSheetExerciseCompletedBinding
 import com.example.patternclinic.home.cardiacDetails.YourMetrics
 import com.example.patternclinic.home.drawerFragments.appointments.CoachAppointments
 import com.example.patternclinic.home.drawerFragments.healthTips.HealthTipsFragment
-import com.example.patternclinic.home.drawerFragments.appointments.myProfile.MyProfileFragment
+import com.example.patternclinic.home.drawerFragments.myProfile.MyProfileFragment
 import com.example.patternclinic.home.drawerFragments.settings.SettingFragment
 import com.example.patternclinic.home.drawerFragments.messages.MessageFragment
 import com.example.patternclinic.home.drawerFragments.personalMetrics.PersonalMetricsFragment

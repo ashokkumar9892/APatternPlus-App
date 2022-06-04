@@ -267,8 +267,6 @@ class ChatActivity : BaseActivity() {
             }
 
         }, responsemodel::class.java)
-
-
     }
 
     fun setObservers() {
@@ -461,8 +459,6 @@ class ChatActivity : BaseActivity() {
                 }
             }
         })
-
-
     }
 
     private fun permissions(): Boolean {

@@ -54,9 +54,11 @@
                             <com.google.android.material.imageview.ShapeableImageView
                                 android:id="@+id/iv_user_image"
                                 android:layout_width="@dimen/_36sdp"
+                                android:background="@color/black_with_opacity_5"
                                 android:layout_height="@dimen/_36sdp"
                                 app:shapeAppearanceOverlay="@style/shape_50"
-                                app:srcCompat="@drawable/user_img" />
+                                app:srcCompat="@drawable/dummy2"
+                                android:scaleType="fitXY" />
 
                             <TextView
                                 android:id="@+id/tv_user_name"

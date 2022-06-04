@@ -42,23 +42,9 @@
                     android:layout_marginTop="@dimen/_24sdp"
                     android:background="@drawable/drawable_shape_login_2">
 
-<!--                    <com.rilixtech.widget.countrycodepicker.CountryCodePicker-->
-<!--                        android:id="@+id/ccp"-->
-<!--                        android:layout_width="match_parent"-->
-<!--                        android:layout_height="@dimen/_38sdp"-->
-<!--                        android:layout_toStartOf="@id/iv_location"-->
-<!--                        android:drawableEnd="@drawable/ic_gps_location"-->
-<!--                        android:gravity="center_vertical"-->
-<!--                        android:paddingStart="@dimen/_12sdp"-->
-<!--                        app:ccp_defaultNameCode="@string/country_united_states_code"-->
-<!--                        app:ccp_hideNameCode="false"-->
-<!--                        app:ccp_hidePhoneCode="true"-->
-<!--                        app:ccp_showFullName="true" />-->
-
                     <Spinner
                         android:id="@+id/sp_location"
                         android:layout_width="match_parent"
-
                         android:layout_height="@dimen/_38sdp"
                         android:entries="@array/locations"
                         android:spinnerMode="dropdown" />
@@ -131,7 +117,8 @@
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="@dimen/_10sdp"
-
+android:maxLines="1"
+                                android:ellipsize="end"
                                 android:layout_marginTop="@dimen/_6sdp"
                                 android:layout_marginEnd="@dimen/_6sdp"
                                 android:layout_marginBottom="@dimen/_2sdp"
@@ -213,7 +200,8 @@
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="@dimen/_10sdp"
-
+                                android:maxLines="1"
+                                android:ellipsize="end"
                                 android:layout_marginTop="@dimen/_6sdp"
                                 android:layout_marginEnd="@dimen/_6sdp"
                                 android:layout_marginBottom="@dimen/_2sdp"
@@ -236,7 +224,7 @@
                                 android:fontFamily="@font/outfit_light"
                                 android:gravity="end"
                                 android:paddingBottom="@dimen/_4sdp"
-                                android:text="@string/reslect_provider"
+                                android:text="@string/reslect_coach"
                                 android:textColor="@color/white"
                                 android:textSize="@dimen/_10ssp"
                                 android:visibility="gone" />

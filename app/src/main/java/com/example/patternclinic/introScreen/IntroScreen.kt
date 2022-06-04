@@ -55,7 +55,6 @@ class IntroScreen : AppCompatActivity() {
                 positionOffset: Float,
                 positionOffsetPixels: Int
             ) {
-
                 count!!.text = "${position + 1}/9"
             }
 

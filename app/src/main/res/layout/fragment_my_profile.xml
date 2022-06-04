@@ -13,7 +13,7 @@
         android:clickable="true"
         android:layout_height="match_parent"
         android:background="@color/bg_color_5"
-        tools:context=".home.drawerFragments.appointments.myProfile.MyProfileFragment">
+        tools:context=".home.drawerFragments.myProfile.MyProfileFragment">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -47,8 +47,10 @@
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="@dimen/_52sdp"
                     android:padding="@dimen/_6sdp"
+
                     app:shapeAppearanceOverlay="@style/shape_50"
-                    app:srcCompat="@drawable/dummy_user_2"
+                    app:srcCompat="@drawable/dummy2"
+                    android:scaleType="fitXY"
                     app:strokeColor="@color/white"
 
                     app:strokeWidth="@dimen/_4sdp" />

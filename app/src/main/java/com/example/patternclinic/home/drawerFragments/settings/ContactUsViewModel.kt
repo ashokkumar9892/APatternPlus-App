@@ -86,10 +86,10 @@ class ContactUsViewModel @Inject constructor(val apiService: ApiService) : BaseV
      * validations for checking
      */
     private fun validation(context: Context): Boolean {
-        if (subject.get().isNullOrEmpty()) {
+        if (subject.get()?.trim().isNullOrEmpty()) {
             context.showToast(context.getString(R.string.enter_your_subject))
             return false
-        } else if (message.get().isNullOrEmpty()) {
+        } else if (message.get()?.trim().isNullOrEmpty()) {
             context.showToast(context.getString(R.string.type_your_message))
             return false
         }

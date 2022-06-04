@@ -94,6 +94,8 @@
                 android:drawablePadding="@dimen/_8sdp"
                 android:fontFamily="@font/outfit_light"
                 android:gravity="center_vertical"
+                android:maxLines="1"
+                android:ellipsize="end"
                 android:hint="@string/type_your_message"
                 android:paddingStart="@dimen/_12sdp"
                 android:paddingEnd="@dimen/_6sdp"

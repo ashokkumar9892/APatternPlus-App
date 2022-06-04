@@ -23,6 +23,7 @@ object Keys {
     const val  CURRENT_TEAM="currentTeam"
     const val  HEALTH_TIP_DETAIL="detail"
     const val  APPOINTMENT_DETAIL="apDetail"
+    const val  UPDATE_PATTERN_TEAM="pattern_team"
 
     //File types
     const val FILE_TYPE_IMAGE="Image"

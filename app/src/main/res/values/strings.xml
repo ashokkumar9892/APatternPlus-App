@@ -85,7 +85,7 @@
     <string name="lorem_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed dolor odio, commodo ut nulla eu, pharetra gravida libero. Curabitur molestie bibendum turpis, et vulputate lorem consectetur nec. Donec ultricies iaculis leo, vel laoreet quam pellentesque vel. Donec at odio in metus congue dictum. Suspendisse finibus cursus libero, sed ultricies ipsum ullamcorper ac. Fusce non nisl a risus eleifend fringilla sed sed justo. Integer lobortis lobortis pharetra.</string>
     <string name="how_increase_optimal">How to increase your Optimal Fitness Score?</string>
     <string name="home">Home</string>
-    <string name="coaching_appointment">Coaching Appointments</string>
+    <string name="coaching_appointment">Coach Appointments</string>
     <string name="message">Messages</string>
     <string name="personal_matrices">Personal Metrics</string>
     <string name="health_tips">Health Tips</string>
@@ -121,6 +121,7 @@
     <string name="dr_william">Dr. William Blake</string>
     <string name="gynecologist">Gynecologist</string>
     <string name="reslect_provider"><u>Reselect Provider</u></string>
+    <string name="reslect_coach"><u>Reselect Coach</u></string>
     <string name="steps_taken">Steps Taken</string>
     <string name="current_spo2">Current SPO2</string>
     <string name="current_bp">Current BP</string>
@@ -218,6 +219,8 @@
     <string name="select_coach">Select Coach</string>
     <string name="select_clinic">Select Clinic</string>
     <string name="enter_your_subject">Enter your subject</string>
+    <string name="coach">Coach Name</string>
+    <string name="location">Location</string>
 
     <string-array name="Gender">
         <item>Select Gender</item>
@@ -228,7 +231,8 @@
 
     <string-array name="locations">
         <item>Select Location</item>
-        <item>5545 Little Debbie Pkwy, Ooltewah, TN 37363, United States</item>
+        <item>55 25th St NW Cleveland, TN 37311</item>
+        <item>5545 Little Debbie Pkwy, Ooltewah, TN 37363 - 4357</item>
 
     </string-array>
 

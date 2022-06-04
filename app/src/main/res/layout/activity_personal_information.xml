@@ -39,7 +39,8 @@
                     android:layout_marginTop="@dimen/_22sdp"
                     android:padding="@dimen/_6sdp"
                     app:shapeAppearanceOverlay="@style/shape_50"
-                    app:srcCompat="@drawable/dummy_user_2"
+                    app:srcCompat="@drawable/dummy2"
+                    android:scaleType="fitXY"
                     app:strokeColor="@color/white"
 
                     app:strokeWidth="@dimen/_4sdp" />

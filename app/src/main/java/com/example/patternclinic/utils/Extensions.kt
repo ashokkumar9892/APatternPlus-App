@@ -2,6 +2,7 @@ package com.example.patternclinic.utils
 
 import android.app.Activity
 import android.content.Context
+import android.graphics.Color
 import android.net.Uri
 import android.os.Build
 import android.provider.OpenableColumns
@@ -11,6 +12,8 @@ import android.view.Window
 import android.view.WindowManager
 import android.widget.Toast
 import androidx.annotation.RequiresApi
+import androidx.browser.customtabs.CustomTabColorSchemeParams
+import androidx.browser.customtabs.CustomTabsIntent
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import com.example.patternclinic.BuildConfig
@@ -338,4 +341,15 @@ fun getVideoTmpFileUri(context: Context): Uri {
 
 //    return tmpFile.ui
     return FileProvider.getUriForFile(context, "${BuildConfig.APPLICATION_ID}.provider", tmpFile)
+}
+//CustomChromeTab
+fun Activity.openChromeTab(url:String){
+    val builder = CustomTabsIntent.Builder()
+    val colorInt: Int = Color.parseColor("#000000")
+    val defaultColors = CustomTabColorSchemeParams.Builder()
+        .setToolbarColor(colorInt)
+        .build()
+    builder.setDefaultColorSchemeParams(defaultColors)
+    val customTabsIntent = builder.build()
+    customTabsIntent.launchUrl(this, Uri.parse(url))
 }

@@ -92,6 +92,7 @@ class AddAppointmentActivity : AppCompatActivity() {
         viewModel.createAppointmentResponse.observe(this) {
             if (it.response == 1) {
                 showToast(it.errorMessage)
+                finish()
             } else {
                 showToast(it.errorMessage)
             }

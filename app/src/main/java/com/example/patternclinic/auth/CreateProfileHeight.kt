@@ -45,6 +45,7 @@ class CreateProfileHeight : AppCompatActivity() {
             binding.rlToolbar.visibility = View.GONE
             map[ApiConstants.APIParams.HEIGHT.value] = "4.2"
         } else {
+            binding.tvPrevious.visibility=View.GONE
             binding.btnNext.text = getString(R.string.submit)
             binding.rlToolbar.visibility = View.VISIBLE
             initDesign()

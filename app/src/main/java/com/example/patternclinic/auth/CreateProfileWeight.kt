@@ -34,10 +34,12 @@ class CreateProfileWeight : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_create_profile_weight)
         if (intent.hasExtra(Keys.mapKeyProfile)) {
             binding.rlToolbar.visibility = View.GONE
-            map = Gson().fromJson(Keys.updateProfileData, HashMap::class.java) as HashMap<String, Any>
+            map =
+                Gson().fromJson(Keys.updateProfileData, HashMap::class.java) as HashMap<String, Any>
             map[ApiConstants.APIParams.WEIGHT.value] = "50"
             map[ApiConstants.APIParams.WEIGHT_UNIT.value] = "KG"
         } else {
+            binding.tvPrevious.visibility = View.GONE
             binding.btnNext.text = getString(R.string.submit)
             binding.rlToolbar.visibility = View.VISIBLE
             map[ApiConstants.APIParams.EMAIL.value] = userDetail?.patientInfo?.email ?: ""
@@ -88,7 +90,7 @@ class CreateProfileWeight : AppCompatActivity() {
             if (intent.hasExtra(Keys.mapKeyProfile)) {
                 Keys.updateProfileData = Gson().toJson(map)
                 startActivity(
-                    Intent(this, CreateProfileHeight::class.java).putExtra(Keys.mapKeyProfile,"")
+                    Intent(this, CreateProfileHeight::class.java).putExtra(Keys.mapKeyProfile, "")
                 )
             } else {
                 viewModel.createProfileApi(map)

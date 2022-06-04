@@ -6,17 +6,16 @@ import android.text.method.PasswordTransformationMethod
 import androidx.activity.viewModels
 import androidx.databinding.DataBindingUtil
 import com.example.patternclinic.R
-import com.example.patternclinic.auth.createProfile.SignupActivity
 import com.example.patternclinic.base.BaseActivity
+import com.example.patternclinic.data.ApiConstants
 import com.example.patternclinic.databinding.ActivityLoginBinding
-import com.example.patternclinic.utils.Keys
 import com.example.patternclinic.utils.changeStatusBarColor
+import com.example.patternclinic.utils.openChromeTab
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class LoginActivity : BaseActivity() {
-
-    val loginViewModel: LoginViewModel by viewModels()
+    private val loginViewModel: LoginViewModel by viewModels()
 
     companion object {
         lateinit var binding: ActivityLoginBinding
@@ -32,8 +31,11 @@ class LoginActivity : BaseActivity() {
 
     private fun initDesign() {
         binding.tvSignUp.setOnClickListener {
+            openChromeTab(ApiConstants.SIGN_UP_URL)
 //            startActivity(Intent(this,CreateProfile::class.java).putExtra(Keys.NEW_USER,"1"))
-            startActivity(Intent(this, SignupActivity::class.java))
+//            val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(ApiConstants.SIGN_UP_URL))
+//            startActivity(browserIntent)
+//            CustomTabsIntent.Builder().build().launchUrl(this,Uri.parse(ApiConstants.SIGN_UP_URL))
         }
         changeStatusBarColor(R.color.color_primary_with_opacity_8)
 

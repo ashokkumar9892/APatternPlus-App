@@ -16,10 +16,12 @@ import com.example.patternclinic.retrofit.ResponseResult
 import com.example.patternclinic.retrofit.getResult
 import com.microsoft.signalr.HubConnection
 import com.microsoft.signalr.HubConnectionBuilder
+import com.microsoft.signalr.OnClosedCallback
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.launch
 import okhttp3.MultipartBody
+import java.lang.Exception
 import java.util.concurrent.Executor
 import javax.inject.Inject
 
@@ -29,6 +31,7 @@ class ChatActivityViewModel @Inject constructor(val mainRepository: MainReposito
     var chatData = MutableLiveData<MyChatResponse>()
     var uploadFileResponse = MutableLiveData<UploadFileResponse>()
     var connection2: HubConnection? = null
+    var connectStatus = true
 
 
     init {
@@ -39,11 +42,20 @@ class ChatActivityViewModel @Inject constructor(val mainRepository: MainReposito
      * making connection to socket
      */
     fun makeConnection() {
-        connection2 = HubConnectionBuilder.create(ApiConstants.CHAT_HUB_URL)
-            .build()
-        connection2!!.serverTimeout = 10000000
-        connection2!!.keepAliveInterval=10000000
-        connection2!!.start()
+        viewModelScope.launch {
+            connection2 = HubConnectionBuilder.create(ApiConstants.CHAT_HUB_URL)
+                .build()
+            connection2!!.serverTimeout = 10000000
+            connection2!!.keepAliveInterval = 10000000
+            connection2!!.start()
+            connection2!!.onClosed(object : OnClosedCallback {
+                override fun invoke(exception: Exception?) {
+                    if (connectStatus) {
+                        connection2!!.start()
+                    }
+                }
+            })
+        }
     }
 
     /**
@@ -102,7 +114,10 @@ class ChatActivityViewModel @Inject constructor(val mainRepository: MainReposito
 
     override fun onCleared() {
         super.onCleared()
-        connection2!!.close()
+        connectStatus = false
+        if (connection2 != null) {
+            connection2!!.close()
+        }
     }
 
 

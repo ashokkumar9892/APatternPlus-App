@@ -21,6 +21,7 @@ object ApiConstants {
     const val HEALTH_TIPS_LIST = "Basic/HealthTipsList"
     const val CONTACT_US = "Basic/ContactUs"
     const val CHAT_HUB_URL = "https://annexappapi.apatternplus.com/chatHub"
+    const val SIGN_UP_URL = "https://www.apatternplus.com/a-p-plans-21651001758733"
 
 
     const val CONNECT_TIMEOUT = 240L //seconds

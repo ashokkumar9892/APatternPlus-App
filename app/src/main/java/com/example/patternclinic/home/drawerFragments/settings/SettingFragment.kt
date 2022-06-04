@@ -64,7 +64,7 @@ class SettingFragment : Fragment() {
         }
 
         viewModel.notificationResponse.observe(requireActivity()) {
-            activity?.showToast(it.errorMessage)
+//            activity?.showToast(it.errorMessage)
         }
     }
 

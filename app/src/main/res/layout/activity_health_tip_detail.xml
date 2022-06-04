@@ -79,6 +79,7 @@
                         android:id="@+id/btn_subscribe"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_50sdp"
+                        android:visibility="gone"
                         android:layout_marginTop="@dimen/_28sdp"
                         android:fontFamily="@font/outfit_semibold"
                         android:text="@string/subscribe"

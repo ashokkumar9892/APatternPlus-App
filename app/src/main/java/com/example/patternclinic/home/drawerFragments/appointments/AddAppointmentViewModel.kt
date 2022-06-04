@@ -36,10 +36,10 @@ class AddAppointmentViewModel @Inject constructor(private val service: ApiServic
     val createAppointmentResponse = MutableLiveData<BasicResponse>()
     var addBinding: ActivityAddAppointmentBinding? = null
     var date: Calendar? = null
-    var userDetail:LoginResponse?=null
+    var userDetail: LoginResponse? = null
 
     init {
-        userDetail=SharedPrefs.getLoggedInUser()
+        userDetail = SharedPrefs.getLoggedInUser()
         date = Calendar.getInstance()
     }
 
@@ -98,8 +98,9 @@ class AddAppointmentViewModel @Inject constructor(private val service: ApiServic
                             addBinding!!.tvLocation.text.trim().toString()
                     }
                     map[ApiConstants.APIParams.AUTH_TOKEN.value] = userDetail!!.authToken
-                    map[ApiConstants.APIParams.DOCTOR_SK.value] = AddAppointmentActivity.team!!.coachSK
-                    map[ApiConstants.APIParams.PATIENT_SK.value] =userDetail!!.patientInfo.sk
+                    map[ApiConstants.APIParams.DOCTOR_SK.value] =
+                        AddAppointmentActivity.team!!.coachSK
+                    map[ApiConstants.APIParams.PATIENT_SK.value] = userDetail!!.patientInfo.sk
                     createAppointment(map)
                 }
             }
@@ -129,7 +130,8 @@ class AddAppointmentViewModel @Inject constructor(private val service: ApiServic
                 date!!.get(Calendar.MONTH),
                 date!!.get(Calendar.DAY_OF_MONTH)
             )
-        datePicker.datePicker.minDate = Date().time
+        datePicker.datePicker.minDate = Date().time + 86400000
+
         datePicker.show()
     }
 

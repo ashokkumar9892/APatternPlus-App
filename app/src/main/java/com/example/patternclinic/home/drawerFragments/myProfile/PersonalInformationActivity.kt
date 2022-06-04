@@ -37,6 +37,7 @@ class PersonalInformationActivity : AppCompatActivity() {
             "${it?.patientInfo?.firstName ?: ""} ${it?.patientInfo?.lastName ?: ""}"
         binding.tvCountry.text = "${it?.patientInfo?.country ?: ""}"
         binding.tvDob.text = dateConvert_5(it!!.patientInfo.dob!!)
+        binding.tvEmail.text=it.patientInfo.email?:""
 
 
     }

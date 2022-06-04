@@ -90,11 +90,12 @@
                             android:layout_height="wrap_content"
                             android:layout_alignParentEnd="true"
                             android:layout_gravity="center_vertical"
-
                             android:background="@drawable/drawable_shape_10sdp"
                             android:backgroundTint="@color/color_primary_with_opacity_8"
+                            android:ellipsize="end"
                             android:fontFamily="@font/outfit_medium"
                             android:gravity="center"
+                            android:maxLines="1"
                             android:paddingStart="@dimen/_6sdp"
                             android:paddingTop="@dimen/_3sdp"
                             android:paddingEnd="@dimen/_6sdp"
