@@ -1,7 +1,6 @@
 package com.example.patternclinic.home.drawerFragments.messages
 
 import android.annotation.SuppressLint
-import android.content.Intent
 import android.content.pm.PackageManager
 import android.media.MediaRecorder
 import android.net.Uri
@@ -33,8 +32,6 @@ import com.vincent.videocompressor.VideoCompress
 import dagger.hilt.android.AndroidEntryPoint
 import id.zelory.compressor.Compressor
 import kotlinx.coroutines.launch
-import net.alhazmy13.mediapicker.Image.ImagePicker
-import net.alhazmy13.mediapicker.Video.VideoPicker
 import java.io.File
 import java.io.IOException
 
@@ -62,7 +59,7 @@ class ChatActivity : BaseActivity() {
             if (it != null) {
                 val file = FileUtils.getFile(this, it)
                 lifecycleScope.launch {
-                    var compressFile = Compressor.compress(this@ChatActivity, file!!)
+                    val compressFile = Compressor.compress(this@ChatActivity, file!!)
                     val part = RequestBodyRetrofit.toRequestBodyFile(compressFile.path)
                     viewModel.uploadFile(part)
                 }
@@ -84,7 +81,7 @@ class ChatActivity : BaseActivity() {
 
     private val cameraLauncher = registerForActivityResult(ActivityResultContracts.TakePicture()) {
         if (it) {
-            val name = File(latestFile?.toString()).name
+            val name = File(latestFile.toString()).name
             val file = File(getExternalFilesDir(null), "/$name")
             lifecycleScope.launch {
                 val compressFile = Compressor.compress(this@ChatActivity, file)
@@ -192,7 +189,7 @@ class ChatActivity : BaseActivity() {
         if (intent.hasExtra(Keys.NOTIFICATIONS)) {
 
             notificationData =
-                Gson().fromJson(
+                Gson().fromJson<MutableMap<String,Any>>(
                     intent.getStringExtra(Keys.NOTIFICATIONS),
                     MutableMap::class.java
                 ) as MutableMap<String, Any>
@@ -495,6 +492,7 @@ class ChatActivity : BaseActivity() {
         registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) {
             if (it[android.Manifest.permission.READ_EXTERNAL_STORAGE] == true && it[android.Manifest.permission.WRITE_EXTERNAL_STORAGE] == true && it[android.Manifest.permission.RECORD_AUDIO] == true) {
 //                startRecording()
+                Log.e("permissions","accepted")
 
             }
         }
@@ -509,7 +507,7 @@ class ChatActivity : BaseActivity() {
         }
     }
 
-    private fun getFilename(): String? {
+    private fun getFilename(): String {
         val filepath = getExternalFilesDir(null)
         val file = File(filepath, Environment.DIRECTORY_MUSIC)
         if (!file.exists()) {
@@ -522,6 +520,7 @@ class ChatActivity : BaseActivity() {
     private fun startRecording() {
         recorder = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
             MediaRecorder(this)
+
         } else {
             MediaRecorder()
         }

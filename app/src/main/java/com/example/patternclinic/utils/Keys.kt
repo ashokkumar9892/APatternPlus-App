@@ -15,6 +15,9 @@ object Keys {
     const val STATUS_INACTIVE="InActive"
     const val APPOINTMENT_STATUS_COMPLETE="completed"
     const val APPOINTMENT_STATUS_SENT="sent"
+    const val NOTIFICATION_TRUE="True"
+    const val NOTIFICATION_FALSE="False"
+
     const val UNICORN_RESULT=54545
     //these are used for send data in other param
     var updateProfileData=""

@@ -28,5 +28,6 @@ data class PatientInfo(
     val doctorName:String?,
     val doctorPic:String?,
     val coachName:String?,
-    val coachPic:String?
+    val coachPic:String?,
+    var isNotificationOn:String?
 )

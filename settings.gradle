@@ -21,3 +21,5 @@ dependencyResolutionManagement {
 
 rootProject.name = "PatternClinic"
 include ':app'
+include ':commonlib'
+include ':mobilertc'

@@ -13,6 +13,7 @@ import com.example.patternclinic.data.ApiConstants
 import com.example.patternclinic.databinding.FragmentSettingBinding
 import com.example.patternclinic.home.HomeScreenActivity
 import com.example.patternclinic.home.drawerFragments.settings.*
+import com.example.patternclinic.utils.Keys
 import com.example.patternclinic.utils.SharedPrefs
 import com.example.patternclinic.utils.showToast
 import dagger.hilt.android.AndroidEntryPoint
@@ -64,11 +65,28 @@ class SettingFragment : Fragment() {
         }
 
         viewModel.notificationResponse.observe(requireActivity()) {
-//            activity?.showToast(it.errorMessage)
+            if (it.response == 1) {
+                if (onOff) {
+                    val new = userDetail
+                    new!!.patientInfo.isNotificationOn = Keys.NOTIFICATION_TRUE
+                    SharedPrefs.saveLoggedInUser(new)
+                } else {
+                    val new = userDetail
+                    new!!.patientInfo.isNotificationOn = Keys.NOTIFICATION_FALSE
+                    SharedPrefs.saveLoggedInUser(new)
+                }
+            }
         }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        if (userDetail!!.patientInfo.isNotificationOn == Keys.NOTIFICATION_TRUE) {
+            onOff = true
+            bindingFragment.ivOnOff.setImageResource(R.drawable.ic_on_notifiaction)
+        } else {
+            onOff = false
+            bindingFragment.ivOnOff.setImageResource(R.drawable.ic_off_notifiaction)
+        }
 
         bindingFragment.ivMenu.setOnClickListener {
             (activity as HomeScreenActivity).binding!!.drawerLayout.openDrawer((activity as HomeScreenActivity).binding!!.sideBar)
@@ -80,7 +98,7 @@ class SettingFragment : Fragment() {
                 map.clear()
                 map[ApiConstants.APIParams.AUTH_TOKEN.value] = userDetail!!.authToken
                 map[ApiConstants.APIParams.SK.value] = userDetail!!.patientInfo.sk
-                map[ApiConstants.APIParams.IS_NOTIFICATION_ON.value] = onOff.toString()
+                map[ApiConstants.APIParams.IS_NOTIFICATION_ON.value] = Keys.NOTIFICATION_TRUE
                 viewModel.manageNotification(map)
             } else {
                 onOff = false
@@ -88,7 +106,7 @@ class SettingFragment : Fragment() {
                 map.clear()
                 map[ApiConstants.APIParams.AUTH_TOKEN.value] = userDetail!!.authToken
                 map[ApiConstants.APIParams.SK.value] = userDetail!!.patientInfo.sk
-                map[ApiConstants.APIParams.IS_NOTIFICATION_ON.value] = onOff.toString()
+                map[ApiConstants.APIParams.IS_NOTIFICATION_ON.value] = Keys.NOTIFICATION_FALSE
                 viewModel.manageNotification(map)
             }
         }

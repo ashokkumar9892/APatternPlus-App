@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TableLayout
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -135,6 +134,9 @@ class CoachAppointments : Fragment() {
         }
     }
 
+    /**
+     * api for upcoming appointments
+     */
     private fun upcomingAppointments() {
         val map = HashMap<String, Any>()
         map[ApiConstants.APIParams.AUTH_TOKEN.value] = userDetail!!.authToken
@@ -142,6 +144,10 @@ class CoachAppointments : Fragment() {
         map[ApiConstants.APIParams.PATIENT_SK.value] = userDetail!!.patientInfo.sk
         viewModel.appointmentList(map)
     }
+
+    /**
+     * api for completed appointments
+     */
 
     private fun completedAppointments() {
         val map = HashMap<String, Any>()

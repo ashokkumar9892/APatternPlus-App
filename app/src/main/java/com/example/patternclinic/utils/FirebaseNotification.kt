@@ -28,7 +28,6 @@ class FirebaseNotification : FirebaseMessagingService() {
     override fun onMessageReceived(remoteMessage: RemoteMessage) {
         Log.d("TAG", "From: ${remoteMessage.from}")
         sendNotification(remoteMessage.data)
-
     }
 
     override fun onNewToken(token: String) {
@@ -47,8 +46,6 @@ class FirebaseNotification : FirebaseMessagingService() {
             this, 0 /* Request code */, intent,
             PendingIntent.FLAG_ONE_SHOT
         )
-
-
         val channelId = getString(R.string.default_notification_channel_id)
         val defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
         val notificationBuilder = NotificationCompat.Builder(this, channelId)
