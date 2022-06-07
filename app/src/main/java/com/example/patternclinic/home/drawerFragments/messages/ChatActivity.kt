@@ -185,11 +185,12 @@ class ChatActivity : BaseActivity() {
     override fun binding() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_chat)
         userDetail = SharedPrefs.getLoggedInUser()
+        viewModel.binding = binding
 
         if (intent.hasExtra(Keys.NOTIFICATIONS)) {
 
             notificationData =
-                Gson().fromJson<MutableMap<String,Any>>(
+                Gson().fromJson<MutableMap<String, Any>>(
                     intent.getStringExtra(Keys.NOTIFICATIONS),
                     MutableMap::class.java
                 ) as MutableMap<String, Any>
@@ -203,7 +204,7 @@ class ChatActivity : BaseActivity() {
             }
         }
 
-
+        viewModel.initializeSdk(this)
         clicks()
         setObservers()
         /**
@@ -368,6 +369,9 @@ class ChatActivity : BaseActivity() {
                 }
             }
         }
+        binding.ivVideoCall.setOnClickListener {
+            viewModel.startMeetingZak(this)
+        }
 
         binding.ivBack.setOnClickListener {
 
@@ -492,7 +496,7 @@ class ChatActivity : BaseActivity() {
         registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) {
             if (it[android.Manifest.permission.READ_EXTERNAL_STORAGE] == true && it[android.Manifest.permission.WRITE_EXTERNAL_STORAGE] == true && it[android.Manifest.permission.RECORD_AUDIO] == true) {
 //                startRecording()
-                Log.e("permissions","accepted")
+                Log.e("permissions", "accepted")
 
             }
         }

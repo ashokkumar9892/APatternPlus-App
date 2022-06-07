@@ -288,7 +288,6 @@ class ChatAdapter(var list: MutableList<Chatlist>) :
                 return VideoHolder(bind)
             }
 
-
             SEND_DOCX -> {
                 val bind =
                     ItemDocxMessageBinding.inflate(

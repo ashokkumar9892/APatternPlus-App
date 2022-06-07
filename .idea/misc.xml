@@ -74,7 +74,7 @@
         <entry key="app/src/main/res/drawable/ic_splash_logo.xml" value="0.21" />
         <entry key="app/src/main/res/layout/activity_add_appointment.xml" value="0.33" />
         <entry key="app/src/main/res/layout/activity_change_password.xml" value="0.24010416666666667" />
-        <entry key="app/src/main/res/layout/activity_chat.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_chat.xml" value="0.33" />
         <entry key="app/src/main/res/layout/activity_coach_appointments.xml" value="0.33" />
         <entry key="app/src/main/res/layout/activity_coach_profile.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_connect_device.xml" value="0.21" />
@@ -120,6 +120,9 @@
         <entry key="app/src/main/res/layout/provider_paths.xml" value="0.24010416666666667" />
         <entry key="app/src/main/res/layout/video_vide.xml" value="0.24010416666666667" />
         <entry key="app/src/main/res/xml/provider_paths.xml" value="0.14739583333333334" />
+        <entry key="commonlib/build/.transforms/1fa8805761fafe186130f6f228f95509/transformed/jetified-commonlib/res/drawable/zm_video_effects_tab_item_bg_selected.xml" value="0.1885" />
+        <entry key="mobilertc/build/.transforms/1332c89b1ae15bcd431488a18535f794/transformed/jetified-mobilertc/res/drawable-anydpi-v24/ic_video.xml" value="0.1885" />
+        <entry key="mobilertc/build/.transforms/1332c89b1ae15bcd431488a18535f794/transformed/jetified-mobilertc/res/drawable/ic_pip_start_video.xml" value="0.1885" />
       </map>
     </option>
   </component>
