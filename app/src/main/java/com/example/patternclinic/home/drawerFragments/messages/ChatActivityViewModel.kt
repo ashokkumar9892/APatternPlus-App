@@ -83,10 +83,20 @@ class ChatActivityViewModel @Inject constructor(val mainRepository: MainReposito
      fun startMeetingZak(context: Context) {
         val meetingService = ZoomSDK.getInstance().meetingService
         val options = StartMeetingOptions()
+//         val par=StartMeetingParams4NormalUser().apply {
+//             meetingNo="df"
+//             this.vanityID="lkdjflks"
+//
+//         }
+//         val para=StartMeetingParams().apply {
+//             this.meetingNo="dsfsd"
+//             this.vanityID="dsfl"
+//         }
+//
         val params = StartMeetingParamsWithoutLogin().apply {
             displayName = "name" // TODO: Enter your name
             userId = "id" // TODO: Enter userId
-            zoomAccessToken = "eyJhbGciOiJIUzUxMiIsInYiOiIyLjAiLCJraWQiOiIwOTA4ZjE5MS0wNDhhLTQ2M2ItODkzMi02ZTIyOWQ2ZjcyOTIifQ.eyJ2ZXIiOjcsImF1aWQiOiJhZTNkYTQ1OTExZGRkN2YyMmQyNzkxYzYwNTkxODA4ZiIsImNvZGUiOiIzM0NZRU9NcGU4X2NfZ0YwVS0yUktTaEVDZ3VodzJEeWciLCJpc3MiOiJ6bTpjaWQ6ZU9XbXFZTmhSc1Nnblo5Z1lidlJ3IiwiZ25vIjowLCJ0eXBlIjowLCJ0aWQiOjAsImF1ZCI6Imh0dHBzOi8vb2F1dGguem9vbS51cyIsInVpZCI6ImNfZ0YwVS0yUktTaEVDZ3VodzJEeWciLCJuYmYiOjE2NTQ1ODYwNzUsImV4cCI6MTY1NDU4OTY3NSwiaWF0IjoxNjU0NTg2MDc1LCJhaWQiOiJ2M2hqUnZ2V1E4S0piMEkzaXl5M29RIiwianRpIjoiMWYxMTMzZWMtN2E4Ni00NzExLTgwMGYtMDc2YTFkMTZhZTBjIn0.6T5inqCaoBtoMfa664wRST6EOdHraKbPQzdE_TRtETaXo_skGCpE0j9MmppJgbmZw2TEOTjoRvYCd2WsOeT_kA" // TODO: Enter ZAK
+            zoomAccessToken = "eyJhbGciOiJIUzUxMiIsInYiOiIyLjAiLCJraWQiOiJiY2U4MDZjMi00NjViLTQxOTktYmRhYy1jMzdkM2NjNmVjZWQifQ.eyJ2ZXIiOjcsImF1aWQiOiJhZTNkYTQ1OTExZGRkN2YyMmQyNzkxYzYwNTkxODA4ZiIsImNvZGUiOiJrZlNBNzhjbzQ1X2NfZ0YwVS0yUktTaEVDZ3VodzJEeWciLCJpc3MiOiJ6bTpjaWQ6ZU9XbXFZTmhSc1Nnblo5Z1lidlJ3IiwiZ25vIjowLCJ0eXBlIjoxLCJ0aWQiOjAsImF1ZCI6Imh0dHBzOi8vb2F1dGguem9vbS51cyIsInVpZCI6ImNfZ0YwVS0yUktTaEVDZ3VodzJEeWciLCJuYmYiOjE2NTQ2NTkyNDcsImV4cCI6MjEyNzY5OTI0NywiaWF0IjoxNjU0NjU5MjQ3LCJhaWQiOiJ2M2hqUnZ2V1E4S0piMEkzaXl5M29RIiwianRpIjoiNTJmN2EzZjYtZGY1Mi00Yzk5LThmZDctNTE3NDIzZWU1ZTBlIn0.Am0WpW_Xy0nahSh4QBHCZOFsiD9jkks0N49TiCKjevQHLD6rmJ-FQQzyDrYSAmSXFaWNSLmOIlntAIAdnMR6xA" // TODO: Enter ZAK
         }
         meetingService.startMeetingWithParams(context, params, options)
     }

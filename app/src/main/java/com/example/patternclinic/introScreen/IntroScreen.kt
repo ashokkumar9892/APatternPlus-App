@@ -12,6 +12,8 @@ import com.example.patternclinic.R
 import com.example.patternclinic.auth.LoginActivity
 import com.example.patternclinic.utils.changeStatusBarColorWhite
 import org.w3c.dom.Text
+import us.zoom.sdk.JoinMeetingParams
+import us.zoom.sdk.StartMeetingParams
 
 class IntroScreen : AppCompatActivity() {
     var pager: ViewPager? = null
@@ -33,7 +35,6 @@ class IntroScreen : AppCompatActivity() {
         changeStatusBarColorWhite()
         skip.setOnClickListener {
             startActivity(Intent(this, LoginActivity::class.java))
-
         }
 
         initDesign()
