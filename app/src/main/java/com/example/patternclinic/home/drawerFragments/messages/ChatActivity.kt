@@ -1,11 +1,13 @@
 package com.example.patternclinic.home.drawerFragments.messages
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.media.MediaRecorder
 import android.net.Uri
 import android.os.Build
 import android.os.Environment
+import android.util.Base64
 import android.util.Log
 import android.view.View
 import androidx.activity.result.contract.ActivityResultContracts
@@ -24,6 +26,7 @@ import com.example.patternclinic.data.model.Chatlist
 import com.example.patternclinic.data.model.LoginResponse
 import com.example.patternclinic.databinding.ActivityChatBinding
 import com.example.patternclinic.databinding.BottomSheetCameraGalleryBinding
+import com.example.patternclinic.home.drawerFragments.messages.zoomPackage.CodeChallengeHelper
 import com.example.patternclinic.utils.*
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.gson.Gson
@@ -31,17 +34,26 @@ import com.microsoft.signalr.Action1
 import com.vincent.videocompressor.VideoCompress
 import dagger.hilt.android.AndroidEntryPoint
 import id.zelory.compressor.Compressor
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import okhttp3.Dispatcher
+import okhttp3.HttpUrl
+import okhttp3.OkHttpClient
+import okhttp3.Request
+import okhttp3.RequestBody.Companion.toRequestBody
 import java.io.File
 import java.io.IOException
+import javax.inject.Inject
 
 
 @Suppress("INACCESSIBLE_TYPE")
 @AndroidEntryPoint
 class ChatActivity : BaseActivity() {
     lateinit var binding: ActivityChatBinding
-
     lateinit var chatAdapter: ChatAdapter
+
+    @Inject
+    lateinit var okHttpClient: OkHttpClient
 
     //    var connection2: HubConnection? = null
     val viewModel: ChatActivityViewModel by viewModels()
@@ -188,7 +200,6 @@ class ChatActivity : BaseActivity() {
         viewModel.binding = binding
 
         if (intent.hasExtra(Keys.NOTIFICATIONS)) {
-
             notificationData =
                 Gson().fromJson<MutableMap<String, Any>>(
                     intent.getStringExtra(Keys.NOTIFICATIONS),
@@ -203,7 +214,7 @@ class ChatActivity : BaseActivity() {
                 binding.rlSendingFunctionalityContainer.visibility = View.GONE
             }
         }
-
+//        helperInit()
         viewModel.initializeSdk(this)
         clicks()
         setObservers()
@@ -266,6 +277,64 @@ class ChatActivity : BaseActivity() {
 
         }, responsemodel::class.java)
     }
+
+    private fun helperInit() {
+//        val codeChallengeHelper = CodeChallengeHelper()
+//        codeChallengeHelper.createCodeVerifier()
+//        codeChallengeHelper.createCodeChallenge(CodeChallengeHelper.verifier!!)
+//        val uri = Uri.parse("https://zoom.us/oauth/authorize")
+//            .buildUpon()
+//            .appendQueryParameter("code_challenge",CodeChallengeHelper.verifier!!)
+//            .appendQueryParameter("client_id", "eOWmqYNhRsSgnZ9gYbvRw")
+//            .appendQueryParameter("code_challenge_method", "S256")
+//            .appendQueryParameter("response_type", "code")
+//            .appendQueryParameter("redirect_uri", "https://annexappapi.apatternplus.com/zoomlink.html")
+//            .build()
+//        val intent = Intent(Intent.ACTION_VIEW, uri)
+//        startActivity(intent)
+//        requestAccessToken(CodeChallengeHelper.verifier!!, okHttpClient)
+    }
+
+//    private fun requestAccessToken(code: String, client: OkHttpClient) {
+//        lifecycleScope.launch(Dispatchers.IO) {
+//        val encoded = Base64.encodeToString(
+//            "eOWmqYNhRsSgnZ9gYbvRw:4RA00QT1WfMmL2lLGvjMN7oUDyYJl25S".toByteArray(),
+//            Base64.URL_SAFE or Base64.NO_WRAP
+//        )
+//        val request = Request.Builder()
+//            .addHeader("Authorization", "Basic $encoded")
+//            .addHeader("Content-Type", "application/x-www-form-urlencoded")
+//            .url(buildUrl(code))
+//            .post("{}".toRequestBody())
+//            .build()
+//        val response = client.newCall(request).execute()
+//            Log.e("token", response.body.toString())
+//        }
+//
+////        accessToken = Json.decodeFromString<AccessToken>(body.orEmpty()).access_token
+//
+//    }
+//
+//    private fun buildUrl(code: String) = HttpUrl.Builder()
+//        .scheme("https")
+//        .host("zoom.us")
+//        .addPathSegment("oauth")
+//        .addPathSegment("token")
+//        .addQueryParameter("grant_type", "authorization_code")
+//        .addQueryParameter("code", code)
+//        .addQueryParameter("redirect_uri", "https://annexappapi.apatternplus.com/zoomlink.html")
+//        .addQueryParameter("code_verifier", CodeChallengeHelper.verifier)
+//        .build()
+//
+//
+//    data class AccessToken(
+//        val access_token: String,
+//        val token_type: String,
+//        val refresh_token: String,
+//        val expires_in: Long,
+//        val scope: String
+//    )
+//
 
     fun setObservers() {
         /**
@@ -370,7 +439,7 @@ class ChatActivity : BaseActivity() {
             }
         }
         binding.ivVideoCall.setOnClickListener {
-            viewModel.startMeetingZak(this)
+            viewModel.joinMeeting(this,"","")
         }
 
         binding.ivBack.setOnClickListener {
