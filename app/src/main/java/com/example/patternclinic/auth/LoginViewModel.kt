@@ -2,6 +2,7 @@ package com.example.patternclinic.auth
 
 import android.app.Activity
 import android.content.Intent
+import android.util.Log
 import android.view.View
 import androidx.databinding.ObservableField
 import androidx.lifecycle.MutableLiveData
@@ -25,6 +26,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import okhttp3.RequestBody
 import okhttp3.RequestBody.Companion.toRequestBody
+import java.lang.Exception
 import javax.inject.Inject
 
 @HiltViewModel
@@ -35,9 +37,15 @@ class LoginViewModel @Inject constructor(val mainRepository: MainRepository) : B
     var activity = LoginActivity.binding
 
     init {
-        FirebaseMessaging.getInstance().token.addOnCompleteListener {
-            SharedPrefs.saveFcmToken(it.result)
+        try {
+            FirebaseMessaging.getInstance().token.addOnCompleteListener {
+                SharedPrefs.saveFcmToken(it.result)
+            }
         }
+        catch (e:Exception){
+            Log.e("exception",e.toString())
+        }
+
     }
 
 
@@ -74,7 +82,7 @@ class LoginViewModel @Inject constructor(val mainRepository: MainRepository) : B
 
                         loginResponse.postValue(response)
                         if (response.response == 1) {
-                            v.context.showToast(response.errorMessage)
+                            v.context.showToast(response.errorMessage?:"")
                             SharedPrefs.saveLoggedInUser(response)
 //                            v.context.startActivity(
 //                                Intent(
@@ -83,7 +91,7 @@ class LoginViewModel @Inject constructor(val mainRepository: MainRepository) : B
 //                                )
 //                            )
                             //remove below line after need
-                            if (response.patientInfo.height.isNullOrEmpty() || response.patientInfo.weight.isNullOrEmpty() || response.patientInfo.firstName.isNullOrEmpty() || response.patientInfo.lastName.isNullOrEmpty() || response.patientInfo.dob.isNullOrEmpty() || response.patientInfo.gender.isNullOrEmpty()) {
+                            if (response.patientInfo.height.isNullOrEmpty() || response.patientInfo.weight.isNullOrEmpty() || response.patientInfo.firstName.isNullOrEmpty() || response.patientInfo.lastName.isNullOrEmpty() || response.patientInfo.dob.isNullOrEmpty() || response.patientInfo.country.isNullOrEmpty() || response.patientInfo.gender.isNullOrEmpty()) {
                                 v.context.startActivity(
                                     Intent(
                                         v.context,

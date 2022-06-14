@@ -3,13 +3,13 @@ package com.example.patternclinic.data.model
 
 data class LoginResponse(
     val authToken: String,
-    val errorMessage: String,
+    val errorMessage: String?,
     val patientInfo: PatientInfo,
     val response: Int
 )
 
 data class PatientInfo(
-    val country: Any,
+    val country: String?,
     val dob: String?,
     val email: String?,
     val firstName: String?,

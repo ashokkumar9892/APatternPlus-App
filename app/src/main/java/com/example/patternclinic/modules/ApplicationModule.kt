@@ -53,7 +53,7 @@ class ApplicationModule {
                     val request: Request = original.newBuilder()
                         .header("Content-Type", "application/json")
                         .header("Accept", "application/json")
-//                        .header("Token", SharedPrefs.getUserToken().replace("Bearer", ""))
+                        .header("AuthToken", SharedPrefs.getLoggedInUser()?.authToken ?:"")
                         .build()
                     val origResponse = chain.proceed(request)
                     Log.e("", "")

@@ -13,21 +13,16 @@ import com.example.patternclinic.R
 import com.example.patternclinic.base.BaseViewModel
 import com.example.patternclinic.data.ApiConstants
 import com.example.patternclinic.data.api.ApiService
-import com.example.patternclinic.data.model.AppointmentListResponse
 import com.example.patternclinic.data.model.BasicResponse
 import com.example.patternclinic.data.model.LoginResponse
 import com.example.patternclinic.databinding.ActivityAddAppointmentBinding
 import com.example.patternclinic.retrofit.ResponseResult
 import com.example.patternclinic.retrofit.getResult
-import com.example.patternclinic.utils.SharedPrefs
-import com.example.patternclinic.utils.dateConvert_3
-import com.example.patternclinic.utils.showToast
-import com.example.patternclinic.utils.timeConvert24to12
+import com.example.patternclinic.utils.*
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import java.util.*
 import javax.inject.Inject
-import kotlin.collections.HashMap
 
 @HiltViewModel
 class AddAppointmentViewModel @Inject constructor(private val service: ApiService) :
@@ -88,7 +83,7 @@ class AddAppointmentViewModel @Inject constructor(private val service: ApiServic
                 } else {
                     val map = HashMap<String, Any>()
                     map[ApiConstants.APIParams.APPOINTMENT_DATE.value] =
-                        addBinding!!.tvDate.text.trim().toString()
+                        dateConvert_6(addBinding!!.tvDate.text.trim().toString())
                     map[ApiConstants.APIParams.APPOINTMENT_TYPE.value] =
                         addBinding!!.root.findViewById<RadioButton>(addBinding!!.rgGroup.checkedRadioButtonId).text
                     map[ApiConstants.APIParams.APPOINTMENT_TIME.value] =
@@ -123,7 +118,7 @@ class AddAppointmentViewModel @Inject constructor(private val service: ApiServic
                             month = "0${month}"
                         }
 
-                        addBinding!!.tvDate.text = "${day}-${month}-${p1}"
+                        addBinding!!.tvDate.text = dateConvert_3("${day}-${month}-${p1}")
                     }
                 },
                 date!!.get(Calendar.YEAR),

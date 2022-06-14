@@ -68,8 +68,10 @@ fun Activity.decorStatusBar(shouldChangeStatusBarTintToDark: Boolean) {
     }
 }
 
-fun Context.showToast(string: String) {
-    Toast.makeText(this, string, Toast.LENGTH_SHORT).show()
+fun Context.showToast(string: String?) {
+    if(!string.isNullOrEmpty()) {
+        Toast.makeText(this, string, Toast.LENGTH_SHORT).show()
+    }
 }
 
 val EMAIL_ADDRESS_PATTERN: Pattern by lazy {
@@ -285,8 +287,9 @@ fun timeConvert24to12(type: String): String {
 }
 
 fun dateConvert_5(type: String): String {
-    val output = SimpleDateFormat("MMM dd,yyyy", Locale.ENGLISH)
+
     val input = SimpleDateFormat("dd-MMM-yyyy", Locale.ENGLISH)
+    val output = SimpleDateFormat("MMM dd,yyyy", Locale.ENGLISH)
     val date = input.parse(type)
     val result = output.format(date)
     return result
@@ -294,16 +297,27 @@ fun dateConvert_5(type: String): String {
 
 
 fun dateConvert_7(type: String): String {
+
+    val input = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.ENGLISH)
     val output = SimpleDateFormat("MMM dd,yyyy", Locale.ENGLISH)
-    val input = SimpleDateFormat("dd-MM-yyyy", Locale.ENGLISH)
     val date = input.parse(type)
     val result = output.format(date)
     return result
 }
 
 fun dateConvert_6(type: String): String {
-    val output = SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH)
+
     val input = SimpleDateFormat("dd-MMM-yyyy", Locale.ENGLISH)
+    val output = SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH)
+    val date = input.parse(type)
+    val result = output.format(date)
+    return result
+}
+
+fun dateConvert_6to(type: String): String {
+    val input = SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH)
+    val output = SimpleDateFormat("dd-MMM-yyyy", Locale.ENGLISH)
+
     val date = input.parse(type)
     val result = output.format(date)
     return result

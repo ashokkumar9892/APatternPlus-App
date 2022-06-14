@@ -1,13 +1,11 @@
 package com.example.patternclinic.home.drawerFragments.appointments
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.widget.RadioGroup
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.example.patternclinic.R
-import com.example.patternclinic.auth.CreateProfile.Companion.activity
 import com.example.patternclinic.data.model.Currentteam
 import com.example.patternclinic.databinding.ActivityAddAppointmentBinding
 import com.example.patternclinic.utils.Keys
@@ -46,20 +44,17 @@ class AddAppointmentActivity : AppCompatActivity() {
         binding.toolBar.ivBack.setOnClickListener {
             finish()
         }
-        binding.rgGroup.setOnCheckedChangeListener(object : RadioGroup.OnCheckedChangeListener {
-            override fun onCheckedChanged(p0: RadioGroup?, p1: Int) {
-
-                when (p1) {
-                    R.id.rb_virtual -> {
-                        binding.llClinicContainer.visibility = View.GONE
-                    }
-                    R.id.rb_in_person -> {
-                        binding.llClinicContainer.visibility = View.VISIBLE
-                        binding.tvLocation.text= team!!.teamLocation?:""
-                    }
+        binding.rgGroup.setOnCheckedChangeListener { _, p1 ->
+            when (p1) {
+                R.id.rb_virtual -> {
+                    binding.llClinicContainer.visibility = View.GONE
+                }
+                R.id.rb_in_person -> {
+                    binding.llClinicContainer.visibility = View.VISIBLE
+                    binding.tvLocation.text = team!!.teamLocation ?: ""
                 }
             }
-        })
+        }
     }
 
     private fun setObservers() {

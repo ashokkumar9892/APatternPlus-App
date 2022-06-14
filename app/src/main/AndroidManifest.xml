@@ -33,6 +33,10 @@
             android:name=".home.drawerFragments.messages.ViewMessageActivity"
             android:exported="false" />
 
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+
         <service
             android:name=".utils.FirebaseNotification"
             android:exported="true">

@@ -9,6 +9,9 @@ import com.example.patternclinic.data.model.LoginResponse
 import com.example.patternclinic.databinding.ActivityPersonalInformationBinding
 import com.example.patternclinic.utils.SharedPrefs
 import com.example.patternclinic.utils.dateConvert_5
+import com.example.patternclinic.utils.dateConvert_6
+import com.example.patternclinic.utils.dateConvert_6to
+import java.lang.Exception
 
 class PersonalInformationActivity : AppCompatActivity() {
     lateinit var binding: ActivityPersonalInformationBinding
@@ -36,8 +39,10 @@ class PersonalInformationActivity : AppCompatActivity() {
         binding.tvName.text =
             "${it?.patientInfo?.firstName ?: ""} ${it?.patientInfo?.lastName ?: ""}"
         binding.tvCountry.text = "${it?.patientInfo?.country ?: ""}"
-        binding.tvDob.text = dateConvert_5(it!!.patientInfo.dob!!)
-        binding.tvEmail.text=it.patientInfo.email?:""
+
+        binding.tvDob.text = dateConvert_6to(it!!.patientInfo.dob!!)
+
+        binding.tvEmail.text = it?.patientInfo?.email ?: ""
 
 
     }

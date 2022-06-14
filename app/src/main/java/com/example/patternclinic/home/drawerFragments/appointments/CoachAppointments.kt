@@ -124,11 +124,12 @@ class CoachAppointments : Fragment() {
         }
         viewModel.appointmentListResponse.observe(requireActivity()) {
             if (it.response == 1) {
+                binding.rvAppointments.visibility=View.VISIBLE
                 appointmentList = it
-
                     binding.rvAppointments.adapter = AppointmentAdapter(it.appointmentInfo)
 
             } else {
+                binding.rvAppointments.visibility=View.GONE
                 activity?.showToast(it.errorMessage)
             }
         }

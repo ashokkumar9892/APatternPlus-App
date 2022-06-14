@@ -66,7 +66,7 @@ class UpdateProfileViewModel @Inject constructor(val mainRepository: MainReposit
             }
             if (!userData!!.patientInfo.dob.isNullOrEmpty()) {
 //                    dob.set(dateConvert_4(userData!!.patientInfo.dob!!))
-                dob.set(userData!!.patientInfo.dob!!)
+                dob.set(dateConvert_6to(userData!!.patientInfo.dob!!))
             }
             if (!userData!!.patientInfo.gender.isNullOrEmpty()) {
                 gender.set(
@@ -161,7 +161,7 @@ class UpdateProfileViewModel @Inject constructor(val mainRepository: MainReposit
                         map.put(ApiConstants.APIParams.PROFILE_PIC.value, "")
                     }
 
-                    map[ApiConstants.APIParams.DOB.value] = dob.get()?.trim().toString()
+                    map[ApiConstants.APIParams.DOB.value] = dateConvert_6(dob.get()?.trim().toString())
                     map[ApiConstants.APIParams.GENDER.value] =
                         binding.spGender.selectedItem.toString()
                     binding.spGender.selectedItem
