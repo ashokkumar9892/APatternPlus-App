@@ -1,8 +1,6 @@
 package com.example.patternclinic.home.drawerFragments.messages
 
 import android.content.Context
-import android.util.Base64
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.patternclinic.base.BaseViewModel
@@ -17,16 +15,9 @@ import com.example.patternclinic.retrofit.getResult
 import com.microsoft.signalr.HubConnection
 import com.microsoft.signalr.HubConnectionBuilder
 import com.microsoft.signalr.OnClosedCallback
-import com.squareup.moshi.Json
-import com.zipow.videobox.ptapp.MeetingInfoProtos
-
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
-import okhttp3.HttpUrl
 import okhttp3.MultipartBody
-import okhttp3.OkHttpClient
-import okhttp3.Request
-import okhttp3.RequestBody.Companion.toRequestBody
 import us.zoom.sdk.*
 import javax.inject.Inject
 
@@ -126,11 +117,16 @@ class ChatActivityViewModel @Inject constructor(
             connection2!!.serverTimeout = 10000000
             connection2!!.keepAliveInterval = 10000000
             connection2!!.start()
-            connection2!!.onClosed(object : OnClosedCallback {
-                override fun invoke(exception: Exception?) {
-                    if (connectStatus) {
-                        connection2!!.start()
-                    }
+//            connection2!!.onClosed(object : OnClosedCallback {
+//                override fun invoke(exception: Exception?) {
+//                    if (connectStatus) {
+//                        connection2!!.start()
+//                    }
+//                }
+//            })
+            connection2!!.onClosed(object :OnClosedCallback{
+                override fun invoke(exception: java.lang.Exception?) {
+                    connection2!!.start()
                 }
             })
         }

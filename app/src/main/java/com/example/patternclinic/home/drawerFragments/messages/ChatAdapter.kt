@@ -40,7 +40,7 @@ class ChatAdapter(var list: MutableList<Chatlist>) :
     private var SEND_AUDIO = 10
     private var RECIEVE_AUDIO = 8
 
-    val user_id = SharedPrefs.getLoggedInUser()?.patientInfo?.sk
+    val user_id = "PATIENT_"+SharedPrefs.getLoggedInUser()?.patientInfo?.sk
 
     class SendHolder(bind: ItemMessageSenderBinding) : RecyclerView.ViewHolder(bind.root) {
         var binding = bind

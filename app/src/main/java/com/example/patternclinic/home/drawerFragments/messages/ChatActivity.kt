@@ -50,11 +50,9 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class ChatActivity : BaseActivity() {
     lateinit var binding: ActivityChatBinding
-    lateinit var chatAdapter: ChatAdapter
-
+    var chatAdapter: ChatAdapter? = null
     @Inject
     lateinit var okHttpClient: OkHttpClient
-
     //    var connection2: HubConnection? = null
     val viewModel: ChatActivityViewModel by viewModels()
     var recorder: MediaRecorder? = null
@@ -66,6 +64,7 @@ class ChatActivity : BaseActivity() {
     var currentFile: File? = null
     var pickerDialog: BottomSheetDialog? = null
     var latestFile: Uri? = null
+    var data: model? = null
     private val pickImageGalleryLauncher =
         registerForActivityResult(ActivityResultContracts.GetContent()) {
             if (it != null) {
@@ -83,10 +82,8 @@ class ChatActivity : BaseActivity() {
         registerForActivityResult(ActivityResultContracts.GetContent()) {
             if (it != null) {
                 val file = FileUtils.getFile(this, it)
-
                 val part = RequestBodyRetrofit.toRequestBodyFile(file?.path)
                 viewModel.uploadFile(part)
-
                 Log.e("file dir", file?.path.toString())
             }
         }
@@ -215,7 +212,8 @@ class ChatActivity : BaseActivity() {
             }
         }
 //        helperInit()
-        viewModel.initializeSdk(this)
+//        viewModel.initializeSdk(this)
+        chatAdapter= ChatAdapter(mutableListOf<Chatlist>())
         clicks()
         setObservers()
         /**
@@ -224,7 +222,7 @@ class ChatActivity : BaseActivity() {
         map = HashMap()
         map!![ApiConstants.APIParams.AUTH_TOKEN.value] = userDetail!!.authToken
         map!![ApiConstants.APIParams.SENDER_SK.value] = userDetail!!.patientInfo.sk
-        map!![ApiConstants.APIParams.RECEIVER_SK.value] = receiverSk!!.uppercase()
+        map!![ApiConstants.APIParams.RECEIVER_SK.value] = receiverSk!!.uppercase().split("_")[1]
         viewModel.getChat(map!!)
 
 //        connection2 = HubConnectionBuilder.create(ApiConstants.CHAT_HUB_URL)
@@ -247,7 +245,7 @@ class ChatActivity : BaseActivity() {
                 } else {
                     runOnUiThread {
                         binding.loader.visibility = View.GONE
-                        chatAdapter.addMessage(
+                        chatAdapter!!.addMessage(
                             Chatlist(
                                 userDetail!!.authToken,
                                 "",
@@ -268,7 +266,7 @@ class ChatActivity : BaseActivity() {
                             )
                         )
                         (binding.rvMessages.layoutManager as LinearLayoutManager).scrollToPosition(
-                            chatAdapter.list.size - 1
+                            chatAdapter!!.list.size - 1
                         )
 //                        binding.etMessage.setText("")
                     }
@@ -385,14 +383,13 @@ class ChatActivity : BaseActivity() {
         viewModel.uploadFileResponse.observe(this) {
             if (it.response == 1) {
                 val data = model(
-                    userDetail!!.patientInfo.sk,
+                    "PATIENT_" + userDetail!!.patientInfo.sk,
                     receiverSk!!,
                     it.imageurls[0].filetype,
                     it.imageurls[0].files,
-                    SharedPrefs.getLoggedInUser()!!.authToken,
+//                    SharedPrefs.getLoggedInUser()!!.authToken,
 
-
-                    )
+                )
 
                 try {
                     //invoke from one connection
@@ -414,36 +411,37 @@ class ChatActivity : BaseActivity() {
 
     @SuppressLint("ClickableViewAccessibility", "CheckResult")
     private fun clicks() {
-        binding.ivSend.setOnClickListener {
-            if (binding.etMessage.text.toString().trim().isNotEmpty()) {
-                val data = model(
-                    userDetail!!.patientInfo.sk,
-                    receiverSk!!,
-                    "Text",
-                    binding.etMessage.text.trim().toString(),
-                    SharedPrefs.getLoggedInUser()!!.authToken,
-                )
+        binding.ivSend.setOnClickListener(object : View.OnClickListener {
+            override fun onClick(p0: View?) {
+                if (binding.etMessage.text.toString().trim().isNotEmpty()) {
+                    data = model(
+                        "PATIENT_" + userDetail!!.patientInfo.sk,
+                        receiverSk!!,
+                        "Text",
+                        binding.etMessage.text.trim().toString(),
+//                    SharedPrefs.getLoggedInUser()!!.authToken,
+                    )
 
-                try {
-                    //invoke from one connection
-                    runOnUiThread {
-                        viewModel.connection2!!.invoke("SendMessages", data)
-                        binding.etMessage.setText("")
-                        binding.loader.visibility = View.VISIBLE
+                    try {
+                        //invoke from one connection
+                        runOnUiThread {
+                            viewModel.connection2!!.invoke("SendMessages", data)
+                            binding.etMessage.setText("")
+                            binding.loader.visibility = View.VISIBLE
 
+                        }
+                    } catch (e: Exception) {
+                        showToast(e.toString())
+                        viewModel.makeConnection()
                     }
-                } catch (e: Exception) {
-                    showToast(e.toString())
-                    viewModel.makeConnection()
                 }
             }
-        }
+        })
         binding.ivVideoCall.setOnClickListener {
-            viewModel.joinMeeting(this,"","")
+            viewModel.joinMeeting(this, "", "")
         }
 
         binding.ivBack.setOnClickListener {
-
             finish()
         }
         binding.ivDoc.setOnClickListener {
@@ -628,9 +626,9 @@ data class model(
     var ReceiverSK: String,
     var MessageType: String,
     var Message: String,
-    var AuthToken: String,
+//    var AuthToken: String,
 
-    )
+)
 
 data class responsemodel(
     var image: String,

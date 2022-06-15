@@ -35,63 +35,60 @@ class MessageFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         clicks()
         setObservers()
-        val map=HashMap<String,Any>()
-        map[ApiConstants.APIParams.AUTH_TOKEN.value]=userDetail!!.authToken
-        map[ApiConstants.APIParams.SK.value]=userDetail!!.patientInfo.sk
+        val map = HashMap<String, Any>()
+        map[ApiConstants.APIParams.AUTH_TOKEN.value] = userDetail!!.authToken
+        map[ApiConstants.APIParams.SK.value] = userDetail!!.patientInfo.sk
         viewModel.getUserChatList(map)
-
     }
 
-
-
-        fun setObservers() {
-            /**
-             * observer for getUsersChat up response
-             */
-            activity?.let {
-                viewModel.usersChat.observe(it) {
-                    if (it.response == 1) {
-                        binding.rvMessages.adapter =
-                            MessageRecyclerAdapter(it.chatlist.toMutableList())
-                    } else {
-                        activity?.showToast(it.errorMessage)
-                    }
+    fun setObservers() {
+        /**
+         * observer for getUsersChat up response
+         */
+        activity?.let {
+            viewModel.usersChat.observe(it) {
+                if (it.response == 1) {
+                    binding.rvMessages.adapter =
+                        MessageRecyclerAdapter(it.chatlist.toMutableList())
+                } else {
+                    activity?.showToast(it.errorMessage)
                 }
             }
-
-            /**
-             * observer for loader
-             */
-            activity?.let {
-                viewModel.showLoader.observe(it)
-                {
-                    if (it) {
-                        binding.loader.visibility = View.VISIBLE
-                    } else {
-                        binding.loader.visibility = View.GONE
-                    }
-                }
-            }
-            /**
-             * observer for error-response
-             */
-            activity?.let {
-                viewModel.errorMessage.observe(it)
-                {
-                    activity?.showToast(it)
-                }
-            }
-            /**
-             * observer for failure-response
-             */
-            activity?.let {
-                viewModel.onFailure.observe(it)
-                {
-                    activity?.showToast(it.toString())
-                }
-            }
-
         }
+
+        /**
+         * observer for loader
+         */
+        activity?.let {
+            viewModel.showLoader.observe(it)
+            {
+                if (it) {
+                    binding.loader.visibility = View.VISIBLE
+                } else {
+                    binding.loader.visibility = View.GONE
+                }
+            }
+        }
+        /**
+         * observer for error-response
+         */
+        activity?.let {
+            viewModel.errorMessage.observe(it)
+            {
+                activity?.showToast(it)
+            }
+        }
+        /**
+         * observer for failure-response
+         */
+        activity?.let {
+            viewModel.onFailure.observe(it)
+            {
+                activity?.showToast(it.toString())
+            }
+        }
+
+    }
 
 
     private fun clicks() {

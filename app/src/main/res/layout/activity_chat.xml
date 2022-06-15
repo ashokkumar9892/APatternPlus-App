@@ -45,6 +45,7 @@
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/iv_video_call"
                 android:layout_width="@dimen/_50sdp"
+                android:visibility="gone"
                 android:layout_height="@dimen/_50sdp"
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
