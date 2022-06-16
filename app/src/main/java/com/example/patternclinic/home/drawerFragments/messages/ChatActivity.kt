@@ -26,6 +26,7 @@ import com.example.patternclinic.data.model.Chatlist
 import com.example.patternclinic.data.model.LoginResponse
 import com.example.patternclinic.databinding.ActivityChatBinding
 import com.example.patternclinic.databinding.BottomSheetCameraGalleryBinding
+import com.example.patternclinic.databinding.DialogVideoCallBinding
 import com.example.patternclinic.home.drawerFragments.messages.zoomPackage.CodeChallengeHelper
 import com.example.patternclinic.utils.*
 import com.google.android.material.bottomsheet.BottomSheetDialog
@@ -51,8 +52,10 @@ import javax.inject.Inject
 class ChatActivity : BaseActivity() {
     lateinit var binding: ActivityChatBinding
     var chatAdapter: ChatAdapter? = null
+
     @Inject
     lateinit var okHttpClient: OkHttpClient
+
     //    var connection2: HubConnection? = null
     val viewModel: ChatActivityViewModel by viewModels()
     var recorder: MediaRecorder? = null
@@ -213,7 +216,7 @@ class ChatActivity : BaseActivity() {
         }
 //        helperInit()
 //        viewModel.initializeSdk(this)
-        chatAdapter= ChatAdapter(mutableListOf<Chatlist>())
+        chatAdapter = ChatAdapter(mutableListOf<Chatlist>())
         clicks()
         setObservers()
         /**
@@ -438,7 +441,28 @@ class ChatActivity : BaseActivity() {
             }
         })
         binding.ivVideoCall.setOnClickListener {
-            viewModel.joinMeeting(this, "", "")
+            if(viewModel.sdk==null){
+                viewModel.initializeSdk(this)
+            }
+
+            val zoomDialog = BottomSheetDialog(this)
+            val zoomDialogBinding = DialogVideoCallBinding.inflate(layoutInflater)
+            zoomDialog.setContentView(zoomDialogBinding.root)
+
+            zoomDialogBinding.apply {
+                tvSubmit.setOnClickListener {
+                      if(etMeetingId.text.toString().trim().isEmpty()){
+                          showToast(getString(R.string.enter_id))
+                      }else if(etPwd.text.toString().trim().isEmpty()){
+                          showToast(getString(R.string.enter_password))
+                      }else {
+                          viewModel.joinMeeting(this@ChatActivity,etMeetingId.text.toString().trim(),etPwd.text.toString().trim())
+                      }
+                }
+            }
+            zoomDialog.show()
+
+
         }
 
         binding.ivBack.setOnClickListener {

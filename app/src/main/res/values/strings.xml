@@ -221,6 +221,10 @@
     <string name="enter_your_subject">Enter your subject</string>
     <string name="coach">Coach Name</string>
     <string name="location">Location</string>
+    <string name="meeting_id">Meeting ID</string>
+    <string name="meeting_pwd">Meeting Password</string>
+    <string name="zoom">Zoom</string>
+    <string name="enter_id">Please enter meeting id</string>
 
     <string-array name="Gender">
         <item>Select Gender</item>

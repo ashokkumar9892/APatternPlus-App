@@ -25,7 +25,7 @@ import javax.inject.Inject
 class ChatActivityViewModel @Inject constructor(
     val mainRepository: MainRepository,
 
-) :
+    ) :
     BaseViewModel() {
     var chatData = MutableLiveData<MyChatResponse>()
     var uploadFileResponse = MutableLiveData<UploadFileResponse>()
@@ -33,7 +33,7 @@ class ChatActivityViewModel @Inject constructor(
     var connectStatus = true
     var binding: ActivityChatBinding? = null
     var codeChallengeHelper: CodeChallengeHelper? = null
-
+    var sdk:ZoomSDK? = null
 
     init {
         makeConnection()
@@ -46,7 +46,7 @@ class ChatActivityViewModel @Inject constructor(
      * SDK's meeting-related functionality.
      */
     fun initializeSdk(context: Context) {
-        val sdk = ZoomSDK.getInstance()
+        sdk = ZoomSDK.getInstance()
         // TODO: Do not use hard-coded values for your key/secret in your app in production!
         val params = ZoomSDKInitParams().apply {
             appKey =
@@ -65,19 +65,19 @@ class ChatActivityViewModel @Inject constructor(
             override fun onZoomSDKInitializeResult(errorCode: Int, internalErrorCode: Int) = Unit
             override fun onZoomAuthIdentityExpired() = Unit
         }
-        sdk.initialize(context, listener, params)
+        sdk!!.initialize(context, listener, params)
     }
 
     /**
      * Join a meeting without any login/authentication with the meeting's number & password
      */
-     fun joinMeeting(context: Context, meetingNumber: String, pw: String) {
+    fun joinMeeting(context: Context, meetingNumber: String, pw: String) {
         val meetingService = ZoomSDK.getInstance().meetingService
         val options = JoinMeetingOptions()
         val params = JoinMeetingParams().apply {
             displayName = "USER" // TODO: Enter your name
-            meetingNo = "78099133321"
-            password = "f58u4x"
+            meetingNo = meetingNumber
+            password = pw
 
 
         }
@@ -124,7 +124,7 @@ class ChatActivityViewModel @Inject constructor(
 //                    }
 //                }
 //            })
-            connection2!!.onClosed(object :OnClosedCallback{
+            connection2!!.onClosed(object : OnClosedCallback {
                 override fun invoke(exception: java.lang.Exception?) {
                     connection2!!.start()
                 }

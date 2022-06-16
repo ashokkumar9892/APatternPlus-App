@@ -99,7 +99,9 @@
         <entry key="app/src/main/res/layout/bottom_sheet_chat_bot.xml" value="0.26197916666666665" />
         <entry key="app/src/main/res/layout/bottom_sheet_do_you_have_watch.xml" value="0.26197916666666665" />
         <entry key="app/src/main/res/layout/bottom_sheet_do_you_like.xml" value="0.26197916666666665" />
+        <entry key="app/src/main/res/layout/bottom_sheet_exercise_completed.xml" value="0.24010416666666667" />
         <entry key="app/src/main/res/layout/bottom_sheet_options.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/dialog_video_call.xml" value="0.33" />
         <entry key="app/src/main/res/layout/fragment_health_tips.xml" value="0.22447916666666667" />
         <entry key="app/src/main/res/layout/fragment_message.xml" value="0.23958333333333334" />
         <entry key="app/src/main/res/layout/fragment_my_profile.xml" value="0.25" />
