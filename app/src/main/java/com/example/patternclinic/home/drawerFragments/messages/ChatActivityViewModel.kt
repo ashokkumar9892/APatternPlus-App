@@ -33,11 +33,10 @@ class ChatActivityViewModel @Inject constructor(
     var connectStatus = true
     var binding: ActivityChatBinding? = null
     var codeChallengeHelper: CodeChallengeHelper? = null
-    var sdk:ZoomSDK? = null
+    var sdk: ZoomSDK? = null
 
     init {
         makeConnection()
-
     }
 
 
@@ -111,24 +110,23 @@ class ChatActivityViewModel @Inject constructor(
      * making connection to socket
      */
     fun makeConnection() {
-        viewModelScope.launch {
-            connection2 = HubConnectionBuilder.create(ApiConstants.CHAT_HUB_URL)
-                .build()
-            connection2!!.serverTimeout = 10000000
-            connection2!!.keepAliveInterval = 10000000
-            connection2!!.start()
-//            connection2!!.onClosed(object : OnClosedCallback {
-//                override fun invoke(exception: Exception?) {
-//                    if (connectStatus) {
-//                        connection2!!.start()
-//                    }
-//                }
-//            })
-            connection2!!.onClosed(object : OnClosedCallback {
-                override fun invoke(exception: java.lang.Exception?) {
+        if (connection2 == null) {
+            job = viewModelScope.launch {
+                connection2 =
+                    HubConnectionBuilder.create("https://annexappapi.apatternplus.com/chatHub")
+                        .build()
+                connection2!!.serverTimeout = 10000000
+                connection2!!.keepAliveInterval = 10000000
+                if (!connection2!!.connectionState.name.equals("connected", true)) {
                     connection2!!.start()
                 }
-            })
+
+                connection2!!.onClosed(object : OnClosedCallback {
+                    override fun invoke(exception: java.lang.Exception?) {
+                        connection2!!.start()
+                    }
+                })
+            }
         }
     }
 

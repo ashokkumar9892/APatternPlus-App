@@ -42,16 +42,16 @@
                 android:textSize="@dimen/_15ssp"
                 app:drawableStartCompat="@drawable/doctor_dummy" />
 
-            <com.google.android.material.imageview.ShapeableImageView
-                android:id="@+id/iv_video_call"
-                android:layout_width="@dimen/_50sdp"
+<!--            <com.google.android.material.imageview.ShapeableImageView-->
+<!--                android:id="@+id/iv_video_call"-->
+<!--                android:layout_width="@dimen/_50sdp"-->
 
-                android:layout_height="@dimen/_50sdp"
-                android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"
-                android:padding="@dimen/_12sdp"
-                android:src="@drawable/zm_ic_videocall"
-                app:tint="@color/black" />
+<!--                android:layout_height="@dimen/_50sdp"-->
+<!--                android:layout_alignParentEnd="true"-->
+<!--                android:layout_centerVertical="true"-->
+<!--                android:padding="@dimen/_12sdp"-->
+<!--                android:src="@drawable/zm_ic_videocall"-->
+<!--                app:tint="@color/black" />-->
 
             <View
                 android:layout_width="match_parent"
@@ -183,8 +183,9 @@
 
         <RelativeLayout
             android:id="@+id/loader"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
             android:clickable="true"
             android:focusable="true">
 

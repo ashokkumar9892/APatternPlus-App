@@ -55,7 +55,6 @@ class ChatActivity : BaseActivity() {
 
     @Inject
     lateinit var okHttpClient: OkHttpClient
-
     //    var connection2: HubConnection? = null
     val viewModel: ChatActivityViewModel by viewModels()
     var recorder: MediaRecorder? = null
@@ -69,6 +68,7 @@ class ChatActivity : BaseActivity() {
     var latestFile: Uri? = null
     var data: model? = null
     private val pickImageGalleryLauncher =
+
         registerForActivityResult(ActivityResultContracts.GetContent()) {
             if (it != null) {
                 val file = FileUtils.getFile(this, it)
@@ -404,6 +404,7 @@ class ChatActivity : BaseActivity() {
                     }
 
                 } catch (e: Exception) {
+                    viewModel.makeConnection()
                     showToast(e.toString())
                 }
             } else {
@@ -427,12 +428,12 @@ class ChatActivity : BaseActivity() {
 
                     try {
                         //invoke from one connection
-                        runOnUiThread {
+
                             viewModel.connection2!!.invoke("SendMessages", data)
                             binding.etMessage.setText("")
                             binding.loader.visibility = View.VISIBLE
 
-                        }
+
                     } catch (e: Exception) {
                         showToast(e.toString())
                         viewModel.makeConnection()
@@ -440,30 +441,34 @@ class ChatActivity : BaseActivity() {
                 }
             }
         })
-        binding.ivVideoCall.setOnClickListener {
-            if(viewModel.sdk==null){
-                viewModel.initializeSdk(this)
-            }
-
-            val zoomDialog = BottomSheetDialog(this)
-            val zoomDialogBinding = DialogVideoCallBinding.inflate(layoutInflater)
-            zoomDialog.setContentView(zoomDialogBinding.root)
-
-            zoomDialogBinding.apply {
-                tvSubmit.setOnClickListener {
-                      if(etMeetingId.text.toString().trim().isEmpty()){
-                          showToast(getString(R.string.enter_id))
-                      }else if(etPwd.text.toString().trim().isEmpty()){
-                          showToast(getString(R.string.enter_password))
-                      }else {
-                          viewModel.joinMeeting(this@ChatActivity,etMeetingId.text.toString().trim(),etPwd.text.toString().trim())
-                      }
-                }
-            }
-            zoomDialog.show()
-
-
-        }
+//        binding.ivVideoCall.setOnClickListener {
+//            if (viewModel.sdk == null) {
+//                viewModel.initializeSdk(this)
+//            }
+//
+//            val zoomDialog = BottomSheetDialog(this)
+//            val zoomDialogBinding = DialogVideoCallBinding.inflate(layoutInflater)
+//            zoomDialog.setContentView(zoomDialogBinding.root)
+//
+//            zoomDialogBinding.apply {
+//                tvSubmit.setOnClickListener {
+//                    if (etMeetingId.text.toString().trim().isEmpty()) {
+//                        showToast(getString(R.string.enter_id))
+//                    } else if (etPwd.text.toString().trim().isEmpty()) {
+//                        showToast(getString(R.string.enter_password))
+//                    } else {
+//                        viewModel.joinMeeting(
+//                            this@ChatActivity,
+//                            etMeetingId.text.toString().trim(),
+//                            etPwd.text.toString().trim()
+//                        )
+//                    }
+//                }
+//            }
+//            zoomDialog.show()
+//
+//
+//        }
 
         binding.ivBack.setOnClickListener {
             finish()
