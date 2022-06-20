@@ -73,8 +73,15 @@ class CreateProfileHeight : AppCompatActivity() {
                 userDetail?.patientInfo?.weightUnit ?: ""
             map[ApiConstants.APIParams.WEIGHT.value] = userDetail?.patientInfo?.weight ?: ""
             map[ApiConstants.APIParams.HEIGHT.value] = userDetail?.patientInfo?.height ?: ""
+            map[ApiConstants.APIParams.DOCTOR_SK.value] = userDetail?.patientInfo?.doctorSK ?: ""
+            map[ApiConstants.APIParams.COACH_SK.value] = userDetail?.patientInfo?.coachSK ?: ""
+            map[ApiConstants.APIParams.DOCTOR_NAME.value] = userDetail?.patientInfo?.doctorName ?: ""
+            map[ApiConstants.APIParams.COACH_NAME.value] = userDetail?.patientInfo?.coachName ?: ""
+            map[ApiConstants.APIParams.TEAM_LOCATION.value] = userDetail?.patientInfo?.teamLocation ?: ""
+            map[ApiConstants.APIParams.DOCTOR_PIC.value] = userDetail?.patientInfo?.doctorPic ?: ""
+            map[ApiConstants.APIParams.COACH_PIC.value] = userDetail?.patientInfo?.coachPic ?: ""
 
-            var split = userDetail?.patientInfo?.height?.split(".")
+            val split = userDetail?.patientInfo?.height?.split(".")
             binding.tvFeet.text = split!![0]
             binding.tvInch.text = split!![1]
 

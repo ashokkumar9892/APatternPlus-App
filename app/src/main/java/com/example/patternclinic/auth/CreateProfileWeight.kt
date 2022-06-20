@@ -63,6 +63,14 @@ class CreateProfileWeight : AppCompatActivity() {
 
             map[ApiConstants.APIParams.REFER_AS.value] = userDetail?.patientInfo?.referAs ?: ""
             map[ApiConstants.APIParams.HEIGHT.value] = userDetail?.patientInfo?.height ?: ""
+           map[ApiConstants.APIParams.DOCTOR_SK.value] = userDetail?.patientInfo?.doctorSK ?: ""
+            map[ApiConstants.APIParams.COACH_SK.value] = userDetail?.patientInfo?.coachSK ?: ""
+            map[ApiConstants.APIParams.DOCTOR_NAME.value] = userDetail?.patientInfo?.doctorName ?: ""
+            map[ApiConstants.APIParams.COACH_NAME.value] = userDetail?.patientInfo?.coachName ?: ""
+            map[ApiConstants.APIParams.TEAM_LOCATION.value] = userDetail?.patientInfo?.teamLocation ?: ""
+            map[ApiConstants.APIParams.DOCTOR_PIC.value] = userDetail?.patientInfo?.doctorPic ?: ""
+            map[ApiConstants.APIParams.COACH_PIC.value] = userDetail?.patientInfo?.coachPic ?: ""
+
             setObservers()
             initDesign()
             if (userDetail?.patientInfo?.weightUnit == "LBS") {
