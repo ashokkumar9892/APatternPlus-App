@@ -21,15 +21,15 @@ import us.zoom.sdk.JoinMeetingParams
 import us.zoom.sdk.StartMeetingParams
 
 class IntroScreen : AppCompatActivity() {
-//    var pager: ViewPager? = null
+    //    var pager: ViewPager? = null
     var count: TextView? = null
     var next: TextView? = null
 
-    lateinit var binding:ActivityIntroScreenBinding
+    lateinit var binding: ActivityIntroScreenBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-        binding=DataBindingUtil.setContentView(this,R.layout.activity_intro_screen)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_intro_screen)
         this.window.setFlags(
             WindowManager.LayoutParams.FLAG_FULLSCREEN,
             WindowManager.LayoutParams.FLAG_FULLSCREEN
@@ -46,10 +46,11 @@ class IntroScreen : AppCompatActivity() {
             startActivity(Intent(this, LoginActivity::class.java))
         }
 
-       Glide.with(this).load("android.resource://" +packageName.toString() + "/" + R.raw.intro_video).into(binding.ivIntro)
+        Glide.with(this)
+            .load("android.resource://" + packageName.toString() + "/" + R.raw.intro_video)
+            .into(binding.ivIntro)
 
     }
-
 
 
 //    private fun initDesign() {
