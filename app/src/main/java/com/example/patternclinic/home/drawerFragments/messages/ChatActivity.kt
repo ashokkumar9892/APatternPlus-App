@@ -217,6 +217,7 @@ class ChatActivity : BaseActivity() {
 //        helperInit()
 //        viewModel.initializeSdk(this)
         chatAdapter = ChatAdapter(mutableListOf<Chatlist>())
+        binding.rvMessages.adapter=chatAdapter
         clicks()
         setObservers()
         /**
