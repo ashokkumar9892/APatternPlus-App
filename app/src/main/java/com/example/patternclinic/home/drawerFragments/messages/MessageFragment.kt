@@ -21,6 +21,7 @@ class MessageFragment : Fragment() {
     val viewModel: MessageFragmentViewModel by viewModels()
 
 
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -33,12 +34,18 @@ class MessageFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         clicks()
         setObservers()
         val map = HashMap<String, Any>()
         map[ApiConstants.APIParams.AUTH_TOKEN.value] = userDetail!!.authToken
         map[ApiConstants.APIParams.SK.value] = userDetail!!.patientInfo.sk
         viewModel.getUserChatList(map)
+    }
+
+    override fun onStop() {
+
+        super.onStop()
     }
 
     fun setObservers() {

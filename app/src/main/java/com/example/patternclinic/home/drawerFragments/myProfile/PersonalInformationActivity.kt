@@ -40,7 +40,8 @@ class PersonalInformationActivity : AppCompatActivity() {
             "${it?.patientInfo?.firstName ?: ""} ${it?.patientInfo?.lastName ?: ""}"
         binding.tvCountry.text = "${it?.patientInfo?.country ?: ""}"
 
-        binding.tvDob.text = dateConvert_6to(it!!.patientInfo.dob!!)
+        binding.tvDob.text =
+            if (!it!!.patientInfo.dob.isNullOrEmpty()) dateConvert_6to(it!!.patientInfo.dob!!) else "-"
 
         binding.tvEmail.text = it?.patientInfo?.email ?: ""
 

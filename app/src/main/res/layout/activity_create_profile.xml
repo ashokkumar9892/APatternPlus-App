@@ -155,7 +155,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_38sdp"
                         android:background="@drawable/drawable_shape_login_2"
-                        android:drawableEnd="@drawable/ic_dropdown_select"
                         android:fontFamily="@font/outfit_regular"
                         android:gravity="center_vertical"
                         android:paddingStart="@dimen/_14sdp"
@@ -163,6 +162,7 @@
                         android:text="@={viewModel.country}"
                         android:textColor="@color/text_color_4"
                         android:textSize="@dimen/_14ssp" />
+<!--                    android:drawableEnd="@drawable/ic_dropdown_select"-->
 
                 </RelativeLayout>
 
