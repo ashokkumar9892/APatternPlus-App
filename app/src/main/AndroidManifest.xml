@@ -19,7 +19,6 @@
     <application
         android:name=".utils.MyApplication"
         android:allowBackup="true"
-
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
@@ -124,7 +123,16 @@
             android:exported="false" />
         <activity
             android:name=".home.drawerFragments.appointments.CoachProfileActivity"
-            android:exported="false" />
+            android:exported="true" >
+            <intent-filter>
+                <data android:scheme="https"/>
+                <data android:host="us06web.zoom.us"/>
+                <data android:path="/j/85917137116"/>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+            </intent-filter>
+        </activity>
         <activity
             android:name=".home.drawerFragments.appointments.CoachAppointments"
             android:exported="false" />
