@@ -75,7 +75,7 @@
         <entry key="app/src/main/res/layout/activity_add_appointment.xml" value="0.33" />
         <entry key="app/src/main/res/layout/activity_change_password.xml" value="0.24010416666666667" />
         <entry key="app/src/main/res/layout/activity_chat.xml" value="0.33" />
-        <entry key="app/src/main/res/layout/activity_coach_appointments.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/activity_coach_appointments.xml" value="0.22" />
         <entry key="app/src/main/res/layout/activity_coach_profile.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_connect_device.xml" value="0.21" />
         <entry key="app/src/main/res/layout/activity_contact_us.xml" value="0.25" />
@@ -85,7 +85,7 @@
         <entry key="app/src/main/res/layout/activity_current_weight.xml" value="0.24010416666666667" />
         <entry key="app/src/main/res/layout/activity_forgot_password.xml" value="0.24010416666666667" />
         <entry key="app/src/main/res/layout/activity_health_tip_detail.xml" value="0.24010416666666667" />
-        <entry key="app/src/main/res/layout/activity_home_screen.xml" value="0.2" />
+        <entry key="app/src/main/res/layout/activity_home_screen.xml" value="0.3584758942457232" />
         <entry key="app/src/main/res/layout/activity_intro_screen.xml" value="0.24010416666666667" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.33" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.24010416666666667" />

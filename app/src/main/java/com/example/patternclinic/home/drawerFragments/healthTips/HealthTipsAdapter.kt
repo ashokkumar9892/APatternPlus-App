@@ -38,7 +38,7 @@ class HealthTipsAdapter() : RecyclerView.Adapter<HealthTipsAdapter.ViewHolder>()
         with(holder.bind) {
             Glide.with(root.context).load(list[position].image ?: "")
                 .placeholder(R.drawable.dummy_food).into(ivImage)
-            tvTitle.text = list[position].sk ?: ""
+            tvTitle.text = "Health Tip #${list[position].sk ?: ""}"
             tvDescription.text = list[position].description ?: ""
         }
     }

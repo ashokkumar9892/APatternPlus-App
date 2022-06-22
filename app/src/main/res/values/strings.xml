@@ -225,12 +225,13 @@
     <string name="meeting_pwd">Meeting Password</string>
     <string name="zoom">Zoom</string>
     <string name="enter_id">Please enter meeting id</string>
+    <string name="no_appointment_found">No Appointment Found</string>
 
     <string-array name="Gender">
         <item>Select Gender</item>
         <item>Male</item>
         <item>Female</item>
-        <item>Others</item>
+<!--        <item>Others</item>-->
     </string-array>
 
     <string-array name="locations">

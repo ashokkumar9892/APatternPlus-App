@@ -19,7 +19,7 @@ class HealthTipDetailActivity : AppCompatActivity() {
         if (intent.hasExtra(Keys.HEALTH_TIP_DETAIL)) {
             val data =
                 Gson().fromJson(intent.getStringExtra(Keys.HEALTH_TIP_DETAIL), Tip::class.java)
-            binding.tvTitle.text = data.sk
+            binding.tvTitle.text = "Health Tip #${data.sk ?: ""}"
             binding.tvDescription.text = data.description
             Glide.with(this).load(data.image ?: "").placeholder(R.drawable.dummy_food)
                 .into(binding.ivTop)

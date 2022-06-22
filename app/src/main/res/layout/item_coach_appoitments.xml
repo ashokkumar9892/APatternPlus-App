@@ -21,12 +21,15 @@
 
             android:orientation="horizontal">
 
+
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/iv_image"
                 android:layout_width="@dimen/_48sdp"
+                android:scaleType="fitXY"
                 android:layout_height="@dimen/_48sdp"
                 app:shapeAppearanceOverlay="@style/shape_10"
                 app:srcCompat="@drawable/coach_img" />
+
 
             <LinearLayout
                 android:layout_width="match_parent"

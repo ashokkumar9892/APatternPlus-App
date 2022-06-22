@@ -89,7 +89,7 @@
                         android:layout_height="@dimen/_178sdp"
                         android:background="@drawable/drawable_shape_18"
                         android:scaleType="fitXY"
-                        app:srcCompat="@drawable/nurse_dummy2" />
+                        app:srcCompat="@drawable/dummy2" />
                 </com.google.android.material.card.MaterialCardView>
 
                 <LinearLayout
@@ -171,6 +171,7 @@
                     android:id="@+id/tv_description"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:visibility="gone"
                     android:layout_marginTop="@dimen/_12sdp"
                     android:fontFamily="@font/outfit_light"
                     android:text="@string/exa_text"

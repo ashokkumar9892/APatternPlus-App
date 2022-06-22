@@ -1,5 +1,7 @@
 package com.example.patternclinic.home.drawerFragments.appointments
 
+import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -16,7 +18,11 @@ import com.example.patternclinic.utils.showToast
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.gson.Gson
 import dagger.hilt.android.AndroidEntryPoint
+import java.net.URI
 
+/**
+ * Coach Detail Activity
+ */
 @AndroidEntryPoint
 class CoachProfileActivity : AppCompatActivity() {
     var binding: ActivityCoachProfileBinding? = null
@@ -25,6 +31,20 @@ class CoachProfileActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_coach_profile)
+
+        /**
+         * if user comes from tapping zoom link
+         */
+        val url = intent.data
+        if (url != null) {
+            viewModel.initializeSdk(this)
+            viewModel.joinWithLink(this, url.toString())
+        }
+
+
+        /**
+         * if user comes from AppointmentList Activity
+         */
         if (intent.hasExtra(Keys.APPOINTMENT_DETAIL)) {
             val data = Gson().fromJson(
                 intent.getStringExtra(Keys.APPOINTMENT_DETAIL),
@@ -75,8 +95,13 @@ class CoachProfileActivity : AppCompatActivity() {
         binding!!.tvTime.text = data?.appointmentTime ?: ""
         binding!!.tvDate.text = dateConvert_7(data!!.appointmentDate)
         Glide.with(this).load(data.doctorPic ?: "")
-            .placeholder(R.drawable.coach_img).into(binding!!.ivImage)
+            .placeholder(R.drawable.dummy2).into(binding!!.ivImage)
         binding!!.tvType.text = data.appointmentType ?: ""
+        if(!data.appointmentType.isNullOrEmpty()){
+            if(data.appointmentType.length>9){
+                binding!!.ivVideoCall.visibility=View.GONE
+            }
+        }
     }
 
     private fun initDesign() {

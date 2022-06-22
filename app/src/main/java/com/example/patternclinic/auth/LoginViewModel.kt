@@ -41,9 +41,8 @@ class LoginViewModel @Inject constructor(val mainRepository: MainRepository) : B
             FirebaseMessaging.getInstance().token.addOnCompleteListener {
                 SharedPrefs.saveFcmToken(it.result)
             }
-        }
-        catch (e:Exception){
-            Log.e("exception",e.toString())
+        } catch (e: Exception) {
+            Log.e("exception", e.toString())
         }
 
     }
@@ -82,7 +81,7 @@ class LoginViewModel @Inject constructor(val mainRepository: MainRepository) : B
 
                         loginResponse.postValue(response)
                         if (response.response == 1) {
-                            v.context.showToast(response.errorMessage?:"")
+                            v.context.showToast(response.errorMessage ?: "")
                             SharedPrefs.saveLoggedInUser(response)
 //                            v.context.startActivity(
 //                                Intent(
@@ -91,7 +90,7 @@ class LoginViewModel @Inject constructor(val mainRepository: MainRepository) : B
 //                                )
 //                            )
                             //remove below line after need
-                            if (response.patientInfo.height.isNullOrEmpty() || response.patientInfo.weight.isNullOrEmpty() || response.patientInfo.firstName.isNullOrEmpty() || response.patientInfo.lastName.isNullOrEmpty() || response.patientInfo.dob.isNullOrEmpty() || response.patientInfo.country.isNullOrEmpty() || response.patientInfo.gender.isNullOrEmpty()) {
+                            if (response.patientInfo.height.isNullOrEmpty() || response.patientInfo.weightUnit.isNullOrEmpty() || response.patientInfo.weight.isNullOrEmpty() || response.patientInfo.firstName.isNullOrEmpty() || response.patientInfo.lastName.isNullOrEmpty() || response.patientInfo.dob.isNullOrEmpty() || response.patientInfo.country.isNullOrEmpty() || response.patientInfo.gender.isNullOrEmpty()) {
                                 v.context.startActivity(
                                     Intent(
                                         v.context,
@@ -106,8 +105,13 @@ class LoginViewModel @Inject constructor(val mainRepository: MainRepository) : B
                                             SelectPatternPlusTeam::class.java
                                         )
                                     )
-                                }else{
-                                    v.context.startActivity(Intent(v.context, HomeScreenActivity::class.java))
+                                } else {
+                                    v.context.startActivity(
+                                        Intent(
+                                            v.context,
+                                            HomeScreenActivity::class.java
+                                        )
+                                    )
                                     (v.context as Activity).finish()
                                 }
 

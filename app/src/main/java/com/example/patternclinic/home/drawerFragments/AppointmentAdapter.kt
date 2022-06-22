@@ -49,7 +49,7 @@ class AppointmentAdapter(val list: List<AppointmentInfo>) :
             tvDate.text = dateConvert_7(list[position].appointmentDate)
             tvTime.text = list[position].appointmentTime
             Glide.with(holder.itemView.context).load(list[position].doctorPic ?: "")
-                .placeholder(R.drawable.coach_img).into(ivImage)
+                .placeholder(R.drawable.dummy2).into(ivImage)
             tvType.text=list[position].appointmentType?:""
         }
 

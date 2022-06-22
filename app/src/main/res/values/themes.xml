@@ -29,7 +29,7 @@
     </style>
 
     <style name="shape_10" parent="">
-        <item name="cornerSize">10%</item>
+        <item name="cornerSize">20%</item>
     </style>
     <style name="tab_text" parent="@android:style/TextAppearance.Widget.TabWidget">
         <item name="android:fontFamily">@font/outfit_medium</item>

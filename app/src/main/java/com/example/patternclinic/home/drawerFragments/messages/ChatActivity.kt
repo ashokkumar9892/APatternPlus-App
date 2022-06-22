@@ -351,7 +351,7 @@ class ChatActivity : BaseActivity() {
                 (binding.rvMessages.layoutManager as LinearLayoutManager).stackFromEnd = true
                 binding.rvMessages.adapter = chatAdapter
             } else {
-                showToast(it.errorMessage)
+//                showToast(it.errorMessage)
             }
         }
 

@@ -96,23 +96,8 @@ class SelectPatternPlusTeam : BaseActivity() {
             if (intent.hasExtra(Keys.UPDATE_PATTERN_TEAM)) {
                 finish()
             } else {
-                binding.request.visibility = View.VISIBLE
-                Handler(Looper.getMainLooper()).postDelayed({
-                    binding.request.visibility = View.GONE
-                    binding.approve.visibility = View.VISIBLE
-                }, 1000)
-                Handler(Looper.getMainLooper()).postDelayed({
-                    binding.approve.visibility = View.GONE
-                    binding.decline.visibility = View.VISIBLE
-                }, 2000)
-                Handler(Looper.getMainLooper()).postDelayed({
-                    binding.decline.visibility = View.GONE
-
                     startActivity(Intent(this, HomeScreenActivity::class.java))
                     finishAffinity()
-
-
-                }, 3000)
             }
         }
 

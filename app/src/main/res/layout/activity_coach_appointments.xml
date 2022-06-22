@@ -93,6 +93,17 @@
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 tools:itemCount="3"
                 tools:listitem="@layout/item_coach_appoitments" />
+
+            <TextView
+                android:id="@+id/no_Appointment_found"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/outfit_semibold"
+                android:gravity="center"
+                android:text="@string/no_appointment_found"
+                android:textColor="@color/text_color_4"
+                android:textSize="@dimen/_12ssp"
+                android:visibility="gone" />
         </LinearLayout>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -108,13 +119,14 @@
             app:backgroundTint="@color/color_primary"
             app:maxImageSize="@dimen/_24sdp"
             app:tint="@color/white" />
+
         <RelativeLayout
             android:id="@+id/loader"
-            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:clickable="true"
-            android:focusable="true">
+            android:focusable="true"
+            android:visibility="gone">
 
             <com.agrawalsuneet.loaderspack.loaders.PulseLoader
                 android:layout_width="match_parent"
